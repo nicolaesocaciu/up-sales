@@ -39,7 +39,7 @@ export const Sidebar = () => {
 
   return (
     <div className={cn(
-      "fixed top-0 left-0 h-screen bg-white border-r transition-all duration-300",
+      "fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300",
       isCollapsed ? "w-16" : "w-64"
     )}>
       <div className="flex-1 py-6 relative">
