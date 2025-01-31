@@ -73,7 +73,7 @@ export const Sidebar = () => {
             </Link>
           ))}
 
-          <div className="my-5 border-t border-gray-200" />
+          <div className="my-5 border-t border-gray-200 my-8" />
 
           {settingsItems.map((item) => (
             <Link
