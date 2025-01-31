@@ -36,8 +36,8 @@ export const SalesPieChart = () => {
               outerRadius={120}
               paddingAngle={4}
               dataKey="value"
-              startAngle={-270}
-              endAngle={90}
+              startAngle={90}
+              endAngle={-270}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
