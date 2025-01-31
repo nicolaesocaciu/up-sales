@@ -44,7 +44,7 @@ export const StatsCard = ({ title, value, change, chart }: StatsCardProps) => {
                   {Math.abs(change.value)}%
                 </div>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="bg-[#1F2228] text-white border-0">
                 <p>Compared with the previous month</p>
               </TooltipContent>
             </Tooltip>
