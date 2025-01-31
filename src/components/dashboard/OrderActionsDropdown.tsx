@@ -22,11 +22,8 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
   };
 
   return (
-    <div 
-      onMouseEnter={() => handleOpenChange(true)}
-      onMouseLeave={() => handleOpenChange(false)}
-    >
-      <DropdownMenu modal={false} open={isOpen}>
+    <div>
+      <DropdownMenu open={isOpen} onOpenChange={handleOpenChange}>
         <DropdownMenuTrigger asChild>
           <Button 
             variant="ghost" 
@@ -44,15 +41,15 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
           className="w-[200px] p-2 rounded-xl bg-white" 
           sideOffset={-10}
         >
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#F5F5F5] rounded-lg">
+          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
             <FileText className="h-5 w-5" />
             View order
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#F5F5F5] rounded-lg">
+          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
             <RefreshCw className="h-5 w-5" />
             Change status
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#F5F5F5] rounded-lg text-red-600 hover:text-red-600">
+          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600">
             <XOctagon className="h-5 w-5" />
             Cancel order
           </DropdownMenuItem>
