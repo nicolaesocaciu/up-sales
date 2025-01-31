@@ -66,7 +66,7 @@ export const SalesPieChart = () => {
           <div key={item.name} className="flex items-center space-x-2">
             <div className="flex items-center space-x-2">
               <div 
-                className="w-1 h-12" 
+                className="w-[6px] h-[38px] rounded-[4px]" 
                 style={{ backgroundColor: item.color }}
               />
               <div>
