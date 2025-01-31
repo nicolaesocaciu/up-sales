@@ -46,7 +46,7 @@ const Index = () => {
                     </linearGradient>
                   </defs>
                   <Area
-                    type="linear"
+                    type="monotone"
                     dataKey="value"
                     stroke="#22C55E"
                     fillOpacity={1}
@@ -73,7 +73,7 @@ const Index = () => {
                     </linearGradient>
                   </defs>
                   <Area
-                    type="linear"
+                    type="monotone"
                     dataKey="value"
                     stroke="#22C55E"
                     fillOpacity={1}
@@ -100,7 +100,7 @@ const Index = () => {
                     </linearGradient>
                   </defs>
                   <Area
-                    type="linear"
+                    type="monotone"
                     dataKey="value"
                     stroke="#22C55E"
                     fillOpacity={1}
@@ -127,7 +127,7 @@ const Index = () => {
                     </linearGradient>
                   </defs>
                   <Area
-                    type="linear"
+                    type="monotone"
                     dataKey="value"
                     stroke="#EF4444"
                     fillOpacity={1}
