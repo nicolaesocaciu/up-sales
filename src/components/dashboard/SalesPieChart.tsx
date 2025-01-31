@@ -12,6 +12,20 @@ const data = [
 export const SalesPieChart = () => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
+  // Custom tooltip formatter to include percentage
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const percentage = ((payload[0].value / total) * 100).toFixed(0);
+      return (
+        <div className="bg-[#1F2228] px-3 py-2 rounded">
+          <p className="text-white">{`${payload[0].name} - ${percentage}%`}</p>
+          <p className="text-white">${payload[0].value.toLocaleString()}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <Card className="p-6 bg-white rounded-[24px] border-0">
       <div className="flex items-center justify-between mb-8">
@@ -43,17 +57,7 @@ export const SalesPieChart = () => {
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: '#1F2228',
-                border: 'none',
-                padding: '0 12px',
-                borderRadius: '4px',
-                zIndex: 50
-              }}
-              itemStyle={{ color: '#FFFFFF' }}
-              labelStyle={{ color: '#FFFFFF' }}
-            />
+            <Tooltip content={<CustomTooltip />} />
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
