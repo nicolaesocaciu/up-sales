@@ -9,7 +9,6 @@ import {
   Area,
   AreaChart,
   ResponsiveContainer,
-  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -52,10 +51,10 @@ const Index = () => {
                     stroke="#22C55E"
                     fillOpacity={1}
                     fill="url(#colorValue)"
+                    isAnimationActive={false}
                   />
                   <YAxis hide domain={["dataMin - 100", "dataMax + 100"]} />
                   <XAxis hide />
-                  <Tooltip />
                 </AreaChart>
               </ResponsiveContainer>
             }
@@ -79,10 +78,10 @@ const Index = () => {
                     stroke="#22C55E"
                     fillOpacity={1}
                     fill="url(#colorValue2)"
+                    isAnimationActive={false}
                   />
                   <YAxis hide domain={["dataMin - 100", "dataMax + 100"]} />
                   <XAxis hide />
-                  <Tooltip />
                 </AreaChart>
               </ResponsiveContainer>
             }
@@ -106,10 +105,10 @@ const Index = () => {
                     stroke="#22C55E"
                     fillOpacity={1}
                     fill="url(#colorValue3)"
+                    isAnimationActive={false}
                   />
                   <YAxis hide domain={["dataMin - 100", "dataMax + 100"]} />
                   <XAxis hide />
-                  <Tooltip />
                 </AreaChart>
               </ResponsiveContainer>
             }
@@ -133,10 +132,10 @@ const Index = () => {
                     stroke="#EF4444"
                     fillOpacity={1}
                     fill="url(#colorValue4)"
+                    isAnimationActive={false}
                   />
                   <YAxis hide domain={["dataMin - 100", "dataMax + 100"]} />
                   <XAxis hide />
-                  <Tooltip />
                 </AreaChart>
               </ResponsiveContainer>
             }
