@@ -41,6 +41,10 @@ export default {
           paid: "#22C55E",
           processing: "#3B82F6",
           waiting: "#F59E0B",
+          light: {
+            up: "#F2FCE2",
+            down: "#FEE2E2",
+          }
         },
         chart: {
           blue: "#3B82F6",

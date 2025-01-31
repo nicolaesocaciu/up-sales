@@ -1,5 +1,11 @@
 import { cn } from "@/lib/utils";
 import { Card } from "../ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 interface StatsCardProps {
   title: string;
@@ -13,25 +19,38 @@ interface StatsCardProps {
 
 export const StatsCard = ({ title, value, change, chart }: StatsCardProps) => {
   return (
-    <Card className="p-6">
+    <Card className="p-6 bg-white rounded-[24px] border-0 relative">
+      {chart && (
+        <div className="absolute top-6 right-6 w-24 h-12 opacity-80">
+          {chart}
+        </div>
+      )}
       <div className="space-y-2">
         <h3 className="text-sm font-medium text-text-light">{title}</h3>
         <div className="flex items-baseline justify-between">
           <p className="text-2xl font-semibold text-text-dark">{value}</p>
-          <div className="flex items-center space-x-1">
-            <span
-              className={cn(
-                "text-sm font-medium",
-                change.trend === "up" ? "text-green-600" : "text-red-600"
-              )}
-            >
-              {change.trend === "up" ? "+" : "-"}
-              {Math.abs(change.value)}%
-            </span>
-          </div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <div
+                  className={cn(
+                    "px-2 py-1 rounded-full text-sm font-medium",
+                    change.trend === "up"
+                      ? "bg-status-light-up text-green-600"
+                      : "bg-status-light-down text-red-600"
+                  )}
+                >
+                  {change.trend === "up" ? "+" : "-"}
+                  {Math.abs(change.value)}%
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Compared with the previous month</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
-      {chart && <div className="mt-4">{chart}</div>}
     </Card>
   );
 };
