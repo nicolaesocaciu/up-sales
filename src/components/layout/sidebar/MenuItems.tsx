@@ -23,7 +23,7 @@ export const MenuItems = ({ items, isCollapsed }: MenuItemsProps) => {
           key={item.path}
           to={item.path}
           className={cn(
-            "flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors",
+            "flex items-center space-x-3 px-3 h-14 rounded-lg transition-colors mb-1",
             location.pathname === item.path
               ? "bg-primary text-white"
               : "text-gray-700 hover:bg-gray-100",

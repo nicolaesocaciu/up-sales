@@ -40,13 +40,13 @@ export const Sidebar = () => {
       "fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300",
       isCollapsed ? "w-16" : "w-64"
     )}>
-      <div className="flex-1 py-6 relative">
+      <div className="flex flex-col h-full py-6 relative">
         <CollapseButton 
           isCollapsed={isCollapsed} 
           onClick={() => setIsCollapsed(!isCollapsed)} 
         />
 
-        <nav className="space-y-1">
+        <nav className="flex flex-col flex-1">
           <div className="px-3">
             <MenuItems items={menuItems} isCollapsed={isCollapsed} />
           </div>
@@ -57,9 +57,11 @@ export const Sidebar = () => {
             <MenuItems items={settingsItems} isCollapsed={isCollapsed} />
           </div>
         </nav>
-      </div>
 
-      {!isCollapsed && <BetaPrompt />}
+        <div className="absolute bottom-8 left-0 right-0">
+          {!isCollapsed && <BetaPrompt />}
+        </div>
+      </div>
     </div>
   );
 };
