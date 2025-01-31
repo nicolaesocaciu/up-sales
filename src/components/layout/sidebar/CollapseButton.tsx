@@ -12,7 +12,7 @@ export const CollapseButton = ({ isCollapsed, onClick }: CollapseButtonProps) =>
     <Button
       variant="ghost"
       size="icon"
-      className="absolute -right-3 top-6 bg-white border rounded-full hover:bg-gray-100"
+      className="absolute -right-3 top-[516px] bg-white border rounded-full hover:bg-gray-100"
       onClick={onClick}
     >
       <ChevronLeft className={cn(
