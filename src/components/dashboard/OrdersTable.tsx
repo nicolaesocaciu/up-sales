@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -150,7 +149,7 @@ export const OrdersTable = () => {
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl">
+                    <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl bg-white">
                       <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#F5F5F5] rounded-lg">
                         <FileText className="h-5 w-5" />
                         View order
