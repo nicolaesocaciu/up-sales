@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -7,11 +8,19 @@ import {
   TableRow,
 } from "../ui/table";
 import { Button } from "../ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, ChevronDown, ChevronUp } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 
-const orders = [
+type Order = {
+  id: string;
+  date: string;
+  items: string;
+  value: string;
+  status: "Paid" | "Processing" | "Waiting";
+};
+
+const orders: Order[] = [
   {
     id: "#44213",
     date: "29 Jan 2025",
@@ -50,19 +59,48 @@ const orders = [
 ];
 
 export const OrdersTable = () => {
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+
+  const sortedOrders = [...orders].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return sortDirection === "asc" 
+      ? dateA.getTime() - dateB.getTime()
+      : dateB.getTime() - dateA.getTime();
+  });
+
+  const toggleSort = () => {
+    setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+  };
+
   return (
-    <div className="rounded-lg border bg-white">
-      <div className="flex items-center justify-between p-4 border-b">
+    <div className="rounded-[24px] bg-white">
+      <div className="flex items-center justify-between p-4">
         <h2 className="text-lg font-semibold">Latest orders</h2>
-        <Button variant="ghost" className="text-primary">
+        <Button 
+          variant="outline" 
+          className="text-primary hover:bg-primary/5"
+        >
           View all
         </Button>
       </div>
       <Table>
-        <TableHeader>
-          <TableRow>
+        <TableHeader className="bg-[#F2F2F2]">
+          <TableRow className="h-12 hover:bg-transparent">
             <TableHead>Order ID</TableHead>
-            <TableHead>Date</TableHead>
+            <TableHead 
+              className="cursor-pointer"
+              onClick={toggleSort}
+            >
+              <div className="flex items-center gap-2">
+                Date
+                {sortDirection === "asc" ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </div>
+            </TableHead>
             <TableHead>Items</TableHead>
             <TableHead>Order value</TableHead>
             <TableHead>Status</TableHead>
@@ -70,8 +108,11 @@ export const OrdersTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {orders.map((order) => (
-            <TableRow key={order.id}>
+          {sortedOrders.map((order) => (
+            <TableRow 
+              key={order.id} 
+              className="h-12 hover:bg-gray-50 transition-colors"
+            >
               <TableCell className="font-medium">{order.id}</TableCell>
               <TableCell>{order.date}</TableCell>
               <TableCell>{order.items}</TableCell>
@@ -92,7 +133,11 @@ export const OrdersTable = () => {
                 </Badge>
               </TableCell>
               <TableCell>
-                <Button variant="ghost" size="icon">
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  className="hover:bg-gray-100"
+                >
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </TableCell>
