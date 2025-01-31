@@ -86,7 +86,7 @@ export const OrdersTable = () => {
       </div>
       <div className="px-6">
         <Table>
-          <TableHeader className="bg-[#F2F2F2]">
+          <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
             <TableRow className="h-12 hover:bg-transparent">
               <TableHead className="rounded-l-[8px]">Order ID</TableHead>
               <TableHead 
