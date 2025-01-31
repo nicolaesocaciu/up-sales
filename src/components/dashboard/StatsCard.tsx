@@ -21,11 +21,11 @@ export const StatsCard = ({ title, value, change, chart }: StatsCardProps) => {
   return (
     <Card className="p-6 bg-white rounded-[24px] border-0 relative">
       {chart && (
-        <div className="absolute top-6 right-6 w-24 h-8 opacity-80 [&_svg]:!stroke-[3]">
+        <div className="absolute top-6 right-6 w-24 h-8 opacity-80 [&_svg]:!stroke-[3] [&_svg]:!h-8">
           {chart}
         </div>
       )}
-      <div className="space-y-2">
+      <div className="flex flex-col gap-2">
         <h3 className="text-sm font-medium text-text-light">{title}</h3>
         <div className="flex items-baseline justify-between">
           <p className="text-2xl font-semibold text-text-dark">{value}</p>
