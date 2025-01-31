@@ -13,7 +13,7 @@ export const SalesPieChart = () => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <Card className="p-6 bg-white rounded-[24px]">
+    <Card className="p-6 bg-white rounded-[24px] border-0">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-lg font-semibold">Sales by platform</h2>
         <Select defaultValue="january">
@@ -36,12 +36,23 @@ export const SalesPieChart = () => {
               outerRadius={120}
               paddingAngle={4}
               dataKey="value"
+              startAngle={90}
+              endAngle={450}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: '#1F2228',
+                border: 'none',
+                padding: '0 12px',
+                borderRadius: '4px'
+              }}
+              itemStyle={{ color: '#FFFFFF' }}
+              labelStyle={{ color: '#FFFFFF' }}
+            />
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
