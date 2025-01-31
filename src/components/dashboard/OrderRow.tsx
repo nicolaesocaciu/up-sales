@@ -2,6 +2,7 @@ import { TableCell, TableRow } from "../ui/table";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 import { OrderActionsDropdown } from "./OrderActionsDropdown";
+import { useState } from "react";
 
 type OrderStatus = "Paid" | "Processing" | "Waiting";
 
@@ -18,8 +19,13 @@ interface OrderRowProps {
 }
 
 export const OrderRow = ({ order }: OrderRowProps) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return (
-    <TableRow className="h-12 hover:bg-[#E7F2F9] transition-colors">
+    <TableRow className={cn(
+      "h-12 transition-colors",
+      isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]"
+    )}>
       <TableCell className="font-medium">{order.id}</TableCell>
       <TableCell>{order.date}</TableCell>
       <TableCell>{order.items}</TableCell>
@@ -40,7 +46,7 @@ export const OrderRow = ({ order }: OrderRowProps) => {
         </Badge>
       </TableCell>
       <TableCell>
-        <OrderActionsDropdown />
+        <OrderActionsDropdown onOpenChange={setIsDropdownOpen} />
       </TableCell>
     </TableRow>
   );

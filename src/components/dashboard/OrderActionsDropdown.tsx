@@ -8,20 +8,32 @@ import {
 } from "../ui/dropdown-menu";
 import { useState } from "react";
 
-export const OrderActionsDropdown = () => {
+interface OrderActionsDropdownProps {
+  onOpenChange?: (isOpen: boolean) => void;
+}
+
+export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    onOpenChange?.(open);
+  };
 
   return (
     <div 
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseEnter={() => handleOpenChange(true)}
+      onMouseLeave={() => handleOpenChange(false)}
     >
       <DropdownMenu modal={false} open={isOpen}>
         <DropdownMenuTrigger asChild>
           <Button 
             variant="ghost" 
             size="icon"
-            className="hover:bg-[rgba(153,203,236,0.50)]"
+            className={cn(
+              "transition-colors",
+              isOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]"
+            )}
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
