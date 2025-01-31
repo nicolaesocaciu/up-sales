@@ -84,67 +84,69 @@ export const OrdersTable = () => {
           View all
         </Button>
       </div>
-      <Table>
-        <TableHeader className="bg-[#F2F2F2]">
-          <TableRow className="h-12 hover:bg-transparent">
-            <TableHead>Order ID</TableHead>
-            <TableHead 
-              className="cursor-pointer"
-              onClick={toggleSort}
-            >
-              <div className="flex items-center gap-2">
-                Date
-                {sortDirection === "asc" ? (
-                  <ChevronUp className="h-4 w-4" />
-                ) : (
-                  <ChevronDown className="h-4 w-4" />
-                )}
-              </div>
-            </TableHead>
-            <TableHead>Items</TableHead>
-            <TableHead>Order value</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="w-[50px]">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sortedOrders.map((order) => (
-            <TableRow 
-              key={order.id} 
-              className="h-12 hover:bg-gray-50 transition-colors"
-            >
-              <TableCell className="font-medium">{order.id}</TableCell>
-              <TableCell>{order.date}</TableCell>
-              <TableCell>{order.items}</TableCell>
-              <TableCell>{order.value}</TableCell>
-              <TableCell>
-                <Badge
-                  variant="secondary"
-                  className={cn(
-                    "bg-opacity-10",
-                    order.status === "Paid" && "bg-status-paid text-status-paid",
-                    order.status === "Processing" &&
-                      "bg-status-processing text-status-processing",
-                    order.status === "Waiting" &&
-                      "bg-status-waiting text-status-waiting"
+      <div className="px-6">
+        <Table>
+          <TableHeader className="bg-[#F2F2F2]">
+            <TableRow className="h-12 hover:bg-transparent">
+              <TableHead>Order ID</TableHead>
+              <TableHead 
+                className="cursor-pointer"
+                onClick={toggleSort}
+              >
+                <div className="flex items-center gap-2">
+                  Date
+                  {sortDirection === "asc" ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
                   )}
-                >
-                  {order.status}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  className="hover:bg-gray-100"
-                >
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </TableCell>
+                </div>
+              </TableHead>
+              <TableHead>Items</TableHead>
+              <TableHead>Order value</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="w-[50px]">Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {sortedOrders.map((order) => (
+              <TableRow 
+                key={order.id} 
+                className="h-12 hover:bg-[#E7F2F9] transition-colors"
+              >
+                <TableCell className="font-medium">{order.id}</TableCell>
+                <TableCell>{order.date}</TableCell>
+                <TableCell>{order.items}</TableCell>
+                <TableCell>{order.value}</TableCell>
+                <TableCell>
+                  <Badge
+                    variant="secondary"
+                    className={cn(
+                      "bg-opacity-10",
+                      order.status === "Paid" && "bg-status-paid text-status-paid",
+                      order.status === "Processing" &&
+                        "bg-status-processing text-status-processing",
+                      order.status === "Waiting" &&
+                        "bg-status-waiting text-status-waiting"
+                    )}
+                  >
+                    {order.status}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="hover:bg-gray-100"
+                  >
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };
