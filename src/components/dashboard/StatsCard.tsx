@@ -25,7 +25,7 @@ export const StatsCard = ({ title, value, change, chart }: StatsCardProps) => {
           {chart}
         </div>
       )}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-8">
         <h3 className="text-sm font-medium text-text-light">{title}</h3>
         <div className="flex items-baseline justify-between">
           <p className="text-2xl font-semibold text-text-dark">{value}</p>
