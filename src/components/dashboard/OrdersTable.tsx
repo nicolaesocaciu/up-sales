@@ -75,7 +75,7 @@ export const OrdersTable = () => {
 
   return (
     <div className="rounded-[24px] bg-white">
-      <div className="flex items-center justify-between p-4">
+      <div className="flex items-center justify-between px-6 py-6">
         <h2 className="text-lg font-semibold">Latest orders</h2>
         <Button 
           variant="outline" 
