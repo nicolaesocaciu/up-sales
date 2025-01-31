@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface OrderActionsDropdownProps {
   onOpenChange?: (isOpen: boolean) => void;
