@@ -3,10 +3,10 @@ import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 const data = [
-  { name: "Website", value: 354629, color: "#3B82F6" },
-  { name: "Mobile", value: 160586, color: "#22C55E" },
-  { name: "Tablet", value: 107057, color: "#F59E0B" },
   { name: "Other", value: 46837, color: "#EF4444" },
+  { name: "Tablet", value: 107057, color: "#F59E0B" },
+  { name: "Mobile", value: 160586, color: "#22C55E" },
+  { name: "Website", value: 354629, color: "#3B82F6" },
 ];
 
 export const SalesPieChart = () => {
