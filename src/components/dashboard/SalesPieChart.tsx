@@ -48,7 +48,8 @@ export const SalesPieChart = () => {
                 backgroundColor: '#1F2228',
                 border: 'none',
                 padding: '0 12px',
-                borderRadius: '4px'
+                borderRadius: '4px',
+                zIndex: 50
               }}
               itemStyle={{ color: '#FFFFFF' }}
               labelStyle={{ color: '#FFFFFF' }}
