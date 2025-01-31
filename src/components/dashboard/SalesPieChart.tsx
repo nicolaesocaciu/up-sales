@@ -49,17 +49,17 @@ export const SalesPieChart = () => {
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+      <div className="grid grid-cols-4 gap-x-4">
         {data.map((item) => (
-          <div key={item.name} className="flex items-center space-x-3">
-            <div className="flex items-center space-x-3 flex-1">
+          <div key={item.name} className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <div 
                 className="w-1 h-12" 
                 style={{ backgroundColor: item.color }}
               />
               <div>
-                <div className="font-medium">{item.name}</div>
-                <div className="text-lg font-semibold">
+                <div className="font-medium text-sm">{item.name}</div>
+                <div className="text-base font-semibold">
                   ${item.value.toLocaleString()}
                 </div>
               </div>
