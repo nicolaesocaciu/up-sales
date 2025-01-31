@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 export const TopBar = () => {
   return (
-    <div className="h-16 border-b bg-white flex items-center justify-between px-6">
+    <div className="fixed top-0 left-0 right-0 z-50 h-16 border-b bg-white flex items-center justify-between px-6">
       <div className="flex items-center space-x-4">
         <img src="/logo.svg" alt="Logo" className="h-8" />
       </div>
