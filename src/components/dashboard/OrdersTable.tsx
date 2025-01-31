@@ -88,7 +88,7 @@ export const OrdersTable = () => {
         <Table>
           <TableHeader className="bg-[#F2F2F2]">
             <TableRow className="h-12 hover:bg-transparent">
-              <TableHead>Order ID</TableHead>
+              <TableHead className="rounded-l-[4px]">Order ID</TableHead>
               <TableHead 
                 className="cursor-pointer"
                 onClick={toggleSort}
@@ -105,7 +105,7 @@ export const OrdersTable = () => {
               <TableHead>Items</TableHead>
               <TableHead>Order value</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="w-[50px]">Actions</TableHead>
+              <TableHead className="rounded-r-[4px] w-[50px]">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
