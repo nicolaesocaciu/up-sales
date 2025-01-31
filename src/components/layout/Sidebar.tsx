@@ -11,7 +11,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MenuItems } from "./sidebar/MenuItems";
 import { BetaPrompt } from "./sidebar/BetaPrompt";
 import { CollapseButton } from "./sidebar/CollapseButton";
@@ -32,8 +32,16 @@ const settingsItems = [
   { icon: HelpCircle, label: "Help center", path: "/help" },
 ];
 
-export const Sidebar = () => {
+interface SidebarProps {
+  onCollapse?: (collapsed: boolean) => void;
+}
+
+export const Sidebar = ({ onCollapse }: SidebarProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  useEffect(() => {
+    onCollapse?.(isCollapsed);
+  }, [isCollapsed, onCollapse]);
 
   return (
     <div className={cn(
