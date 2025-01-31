@@ -7,17 +7,22 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { ChevronDown } from "lucide-react";
 
 export const UserMenu = () => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="focus:outline-none">
-        <Avatar className="h-8 w-8">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+      <DropdownMenuTrigger className="focus:outline-none flex items-center space-x-2">
+        <div className="flex items-center space-x-2">
+          <Avatar className="h-8 w-8">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <span className="text-sm font-medium">John Doe</span>
+          <ChevronDown className="h-4 w-4 text-gray-500" />
+        </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent align="end" className="w-56 bg-white">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
