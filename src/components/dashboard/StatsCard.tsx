@@ -29,7 +29,7 @@ export const StatsCard = ({ title, value, change, chart }: StatsCardProps) => {
         <h3 className="text-sm font-medium text-text-light">{title}</h3>
         <div className="flex items-baseline justify-between">
           <p className="text-2xl font-semibold text-text-dark">{value}</p>
-          <TooltipProvider>
+          <TooltipProvider delayDuration={0}>
             <Tooltip>
               <TooltipTrigger>
                 <div
