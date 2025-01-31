@@ -21,7 +21,7 @@ export const StatsCard = ({ title, value, change, chart }: StatsCardProps) => {
   return (
     <Card className="p-6 bg-white rounded-[24px] border-0 relative">
       {chart && (
-        <div className="absolute top-6 right-6 w-24 h-8 opacity-80 [&_svg]:!stroke-[3] [&_svg]:!h-8">
+        <div className="absolute top-6 right-6 w-[160px] h-8 overflow-hidden opacity-80 [&_svg]:!stroke-[3] [&_svg]:!h-8">
           {chart}
         </div>
       )}
