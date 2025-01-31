@@ -17,7 +17,7 @@ export const SalesPieChart = () => {
     if (active && payload && payload.length) {
       const percentage = ((payload[0].value / total) * 100).toFixed(0);
       return (
-        <div className="bg-[#1F2228] px-3 py-2 rounded z-[100]">
+        <div className="bg-[#1F2228] px-3 py-2 rounded" style={{ zIndex: 9999 }}>
           <p className="text-white">{`${payload[0].name} - ${percentage}%`}</p>
           <p className="text-white">${payload[0].value.toLocaleString()}</p>
         </div>
@@ -57,7 +57,7 @@ export const SalesPieChart = () => {
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={<CustomTooltip />} wrapperStyle={{ zIndex: 9999 }} />
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
