@@ -2,29 +2,13 @@ import { useState } from "react";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { Button } from "../ui/button";
-import { MoreHorizontal, ChevronDown, ChevronUp, FileText, RefreshCw, XOctagon } from "lucide-react";
-import { Badge } from "../ui/badge";
-import { cn } from "@/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-
-type Order = {
-  id: string;
-  date: string;
-  items: string;
-  value: string;
-  status: "Paid" | "Processing" | "Waiting";
-};
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { OrderTableHeader } from "./OrderTableHeader";
+import { OrderRow, Order } from "./OrderRow";
 
 const orders: Order[] = [
   {
@@ -81,15 +65,7 @@ export const OrdersTable = () => {
 
   return (
     <div className="rounded-[24px] bg-white">
-      <div className="flex items-center justify-between px-6 py-6">
-        <h2 className="text-lg font-semibold">Latest orders</h2>
-        <Button 
-          variant="outline" 
-          className="text-primary hover:bg-primary/5"
-        >
-          View all
-        </Button>
-      </div>
+      <OrderTableHeader />
       <div className="px-6">
         <Table>
           <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
@@ -116,57 +92,7 @@ export const OrdersTable = () => {
           </TableHeader>
           <TableBody>
             {sortedOrders.map((order) => (
-              <TableRow 
-                key={order.id} 
-                className="h-12 hover:bg-[#E7F2F9] transition-colors"
-              >
-                <TableCell className="font-medium">{order.id}</TableCell>
-                <TableCell>{order.date}</TableCell>
-                <TableCell>{order.items}</TableCell>
-                <TableCell>{order.value}</TableCell>
-                <TableCell>
-                  <Badge
-                    variant="secondary"
-                    className={cn(
-                      "bg-opacity-10",
-                      order.status === "Paid" && "bg-status-paid text-status-paid",
-                      order.status === "Processing" &&
-                        "bg-status-processing text-status-processing",
-                      order.status === "Waiting" &&
-                        "bg-status-waiting text-status-waiting"
-                    )}
-                  >
-                    {order.status}
-                  </Badge>
-                </TableCell>
-                <TableCell>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button 
-                        variant="ghost" 
-                        size="icon"
-                        className="hover:bg-[hsla(204,35%,93%,0.5)]"
-                      >
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl bg-white">
-                      <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#F5F5F5] rounded-lg">
-                        <FileText className="h-5 w-5" />
-                        View order
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#F5F5F5] rounded-lg">
-                        <RefreshCw className="h-5 w-5" />
-                        Change status
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#F5F5F5] rounded-lg text-red-600 hover:text-red-600">
-                        <XOctagon className="h-5 w-5" />
-                        Cancel order
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
-              </TableRow>
+              <OrderRow key={order.id} order={order} />
             ))}
           </TableBody>
         </Table>
