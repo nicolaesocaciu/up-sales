@@ -90,7 +90,7 @@ export const OrdersTable = () => {
             <TableRow className="h-12 hover:bg-transparent">
               <TableHead className="rounded-l-[8px]">Order ID</TableHead>
               <TableHead 
-                className="cursor-pointer"
+                className="cursor-pointer hover:bg-[#DADADA]"
                 onClick={toggleSort}
               >
                 <div className="flex items-center gap-2">
