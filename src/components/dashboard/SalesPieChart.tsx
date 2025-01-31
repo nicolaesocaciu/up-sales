@@ -17,7 +17,7 @@ export const SalesPieChart = () => {
     if (active && payload && payload.length) {
       const percentage = ((payload[0].value / total) * 100).toFixed(0);
       return (
-        <div className="bg-[#1F2228] px-3 py-2 rounded">
+        <div className="bg-[#1F2228] px-3 py-2 rounded z-[100]">
           <p className="text-white">{`${payload[0].name} - ${percentage}%`}</p>
           <p className="text-white">${payload[0].value.toLocaleString()}</p>
         </div>
