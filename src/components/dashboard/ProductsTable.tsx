@@ -50,39 +50,44 @@ const products = [
 
 export const ProductsTable = () => {
   return (
-    <div className="rounded-lg border bg-white">
-      <div className="flex items-center justify-between p-4 border-b">
+    <div className="rounded-[24px] bg-white">
+      <div className="flex items-center justify-between px-6 py-6">
         <h2 className="text-lg font-semibold">Top products</h2>
-        <Button variant="ghost" className="text-primary">
+        <Button 
+          variant="outline" 
+          className="text-primary hover:bg-primary/5"
+        >
           View all
         </Button>
       </div>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Product</TableHead>
-            <TableHead>Price</TableHead>
-            <TableHead>Total orders</TableHead>
-            <TableHead>Total sales</TableHead>
-            <TableHead className="w-[50px]">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {products.map((product) => (
-            <TableRow key={product.name}>
-              <TableCell className="font-medium">{product.name}</TableCell>
-              <TableCell>{product.price}</TableCell>
-              <TableCell>{product.orders}</TableCell>
-              <TableCell>{product.sales}</TableCell>
-              <TableCell>
-                <Button variant="ghost" size="icon">
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </TableCell>
+      <div className="px-6">
+        <Table>
+          <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
+            <TableRow className="h-12 hover:bg-transparent">
+              <TableHead className="rounded-l-[8px]">Product</TableHead>
+              <TableHead>Price</TableHead>
+              <TableHead>Total orders</TableHead>
+              <TableHead>Total sales</TableHead>
+              <TableHead className="rounded-r-[8px] w-[50px]">Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {products.map((product) => (
+              <TableRow key={product.name}>
+                <TableCell className="font-medium">{product.name}</TableCell>
+                <TableCell>{product.price}</TableCell>
+                <TableCell>{product.orders}</TableCell>
+                <TableCell>{product.sales}</TableCell>
+                <TableCell>
+                  <Button variant="ghost" size="icon">
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };
