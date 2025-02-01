@@ -17,6 +17,7 @@ const orders: Order[] = [
     items: "3 items",
     value: "$9,750",
     status: "Paid",
+    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=50&h=50&fit=crop",
   },
   {
     id: "#44324",
@@ -24,6 +25,7 @@ const orders: Order[] = [
     items: "Anker 737 Power Bank",
     value: "$300",
     status: "Processing",
+    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=50&h=50&fit=crop",
   },
   {
     id: "#44262",
@@ -31,6 +33,7 @@ const orders: Order[] = [
     items: "2 items",
     value: "$5,710",
     status: "Paid",
+    thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=50&h=50&fit=crop",
   },
   {
     id: "#44221",
@@ -38,6 +41,7 @@ const orders: Order[] = [
     items: "2 items",
     value: "$1,230",
     status: "Waiting",
+    thumbnail: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=50&h=50&fit=crop",
   },
   {
     id: "#44256",
@@ -45,6 +49,7 @@ const orders: Order[] = [
     items: "Logitech MX Master 3S Mouse",
     value: "$700",
     status: "Paid",
+    thumbnail: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=50&h=50&fit=crop",
   },
 ];
 
@@ -85,7 +90,7 @@ export const OrdersTable = () => {
                 </div>
               </TableHead>
               <TableHead>Items</TableHead>
-              <TableHead>Order value</TableHead>
+              <TableHead className="text-right">Order value</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="rounded-r-[8px] w-[50px]">Actions</TableHead>
             </TableRow>
