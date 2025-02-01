@@ -1,13 +1,7 @@
 import { useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../ui/table";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { Table, TableBody } from "../ui/table";
 import { OrderTableHeader } from "./OrderTableHeader";
+import { OrderTableHeaders } from "./OrderTableHeaders";
 import { OrderRow, Order } from "./OrderRow";
 
 const orders: Order[] = [
@@ -73,28 +67,10 @@ export const OrdersTable = () => {
       <OrderTableHeader />
       <div className="px-6">
         <Table>
-          <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
-            <TableRow className="h-12 hover:bg-transparent">
-              <TableHead className="rounded-l-[8px]">Order ID</TableHead>
-              <TableHead 
-                className="cursor-pointer hover:bg-[#DADADA]"
-                onClick={toggleSort}
-              >
-                <div className="flex items-center gap-2">
-                  Date
-                  {sortDirection === "asc" ? (
-                    <ChevronUp className="h-4 w-4" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4" />
-                  )}
-                </div>
-              </TableHead>
-              <TableHead>Items</TableHead>
-              <TableHead className="text-right">Order value</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="rounded-r-[8px] w-[50px]">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
+          <OrderTableHeaders 
+            sortDirection={sortDirection}
+            onToggleSort={toggleSort}
+          />
           <TableBody>
             {sortedOrders.map((order) => (
               <OrderRow key={order.id} order={order} />
