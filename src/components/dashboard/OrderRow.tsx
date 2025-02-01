@@ -55,7 +55,7 @@ export const OrderRow = ({ order }: OrderRowProps) => {
     )}>
       <TableCell className="font-medium">{order.id}</TableCell>
       <TableCell>{order.date}</TableCell>
-      <TableCell>
+      <TableCell className="text-left">
         <Dialog>
           <DialogTrigger asChild>
             <button className="flex items-center gap-3 text-primary hover:underline">
