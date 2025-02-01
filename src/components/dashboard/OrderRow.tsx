@@ -55,10 +55,10 @@ export const OrderRow = ({ order }: OrderRowProps) => {
     )}>
       <TableCell className="font-medium">{order.id}</TableCell>
       <TableCell>{order.date}</TableCell>
-      <TableCell className="text-left">
+      <TableCell>
         <Dialog>
           <DialogTrigger asChild>
-            <button className="flex items-center gap-3 text-primary hover:underline">
+            <button className="flex items-center gap-3 text-primary hover:underline text-left w-full">
               <img 
                 src={thumbnailUrl} 
                 alt="Product thumbnail" 
