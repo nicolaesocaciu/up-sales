@@ -11,8 +11,25 @@ const orders: Order[] = [
     items: "MacBook Pro M3, Magic Mouse, Magic Keyboard",
     value: "$9,750",
     status: "Paid",
-    thumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=24&h=24&fit=crop",
-    itemCount: 3
+    thumbnail: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=24&h=24&fit=crop",
+    itemCount: 3,
+    products: [
+      {
+        title: "MacBook Pro M3",
+        description: "The most powerful MacBook Pro ever with the M3 chip for unprecedented performance.",
+        images: [
+          "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&h=600&fit=crop"
+        ]
+      },
+      {
+        title: "Magic Mouse",
+        description: "Apple Magic Mouse with Multi-Touch surface for intuitive gestures.",
+        images: [
+          "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&h=600&fit=crop"
+        ]
+      }
+    ]
   },
   {
     id: "#44324",
@@ -20,7 +37,16 @@ const orders: Order[] = [
     items: "Anker 737 Power Bank",
     value: "$300",
     status: "Processing",
-    thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=24&h=24&fit=crop"
+    thumbnail: "https://images.unsplash.com/photo-1618410320928-25228d811631?w=24&h=24&fit=crop",
+    products: [
+      {
+        title: "Anker 737 Power Bank",
+        description: "High-capacity power bank with fast charging capabilities.",
+        images: [
+          "https://images.unsplash.com/photo-1618410320928-25228d811631?w=800&h=600&fit=crop"
+        ]
+      }
+    ]
   },
   {
     id: "#44262",

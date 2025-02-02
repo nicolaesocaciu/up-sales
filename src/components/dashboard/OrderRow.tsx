@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import { OrderActionsDropdown } from "./OrderActionsDropdown";
 import { useState } from "react";
 import { Check, CircleDot, AlertOctagon } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
+import { ProductModal } from "./ProductModal";
 
 type OrderStatus = "Paid" | "Processing" | "Waiting";
 
@@ -17,6 +17,11 @@ export interface Order {
   status: OrderStatus;
   thumbnail?: string;
   itemCount?: number;
+  products?: Array<{
+    title: string;
+    description?: string;
+    images?: string[];
+  }>;
 }
 
 interface OrderRowProps {
@@ -33,17 +38,6 @@ const getStatusIcon = (status: OrderStatus) => {
       return <AlertOctagon className="w-4 h-4 mr-1" />;
   }
 };
-
-const ProductDialog = ({ items }: { items: string }) => (
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Product Details</DialogTitle>
-    </DialogHeader>
-    <div className="p-4">
-      <p>{items}</p>
-    </div>
-  </DialogContent>
-);
 
 const renderThumbnails = (order: Order) => {
   const itemCount = order.itemCount || 1;
@@ -66,6 +60,7 @@ const renderThumbnails = (order: Order) => {
 
 export const OrderRow = ({ order }: OrderRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Order['products'][0] | null>(null);
   const itemCount = order.itemCount || 1;
 
   return (
@@ -76,26 +71,24 @@ export const OrderRow = ({ order }: OrderRowProps) => {
       <TableCell className="font-medium">{order.id}</TableCell>
       <TableCell>{order.date}</TableCell>
       <TableCell>
-        <Dialog>
-          <DialogTrigger asChild>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button className="flex items-center gap-3 text-primary hover:underline text-left w-full">
-                    {renderThumbnails(order)}
-                    <span className="truncate">
-                      {itemCount > 1 ? `${itemCount} items` : order.items}
-                    </span>
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{order.items}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </DialogTrigger>
-          <ProductDialog items={order.items} />
-        </Dialog>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button 
+                className="flex items-center gap-3 text-primary hover:underline text-left w-full"
+                onClick={() => setSelectedProduct(order.products?.[0] || null)}
+              >
+                {renderThumbnails(order)}
+                <span className="truncate">
+                  {itemCount > 1 ? `${itemCount} items` : order.items}
+                </span>
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{order.items}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </TableCell>
       <TableCell className="text-right truncate">{order.value}</TableCell>
       <TableCell>
@@ -115,6 +108,14 @@ export const OrderRow = ({ order }: OrderRowProps) => {
       <TableCell>
         <OrderActionsDropdown onOpenChange={setIsDropdownOpen} />
       </TableCell>
+
+      {selectedProduct && (
+        <ProductModal
+          open={!!selectedProduct}
+          onOpenChange={(open) => !open && setSelectedProduct(null)}
+          product={selectedProduct}
+        />
+      )}
     </TableRow>
   );
 };
