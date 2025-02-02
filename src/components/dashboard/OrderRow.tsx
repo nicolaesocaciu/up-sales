@@ -5,6 +5,7 @@ import { OrderActionsDropdown } from "./OrderActionsDropdown";
 import { useState } from "react";
 import { Check, CircleDot, AlertOctagon } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 
 type OrderStatus = "Paid" | "Processing" | "Waiting";
 
@@ -65,6 +66,7 @@ const renderThumbnails = (order: Order) => {
 
 export const OrderRow = ({ order }: OrderRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const itemCount = order.itemCount || 1;
 
   return (
     <TableRow className={cn(
@@ -76,10 +78,21 @@ export const OrderRow = ({ order }: OrderRowProps) => {
       <TableCell>
         <Dialog>
           <DialogTrigger asChild>
-            <button className="flex items-center gap-3 text-primary hover:underline text-left w-full">
-              {renderThumbnails(order)}
-              <span className="truncate">{order.items}</span>
-            </button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button className="flex items-center gap-3 text-primary hover:underline text-left w-full">
+                    {renderThumbnails(order)}
+                    <span className="truncate">
+                      {itemCount > 1 ? `${itemCount} items` : order.items}
+                    </span>
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{order.items}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </DialogTrigger>
           <ProductDialog items={order.items} />
         </Dialog>
