@@ -19,11 +19,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FulfillmentStatusBadge } from "./FulfillmentStatusBadge";
+import { FulfillmentStatus } from "@/types/order";
 
-export const OrdersDataTable = () => {
+interface OrdersDataTableProps {
+  selectedTab: FulfillmentStatus | 'all-orders';
+}
+
+export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
-  const sortedOrders = [...mockOrders].sort((a, b) => {
+  const filteredOrders = mockOrders.filter(order => {
+    if (selectedTab === 'all-orders') return true;
+    return order.fulfillmentStatus === selectedTab;
+  });
+
+  const sortedOrders = [...filteredOrders].sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
     return sortDirection === "asc"
@@ -32,7 +43,7 @@ export const OrdersDataTable = () => {
   });
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200">
+    <div className="rounded-xl">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent border-b border-gray-200">
@@ -62,7 +73,7 @@ export const OrdersDataTable = () => {
         </TableHeader>
         <TableBody>
           {sortedOrders.map((order) => (
-            <TableRow key={order.id} className="hover:bg-gray-50">
+            <TableRow key={order.id} className="hover:bg-[#E7F2F9]">
               <TableCell>
                 <Checkbox />
               </TableCell>
@@ -75,18 +86,16 @@ export const OrdersDataTable = () => {
               </TableCell>
               <TableCell>
                 <span className="text-primary hover:underline cursor-pointer">
-                  Customer Name
+                  {order.customer.name}
                 </span>
               </TableCell>
-              <TableCell>customer@example.com</TableCell>
+              <TableCell>{order.customer.email}</TableCell>
               <TableCell className="text-right">${order.value}</TableCell>
               <TableCell>
                 <OrderStatusBadge status={order.status} />
               </TableCell>
               <TableCell>
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-sm bg-green-100 text-green-800">
-                  Fulfilled
-                </span>
+                <FulfillmentStatusBadge status={order.fulfillmentStatus} />
               </TableCell>
               <TableCell>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
