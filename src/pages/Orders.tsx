@@ -4,8 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Filter, Search, Columns } from "lucide-react";
 import { OrdersDataTable } from "@/components/orders/OrdersDataTable";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { useState } from "react";
+import { FulfillmentStatus } from "@/types/order";
 
 const Orders = () => {
+  const [selectedTab, setSelectedTab] = useState<FulfillmentStatus | "all-orders">("all-orders");
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -14,7 +18,7 @@ const Orders = () => {
         </div>
 
         <div className="space-y-4">
-          <Tabs defaultValue="all-orders" className="w-full">
+          <Tabs value={selectedTab} onValueChange={(value) => setSelectedTab(value as FulfillmentStatus | "all-orders")} className="w-full">
             <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
               <TabsTrigger 
                 value="all-orders"
@@ -23,25 +27,25 @@ const Orders = () => {
                 All orders
               </TabsTrigger>
               <TabsTrigger 
-                value="unfulfilled"
+                value="Unfulfilled"
                 className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
               >
                 Unfulfilled
               </TabsTrigger>
               <TabsTrigger 
-                value="unpaid"
+                value="Unpaid"
                 className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
               >
                 Unpaid
               </TabsTrigger>
               <TabsTrigger 
-                value="open"
+                value="Open"
                 className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
               >
                 Open
               </TabsTrigger>
               <TabsTrigger 
-                value="closed"
+                value="Closed"
                 className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
               >
                 Closed

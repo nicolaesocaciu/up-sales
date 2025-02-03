@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
 import { OrderStatusBadge } from "@/components/dashboard/OrderStatusBadge";
+import { FulfillmentStatusBadge } from "./FulfillmentStatusBadge";
 import { mockOrders } from "@/data/mockOrders";
 import { useState } from "react";
 import {
@@ -19,17 +20,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FulfillmentStatus } from "@/types/order";
 
 export const OrdersDataTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [selectedTab, setSelectedTab] = useState<FulfillmentStatus | "all-orders">("all-orders");
 
-  const sortedOrders = [...mockOrders].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return sortDirection === "asc"
-      ? dateA.getTime() - dateB.getTime()
-      : dateB.getTime() - dateA.getTime();
-  });
+  const sortedOrders = [...mockOrders]
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortDirection === "asc"
+        ? dateA.getTime() - dateB.getTime()
+        : dateB.getTime() - dateA.getTime();
+    })
+    .filter((order) => 
+      selectedTab === "all-orders" ? true : order.fulfillmentStatus === selectedTab
+    );
 
   return (
     <div className="bg-white rounded-xl border border-gray-200">
@@ -75,18 +82,16 @@ export const OrdersDataTable = () => {
               </TableCell>
               <TableCell>
                 <span className="text-primary hover:underline cursor-pointer">
-                  Customer Name
+                  {order.customer.name}
                 </span>
               </TableCell>
-              <TableCell>customer@example.com</TableCell>
-              <TableCell className="text-right">${order.value}</TableCell>
+              <TableCell>{order.customer.email}</TableCell>
+              <TableCell className="text-right">{order.value}</TableCell>
               <TableCell>
                 <OrderStatusBadge status={order.status} />
               </TableCell>
               <TableCell>
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-sm bg-green-100 text-green-800">
-                  Fulfilled
-                </span>
+                <FulfillmentStatusBadge status={order.fulfillmentStatus} />
               </TableCell>
               <TableCell>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -100,7 +105,7 @@ export const OrdersDataTable = () => {
 
       <div className="flex items-center justify-between px-4 py-4 border-t border-gray-200">
         <div className="flex items-center gap-2 text-sm text-gray-500">
-          <span>Showing 1 to 16 from 48</span>
+          <span>Showing 1 to {sortedOrders.length} from {mockOrders.length}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
@@ -115,7 +120,7 @@ export const OrdersDataTable = () => {
               >
                 1
               </Button>
-              <span className="text-sm text-gray-500">of 3</span>
+              <span className="text-sm text-gray-500">of 1</span>
             </div>
             <Button variant="outline" size="sm" className="h-8 w-8 p-0">
               <ChevronRight className="h-4 w-4" />
