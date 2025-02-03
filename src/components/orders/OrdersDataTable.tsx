@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
 import { OrderStatusBadge } from "@/components/dashboard/OrderStatusBadge";
 import { mockOrders } from "@/data/mockOrders";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Select,
   SelectContent,
@@ -19,20 +19,52 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FulfillmentStatus } from "@/types/order";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
-export const OrdersDataTable = () => {
+interface OrdersDataTableProps {
+  selectedTab: FulfillmentStatus | "all-orders";
+}
+
+export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
-  const sortedOrders = [...mockOrders].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return sortDirection === "asc"
-      ? dateA.getTime() - dateB.getTime()
-      : dateB.getTime() - dateA.getTime();
-  });
+  const filteredOrders = useMemo(() => {
+    let orders = [...mockOrders];
+    
+    if (selectedTab !== "all-orders") {
+      orders = orders.filter(order => order.fulfillmentStatus === selectedTab);
+    }
+
+    return orders.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortDirection === "asc"
+        ? dateA.getTime() - dateB.getTime()
+        : dateB.getTime() - dateA.getTime();
+    });
+  }, [sortDirection, selectedTab]);
+
+  const getFulfillmentStatusColor = (status: FulfillmentStatus) => {
+    switch (status) {
+      case "Fulfilled":
+        return "bg-green-100 text-green-800";
+      case "Unfulfilled":
+        return "bg-red-100 text-red-800";
+      case "Open":
+        return "bg-blue-100 text-blue-800";
+      case "Unpaid":
+        return "bg-yellow-100 text-yellow-800";
+      case "Closed":
+        return "bg-gray-100 text-gray-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200">
+    <div className="rounded-xl">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent border-b border-gray-200">
@@ -61,7 +93,7 @@ export const OrdersDataTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sortedOrders.map((order) => (
+          {filteredOrders.map((order) => (
             <TableRow key={order.id} className="hover:bg-gray-50">
               <TableCell>
                 <Checkbox />
@@ -75,18 +107,21 @@ export const OrdersDataTable = () => {
               </TableCell>
               <TableCell>
                 <span className="text-primary hover:underline cursor-pointer">
-                  Customer Name
+                  {order.customer.name}
                 </span>
               </TableCell>
-              <TableCell>customer@example.com</TableCell>
-              <TableCell className="text-right">${order.value}</TableCell>
+              <TableCell>{order.customer.email}</TableCell>
+              <TableCell className="text-right">{order.value}</TableCell>
               <TableCell>
                 <OrderStatusBadge status={order.status} />
               </TableCell>
               <TableCell>
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-sm bg-green-100 text-green-800">
-                  Fulfilled
-                </span>
+                <Badge className={cn(
+                  "inline-flex items-center px-2 py-1 rounded-full text-sm",
+                  getFulfillmentStatusColor(order.fulfillmentStatus)
+                )}>
+                  {order.fulfillmentStatus}
+                </Badge>
               </TableCell>
               <TableCell>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">

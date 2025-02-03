@@ -1,5 +1,5 @@
 export type OrderStatus = "Paid" | "Processing" | "Waiting";
-export type FulfillmentStatus = "Fulfilled" | "Unfulfilled";
+export type FulfillmentStatus = "Fulfilled" | "Unfulfilled" | "Open" | "Closed" | "Unpaid";
 
 export interface Product {
   title: string;
