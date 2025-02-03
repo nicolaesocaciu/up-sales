@@ -1,4 +1,5 @@
 export type OrderStatus = "Paid" | "Processing" | "Waiting";
+export type FulfillmentStatus = "Fulfilled" | "Unfulfilled";
 
 export interface Product {
   title: string;
@@ -12,6 +13,11 @@ export interface Order {
   items: string;
   value: string;
   status: OrderStatus;
+  fulfillmentStatus: FulfillmentStatus;
+  customer: {
+    name: string;
+    email: string;
+  };
   thumbnail?: string;
   itemCount?: number;
   products?: Product[];
