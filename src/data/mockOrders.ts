@@ -1,6 +1,6 @@
 import { Order } from "@/types/order";
 
-export const mockOrders: Order[] = [
+const baseOrders = [
   {
     id: "#44213",
     date: "29 Jan 2025",
@@ -83,3 +83,30 @@ export const mockOrders: Order[] = [
     itemCount: 2
   }
 ];
+
+// Generate 30 additional orders
+const additionalOrders: Order[] = Array.from({ length: 30 }, (_, index) => ({
+  id: `${44400 + index}`,
+  date: "25 Jan 2025",
+  items: "Additional Product Item",
+  value: "$999",
+  status: "Paid",
+  fulfillmentStatus: "Open",
+  customer: {
+    name: `Customer ${index + 1}`,
+    email: `customer${index + 1}@example.com`
+  },
+  thumbnail: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=24&h=24&fit=crop",
+  itemCount: 1,
+  products: [
+    {
+      title: "Additional Product",
+      description: "Description for additional product",
+      images: [
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop"
+      ]
+    }
+  ]
+}));
+
+export const mockOrders: Order[] = [...baseOrders, ...additionalOrders];

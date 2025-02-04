@@ -16,7 +16,7 @@ export const OrdersTableRow = ({ order }: OrdersTableRowProps) => {
       <TableCell>
         <Checkbox />
       </TableCell>
-      <TableCell className="font-medium">#{order.id}</TableCell>
+      <TableCell className="font-medium">{order.id}</TableCell>
       <TableCell>{order.date}</TableCell>
       <TableCell>
         <span className="text-primary hover:underline cursor-pointer">
