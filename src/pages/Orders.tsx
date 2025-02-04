@@ -62,7 +62,7 @@ const Orders = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between gap-2">
             <Button variant="outline" size="sm" className="h-9">
               <Filter className="h-4 w-4 mr-2" />
               Add filter
