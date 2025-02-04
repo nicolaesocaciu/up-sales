@@ -22,9 +22,12 @@ import {
 } from "@/components/ui/select";
 import { FulfillmentStatus } from "@/types/order";
 
-export const OrdersDataTable = () => {
+interface OrdersDataTableProps {
+  selectedTab: FulfillmentStatus | "all-orders";
+}
+
+export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
-  const [selectedTab, setSelectedTab] = useState<FulfillmentStatus | "all-orders">("all-orders");
 
   const sortedOrders = [...mockOrders]
     .sort((a, b) => {

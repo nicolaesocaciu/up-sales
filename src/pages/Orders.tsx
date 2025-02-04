@@ -73,7 +73,7 @@ const Orders = () => {
             </div>
           </div>
 
-          <OrdersDataTable />
+          <OrdersDataTable selectedTab={selectedTab} />
         </div>
       </div>
     </DashboardLayout>
