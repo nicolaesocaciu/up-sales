@@ -1,4 +1,4 @@
-import { Order } from "@/types/order";
+import { Order, OrderStatus, FulfillmentStatus } from "@/types/order";
 
 const baseOrders = [
   {
@@ -90,8 +90,8 @@ const additionalOrders: Order[] = Array.from({ length: 30 }, (_, index) => ({
   date: "25 Jan 2025",
   items: "Additional Product Item",
   value: "$999",
-  status: "Paid",
-  fulfillmentStatus: "Open",
+  status: "Paid" as OrderStatus,  // Explicitly type as OrderStatus
+  fulfillmentStatus: "Open" as FulfillmentStatus,  // Explicitly type as FulfillmentStatus
   customer: {
     name: `Customer ${index + 1}`,
     email: `customer${index + 1}@example.com`
