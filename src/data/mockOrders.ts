@@ -84,7 +84,7 @@ const baseOrders = [
   }
 ];
 
-// Generate 30 additional orders
+// Generate 30 additional orders with proper typing
 const additionalOrders: Order[] = Array.from({ length: 30 }, (_, index) => ({
   id: `${44400 + index}`,
   date: "25 Jan 2025",
