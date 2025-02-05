@@ -1,14 +1,7 @@
-import { useState } from "react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuCheckboxItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Columns } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export interface ColumnVisibility {
   orderId: boolean;
@@ -31,7 +24,7 @@ export const OrdersTableColumns = ({
   columnVisibility,
   onColumnVisibilityChange,
 }: OrdersTableColumnsProps) => {
-  const toggleColumn = (column: keyof ColumnVisibility) => {
+  const handleColumnToggle = (column: keyof ColumnVisibility) => {
     onColumnVisibilityChange({
       ...columnVisibility,
       [column]: !columnVisibility[column],
@@ -46,63 +39,23 @@ export const OrdersTableColumns = ({
           Columns
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[200px] bg-white z-50">
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.orderId}
-          onCheckedChange={() => toggleColumn("orderId")}
-        >
-          Order ID
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.date}
-          onCheckedChange={() => toggleColumn("date")}
-        >
-          Date
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.items}
-          onCheckedChange={() => toggleColumn("items")}
-        >
-          Items
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.customer}
-          onCheckedChange={() => toggleColumn("customer")}
-        >
-          Customer
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.email}
-          onCheckedChange={() => toggleColumn("email")}
-        >
-          Email
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.orderValue}
-          onCheckedChange={() => toggleColumn("orderValue")}
-        >
-          Order value
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.status}
-          onCheckedChange={() => toggleColumn("status")}
-        >
-          Status
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.fulfillmentStatus}
-          onCheckedChange={() => toggleColumn("fulfillmentStatus")}
-        >
-          Fulfillment status
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={columnVisibility.actions}
-          onCheckedChange={() => toggleColumn("actions")}
-        >
-          Actions
-        </DropdownMenuCheckboxItem>
+      <DropdownMenuContent align="start" className="bg-white z-50">
+        <div className="p-2">
+          <div className="space-y-2">
+            {Object.entries(columnVisibility).map(([key, value]) => (
+              <label
+                key={key}
+                className="flex items-center space-x-2 cursor-pointer"
+              >
+                <Checkbox
+                  checked={value}
+                  onCheckedChange={() => handleColumnToggle(key as keyof ColumnVisibility)}
+                />
+                <span className="text-sm">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+              </label>
+            ))}
+          </div>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

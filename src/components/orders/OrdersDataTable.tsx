@@ -14,22 +14,24 @@ interface OrdersDataTableProps {
   selectedTab: FulfillmentStatus | "all-orders";
 }
 
+const defaultColumnVisibility: ColumnVisibility = {
+  orderId: true,
+  date: true,
+  items: true,
+  customer: true,
+  email: true,
+  orderValue: true,
+  status: true,
+  fulfillmentStatus: true,
+  actions: true,
+};
+
 export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<OrderStatus | null>(null);
   const [fulfillmentStatusFilter, setFulfillmentStatusFilter] = useState<FulfillmentStatus | null>(null);
-  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>({
-    orderId: true,
-    date: true,
-    items: true,
-    customer: true,
-    email: true,
-    orderValue: true,
-    status: true,
-    fulfillmentStatus: true,
-    actions: true,
-  });
+  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(defaultColumnVisibility);
 
   const filteredAndSortedOrders = useMemo(() => {
     return [...mockOrders]
