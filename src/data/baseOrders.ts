@@ -9,8 +9,8 @@ export const baseOrders: Order[] = [
     status: "Paid" as OrderStatus,
     fulfillmentStatus: "Fulfilled" as FulfillmentStatus,
     customer: {
-      name: "John Doe",
-      email: "john@example.com"
+      name: "Alexander Wilson",
+      email: "alexander.wilson@example.com"
     },
     thumbnail: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=24&h=24&fit=crop",
     itemCount: 3,
@@ -35,19 +35,19 @@ export const baseOrders: Order[] = [
   {
     id: "#44324",
     date: "27 Jan 2025",
-    items: "Anker 737 Power Bank",
-    value: "$300",
+    items: "Sony WH-1000XM5, AirPods Pro",
+    value: "$648",
     status: "Processing" as OrderStatus,
     fulfillmentStatus: "Open" as FulfillmentStatus,
     customer: {
-      name: "Jane Smith",
-      email: "jane@example.com"
+      name: "Emma Martinez",
+      email: "emma.martinez@example.com"
     },
     thumbnail: "https://images.unsplash.com/photo-1618410320928-25228d811631?w=24&h=24&fit=crop",
     products: [
       {
-        title: "Anker 737 Power Bank",
-        description: "High-capacity power bank with fast charging capabilities.",
+        title: "Sony WH-1000XM5",
+        description: "Premium noise-canceling headphones with industry-leading technology.",
         images: [
           "https://images.unsplash.com/photo-1618410320928-25228d811631?w=800&h=600&fit=crop"
         ]
@@ -58,12 +58,12 @@ export const baseOrders: Order[] = [
     id: "#44262",
     date: "27 Jan 2025",
     items: "iPhone 15 Pro Max, AirPods Pro",
-    value: "$5,710",
-    status: "Paid" as OrderStatus,
+    value: "$1,448",
+    status: "Waiting" as OrderStatus,
     fulfillmentStatus: "Closed" as FulfillmentStatus,
     customer: {
-      name: "Alice Johnson",
-      email: "alice@example.com"
+      name: "Olivia Brown",
+      email: "olivia.brown@example.com"
     },
     thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=24&h=24&fit=crop",
     itemCount: 2
@@ -72,12 +72,12 @@ export const baseOrders: Order[] = [
     id: "#44221",
     date: "27 Jan 2025",
     items: "MacBook Air M2, Magic Mouse",
-    value: "$1,230",
-    status: "Waiting" as OrderStatus,
+    value: "$2,198",
+    status: "Paid" as OrderStatus,
     fulfillmentStatus: "Unpaid" as FulfillmentStatus,
     customer: {
-      name: "Bob Wilson",
-      email: "bob@example.com"
+      name: "Noah Garcia",
+      email: "noah.garcia@example.com"
     },
     thumbnail: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=24&h=24&fit=crop",
     itemCount: 2
