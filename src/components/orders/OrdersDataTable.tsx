@@ -34,6 +34,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [fulfillmentStatusFilter, setFulfillmentStatusFilter] = useState<FulfillmentStatus | null>(null);
   const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(defaultColumnVisibility);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const ordersPerPage = 10;
 
   const filteredAndSortedOrders = useMemo(() => {
@@ -64,6 +65,22 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
     const startIndex = (currentPage - 1) * ordersPerPage;
     return filteredAndSortedOrders.slice(startIndex, startIndex + ordersPerPage);
   }, [filteredAndSortedOrders, currentPage]);
+
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedRows(paginatedOrders.map(order => order.id));
+    } else {
+      setSelectedRows([]);
+    }
+  };
+
+  const handleRowSelect = (orderId: string, checked: boolean) => {
+    if (checked) {
+      setSelectedRows(prev => [...prev, orderId]);
+    } else {
+      setSelectedRows(prev => prev.filter(id => id !== orderId));
+    }
+  };
 
   const highlightText = (text: string) => {
     if (!searchQuery) return text;
@@ -107,6 +124,9 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
           sortDirection={sortDirection}
           onSortChange={() => setSortDirection(sortDirection === "asc" ? "desc" : "asc")}
           columnVisibility={columnVisibility}
+          selectedRows={selectedRows}
+          onSelectAll={handleSelectAll}
+          totalRows={paginatedOrders.length}
         />
         <TableBody>
           {paginatedOrders.map((order) => (
@@ -115,6 +135,8 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
               order={order} 
               columnVisibility={columnVisibility}
               highlightText={highlightText}
+              selected={selectedRows.includes(order.id)}
+              onSelect={handleRowSelect}
             />
           ))}
         </TableBody>

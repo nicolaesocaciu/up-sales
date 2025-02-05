@@ -1,3 +1,4 @@
+
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -12,13 +13,25 @@ interface OrdersTableRowProps {
   order: Order;
   columnVisibility: ColumnVisibility;
   highlightText: (text: string) => ReactNode;
+  selected: boolean;
+  onSelect: (orderId: string, checked: boolean) => void;
 }
 
-export const OrdersTableRow = ({ order, columnVisibility, highlightText }: OrdersTableRowProps) => {
+export const OrdersTableRow = ({ 
+  order, 
+  columnVisibility, 
+  highlightText,
+  selected,
+  onSelect
+}: OrdersTableRowProps) => {
   return (
     <TableRow key={order.id} className="hover:bg-gray-50">
       <TableCell>
-        <Checkbox />
+        <Checkbox 
+          checked={selected}
+          onCheckedChange={(checked) => onSelect(order.id, checked as boolean)}
+          className="rounded-[4px]"
+        />
       </TableCell>
       {columnVisibility.orderId && (
         <TableCell className="font-medium">{order.id}</TableCell>
