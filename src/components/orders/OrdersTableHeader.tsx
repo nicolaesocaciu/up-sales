@@ -1,3 +1,4 @@
+
 import {
   TableHead,
   TableHeader,
@@ -18,9 +19,9 @@ export const OrdersTableHeader = ({
   columnVisibility,
 }: OrdersTableHeaderProps) => {
   return (
-    <TableHeader>
-      <TableRow className="hover:bg-transparent border-b border-gray-200">
-        <TableHead className="w-[40px]">
+    <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
+      <TableRow className="hover:bg-transparent border-none h-12">
+        <TableHead className="rounded-l-[8px] w-[40px]">
           <Checkbox />
         </TableHead>
         {columnVisibility.orderId && <TableHead>Order ID</TableHead>}
@@ -43,7 +44,7 @@ export const OrdersTableHeader = ({
         {columnVisibility.orderValue && <TableHead className="text-right">Order value</TableHead>}
         {columnVisibility.status && <TableHead>Status</TableHead>}
         {columnVisibility.fulfillmentStatus && <TableHead>Fulfillment status</TableHead>}
-        {columnVisibility.actions && <TableHead className="w-[50px]">Actions</TableHead>}
+        {columnVisibility.actions && <TableHead className="rounded-r-[8px] w-[50px]">Actions</TableHead>}
       </TableRow>
     </TableHeader>
   );

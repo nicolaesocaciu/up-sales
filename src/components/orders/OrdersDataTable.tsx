@@ -1,3 +1,4 @@
+
 import { Table, TableBody } from "@/components/ui/table";
 import { mockOrders } from "@/data/mockOrders";
 import { useState, useMemo } from "react";
@@ -32,6 +33,8 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [statusFilter, setStatusFilter] = useState<OrderStatus | null>(null);
   const [fulfillmentStatusFilter, setFulfillmentStatusFilter] = useState<FulfillmentStatus | null>(null);
   const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(defaultColumnVisibility);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 10;
 
   const filteredAndSortedOrders = useMemo(() => {
     return [...mockOrders]
@@ -57,6 +60,11 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
       });
   }, [mockOrders, sortDirection, selectedTab, statusFilter, fulfillmentStatusFilter, searchQuery]);
 
+  const paginatedOrders = useMemo(() => {
+    const startIndex = (currentPage - 1) * ordersPerPage;
+    return filteredAndSortedOrders.slice(startIndex, startIndex + ordersPerPage);
+  }, [filteredAndSortedOrders, currentPage]);
+
   const highlightText = (text: string) => {
     if (!searchQuery) return text;
     
@@ -71,6 +79,15 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   return (
     <div className="bg-white rounded-xl border border-gray-200">
       <div className="p-4 flex items-center justify-between gap-2">
+        <div className="relative min-w-[300px]">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Input 
+            placeholder="Search order ..." 
+            className="pl-10 bg-white border-gray-200"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         <div className="flex items-center gap-2">
           <OrdersTableFilters
             onStatusFilterChange={setStatusFilter}
@@ -83,15 +100,6 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
             onColumnVisibilityChange={setColumnVisibility}
           />
         </div>
-        <div className="relative min-w-[300px]">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-          <Input 
-            placeholder="Search order ..." 
-            className="pl-10 bg-white border-gray-200"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
       </div>
 
       <Table>
@@ -101,7 +109,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
           columnVisibility={columnVisibility}
         />
         <TableBody>
-          {filteredAndSortedOrders.map((order) => (
+          {paginatedOrders.map((order) => (
             <OrdersTableRow 
               key={order.id} 
               order={order} 
@@ -114,7 +122,10 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
 
       <OrdersTablePagination
         totalOrders={filteredAndSortedOrders.length}
-        currentPageSize={filteredAndSortedOrders.length}
+        currentPageSize={paginatedOrders.length}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        ordersPerPage={ordersPerPage}
       />
     </div>
   );
