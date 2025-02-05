@@ -86,12 +86,12 @@ const baseOrders = [
 
 // Generate 30 additional orders with proper typing
 const additionalOrders: Order[] = Array.from({ length: 30 }, (_, index) => ({
-  id: `${44400 + index}`,
+  id: `#${44400 + index}`,
   date: "25 Jan 2025",
   items: "Additional Product Item",
   value: "$999",
-  status: "Paid" as OrderStatus,  // Explicitly type as OrderStatus
-  fulfillmentStatus: "Open" as FulfillmentStatus,  // Explicitly type as FulfillmentStatus
+  status: "Paid" as OrderStatus,
+  fulfillmentStatus: "Open" as FulfillmentStatus,
   customer: {
     name: `Customer ${index + 1}`,
     email: `customer${index + 1}@example.com`
