@@ -14,6 +14,7 @@ export const FulfillmentStatusBadge = ({ status }: FulfillmentStatusBadgeProps) 
         "bg-opacity-10 inline-flex items-center",
         status === "Fulfilled" && "bg-status-paid text-status-paid",
         status === "Open" && "bg-status-processing text-status-processing",
+        status === "Unfulfilled" && "bg-[#ea384c] text-[#ea384c]",
         status === "Unpaid" && "bg-status-waiting text-status-waiting",
         status === "Closed" && "bg-gray-500 text-gray-500"
       )}

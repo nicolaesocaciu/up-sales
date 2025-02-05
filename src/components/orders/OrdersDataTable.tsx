@@ -1,10 +1,14 @@
 import { Table, TableBody } from "@/components/ui/table";
 import { mockOrders } from "@/data/mockOrders";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { OrdersTableHeader } from "./OrdersTableHeader";
 import { OrdersTableRow } from "./OrdersTableRow";
 import { OrdersTablePagination } from "./OrdersTablePagination";
-import { FulfillmentStatus } from "@/types/order";
+import { FulfillmentStatus, OrderStatus } from "@/types/order";
+import { OrdersTableColumns, ColumnVisibility } from "./OrdersTableColumns";
+import { OrdersTableFilters } from "./OrdersTableFilters";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 interface OrdersDataTableProps {
   selectedTab: FulfillmentStatus | "all-orders";
@@ -12,36 +16,103 @@ interface OrdersDataTableProps {
 
 export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<OrderStatus | null>(null);
+  const [fulfillmentStatusFilter, setFulfillmentStatusFilter] = useState<FulfillmentStatus | null>(null);
+  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>({
+    orderId: true,
+    date: true,
+    items: true,
+    customer: true,
+    email: true,
+    orderValue: true,
+    status: true,
+    fulfillmentStatus: true,
+    actions: true,
+  });
 
-  const sortedOrders = [...mockOrders]
-    .sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return sortDirection === "asc"
-        ? dateA.getTime() - dateB.getTime()
-        : dateB.getTime() - dateA.getTime();
-    })
-    .filter((order) => 
-      selectedTab === "all-orders" ? true : order.fulfillmentStatus === selectedTab
+  const filteredAndSortedOrders = useMemo(() => {
+    return [...mockOrders]
+      .sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return sortDirection === "asc"
+          ? dateA.getTime() - dateB.getTime()
+          : dateB.getTime() - dateA.getTime();
+      })
+      .filter((order) => {
+        const matchesTab = selectedTab === "all-orders" ? true : order.fulfillmentStatus === selectedTab;
+        const matchesStatus = !statusFilter || order.status === statusFilter;
+        const matchesFulfillmentStatus = !fulfillmentStatusFilter || order.fulfillmentStatus === fulfillmentStatusFilter;
+        
+        const searchLower = searchQuery.toLowerCase();
+        const matchesSearch = searchQuery === "" || 
+          order.items.toLowerCase().includes(searchLower) ||
+          order.customer.name.toLowerCase().includes(searchLower) ||
+          order.customer.email.toLowerCase().includes(searchLower);
+
+        return matchesTab && matchesStatus && matchesFulfillmentStatus && matchesSearch;
+      });
+  }, [mockOrders, sortDirection, selectedTab, statusFilter, fulfillmentStatusFilter, searchQuery]);
+
+  const highlightText = (text: string) => {
+    if (!searchQuery) return text;
+    
+    const parts = text.split(new RegExp(`(${searchQuery})`, 'gi'));
+    return parts.map((part, i) => 
+      part.toLowerCase() === searchQuery.toLowerCase() ? 
+        <span key={i} className="bg-yellow-200">{part}</span> : 
+        part
     );
+  };
 
   return (
     <div className="bg-white rounded-xl border border-gray-200">
+      <div className="p-4 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <OrdersTableFilters
+            onStatusFilterChange={setStatusFilter}
+            onFulfillmentStatusFilterChange={setFulfillmentStatusFilter}
+            selectedStatus={statusFilter}
+            selectedFulfillmentStatus={fulfillmentStatusFilter}
+          />
+          <OrdersTableColumns
+            columnVisibility={columnVisibility}
+            onColumnVisibilityChange={setColumnVisibility}
+          />
+        </div>
+        <div className="relative min-w-[300px]">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Input 
+            placeholder="Search order ..." 
+            className="pl-10 bg-white border-gray-200"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
+
       <Table>
         <OrdersTableHeader
           sortDirection={sortDirection}
           onSortChange={() => setSortDirection(sortDirection === "asc" ? "desc" : "asc")}
+          columnVisibility={columnVisibility}
         />
         <TableBody>
-          {sortedOrders.map((order) => (
-            <OrdersTableRow key={order.id} order={order} />
+          {filteredAndSortedOrders.map((order) => (
+            <OrdersTableRow 
+              key={order.id} 
+              order={order} 
+              columnVisibility={columnVisibility}
+              highlightText={highlightText}
+            />
           ))}
         </TableBody>
       </Table>
 
       <OrdersTablePagination
-        totalOrders={mockOrders.length}
-        currentPageSize={sortedOrders.length}
+        totalOrders={filteredAndSortedOrders.length}
+        currentPageSize={filteredAndSortedOrders.length}
       />
     </div>
   );
