@@ -1,13 +1,13 @@
 import { Order, OrderStatus, FulfillmentStatus } from "@/types/order";
 
-const baseOrders = [
+const baseOrders: Order[] = [
   {
     id: "#44213",
     date: "29 Jan 2025",
     items: "MacBook Pro M3, Magic Mouse, Magic Keyboard",
     value: "$9,750",
-    status: "Paid",
-    fulfillmentStatus: "Fulfilled",
+    status: "Paid" as OrderStatus,
+    fulfillmentStatus: "Fulfilled" as FulfillmentStatus,
     customer: {
       name: "John Doe",
       email: "john@example.com"
@@ -37,8 +37,8 @@ const baseOrders = [
     date: "27 Jan 2025",
     items: "Anker 737 Power Bank",
     value: "$300",
-    status: "Processing",
-    fulfillmentStatus: "Open",
+    status: "Processing" as OrderStatus,
+    fulfillmentStatus: "Open" as FulfillmentStatus,
     customer: {
       name: "Jane Smith",
       email: "jane@example.com"
@@ -59,8 +59,8 @@ const baseOrders = [
     date: "27 Jan 2025",
     items: "iPhone 15 Pro Max, AirPods Pro",
     value: "$5,710",
-    status: "Paid",
-    fulfillmentStatus: "Closed",
+    status: "Paid" as OrderStatus,
+    fulfillmentStatus: "Closed" as FulfillmentStatus,
     customer: {
       name: "Alice Johnson",
       email: "alice@example.com"
@@ -73,8 +73,8 @@ const baseOrders = [
     date: "27 Jan 2025",
     items: "MacBook Air M2, Magic Mouse",
     value: "$1,230",
-    status: "Waiting",
-    fulfillmentStatus: "Unpaid",
+    status: "Waiting" as OrderStatus,
+    fulfillmentStatus: "Unpaid" as FulfillmentStatus,
     customer: {
       name: "Bob Wilson",
       email: "bob@example.com"
