@@ -26,7 +26,7 @@ export const OrdersTableHeader = ({
 }: OrdersTableHeaderProps) => {
   const isIndeterminate = selectedRows.length > 0 && selectedRows.length < totalRows;
   const isSelected = selectedRows.length === totalRows && totalRows > 0;
-  const checkboxRef = useRef<HTMLButtonElement>(null);
+  const checkboxRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (checkboxRef.current) {
