@@ -26,20 +26,12 @@ export const OrdersTableHeader = ({
 }: OrdersTableHeaderProps) => {
   const isIndeterminate = selectedRows.length > 0 && selectedRows.length < totalRows;
   const isSelected = selectedRows.length === totalRows && totalRows > 0;
-  const checkboxRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (checkboxRef.current) {
-      checkboxRef.current.indeterminate = isIndeterminate;
-    }
-  }, [isIndeterminate]);
 
   return (
     <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
       <TableRow className="hover:bg-transparent border-none h-12">
         <TableHead className="rounded-l-[8px] w-[40px]">
           <Checkbox 
-            ref={checkboxRef}
             checked={isSelected}
             className="rounded-[4px]"
             onCheckedChange={onSelectAll}
