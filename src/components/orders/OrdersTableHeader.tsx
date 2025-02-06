@@ -34,6 +34,11 @@ export const OrdersTableHeader = ({
             checked={isSelected}
             className="rounded-[4px]"
             onCheckedChange={onSelectAll}
+            ref={(ref: any) => {
+              if (ref) {
+                ref.indeterminate = isIndeterminate;
+              }
+            }}
             aria-checked={isIndeterminate ? "mixed" : isSelected}
           />
         </TableHead>
