@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnVisibility } from "./OrdersTableColumns";
+import { useEffect, useRef } from "react";
 
 interface OrdersTableHeaderProps {
   sortDirection: "asc" | "desc";
@@ -25,20 +26,23 @@ export const OrdersTableHeader = ({
 }: OrdersTableHeaderProps) => {
   const isIndeterminate = selectedRows.length > 0 && selectedRows.length < totalRows;
   const isSelected = selectedRows.length === totalRows && totalRows > 0;
+  const checkboxRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (checkboxRef.current) {
+      checkboxRef.current.indeterminate = isIndeterminate;
+    }
+  }, [isIndeterminate]);
 
   return (
     <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
       <TableRow className="hover:bg-transparent border-none h-12">
         <TableHead className="rounded-l-[8px] w-[40px]">
           <Checkbox 
+            ref={checkboxRef}
             checked={isSelected}
             className="rounded-[4px]"
             onCheckedChange={onSelectAll}
-            ref={(ref: any) => {
-              if (ref) {
-                ref.indeterminate = isIndeterminate;
-              }
-            }}
             aria-checked={isIndeterminate ? "mixed" : isSelected}
           />
         </TableHead>
