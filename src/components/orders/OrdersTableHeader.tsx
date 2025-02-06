@@ -1,4 +1,3 @@
-
 import {
   TableHead,
   TableHeader,
@@ -35,10 +34,7 @@ export const OrdersTableHeader = ({
             checked={isSelected}
             className="rounded-[4px]"
             onCheckedChange={onSelectAll}
-            ref={(ref: any) => {
-              if (!ref) return;
-              ref.indeterminate = isIndeterminate;
-            }}
+            aria-checked={isIndeterminate ? "mixed" : isSelected}
           />
         </TableHead>
         {columnVisibility.orderId && <TableHead>Order ID</TableHead>}
