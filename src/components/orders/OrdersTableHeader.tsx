@@ -5,7 +5,6 @@ import {
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnVisibility } from "./OrdersTableColumns";
-import { useEffect, useRef } from "react";
 
 interface OrdersTableHeaderProps {
   sortDirection: "asc" | "desc";
