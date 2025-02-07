@@ -34,13 +34,13 @@ export const OrdersTableHeader = ({
         <TableHead className="rounded-l-[8px] w-[40px]">
           <Checkbox 
             checked={isSelected}
-            className="rounded-[4px]"
+            className="rounded-[4px] data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground"
             onCheckedChange={onSelectAll}
             data-state={isIndeterminate ? "indeterminate" : isSelected ? "checked" : "unchecked"}
             aria-checked={isIndeterminate}
           >
             {isIndeterminate && (
-              <Minus className="h-4 w-4" />
+              <Minus className="h-4 w-4 text-white" />
             )}
           </Checkbox>
         </TableHead>
