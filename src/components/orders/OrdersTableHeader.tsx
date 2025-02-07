@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnVisibility } from "./OrdersTableColumns";
-import { Minus } from "lucide-react";
 
 interface OrdersTableHeaderProps {
   sortDirection: "asc" | "desc";
@@ -37,12 +36,8 @@ export const OrdersTableHeader = ({
             className="rounded-[4px] data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground"
             onCheckedChange={onSelectAll}
             data-state={isIndeterminate ? "indeterminate" : isSelected ? "checked" : "unchecked"}
-            aria-checked={isIndeterminate}
-          >
-            {isIndeterminate && (
-              <Minus className="h-4 w-4 text-white" />
-            )}
-          </Checkbox>
+            aria-checked={isIndeterminate ? "mixed" : isSelected}
+          />
         </TableHead>
         {columnVisibility.orderId && <TableHead>Order ID</TableHead>}
         {columnVisibility.date && (
