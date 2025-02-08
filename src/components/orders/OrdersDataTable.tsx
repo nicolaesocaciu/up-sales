@@ -96,7 +96,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200">
+    <div className="bg-white rounded-xl px-6">
       <div className="p-4 flex items-center justify-between gap-2">
         <div className="relative min-w-[300px]">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
