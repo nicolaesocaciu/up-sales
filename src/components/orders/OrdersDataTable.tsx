@@ -1,11 +1,11 @@
 
 import { Table, TableBody } from "@/components/ui/table";
 import { mockOrders } from "@/data/mockOrders";
-import { useState, useMemo } from "react";
+import { useState, useMemo, ReactNode } from "react";
 import { OrdersTableHeader } from "./OrdersTableHeader";
 import { OrdersTableRow } from "./OrdersTableRow";
 import { OrdersTablePagination } from "./OrdersTablePagination";
-import { FulfillmentStatus, OrderStatus } from "@/types/order";
+import { FulfillmentStatus } from "@/types/order";
 import { ColumnVisibility } from "./OrdersTableColumns";
 
 interface OrdersDataTableProps {
@@ -67,6 +67,11 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
     }
   };
 
+  // Add highlightText function to handle text highlighting
+  const highlightText = (text: string): ReactNode => {
+    return text; // Simple implementation - just returns the text as is
+  };
+
   return (
     <div className="p-6 bg-white rounded-xl">
       <Table>
@@ -86,6 +91,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
               columnVisibility={columnVisibility}
               selected={selectedRows.includes(order.id)}
               onSelect={handleRowSelect}
+              highlightText={highlightText}
             />
           ))}
         </TableBody>
