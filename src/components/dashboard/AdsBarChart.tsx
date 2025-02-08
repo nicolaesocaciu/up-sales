@@ -1,3 +1,4 @@
+
 import {
   Bar,
   BarChart,
@@ -21,8 +22,8 @@ const data = [
 
 export const AdsBarChart = () => {
   return (
-    <Card className="p-6">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white rounded-xl px-6">
+      <div className="py-6 flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Ads target</h2>
         <div className="flex space-x-2">
           <Button variant="outline" size="sm">
@@ -57,6 +58,6 @@ export const AdsBarChart = () => {
           </BarChart>
         </ResponsiveContainer>
       </div>
-    </Card>
+    </div>
   );
 };
