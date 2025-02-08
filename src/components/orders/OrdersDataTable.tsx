@@ -75,11 +75,13 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   };
 
   const handleRowSelect = (orderId: string, checked: boolean) => {
-    if (checked) {
-      setSelectedRows(prev => [...prev, orderId]);
-    } else {
-      setSelectedRows(prev => prev.filter(id => id !== orderId));
-    }
+    setSelectedRows(prev => {
+      if (checked) {
+        return [...prev, orderId];
+      } else {
+        return prev.filter(id => id !== orderId);
+      }
+    });
   };
 
   const highlightText = (text: string) => {
