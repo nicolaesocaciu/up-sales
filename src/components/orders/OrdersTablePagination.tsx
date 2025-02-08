@@ -41,12 +41,12 @@ export const OrdersTablePagination = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-4">
-      <div className="text-sm text-gray-500">
+    <div className="flex items-center justify-between px-4 py-4 border-t border-gray-200">
+      <div className="flex items-center gap-2 text-sm text-gray-500">
         <span>Showing {startRange} to {endRange} from {totalOrders}</span>
       </div>
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <Button 
             variant="outline" 
             size="sm" 
@@ -80,7 +80,7 @@ export const OrdersTablePagination = ({
           <SelectTrigger className="w-[70px] h-8">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="bg-white">
+          <SelectContent>
             <SelectItem value="10">10</SelectItem>
             <SelectItem value="20">20</SelectItem>
             <SelectItem value="50">50</SelectItem>
