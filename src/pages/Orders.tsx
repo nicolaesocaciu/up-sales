@@ -1,6 +1,5 @@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { OrdersDataTable } from "@/components/orders/OrdersDataTable";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
@@ -53,13 +52,6 @@ const Orders = () => {
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <div className="relative min-w-[300px]">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <Input 
-                placeholder="Search order ..." 
-                className="pl-10 bg-white border-gray-200"
-              />
-            </div>
           </div>
 
           <OrdersDataTable selectedTab={selectedTab} />
