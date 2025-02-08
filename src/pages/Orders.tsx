@@ -1,7 +1,7 @@
+
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Filter, Search, Columns } from "lucide-react";
+import { Search } from "lucide-react";
 import { OrdersDataTable } from "@/components/orders/OrdersDataTable";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { useState } from "react";
@@ -60,17 +60,6 @@ const Orders = () => {
                 className="pl-10 bg-white border-gray-200"
               />
             </div>
-          </div>
-
-          <div className="flex items-center justify-between gap-2">
-            <Button variant="outline" size="sm" className="h-9">
-              <Filter className="h-4 w-4 mr-2" />
-              Add filter
-            </Button>
-            <Button variant="outline" size="sm" className="h-9">
-              <Columns className="h-4 w-4 mr-2" />
-              Columns
-            </Button>
           </div>
 
           <OrdersDataTable selectedTab={selectedTab} />
