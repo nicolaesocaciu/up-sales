@@ -41,14 +41,6 @@ export const OrdersTable = () => {
             ))}
           </TableBody>
         </Table>
-        <div className="py-4 flex justify-center">
-          <Button 
-            variant="outline"
-            onClick={() => navigate('/orders')}
-          >
-            View all orders
-          </Button>
-        </div>
       </div>
     </div>
   );
