@@ -92,25 +92,41 @@ export const AdsBarChart = () => {
           </TabsList>
         </Tabs>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-[100px_1fr] gap-8">
         <div className="space-y-4">
           <div>
-            <div className="text-sm text-gray-500">Total clicks</div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-sm bg-[#33C3F0]"></div>
+              <div className="text-sm text-gray-500">Total clicks</div>
+            </div>
             <div className="text-2xl font-semibold">{totals.clicks.toLocaleString()}</div>
           </div>
           <div>
-            <div className="text-sm text-gray-500">Total impressions</div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-sm bg-[#0EA5E9]"></div>
+              <div className="text-sm text-gray-500">Total impressions</div>
+            </div>
             <div className="text-2xl font-semibold">{totals.impressions.toLocaleString()}</div>
           </div>
         </div>
         <div className="h-[200px]">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={currentData}>
+            <BarChart data={currentData} stackOffset="expand">
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="clicks" fill="#3B82F6" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="impressions" fill="#22C55E" radius={[4, 4, 0, 0]} />
+              <Bar 
+                dataKey="clicks" 
+                fill="#33C3F0" 
+                radius={[4, 4, 0, 0]} 
+                stackId="stack"
+              />
+              <Bar 
+                dataKey="impressions" 
+                fill="#0EA5E9" 
+                radius={[4, 4, 0, 0]} 
+                stackId="stack"
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
