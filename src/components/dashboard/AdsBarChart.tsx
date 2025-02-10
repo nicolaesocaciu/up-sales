@@ -113,22 +113,21 @@ export const AdsBarChart = () => {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart 
               data={currentData} 
-              stackOffset="expand"
               barGap={8}
             >
               <XAxis 
                 dataKey="name" 
                 tickLine={false}
+                style={{ fontSize: '14px' }}
               />
               <YAxis 
-                tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
                 tickLine={false}
+                style={{ fontSize: '14px' }}
               />
               <Tooltip />
               <Bar 
                 dataKey="clicks" 
                 fill="#33C3F0" 
-                radius={[4, 4, 0, 0]} 
                 stackId="stack"
               />
               <Bar 
