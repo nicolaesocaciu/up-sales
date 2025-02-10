@@ -28,10 +28,10 @@ const todayData = [
 ];
 
 const monthData = [
-  { name: "Week 1", clicks: 15000, impressions: 10000 },
-  { name: "Week 2", clicks: 18000, impressions: 12000 },
-  { name: "Week 3", clicks: 16000, impressions: 11000 },
-  { name: "Week 4", clicks: 20000, impressions: 15000 },
+  { name: "1st Week", clicks: 15000, impressions: 10000 },
+  { name: "2nd Week", clicks: 18000, impressions: 12000 },
+  { name: "3rd Week", clicks: 16000, impressions: 11000 },
+  { name: "4th Week", clicks: 20000, impressions: 15000 },
 ];
 
 export const AdsBarChart = () => {
@@ -111,9 +111,19 @@ export const AdsBarChart = () => {
         </div>
         <div className="h-[200px]">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={currentData} stackOffset="expand">
-              <XAxis dataKey="name" />
-              <YAxis />
+            <BarChart 
+              data={currentData} 
+              stackOffset="expand"
+              barGap={8}
+            >
+              <XAxis 
+                dataKey="name" 
+                tickLine={false}
+              />
+              <YAxis 
+                tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
+                tickLine={false}
+              />
               <Tooltip />
               <Bar 
                 dataKey="clicks" 
@@ -124,7 +134,6 @@ export const AdsBarChart = () => {
               <Bar 
                 dataKey="impressions" 
                 fill="#0EA5E9" 
-                radius={[4, 4, 0, 0]} 
                 stackId="stack"
               />
             </BarChart>
@@ -134,3 +143,4 @@ export const AdsBarChart = () => {
     </div>
   );
 };
+
