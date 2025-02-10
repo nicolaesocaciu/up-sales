@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Bar,
@@ -62,30 +61,30 @@ export const AdsBarChart = () => {
   const totals = getTotals();
 
   return (
-    <div className="bg-white rounded-[24px] px-6">
-      <div className="py-6 flex items-center justify-between mb-4">
+    <div className="bg-white rounded-[24px] p-6">
+      <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Ads target</h2>
         <Tabs
           value={selectedPeriod}
           onValueChange={setSelectedPeriod}
           className="w-auto"
         >
-          <TabsList className="bg-gray-100">
+          <TabsList className="bg-gray-100 h-[34px]">
             <TabsTrigger 
               value="today"
-              className="data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm"
             >
               Today
             </TabsTrigger>
             <TabsTrigger 
               value="week"
-              className="data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm"
             >
               This week
             </TabsTrigger>
             <TabsTrigger 
               value="month"
-              className="data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm"
             >
               This month
             </TabsTrigger>
@@ -142,4 +141,3 @@ export const AdsBarChart = () => {
     </div>
   );
 };
-
