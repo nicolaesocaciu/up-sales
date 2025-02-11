@@ -7,7 +7,6 @@ import { ProductsTableHeader } from "./ProductsTableHeader";
 import { ProductsTableRow } from "./ProductsTableRow";
 import { ProductsTablePagination } from "./ProductsTablePagination";
 import { ProductsTableColumns, ColumnVisibility } from "./ProductsTableColumns";
-import { ProductsTableFilters } from "./ProductsTableFilters";
 import { Product } from "@/types/product";
 import { mockProducts } from "@/data/mockProducts";
 
