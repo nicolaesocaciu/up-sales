@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils";
 import { Card } from "../ui/card";
 import {
@@ -19,7 +20,7 @@ interface StatsCardProps {
 
 export const StatsCard = ({ title, value, change, chart }: StatsCardProps) => {
   return (
-    <Card className="p-6 bg-white rounded-[24px] border-0 relative">
+    <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none relative">
       {chart && (
         <div className="absolute top-6 right-6 w-[160px] h-8 overflow-hidden opacity-80 [&_svg]:!stroke-[3] [&_svg]:!h-8 [&_.recharts-surface]:!w-[90px] [&_.recharts-surface]:!float-right">
           {chart}
