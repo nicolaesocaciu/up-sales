@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Table,
@@ -17,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { ProductModal } from "./ProductModal";
+import { useNavigate } from "react-router-dom";
 
 interface Product {
   name: string;
@@ -72,6 +72,7 @@ const products: Product[] = [
 ];
 
 export const ProductsTable = () => {
+  const navigate = useNavigate();
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
@@ -89,7 +90,11 @@ export const ProductsTable = () => {
     <div className="rounded-[24px] bg-white">
       <div className="flex items-center justify-between px-6 py-6">
         <h2 className="text-lg font-semibold">Top products</h2>
-        <Button variant="outline" className="text-primary hover:bg-primary/5">
+        <Button 
+          variant="outline" 
+          className="text-primary hover:bg-primary/5"
+          onClick={() => navigate('/products')}
+        >
           View all
         </Button>
       </div>
