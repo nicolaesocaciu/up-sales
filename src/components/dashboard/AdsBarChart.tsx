@@ -63,7 +63,7 @@ export const AdsBarChart = () => {
 
   return (
     <div className="bg-white rounded-[24px] p-6 h-full">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-8">
         <h2 className="text-lg font-semibold">Ads target</h2>
         <Tabs
           value={selectedPeriod}
