@@ -35,7 +35,7 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
 
   return (
     <Card className="p-6 bg-white rounded-[24px] border-0">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           {isEditMode && (
             <div className="cursor-grab active:cursor-grabbing">
@@ -53,15 +53,15 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
           </SelectContent>
         </Select>
       </div>
-      <div className="h-[300px] relative mb-8">
+      <div className="h-[240px] relative mb-6">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={data}
               cx="50%"
               cy="50%"
-              innerRadius={80}
-              outerRadius={120}
+              innerRadius={60}
+              outerRadius={90}
               paddingAngle={4}
               dataKey="value"
               startAngle={-270}
