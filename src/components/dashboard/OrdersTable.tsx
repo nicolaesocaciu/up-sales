@@ -8,7 +8,11 @@ import { mockOrders } from "@/data/mockOrders";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 
-export const OrdersTable = () => {
+interface OrdersTableProps {
+  isEditMode?: boolean;
+}
+
+export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const navigate = useNavigate();
 

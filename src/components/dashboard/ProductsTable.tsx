@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Table,
@@ -25,6 +24,10 @@ interface Product {
   orders: string;
   sales: string;
   thumbnail?: string;
+}
+
+interface ProductsTableProps {
+  isEditMode?: boolean;
 }
 
 const products: Product[] = [
@@ -72,7 +75,7 @@ const products: Product[] = [
   },
 ];
 
-export const ProductsTable = () => {
+export const ProductsTable = ({ isEditMode }: ProductsTableProps) => {
   const navigate = useNavigate();
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
