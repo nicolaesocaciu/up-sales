@@ -9,6 +9,8 @@ import {
   YAxis,
 } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { cn } from "@/lib/utils";
+import { Grip } from "lucide-react";
 
 const weekData = [
   { name: "Mon", clicks: 2100, impressions: 1200 },
@@ -34,7 +36,11 @@ const monthData = [
   { name: "4th Week", clicks: 20000, impressions: 15000 },
 ];
 
-export const AdsBarChart = () => {
+interface AdsBarChartProps {
+  isEditMode?: boolean;
+}
+
+export const AdsBarChart = ({ isEditMode }: AdsBarChartProps) => {
   const [selectedPeriod, setSelectedPeriod] = useState("week");
 
   const getData = () => {
@@ -64,7 +70,14 @@ export const AdsBarChart = () => {
   return (
     <div className="bg-white rounded-[24px] p-6 h-full">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-lg font-semibold">Ads target</h2>
+        <div className="flex items-center gap-2">
+          {isEditMode && (
+            <div className="cursor-grab active:cursor-grabbing">
+              <Grip className="h-4 w-4 text-gray-400" />
+            </div>
+          )}
+          <h2 className="text-lg font-semibold">Ads target</h2>
+        </div>
         <Tabs
           value={selectedPeriod}
           onValueChange={setSelectedPeriod}
