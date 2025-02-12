@@ -53,15 +53,15 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
           </SelectContent>
         </Select>
       </div>
-      <div className="h-[240px] relative mb-6">
+      <div className="h-[260px] relative mb-6">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
               data={data}
               cx="50%"
               cy="50%"
-              innerRadius={60}
-              outerRadius={90}
+              innerRadius={70}
+              outerRadius={100}
               paddingAngle={4}
               dataKey="value"
               startAngle={-270}
