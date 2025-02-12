@@ -1,6 +1,13 @@
+
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { cn } from "@/lib/utils";
+import { Grip } from "lucide-react";
+
+interface SalesPieChartProps {
+  isEditMode?: boolean;
+}
 
 const data = [
   { name: "Other", value: 46837, color: "#EF4444" },
@@ -9,7 +16,7 @@ const data = [
   { name: "Website", value: 354629, color: "#3B82F6" },
 ];
 
-export const SalesPieChart = () => {
+export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   // Custom tooltip formatter to include percentage
@@ -29,7 +36,14 @@ export const SalesPieChart = () => {
   return (
     <Card className="p-6 bg-white rounded-[24px] border-0">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-lg font-semibold">Sales by platform</h2>
+        <div className="flex items-center gap-2">
+          {isEditMode && (
+            <div className="cursor-grab active:cursor-grabbing">
+              <Grip className="h-4 w-4 text-gray-400" />
+            </div>
+          )}
+          <h2 className="text-lg font-semibold">Sales by platform</h2>
+        </div>
         <Select defaultValue="january">
           <SelectTrigger className="w-[140px] border rounded-full">
             <SelectValue placeholder="Select month" />
