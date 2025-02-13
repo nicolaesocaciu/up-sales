@@ -18,11 +18,18 @@ interface ProductTableRowProps {
 }
 
 export const ProductTableRow = ({ product, onViewProduct }: ProductTableRowProps) => {
+  const getHighResImage = (url: string | undefined) => {
+    return url?.replace('w=24&h=24', 'w=800&h=800');
+  };
+
   return (
     <TableRow className="h-10 hover:bg-[#E7F2F9]">
       <TableCell>
         <button
-          onClick={() => onViewProduct(product)}
+          onClick={() => onViewProduct({
+            ...product,
+            thumbnail: getHighResImage(product.thumbnail)
+          })}
           className="flex items-center gap-3 text-primary hover:underline"
         >
           <img
@@ -56,7 +63,10 @@ export const ProductTableRow = ({ product, onViewProduct }: ProductTableRowProps
           >
             <DropdownMenuItem 
               className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg"
-              onClick={() => onViewProduct(product)}
+              onClick={() => onViewProduct({
+                ...product,
+                thumbnail: getHighResImage(product.thumbnail)
+              })}
             >
               <Eye className="h-5 w-5" />
               View product

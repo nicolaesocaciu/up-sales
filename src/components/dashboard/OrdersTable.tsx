@@ -24,14 +24,14 @@ export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
         ? dateA.getTime() - dateB.getTime()
         : dateB.getTime() - dateA.getTime();
     })
-    .slice(0, 7); // Only take the last 7 orders
+    .slice(0, 6); // Changed from 7 to 6 orders
 
   const toggleSort = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
   };
 
   return (
-    <div className="rounded-[24px] bg-white">
+    <div className="rounded-[24px] bg-white pb-6">
       <OrderTableHeader />
       <div className="px-6">
         <Table>
