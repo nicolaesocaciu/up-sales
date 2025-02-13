@@ -34,7 +34,7 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
   };
 
   return (
-    <Card className="p-6 bg-white rounded-[24px] border-0">
+    <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           {isEditMode && (
