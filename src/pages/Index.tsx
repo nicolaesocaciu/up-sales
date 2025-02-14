@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
@@ -7,53 +6,32 @@ import { OrdersAndSalesSection } from "@/components/dashboard/OrdersAndSalesSect
 import { ProductsAndAdsSection } from "@/components/dashboard/ProductsAndAdsSection";
 import { Check, Grip, X, Edit } from "lucide-react";
 import { cn } from "@/lib/utils";
-
 const Index = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   };
-
   const handleSave = () => {
     // Here you would save the new layout configuration
     setIsEditMode(false);
   };
-
-  return (
-    <DashboardLayout>
+  return <DashboardLayout>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold">Dashboard</h1>
-          <div className="flex items-center gap-6">
-            {isEditMode && (
-              <Button 
-                onClick={handleSave}
-                className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white h-[40px]"
-              >
+          <div className="flex items-center gap-4">
+            {isEditMode && <Button onClick={handleSave} className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white h-[40px]">
                 <Check className="mr-2 h-4 w-4" />
                 Save dashboard
-              </Button>
-            )}
-            <Button 
-              variant="outline" 
-              onClick={toggleEditMode}
-              className={cn(
-                "my-0 py-0 mx-0 px-[16px] h-[40px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1",
-                isEditMode && "bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
-              )}
-            >
-              {isEditMode ? (
-                <>
+              </Button>}
+            <Button variant="outline" onClick={toggleEditMode} className={cn("my-0 py-0 mx-0 px-[16px] h-[40px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1", isEditMode && "bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border-red-200 hover:border-red-300")}>
+              {isEditMode ? <>
                   <X className="mr-2 h-4 w-4" />
                   Cancel edit
-                </>
-              ) : (
-                <>
+                </> : <>
                   <Edit className="mr-2 h-4 w-4" />
                   Edit dashboard
-                </>
-              )}
+                </>}
             </Button>
           </div>
         </div>
@@ -62,8 +40,6 @@ const Index = () => {
         <OrdersAndSalesSection isEditMode={isEditMode} />
         <ProductsAndAdsSection isEditMode={isEditMode} />
       </div>
-    </DashboardLayout>
-  );
+    </DashboardLayout>;
 };
-
 export default Index;
