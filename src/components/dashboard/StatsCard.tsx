@@ -21,7 +21,7 @@ export const StatsCard = ({
           {chart}
         </div>}
       <div className="flex flex-col gap-8">
-        <h3 className="text-sm font-regular text-text-light">{title}</h3>
+        <h3 className="text-sm font-regular text-gray-500">{title}</h3>
         <div className="flex items-baseline justify-between">
           <p className="text-2xl font-semibold text-text-dark">{value}</p>
           <TooltipProvider delayDuration={0}>
