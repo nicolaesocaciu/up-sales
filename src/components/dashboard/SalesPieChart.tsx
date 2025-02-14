@@ -84,7 +84,7 @@ export const SalesPieChart = ({
             backgroundColor: item.color
           }} />
               <div>
-                <div className="text-sm text-text-light">{item.name}</div>
+                <div className="text-sm text-gray-600">{item.name}</div>
                 <div className="text-base font-semibold">
                   ${item.value.toLocaleString()}
                 </div>
