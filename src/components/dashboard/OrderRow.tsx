@@ -15,7 +15,7 @@ export const OrderRow = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   return <TableRow className={cn("h-12 transition-colors max-h-[48px]", isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]")}>
-      <TableCell className="font-regular">{order.id}</TableCell>
+      <TableCell className="">{order.id}</TableCell>
       <TableCell>{order.date}</TableCell>
       <TableCell>
         <OrderItems items={order.items} itemCount={order.itemCount} thumbnail={order.thumbnail} products={order.products} onProductClick={product => setSelectedProduct(product)} />
