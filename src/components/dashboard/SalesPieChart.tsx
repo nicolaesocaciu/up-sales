@@ -73,7 +73,7 @@ export const SalesPieChart = ({
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <div className="font-sm text-gray-500">Total</div>
+          <div className="text-sm text-gray-500">Total</div>
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
         </div>
       </div>
