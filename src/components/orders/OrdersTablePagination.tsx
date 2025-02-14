@@ -49,8 +49,7 @@ export const OrdersTablePagination = ({
         <div className="flex items-center gap-1">
           <Button 
             variant="outline" 
-            size="sm" 
-            className="h-8 w-8 p-0"
+            className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
           >
@@ -59,8 +58,7 @@ export const OrdersTablePagination = ({
           <div className="flex items-center gap-1">
             <Button
               variant="outline"
-              size="sm"
-              className="h-8 w-8 p-0 bg-primary text-white border-primary hover:bg-primary hover:text-white"
+              className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 bg-primary text-white border-primary hover:bg-primary hover:text-white"
             >
               {currentPage}
             </Button>
@@ -68,8 +66,7 @@ export const OrdersTablePagination = ({
           </div>
           <Button 
             variant="outline" 
-            size="sm" 
-            className="h-8 w-8 p-0"
+            className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
           >
@@ -77,7 +74,7 @@ export const OrdersTablePagination = ({
           </Button>
         </div>
         <Select defaultValue="10">
-          <SelectTrigger className="w-[70px] h-8">
+          <SelectTrigger className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark w-[70px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
