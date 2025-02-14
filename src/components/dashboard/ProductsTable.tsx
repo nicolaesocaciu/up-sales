@@ -80,13 +80,13 @@ export const ProductsTable = ({ isEditMode }: ProductsTableProps) => {
   return (
     <div className="rounded-[24px] bg-white">
       <ProductTableHeader title="Top products" />
-      <div className="px-6">
+      <div className="px-6 pb-6">
         <Table>
           <ProductTableSortHeader 
             sortDirection={sortDirection}
             onSortChange={toggleSort}
           />
-          <TableBody>
+          <TableBody className="[&_tr:last-child]:border-0">
             {sortedProducts.map((product) => (
               <ProductTableRow 
                 key={product.name} 
