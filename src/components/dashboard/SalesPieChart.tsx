@@ -1,3 +1,4 @@
+
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
@@ -30,6 +31,10 @@ export const SalesPieChart = ({
   isEditMode
 }: SalesPieChartProps) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
 
   // Custom tooltip formatter to include percentage
   const CustomTooltip = ({
@@ -60,11 +65,15 @@ export const SalesPieChart = ({
           <h2 className="text-lg font-semibold">Sales by platform</h2>
         </div>
         <Select defaultValue="january">
-          <SelectTrigger className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark">
+          <SelectTrigger className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark w-[136px]">
             <SelectValue placeholder="Select month" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="january">January</SelectItem>
+            {months.map((month) => (
+              <SelectItem key={month.toLowerCase()} value={month.toLowerCase()}>
+                {month}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>

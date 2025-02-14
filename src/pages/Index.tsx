@@ -5,7 +5,7 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { StatsSection } from "@/components/dashboard/StatsSection";
 import { OrdersAndSalesSection } from "@/components/dashboard/OrdersAndSalesSection";
 import { ProductsAndAdsSection } from "@/components/dashboard/ProductsAndAdsSection";
-import { Check, Grip, X } from "lucide-react";
+import { Check, Grip, X, Edit } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Index = () => {
@@ -29,7 +29,7 @@ const Index = () => {
             {isEditMode && (
               <Button 
                 onClick={handleSave}
-                className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white"
+                className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white h-[40px]"
               >
                 <Check className="mr-2 h-4 w-4" />
                 Save dashboard
@@ -39,7 +39,7 @@ const Index = () => {
               variant="outline" 
               onClick={toggleEditMode}
               className={cn(
-                "my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1",
+                "my-0 py-0 mx-0 px-[22px] h-[40px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1",
                 isEditMode && "bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
               )}
             >
@@ -49,7 +49,10 @@ const Index = () => {
                   Cancel edit
                 </>
               ) : (
-                "Edit dashboard"
+                <>
+                  <Edit className="mr-2 h-4 w-4" />
+                  Edit dashboard
+                </>
               )}
             </Button>
           </div>

@@ -15,7 +15,7 @@ export const BetaPrompt = () => {
         </p>
         <Button
           variant="outline"
-          className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 w-full"
+          className="my-0 py-0 mx-0 px-[22px] h-[32px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 w-full"
         >
           Learn more
         </Button>
