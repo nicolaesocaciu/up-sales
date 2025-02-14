@@ -35,7 +35,7 @@ export const OrdersTableColumns = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1">
+        <Button variant="outline" className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1">
           <Columns className="h-4 w-4" />
           Columns
         </Button>

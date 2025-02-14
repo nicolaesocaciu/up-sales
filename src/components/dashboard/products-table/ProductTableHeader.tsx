@@ -15,7 +15,7 @@ export const ProductTableHeader = ({ title }: ProductTableHeaderProps) => {
       <h2 className="text-lg font-semibold">{title}</h2>
       <Button 
         variant="outline" 
-        className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
+        className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
         onClick={() => navigate('/products')}
       >
         View all
