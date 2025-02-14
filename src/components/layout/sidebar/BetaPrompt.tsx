@@ -1,3 +1,4 @@
+
 import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -14,7 +15,7 @@ export const BetaPrompt = () => {
         </p>
         <Button
           variant="outline"
-          className="w-full bg-white hover:bg-gray-50"
+          className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 w-full"
         >
           Learn more
         </Button>

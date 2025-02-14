@@ -3,9 +3,11 @@ import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { cn } from "@/lib/utils";
 import { Grip } from "lucide-react";
+
 interface SalesPieChartProps {
   isEditMode?: boolean;
 }
+
 const data = [{
   name: "Other",
   value: 46837,
@@ -23,6 +25,7 @@ const data = [{
   value: 354629,
   color: "#3B82F6"
 }];
+
 export const SalesPieChart = ({
   isEditMode
 }: SalesPieChartProps) => {
@@ -44,16 +47,20 @@ export const SalesPieChart = ({
     }
     return null;
   };
-  return <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
+
+  return (
+    <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          {isEditMode && <div className="cursor-grab active:cursor-grabbing">
+          {isEditMode && (
+            <div className="cursor-grab active:cursor-grabbing">
               <Grip className="h-4 w-4 text-gray-400" />
-            </div>}
+            </div>
+          )}
           <h2 className="text-lg font-semibold">Sales by platform</h2>
         </div>
         <Select defaultValue="january">
-          <SelectTrigger className="w-[140px] border rounded-full">
+          <SelectTrigger className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark">
             <SelectValue placeholder="Select month" />
           </SelectTrigger>
           <SelectContent>
@@ -92,5 +99,6 @@ export const SalesPieChart = ({
             </div>
           </div>)}
       </div>
-    </Card>;
+    </Card>
+  );
 };

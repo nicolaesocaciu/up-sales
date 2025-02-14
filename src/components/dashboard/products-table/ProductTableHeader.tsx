@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 
 interface ProductTableHeaderProps {
   title: string;
@@ -14,10 +15,11 @@ export const ProductTableHeader = ({ title }: ProductTableHeaderProps) => {
       <h2 className="text-lg font-semibold">{title}</h2>
       <Button 
         variant="outline" 
-        className="text-primary hover:bg-primary/5"
+        className="my-0 py-0 mx-0 px-[22px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
         onClick={() => navigate('/products')}
       >
         View all
+        <ChevronRight className="h-4 w-4" />
       </Button>
     </div>
   );
