@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnVisibility } from "./OrdersTableColumns";
-import { Check, Minus } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Minus } from "lucide-react";
 
 interface OrdersTableHeaderProps {
   sortDirection: "asc" | "desc";
@@ -49,14 +49,16 @@ export const OrdersTableHeader = ({
         {columnVisibility.orderId && <TableHead>Order ID</TableHead>}
         {columnVisibility.date && (
           <TableHead 
-            className="cursor-pointer"
+            className="cursor-pointer hover:bg-[#DADADA]"
             onClick={onSortChange}
           >
             <div className="flex items-center gap-2">
               Date
-              <span className="text-gray-400">
-                {sortDirection === "asc" ? "↑" : "↓"}
-              </span>
+              {sortDirection === "asc" ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
             </div>
           </TableHead>
         )}
