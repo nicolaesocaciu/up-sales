@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
+import { Order } from "@/types/order";
 
 interface OrdersTableProps {
   isEditMode?: boolean;
@@ -27,7 +28,23 @@ export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
         .order('date', { ascending: sortDirection === 'asc' });
       
       if (error) throw error;
-      return data.slice(0, 6);
+      
+      // Transform the data to match our Order type
+      return data.slice(0, 6).map(order => ({
+        id: order.id,
+        date: order.date,
+        items: order.items,
+        value: order.value,
+        status: order.status,
+        fulfillmentStatus: order.fulfillment_status,
+        customer: {
+          name: order.customer_name,
+          email: order.customer_email
+        },
+        thumbnail: order.thumbnail,
+        itemCount: order.item_count,
+        products: order.products
+      })) as Order[];
     },
   });
 
