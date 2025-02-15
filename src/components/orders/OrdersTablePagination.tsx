@@ -33,7 +33,7 @@ export const OrdersTablePagination = ({
         <span>Showing {startRange} to {endRange} from {totalOrders}</span>
       </div>
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-4">
           <Button variant="outline" className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1" onClick={handlePreviousPage} disabled={currentPage === 1}>
             <ChevronLeft className="h-4 w-4" />
           </Button>
