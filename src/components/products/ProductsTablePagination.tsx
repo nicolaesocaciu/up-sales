@@ -46,11 +46,10 @@ export const ProductsTablePagination = ({
         <span>Showing {startRange} to {endRange} from {totalProducts}</span>
       </div>
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-4">
           <Button 
             variant="outline" 
-            size="sm" 
-            className="h-8 w-8 p-0"
+            className="my-0 py-0 mx-0 px-[8px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
           >
@@ -59,8 +58,7 @@ export const ProductsTablePagination = ({
           <div className="flex items-center gap-1">
             <Button
               variant="outline"
-              size="sm"
-              className="h-8 w-8 p-0 bg-primary text-white border-primary hover:bg-primary hover:text-white"
+              className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 bg-primary text-white border-primary hover:bg-primary hover:text-white"
             >
               {currentPage}
             </Button>
@@ -68,8 +66,7 @@ export const ProductsTablePagination = ({
           </div>
           <Button 
             variant="outline" 
-            size="sm" 
-            className="h-8 w-8 p-0"
+            className="my-0 py-0 mx-0 px-[8px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
           >
@@ -77,10 +74,10 @@ export const ProductsTablePagination = ({
           </Button>
         </div>
         <Select defaultValue="10">
-          <SelectTrigger className="w-[70px] h-8">
+          <SelectTrigger className="my-0 py-0 mx-0 pr-[10px] pl-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark w-[72px]">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-white">
             <SelectItem value="10">10</SelectItem>
             <SelectItem value="20">20</SelectItem>
             <SelectItem value="50">50</SelectItem>
