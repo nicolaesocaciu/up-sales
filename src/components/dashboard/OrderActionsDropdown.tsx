@@ -1,6 +1,6 @@
 
 import { Button } from "../ui/button";
-import { FileText, RefreshCw, XOctagon } from "lucide-react";
+import { FileText, RefreshCw, XOctagon, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,17 +9,36 @@ import {
 } from "../ui/dropdown-menu";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 interface OrderActionsDropdownProps {
   onOpenChange?: (isOpen: boolean) => void;
+  orderId: string;
+  onDelete?: () => void;
 }
 
-export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps) => {
+export const OrderActionsDropdown = ({ onOpenChange, orderId, onDelete }: OrderActionsDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
     onOpenChange?.(open);
+  };
+
+  const handleDelete = async () => {
+    const { error } = await supabase
+      .from('orders')
+      .delete()
+      .eq('id', orderId);
+
+    if (error) {
+      toast.error('Failed to delete order');
+      return;
+    }
+
+    toast.success('Order deleted successfully');
+    onDelete?.();
   };
 
   return (
@@ -52,9 +71,12 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
             <RefreshCw className="h-5 w-5" />
             Change status
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600">
-            <XOctagon className="h-5 w-5" />
-            Cancel order
+          <DropdownMenuItem 
+            className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600"
+            onClick={handleDelete}
+          >
+            <Trash2 className="h-5 w-5" />
+            Delete order
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
