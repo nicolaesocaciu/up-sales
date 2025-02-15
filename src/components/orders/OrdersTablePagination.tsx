@@ -1,14 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 interface OrdersTablePaginationProps {
   totalOrders: number;
   currentPageSize: number;
@@ -16,60 +8,42 @@ interface OrdersTablePaginationProps {
   onPageChange: (page: number) => void;
   ordersPerPage: number;
 }
-
 export const OrdersTablePagination = ({
   totalOrders,
   currentPageSize,
   currentPage,
   onPageChange,
-  ordersPerPage,
+  ordersPerPage
 }: OrdersTablePaginationProps) => {
   const totalPages = Math.ceil(totalOrders / ordersPerPage);
-  const startRange = ((currentPage - 1) * ordersPerPage) + 1;
+  const startRange = (currentPage - 1) * ordersPerPage + 1;
   const endRange = Math.min(startRange + currentPageSize - 1, totalOrders);
-
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
     }
   };
-
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       onPageChange(currentPage + 1);
     }
   };
-
-  return (
-    <div className="flex items-center justify-between px-4 py-4 border-t border-gray-200">
+  return <div className="flex items-center justify-between px-4 py-4 border-t border-gray-200">
       <div className="flex items-center gap-2 text-sm text-gray-500">
         <span>Showing {startRange} to {endRange} from {totalOrders}</span>
       </div>
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-1">
-          <Button 
-            variant="outline" 
-            className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
-            onClick={handlePreviousPage}
-            disabled={currentPage === 1}
-          >
+          <Button variant="outline" className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1" onClick={handlePreviousPage} disabled={currentPage === 1}>
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 bg-primary text-white border-primary hover:bg-primary hover:text-white"
-            >
+            <Button variant="outline" className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 bg-primary text-white border-primary hover:bg-primary hover:text-white">
               {currentPage}
             </Button>
             <span className="text-sm text-gray-500">of {totalPages}</span>
           </div>
-          <Button 
-            variant="outline" 
-            className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1"
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-          >
+          <Button variant="outline" onClick={handleNextPage} disabled={currentPage === totalPages} className="my-0 py-0 mx-0 h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark flex items-center gap-1 px-[8px]">
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
@@ -85,6 +59,5 @@ export const OrdersTablePagination = ({
           </SelectContent>
         </Select>
       </div>
-    </div>
-  );
+    </div>;
 };
