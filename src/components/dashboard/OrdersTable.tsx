@@ -43,7 +43,13 @@ export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
         },
         thumbnail: order.thumbnail,
         itemCount: order.item_count,
-        products: order.products
+        products: Array.isArray(order.products) 
+          ? order.products.map((product: any) => ({
+              title: product.title || 'Untitled Product',
+              description: product.description,
+              images: product.images
+            }))
+          : []
       })) as Order[];
     },
   });
