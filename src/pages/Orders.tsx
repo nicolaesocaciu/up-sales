@@ -1,19 +1,29 @@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search } from "lucide-react";
+import { Plus } from "lucide-react";
 import { OrdersDataTable } from "@/components/orders/OrdersDataTable";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { useState } from "react";
 import { FulfillmentStatus } from "@/types/order";
+import { Button } from "@/components/ui/button";
+import { AddOrderDialog } from "@/components/orders/AddOrderDialog";
 
 const Orders = () => {
   const [selectedTab, setSelectedTab] = useState<FulfillmentStatus | "all-orders">("all-orders");
+  const [showAddDialog, setShowAddDialog] = useState(false);
 
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <div>
+        <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold text-text-dark">Orders</h1>
+          <Button 
+            onClick={() => setShowAddDialog(true)}
+            className="h-10 px-4 py-2"
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Add manual order
+          </Button>
         </div>
 
         <div className="space-y-4">
@@ -56,6 +66,11 @@ const Orders = () => {
 
           <OrdersDataTable selectedTab={selectedTab} />
         </div>
+
+        <AddOrderDialog 
+          open={showAddDialog} 
+          onOpenChange={setShowAddDialog}
+        />
       </div>
     </DashboardLayout>
   );
