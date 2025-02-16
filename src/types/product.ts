@@ -7,4 +7,5 @@ export interface Product {
   sales: string;
   thumbnail?: string;
   created_at?: string;
+  inventory: number;
 }

@@ -2,12 +2,15 @@
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, Pencil } from "lucide-react";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 import { Product } from "@/types/product";
 import { ColumnVisibility } from "./ProductsTableColumns";
 import { ReactNode, useState } from "react";
 import { ProductModal } from "../dashboard/ProductModal";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface ProductsTableRowProps {
   product: Product;
@@ -26,6 +29,32 @@ export const ProductsTableRow = ({
 }: ProductsTableRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  const handleDelete = async () => {
+    try {
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .eq('id', product.id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Product deleted successfully",
+      });
+
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete product",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <>
@@ -61,6 +90,7 @@ export const ProductsTableRow = ({
         {columnVisibility.sales && (
           <TableCell className="text-right">{product.sales}</TableCell>
         )}
+        <TableCell className="text-right">{product.inventory}</TableCell>
         {columnVisibility.actions && (
           <TableCell className="text-center">
             <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
@@ -90,6 +120,13 @@ export const ProductsTableRow = ({
                 <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
                   <Pencil className="h-5 w-5" />
                   Edit product
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600"
+                  onClick={handleDelete}
+                >
+                  <Trash2 className="h-5 w-5" />
+                  Delete product
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

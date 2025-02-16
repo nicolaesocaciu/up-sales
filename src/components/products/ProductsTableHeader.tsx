@@ -64,6 +64,7 @@ export const ProductsTableHeader = ({
             </div>
           </TableHead>
         )}
+        <TableHead className="text-right">Inventory</TableHead>
         {columnVisibility.actions && <TableHead className="rounded-r-[8px] w-[50px]">Actions</TableHead>}
       </TableRow>
     </TableHeader>
