@@ -1,16 +1,15 @@
 
 import { Table, TableBody } from "@/components/ui/table";
+import { mockOrders } from "@/data/mockOrders";
 import { useState, useMemo } from "react";
 import { OrdersTableHeader } from "./OrdersTableHeader";
 import { OrdersTableRow } from "./OrdersTableRow";
 import { OrdersTablePagination } from "./OrdersTablePagination";
-import { FulfillmentStatus, OrderStatus, Order } from "@/types/order";
+import { FulfillmentStatus, OrderStatus } from "@/types/order";
 import { OrdersTableColumns, ColumnVisibility } from "./OrdersTableColumns";
 import { OrdersTableFilters } from "./OrdersTableFilters";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
 
 interface OrdersDataTableProps {
   selectedTab: FulfillmentStatus | "all-orders";
@@ -38,55 +37,29 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const ordersPerPage = 10;
 
-  const { data: orders = [] } = useQuery({
-    queryKey: ['orders', sortDirection],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('orders')
-        .select('*')
-        .order('date', { ascending: sortDirection === 'asc' });
-      
-      if (error) throw error;
-      
-      return data.map(order => ({
-        id: order.id,
-        date: order.date,
-        items: order.items,
-        value: order.value,
-        status: order.status,
-        fulfillmentStatus: order.fulfillment_status,
-        customer: {
-          name: order.customer_name,
-          email: order.customer_email
-        },
-        thumbnail: order.thumbnail,
-        itemCount: order.item_count,
-        products: Array.isArray(order.products) 
-          ? order.products.map((product: any) => ({
-              title: product.title || 'Untitled Product',
-              description: product.description,
-              images: product.images
-            }))
-          : []
-      })) as Order[];
-    },
-  });
-
   const filteredAndSortedOrders = useMemo(() => {
-    return orders.filter((order) => {
-      const matchesTab = selectedTab === "all-orders" ? true : order.fulfillmentStatus === selectedTab;
-      const matchesStatus = !statusFilter || order.status === statusFilter;
-      const matchesFulfillmentStatus = !fulfillmentStatusFilter || order.fulfillmentStatus === fulfillmentStatusFilter;
-      
-      const searchLower = searchQuery.toLowerCase();
-      const matchesSearch = searchQuery === "" || 
-        order.items.toLowerCase().includes(searchLower) ||
-        order.customer.name.toLowerCase().includes(searchLower) ||
-        order.customer.email.toLowerCase().includes(searchLower);
+    return [...mockOrders]
+      .sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return sortDirection === "asc"
+          ? dateA.getTime() - dateB.getTime()
+          : dateB.getTime() - dateA.getTime();
+      })
+      .filter((order) => {
+        const matchesTab = selectedTab === "all-orders" ? true : order.fulfillmentStatus === selectedTab;
+        const matchesStatus = !statusFilter || order.status === statusFilter;
+        const matchesFulfillmentStatus = !fulfillmentStatusFilter || order.fulfillmentStatus === fulfillmentStatusFilter;
+        
+        const searchLower = searchQuery.toLowerCase();
+        const matchesSearch = searchQuery === "" || 
+          order.items.toLowerCase().includes(searchLower) ||
+          order.customer.name.toLowerCase().includes(searchLower) ||
+          order.customer.email.toLowerCase().includes(searchLower);
 
-      return matchesTab && matchesStatus && matchesFulfillmentStatus && matchesSearch;
-    });
-  }, [orders, selectedTab, statusFilter, fulfillmentStatusFilter, searchQuery]);
+        return matchesTab && matchesStatus && matchesFulfillmentStatus && matchesSearch;
+      });
+  }, [mockOrders, sortDirection, selectedTab, statusFilter, fulfillmentStatusFilter, searchQuery]);
 
   const paginatedOrders = useMemo(() => {
     const startIndex = (currentPage - 1) * ordersPerPage;

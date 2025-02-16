@@ -4,12 +4,9 @@ import { Table, TableBody } from "../ui/table";
 import { OrderTableHeader } from "./OrderTableHeader";
 import { OrderTableHeaders } from "./OrderTableHeaders";
 import { OrderRow } from "./OrderRow";
+import { mockOrders } from "@/data/mockOrders";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
-import { Plus } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { useQuery } from "@tanstack/react-query";
-import { Order } from "@/types/order";
 
 interface OrdersTableProps {
   isEditMode?: boolean;
@@ -19,40 +16,15 @@ export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const navigate = useNavigate();
 
-  const { data: orders = [], refetch } = useQuery({
-    queryKey: ['orders'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('orders')
-        .select('*')
-        .order('date', { ascending: sortDirection === 'asc' });
-      
-      if (error) throw error;
-      
-      // Transform the data to match our Order type
-      return data.slice(0, 6).map(order => ({
-        id: order.id,
-        date: order.date,
-        items: order.items,
-        value: order.value,
-        status: order.status,
-        fulfillmentStatus: order.fulfillment_status,
-        customer: {
-          name: order.customer_name,
-          email: order.customer_email
-        },
-        thumbnail: order.thumbnail,
-        itemCount: order.item_count,
-        products: Array.isArray(order.products) 
-          ? order.products.map((product: any) => ({
-              title: product.title || 'Untitled Product',
-              description: product.description,
-              images: product.images
-            }))
-          : []
-      })) as Order[];
-    },
-  });
+  const sortedOrders = [...mockOrders]
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortDirection === "asc"
+        ? dateA.getTime() - dateB.getTime()
+        : dateB.getTime() - dateA.getTime();
+    })
+    .slice(0, 6); // Changed from 7 to 6 orders
 
   const toggleSort = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
@@ -60,25 +32,7 @@ export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
 
   return (
     <div className="rounded-[24px] bg-white pb-6">
-      <div className="flex items-center justify-between px-6 py-6">
-        <h2 className="text-lg font-semibold">Latest orders</h2>
-        <div className="flex gap-2">
-          <Button 
-            variant="outline" 
-            onClick={() => navigate('/orders')} 
-            className="h-[40px] rounded-lg border-[#8A8A8A] bg-white text-text-dark"
-          >
-            View all
-          </Button>
-          <Button 
-            onClick={() => navigate('/orders/new')} 
-            className="h-[40px] rounded-lg bg-primary text-white"
-          >
-            <Plus className="mr-2 h-4 w-4" />
-            Add manual order
-          </Button>
-        </div>
-      </div>
+      <OrderTableHeader />
       <div className="px-6">
         <Table>
           <OrderTableHeaders
@@ -86,12 +40,8 @@ export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
             onToggleSort={toggleSort}
           />
           <TableBody>
-            {orders.map((order) => (
-              <OrderRow 
-                key={order.id} 
-                order={order}
-                onDelete={refetch}
-              />
+            {sortedOrders.map((order) => (
+              <OrderRow key={order.id} order={order} />
             ))}
           </TableBody>
         </Table>

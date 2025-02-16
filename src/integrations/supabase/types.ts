@@ -9,51 +9,7 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      orders: {
-        Row: {
-          created_at: string
-          customer_email: string
-          customer_name: string
-          date: string
-          fulfillment_status: string
-          id: string
-          item_count: number | null
-          items: string
-          products: Json | null
-          status: string
-          thumbnail: string | null
-          value: string
-        }
-        Insert: {
-          created_at?: string
-          customer_email: string
-          customer_name: string
-          date?: string
-          fulfillment_status: string
-          id?: string
-          item_count?: number | null
-          items: string
-          products?: Json | null
-          status: string
-          thumbnail?: string | null
-          value: string
-        }
-        Update: {
-          created_at?: string
-          customer_email?: string
-          customer_name?: string
-          date?: string
-          fulfillment_status?: string
-          id?: string
-          item_count?: number | null
-          items?: string
-          products?: Json | null
-          status?: string
-          thumbnail?: string | null
-          value?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
