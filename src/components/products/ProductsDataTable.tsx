@@ -8,7 +8,8 @@ import { ProductsTableRow } from "./ProductsTableRow";
 import { ProductsTablePagination } from "./ProductsTablePagination";
 import { ProductsTableColumns, ColumnVisibility } from "./ProductsTableColumns";
 import { Product } from "@/types/product";
-import { mockProducts } from "@/data/mockProducts";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 export const ProductsDataTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
@@ -24,7 +25,19 @@ export const ProductsDataTable = () => {
   });
   const productsPerPage = 10;
 
-  const filteredAndSortedProducts = [...mockProducts]
+  const { data: products = [], isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*');
+      
+      if (error) throw error;
+      return data as Product[];
+    },
+  });
+
+  const filteredAndSortedProducts = [...products]
     .sort((a, b) => {
       const salesA = parseFloat(a.sales.replace(/[$,]/g, ""));
       const salesB = parseFloat(b.sales.replace(/[$,]/g, ""));
@@ -69,6 +82,14 @@ export const ProductsDataTable = () => {
         part
     );
   };
+
+  if (isLoading) {
+    return (
+      <div className="bg-white rounded-xl px-6 py-4">
+        Loading products...
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-xl px-6">
