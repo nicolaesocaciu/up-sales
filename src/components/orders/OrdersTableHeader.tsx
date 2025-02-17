@@ -64,10 +64,10 @@ export const OrdersTableHeader = ({
         )}
         {columnVisibility.items && <TableHead>Items</TableHead>}
         {columnVisibility.customer && <TableHead>Customer</TableHead>}
-        {columnVisibility.email && <TableHead>Email</TableHead>}
-        {columnVisibility.orderValue && <TableHead className="text-right">Order value</TableHead>}
-        {columnVisibility.status && <TableHead>Status</TableHead>}
-        {columnVisibility.fulfillmentStatus && <TableHead>Fulfillment status</TableHead>}
+        {columnVisibility.email && <TableHead className="w-[248px]">Email</TableHead>}
+        {columnVisibility.orderValue && <TableHead className="text-right w-[110px]">Order value</TableHead>}
+        {columnVisibility.status && <TableHead className="w-[140px]">Status</TableHead>}
+        {columnVisibility.fulfillmentStatus && <TableHead className="w-[142px]">Fulfillment status</TableHead>}
         {columnVisibility.actions && <TableHead className="rounded-r-[8px] w-[50px]">Actions</TableHead>}
       </TableRow>
     </TableHeader>
