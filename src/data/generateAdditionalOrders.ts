@@ -14,9 +14,9 @@ const techProducts = [
 ];
 
 const firstNames = [
-  "Emma", "Liam", "Olivia", "Noah", "Ava", "Ethan", "Sophia", "Mason",
-  "Isabella", "William", "Mia", "James", "Charlotte", "Benjamin", "Amelia",
-  "Lucas", "Harper", "Henry", "Evelyn", "Alexander"
+  "Ethan", "Isabella", "Lucas", "Sophia", "Oliver", "Mia", "Gabriel", "Zoe",
+  "Felix", "Luna", "Adrian", "Aurora", "Leo", "Elena", "Xavier", "Maya",
+  "Hugo", "Clara", "Atlas", "Nora"
 ];
 
 const lastNames = [

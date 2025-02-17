@@ -1,3 +1,4 @@
+
 import { Order, OrderStatus, FulfillmentStatus } from "@/types/order";
 
 export const baseOrders: Order[] = [
@@ -40,8 +41,8 @@ export const baseOrders: Order[] = [
     status: "Processing" as OrderStatus,
     fulfillmentStatus: "Open" as FulfillmentStatus,
     customer: {
-      name: "Emma Martinez",
-      email: "emma.martinez@example.com"
+      name: "Marcus Thompson",
+      email: "marcus.thompson@example.com"
     },
     thumbnail: "https://images.unsplash.com/photo-1618410320928-25228d811631?w=24&h=24&fit=crop",
     products: [
@@ -62,8 +63,8 @@ export const baseOrders: Order[] = [
     status: "Waiting" as OrderStatus,
     fulfillmentStatus: "Closed" as FulfillmentStatus,
     customer: {
-      name: "Olivia Brown",
-      email: "olivia.brown@example.com"
+      name: "Sebastian Chen",
+      email: "sebastian.chen@example.com"
     },
     thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=24&h=24&fit=crop",
     itemCount: 2
