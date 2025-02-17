@@ -47,6 +47,7 @@ export const ProductsTableHeader = ({
           </Checkbox>
         </TableHead>
         {columnVisibility.name && <TableHead>Product</TableHead>}
+        <TableHead className="text-right">In stock</TableHead>
         {columnVisibility.price && <TableHead className="text-right">Price</TableHead>}
         {columnVisibility.orders && <TableHead>Total orders</TableHead>}
         {columnVisibility.sales && (
@@ -64,7 +65,6 @@ export const ProductsTableHeader = ({
             </div>
           </TableHead>
         )}
-        <TableHead className="text-right">Inventory</TableHead>
         {columnVisibility.actions && <TableHead className="rounded-r-[8px] w-[50px]">Actions</TableHead>}
       </TableRow>
     </TableHeader>

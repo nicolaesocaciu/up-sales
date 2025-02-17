@@ -81,6 +81,7 @@ export const ProductsTableRow = ({
             </button>
           </TableCell>
         )}
+        <TableCell className="text-right">{product.inventory}</TableCell>
         {columnVisibility.price && (
           <TableCell className="text-right">{product.price}</TableCell>
         )}
@@ -90,7 +91,6 @@ export const ProductsTableRow = ({
         {columnVisibility.sales && (
           <TableCell className="text-right">{product.sales}</TableCell>
         )}
-        <TableCell className="text-right">{product.inventory}</TableCell>
         {columnVisibility.actions && (
           <TableCell className="text-center">
             <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
