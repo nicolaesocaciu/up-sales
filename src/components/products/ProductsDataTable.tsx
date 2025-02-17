@@ -1,58 +1,46 @@
 
-import { useState } from "react";
 import { Table, TableBody } from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Product } from "@/types/product";
 import { ProductsTableHeader } from "./ProductsTableHeader";
 import { ProductsTableRow } from "./ProductsTableRow";
 import { ProductsTablePagination } from "./ProductsTablePagination";
 import { ProductsTableColumns, ColumnVisibility } from "./ProductsTableColumns";
-import { Product } from "@/types/product";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
+const defaultColumnVisibility: ColumnVisibility = {
+  name: true,
+  price: true,
+  orders: true,
+  sales: true,
+  actions: true,
+};
+
 export const ProductsDataTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(defaultColumnVisibility);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
-  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>({
-    name: true,
-    price: true,
-    orders: true,
-    sales: true,
-    actions: true,
-  });
-  const productsPerPage = 10;
+  const [productsPerPage, setProductsPerPage] = useState(20);
 
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ['products'],
+  const { data: products = [] } = useQuery({
+    queryKey: ['products', sortDirection],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('products')
-        .select('*');
+        .select('*')
+        .order('sales', { ascending: sortDirection === 'asc' });
       
       if (error) throw error;
       return data as Product[];
     },
   });
 
-  const filteredAndSortedProducts = [...products]
-    .sort((a, b) => {
-      const salesA = parseFloat(a.sales.replace(/[$,]/g, ""));
-      const salesB = parseFloat(b.sales.replace(/[$,]/g, ""));
-      return sortDirection === "asc" ? salesA - salesB : salesB - salesA;
-    })
-    .filter((product) => {
-      const searchLower = searchQuery.toLowerCase();
-      return searchQuery === "" || 
-        product.name.toLowerCase().includes(searchLower);
-    });
-
-  const paginatedProducts = filteredAndSortedProducts.slice(
-    (currentPage - 1) * productsPerPage,
-    currentPage * productsPerPage
-  );
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * productsPerPage;
+    return products.slice(startIndex, startIndex + productsPerPage);
+  }, [products, currentPage, productsPerPage]);
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
@@ -72,43 +60,18 @@ export const ProductsDataTable = () => {
     });
   };
 
-  const highlightText = (text: string) => {
-    if (!searchQuery) return text;
-    
-    const parts = text.split(new RegExp(`(${searchQuery})`, 'gi'));
-    return parts.map((part, i) => 
-      part.toLowerCase() === searchQuery.toLowerCase() ? 
-        <span key={i} className="bg-yellow-200">{part}</span> : 
-        part
-    );
+  const handleProductsPerPageChange = (value: string) => {
+    setProductsPerPage(parseInt(value));
+    setCurrentPage(1); // Reset to first page when changing items per page
   };
-
-  if (isLoading) {
-    return (
-      <div className="bg-white rounded-xl px-6 py-4">
-        Loading products...
-      </div>
-    );
-  }
 
   return (
     <div className="bg-white rounded-xl px-6">
-      <div className="py-6 flex items-center justify-between gap-2">
-        <div className="relative min-w-[300px]">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-          <Input 
-            placeholder="Search products ..." 
-            className="pl-10 bg-white border-gray-200"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-        <div className="flex items-center gap-2">
-          <ProductsTableColumns
-            columnVisibility={columnVisibility}
-            onColumnVisibilityChange={setColumnVisibility}
-          />
-        </div>
+      <div className="py-6 flex items-center justify-end gap-2">
+        <ProductsTableColumns
+          columnVisibility={columnVisibility}
+          onColumnVisibilityChange={setColumnVisibility}
+        />
       </div>
 
       <Table>
@@ -122,11 +85,10 @@ export const ProductsDataTable = () => {
         />
         <TableBody>
           {paginatedProducts.map((product) => (
-            <ProductsTableRow 
-              key={product.id} 
-              product={product} 
+            <ProductsTableRow
+              key={product.id}
+              product={product}
               columnVisibility={columnVisibility}
-              highlightText={highlightText}
               selected={selectedRows.includes(product.id)}
               onSelect={handleRowSelect}
             />
@@ -135,11 +97,12 @@ export const ProductsDataTable = () => {
       </Table>
 
       <ProductsTablePagination
-        totalProducts={filteredAndSortedProducts.length}
+        totalProducts={products.length}
         currentPageSize={paginatedProducts.length}
         currentPage={currentPage}
         onPageChange={setCurrentPage}
         productsPerPage={productsPerPage}
+        onProductsPerPageChange={handleProductsPerPageChange}
       />
     </div>
   );

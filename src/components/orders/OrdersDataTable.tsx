@@ -36,7 +36,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(defaultColumnVisibility);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
-  const ordersPerPage = 10;
+  const [ordersPerPage, setOrdersPerPage] = useState(20);
 
   const { data: orders = [] } = useQuery({
     queryKey: ['orders', sortDirection],
@@ -101,7 +101,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const paginatedOrders = useMemo(() => {
     const startIndex = (currentPage - 1) * ordersPerPage;
     return filteredAndSortedOrders.slice(startIndex, startIndex + ordersPerPage);
-  }, [filteredAndSortedOrders, currentPage]);
+  }, [filteredAndSortedOrders, currentPage, ordersPerPage]);
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
@@ -119,6 +119,11 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
         return prev.filter(id => id !== orderId);
       }
     });
+  };
+
+  const handleOrdersPerPageChange = (value: string) => {
+    setOrdersPerPage(parseInt(value));
+    setCurrentPage(1); // Reset to first page when changing items per page
   };
 
   const highlightText = (text: string) => {
@@ -187,6 +192,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
         currentPage={currentPage}
         onPageChange={setCurrentPage}
         ordersPerPage={ordersPerPage}
+        onOrdersPerPageChange={handleOrdersPerPageChange}
       />
     </div>
   );

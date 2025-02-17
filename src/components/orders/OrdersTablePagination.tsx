@@ -15,6 +15,7 @@ interface OrdersTablePaginationProps {
   currentPage: number;
   onPageChange: (page: number) => void;
   ordersPerPage: number;
+  onOrdersPerPageChange: (value: string) => void;
 }
 
 export const OrdersTablePagination = ({
@@ -23,6 +24,7 @@ export const OrdersTablePagination = ({
   currentPage,
   onPageChange,
   ordersPerPage,
+  onOrdersPerPageChange,
 }: OrdersTablePaginationProps) => {
   const totalPages = Math.ceil(totalOrders / ordersPerPage);
   const startRange = ((currentPage - 1) * ordersPerPage) + 1;
@@ -73,7 +75,7 @@ export const OrdersTablePagination = ({
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
-        <Select defaultValue="10">
+        <Select defaultValue="20" onValueChange={onOrdersPerPageChange}>
           <SelectTrigger className="my-0 py-0 mx-0 pr-[10px] pl-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark w-[72px]">
             <SelectValue />
           </SelectTrigger>
