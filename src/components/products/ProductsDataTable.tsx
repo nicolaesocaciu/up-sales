@@ -8,6 +8,9 @@ import { ProductsTablePagination } from "./ProductsTablePagination";
 import { ProductsTableColumns, ColumnVisibility } from "./ProductsTableColumns";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import { ReactNode } from "react";
 
 const defaultColumnVisibility: ColumnVisibility = {
   name: true,
@@ -19,6 +22,7 @@ const defaultColumnVisibility: ColumnVisibility = {
 
 export const ProductsDataTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [searchQuery, setSearchQuery] = useState("");
   const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(defaultColumnVisibility);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
@@ -37,10 +41,18 @@ export const ProductsDataTable = () => {
     },
   });
 
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const searchLower = searchQuery.toLowerCase();
+      return searchQuery === "" || 
+        product.name.toLowerCase().includes(searchLower);
+    });
+  }, [products, searchQuery]);
+
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * productsPerPage;
-    return products.slice(startIndex, startIndex + productsPerPage);
-  }, [products, currentPage, productsPerPage]);
+    return filteredProducts.slice(startIndex, startIndex + productsPerPage);
+  }, [filteredProducts, currentPage, productsPerPage]);
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
@@ -65,9 +77,29 @@ export const ProductsDataTable = () => {
     setCurrentPage(1); // Reset to first page when changing items per page
   };
 
+  const highlightText = (text: string): ReactNode => {
+    if (!searchQuery) return text;
+    
+    const parts = text.split(new RegExp(`(${searchQuery})`, 'gi'));
+    return parts.map((part, i) => 
+      part.toLowerCase() === searchQuery.toLowerCase() ? 
+        <span key={i} className="bg-yellow-200">{part}</span> : 
+        part
+    );
+  };
+
   return (
     <div className="bg-white rounded-xl px-6">
-      <div className="py-6 flex items-center justify-end gap-2">
+      <div className="py-6 flex items-center justify-between gap-2">
+        <div className="relative min-w-[300px]">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Input 
+            placeholder="Search product ..." 
+            className="pl-10 bg-white border-gray-200"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         <ProductsTableColumns
           columnVisibility={columnVisibility}
           onColumnVisibilityChange={setColumnVisibility}
@@ -91,13 +123,14 @@ export const ProductsDataTable = () => {
               columnVisibility={columnVisibility}
               selected={selectedRows.includes(product.id)}
               onSelect={handleRowSelect}
+              highlightText={highlightText}
             />
           ))}
         </TableBody>
       </Table>
 
       <ProductsTablePagination
-        totalProducts={products.length}
+        totalProducts={filteredProducts.length}
         currentPageSize={paginatedProducts.length}
         currentPage={currentPage}
         onPageChange={setCurrentPage}
