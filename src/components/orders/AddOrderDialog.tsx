@@ -11,6 +11,7 @@ import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Check } from "lucide-react";
+import { Json } from "@/integrations/supabase/types";
 
 interface Product {
   id: string;
@@ -79,7 +80,7 @@ export const AddOrderDialog = ({
         value: `$${calculateOrderValue()}`,
         status,
         fulfillment_status: fulfillmentStatus,
-        products: selectedProducts as unknown as Json,
+        products: selectedProducts as Json,
         item_count: selectedProducts.length
       };
 
