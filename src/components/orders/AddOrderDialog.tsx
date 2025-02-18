@@ -39,7 +39,7 @@ export const AddOrderDialog = ({
   const { toast } = useToast();
 
   // Fetch products from database
-  const { data: products = [] } = useQuery<Product[]>({
+  const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ['products'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -53,13 +53,14 @@ export const AddOrderDialog = ({
   });
 
   // Group products by category
-  const groupedProducts = products.reduce((acc, product) => {
-    if (!acc[product.category]) {
-      acc[product.category] = [];
+  const groupedProducts = products?.reduce((acc, product) => {
+    const category = product.category || 'Other';
+    if (!acc[category]) {
+      acc[category] = [];
     }
-    acc[product.category].push(product);
+    acc[category].push(product);
     return acc;
-  }, {} as Record<string, Product[]>);
+  }, {} as Record<string, Product[]>) || {};
 
   // Calculate total order value
   const calculateOrderValue = () => {
@@ -71,15 +72,18 @@ export const AddOrderDialog = ({
 
   const handleSubmit = async () => {
     try {
-      const { error } = await supabase.from('orders').insert([{
+      const orderData = {
         items: selectedProducts.map(p => p.name).join(", "),
         customer_name: customerName,
         customer_email: customerEmail,
         value: `$${calculateOrderValue()}`,
         status,
         fulfillment_status: fulfillmentStatus,
-        products: selectedProducts
-      }]);
+        products: selectedProducts as unknown as Json,
+        item_count: selectedProducts.length
+      };
+
+      const { error } = await supabase.from('orders').insert(orderData);
 
       if (error) throw error;
 
@@ -136,7 +140,7 @@ export const AddOrderDialog = ({
                 <Command className="absolute top-full left-0 right-0 z-50 mt-1 rounded-md border bg-popover text-popover-foreground shadow-md">
                   <CommandInput placeholder="Search products..." />
                   <CommandEmpty>No products found.</CommandEmpty>
-                  {Object.entries(groupedProducts).map(([category, categoryProducts]) => (
+                  {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
                     <CommandGroup key={category} heading={category}>
                       {categoryProducts.map((product) => (
                         <CommandItem
