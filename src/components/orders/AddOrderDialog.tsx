@@ -127,6 +127,7 @@ export const AddOrderDialog = ({
             <Command className="rounded-md border">
               <div 
                 className="min-h-[40px] w-full rounded-t-md border-b border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
+                onClick={() => setCommandOpen(true)}
               >
                 {selectedProducts.map((product) => (
                   <span 
@@ -145,42 +146,48 @@ export const AddOrderDialog = ({
                     </button>
                   </span>
                 ))}
+                {selectedProducts.length === 0 && (
+                  <span className="text-muted-foreground">Select products...</span>
+                )}
               </div>
               <div className="relative">
                 <CommandInput 
                   placeholder="Search products..." 
                   value={search}
                   onValueChange={setSearch}
+                  onFocus={() => setCommandOpen(true)}
                   className="border-none focus:ring-0"
                 />
-                <CommandList className="max-h-[300px] overflow-auto absolute w-full bg-white border rounded-b-md shadow-lg">
-                  <CommandEmpty>No products found.</CommandEmpty>
-                  {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
-                    <CommandGroup key={category} heading={category}>
-                      {categoryProducts.map((product) => (
-                        <CommandItem
-                          key={product.id}
-                          onSelect={() => {
-                            setSelectedProducts(prev => {
-                              const isSelected = prev.some(p => p.id === product.id);
-                              if (isSelected) {
-                                return prev.filter(p => p.id !== product.id);
-                              }
-                              return [...prev, product];
-                            });
-                          }}
-                          className="flex items-center gap-2"
-                        >
-                          <Checkbox 
-                            checked={selectedProducts.some(p => p.id === product.id)}
-                            className="pointer-events-none"
-                          />
-                          <span>{product.name} - {product.price}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  ))}
-                </CommandList>
+                {commandOpen && (
+                  <CommandList className="max-h-[300px] overflow-auto absolute w-full bg-white border rounded-b-md shadow-lg">
+                    <CommandEmpty>No products found.</CommandEmpty>
+                    {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
+                      <CommandGroup key={category} heading={category}>
+                        {categoryProducts.map((product) => (
+                          <CommandItem
+                            key={product.id}
+                            onSelect={() => {
+                              setSelectedProducts(prev => {
+                                const isSelected = prev.some(p => p.id === product.id);
+                                if (isSelected) {
+                                  return prev.filter(p => p.id !== product.id);
+                                }
+                                return [...prev, product];
+                              });
+                            }}
+                            className="flex items-center gap-2"
+                          >
+                            <Checkbox 
+                              checked={selectedProducts.some(p => p.id === product.id)}
+                              className="pointer-events-none"
+                            />
+                            <span>{product.name} - {product.price}</span>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    ))}
+                  </CommandList>
+                )}
               </div>
             </Command>
             {selectedProducts.length > 0 && (
