@@ -80,7 +80,7 @@ export const AddOrderDialog = ({
         value: `$${calculateOrderValue()}`,
         status,
         fulfillment_status: fulfillmentStatus,
-        products: selectedProducts as Json,
+        products: selectedProducts as unknown as Json[],
         item_count: selectedProducts.length
       };
 
