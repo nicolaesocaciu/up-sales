@@ -1,4 +1,3 @@
-
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +35,7 @@ export const AddOrderDialog = ({
   const [status, setStatus] = useState<OrderStatus>("Processing");
   const [fulfillmentStatus, setFulfillmentStatus] = useState<FulfillmentStatus>("Unfulfilled");
   const [commandOpen, setCommandOpen] = useState(false);
+  const [search, setSearch] = useState("");
   
   const queryClient = useQueryClient();
   const { toast } = useToast();
@@ -53,14 +53,19 @@ export const AddOrderDialog = ({
     }
   });
 
-  const groupedProducts = products?.reduce((acc, product) => {
+  const filteredProducts = products?.filter(product => 
+    product.name.toLowerCase().includes(search.toLowerCase()) ||
+    product.category.toLowerCase().includes(search.toLowerCase())
+  ) || [];
+
+  const groupedProducts = filteredProducts.reduce((acc, product) => {
     const category = product.category || 'Other';
     if (!acc[category]) {
       acc[category] = [];
     }
     acc[category].push(product);
     return acc;
-  }, {} as Record<string, Product[]>) || {};
+  }, {} as Record<string, Product[]>);
 
   const calculateOrderValue = () => {
     return selectedProducts.reduce((total, product) => {
@@ -119,10 +124,9 @@ export const AddOrderDialog = ({
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label>Products</Label>
-            <div className="relative">
+            <Command className="rounded-md border">
               <div 
-                className="min-h-[40px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
-                onClick={() => setCommandOpen(true)}
+                className="min-h-[40px] w-full rounded-t-md border-b border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
               >
                 {selectedProducts.map((product) => (
                   <span 
@@ -141,44 +145,44 @@ export const AddOrderDialog = ({
                     </button>
                   </span>
                 ))}
-                {selectedProducts.length === 0 && (
-                  <span className="text-muted-foreground">Select products...</span>
-                )}
               </div>
-              {commandOpen && (
-                <Command className="absolute top-full left-0 right-0 z-50 mt-1 rounded-md border bg-white shadow-md w-full">
-                  <CommandInput placeholder="Search products..." className="border-none focus:ring-0" />
-                  <CommandList className="max-h-[300px] overflow-auto">
-                    <CommandEmpty>No products found.</CommandEmpty>
-                    {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
-                      <CommandGroup key={category} heading={category}>
-                        {categoryProducts.map((product) => (
-                          <CommandItem
-                            key={product.id}
-                            onSelect={() => {
-                              setSelectedProducts(prev => {
-                                const isSelected = prev.some(p => p.id === product.id);
-                                if (isSelected) {
-                                  return prev.filter(p => p.id !== product.id);
-                                }
-                                return [...prev, product];
-                              });
-                            }}
-                            className="flex items-center gap-2"
-                          >
-                            <Checkbox 
-                              checked={selectedProducts.some(p => p.id === product.id)}
-                              className="pointer-events-none"
-                            />
-                            <span>{product.name} - {product.price}</span>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    ))}
-                  </CommandList>
-                </Command>
-              )}
-            </div>
+              <div className="relative">
+                <CommandInput 
+                  placeholder="Search products..." 
+                  value={search}
+                  onValueChange={setSearch}
+                  className="border-none focus:ring-0"
+                />
+                <CommandList className="max-h-[300px] overflow-auto absolute w-full bg-white border rounded-b-md shadow-lg">
+                  <CommandEmpty>No products found.</CommandEmpty>
+                  {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
+                    <CommandGroup key={category} heading={category}>
+                      {categoryProducts.map((product) => (
+                        <CommandItem
+                          key={product.id}
+                          onSelect={() => {
+                            setSelectedProducts(prev => {
+                              const isSelected = prev.some(p => p.id === product.id);
+                              if (isSelected) {
+                                return prev.filter(p => p.id !== product.id);
+                              }
+                              return [...prev, product];
+                            });
+                          }}
+                          className="flex items-center gap-2"
+                        >
+                          <Checkbox 
+                            checked={selectedProducts.some(p => p.id === product.id)}
+                            className="pointer-events-none"
+                          />
+                          <span>{product.name} - {product.price}</span>
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  ))}
+                </CommandList>
+              </div>
+            </Command>
             {selectedProducts.length > 0 && (
               <div className="text-sm text-muted-foreground">
                 Total value: ${calculateOrderValue()}
