@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Check } from "lucide-react";
 import { Json } from "@/integrations/supabase/types";
 
@@ -49,7 +49,7 @@ export const AddOrderDialog = ({
         .order('category', { ascending: true });
       
       if (error) throw error;
-      return data;
+      return data || [];
     }
   });
 
@@ -140,32 +140,34 @@ export const AddOrderDialog = ({
               {commandOpen && (
                 <Command className="absolute top-full left-0 right-0 z-50 mt-1 rounded-md border bg-popover text-popover-foreground shadow-md">
                   <CommandInput placeholder="Search products..." />
-                  <CommandEmpty>No products found.</CommandEmpty>
-                  {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
-                    <CommandGroup key={category} heading={category}>
-                      {categoryProducts.map((product) => (
-                        <CommandItem
-                          key={product.id}
-                          onSelect={() => {
-                            setSelectedProducts(prev => {
-                              const isSelected = prev.some(p => p.id === product.id);
-                              if (isSelected) {
-                                return prev.filter(p => p.id !== product.id);
-                              }
-                              return [...prev, product];
-                            });
-                          }}
-                        >
-                          <div className="flex items-center justify-between w-full">
-                            <span>{product.name} - {product.price}</span>
-                            {selectedProducts.some(p => p.id === product.id) && (
-                              <Check className="h-4 w-4" />
-                            )}
-                          </div>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  ))}
+                  <CommandList>
+                    <CommandEmpty>No products found.</CommandEmpty>
+                    {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
+                      <CommandGroup key={category} heading={category}>
+                        {categoryProducts.map((product) => (
+                          <CommandItem
+                            key={product.id}
+                            onSelect={() => {
+                              setSelectedProducts(prev => {
+                                const isSelected = prev.some(p => p.id === product.id);
+                                if (isSelected) {
+                                  return prev.filter(p => p.id !== product.id);
+                                }
+                                return [...prev, product];
+                              });
+                            }}
+                          >
+                            <div className="flex items-center justify-between w-full">
+                              <span>{product.name} - {product.price}</span>
+                              {selectedProducts.some(p => p.id === product.id) && (
+                                <Check className="h-4 w-4" />
+                              )}
+                            </div>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    ))}
+                  </CommandList>
                 </Command>
               )}
             </div>
