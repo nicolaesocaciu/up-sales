@@ -1,4 +1,3 @@
-
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,8 +9,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { Json } from "@/integrations/supabase/types";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Product {
   id: string;
@@ -39,7 +39,6 @@ export const AddOrderDialog = ({
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
-  // Fetch products from database
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ['products'],
     queryFn: async () => {
@@ -53,7 +52,6 @@ export const AddOrderDialog = ({
     }
   });
 
-  // Group products by category
   const groupedProducts = products?.reduce((acc, product) => {
     const category = product.category || 'Other';
     if (!acc[category]) {
@@ -63,7 +61,6 @@ export const AddOrderDialog = ({
     return acc;
   }, {} as Record<string, Product[]>) || {};
 
-  // Calculate total order value
   const calculateOrderValue = () => {
     return selectedProducts.reduce((total, product) => {
       const price = parseFloat(product.price.replace(/[^0-9.]/g, ''));
@@ -93,17 +90,12 @@ export const AddOrderDialog = ({
         description: "Order added successfully"
       });
 
-      // Reset form
       setSelectedProducts([]);
       setCustomerName("");
       setCustomerEmail("");
       setStatus("Processing");
       setFulfillmentStatus("Unfulfilled");
 
-      // Close dialog
-      onOpenChange(false);
-
-      // Refresh orders list
       queryClient.invalidateQueries({
         queryKey: ['orders']
       });
@@ -126,20 +118,34 @@ export const AddOrderDialog = ({
           <div className="grid gap-2">
             <Label>Products</Label>
             <div className="relative">
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={commandOpen}
-                className="w-full justify-between"
-                onClick={() => setCommandOpen(!commandOpen)}
+              <div 
+                className="min-h-[40px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
+                onClick={() => setCommandOpen(true)}
               >
-                {selectedProducts.length === 0 
-                  ? "Select products..." 
-                  : `${selectedProducts.length} products selected`}
-              </Button>
+                {selectedProducts.map((product) => (
+                  <span 
+                    key={product.id}
+                    className="inline-flex items-center gap-1 bg-secondary px-2 py-1 rounded-md text-sm"
+                  >
+                    {product.name}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedProducts(prev => prev.filter(p => p.id !== product.id));
+                      }}
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </span>
+                ))}
+                {selectedProducts.length === 0 && (
+                  <span className="text-muted-foreground">Select products...</span>
+                )}
+              </div>
               {commandOpen && (
-                <Command className="absolute top-full left-0 right-0 z-50 mt-1 rounded-md border bg-popover text-popover-foreground shadow-md">
-                  <CommandInput placeholder="Search products..." />
+                <Command className="absolute top-full left-0 right-0 z-50 mt-1 rounded-md border bg-white shadow-md w-full">
+                  <CommandInput placeholder="Search products..." className="border-none focus:ring-0" />
                   <CommandList>
                     <CommandEmpty>No products found.</CommandEmpty>
                     {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
@@ -156,13 +162,13 @@ export const AddOrderDialog = ({
                                 return [...prev, product];
                               });
                             }}
+                            className="flex items-center gap-2"
                           >
-                            <div className="flex items-center justify-between w-full">
-                              <span>{product.name} - {product.price}</span>
-                              {selectedProducts.some(p => p.id === product.id) && (
-                                <Check className="h-4 w-4" />
-                              )}
-                            </div>
+                            <Checkbox 
+                              checked={selectedProducts.some(p => p.id === product.id)}
+                              className="pointer-events-none"
+                            />
+                            <span>{product.name} - {product.price}</span>
                           </CommandItem>
                         ))}
                       </CommandGroup>
