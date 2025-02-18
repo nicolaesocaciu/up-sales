@@ -1,3 +1,4 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { Check, X } from "lucide-react";
+import { X } from "lucide-react";
 import { Json } from "@/integrations/supabase/types";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -39,7 +40,7 @@ export const AddOrderDialog = ({
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
-  const { data: products, isLoading } = useQuery<Product[]>({
+  const { data: products, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -95,6 +96,7 @@ export const AddOrderDialog = ({
       setCustomerEmail("");
       setStatus("Processing");
       setFulfillmentStatus("Unfulfilled");
+      onOpenChange(false);
 
       queryClient.invalidateQueries({
         queryKey: ['orders']
@@ -146,7 +148,7 @@ export const AddOrderDialog = ({
               {commandOpen && (
                 <Command className="absolute top-full left-0 right-0 z-50 mt-1 rounded-md border bg-white shadow-md w-full">
                   <CommandInput placeholder="Search products..." className="border-none focus:ring-0" />
-                  <CommandList>
+                  <CommandList className="max-h-[300px] overflow-auto">
                     <CommandEmpty>No products found.</CommandEmpty>
                     {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
                       <CommandGroup key={category} heading={category}>
