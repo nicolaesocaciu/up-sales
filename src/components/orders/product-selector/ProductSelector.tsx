@@ -109,13 +109,12 @@ export const ProductSelector = ({
                   <CommandItem
                     key={product.id}
                     onSelect={() => {
-                      onProductsChange(prev => {
-                        const isSelected = prev.some(p => p.id === product.id);
-                        if (isSelected) {
-                          return prev.filter(p => p.id !== product.id);
-                        }
-                        return [...prev, product];
-                      });
+                      const isSelected = selectedProducts.some(p => p.id === product.id);
+                      if (isSelected) {
+                        onProductsChange(selectedProducts.filter(p => p.id !== product.id));
+                      } else {
+                        onProductsChange([...selectedProducts, product]);
+                      }
                     }}
                     className="flex items-center gap-2"
                   >
