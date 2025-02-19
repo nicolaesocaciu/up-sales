@@ -1,17 +1,17 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { FulfillmentStatus, OrderStatus } from "@/types/order";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { X } from "lucide-react";
 import { Json } from "@/integrations/supabase/types";
-import { Checkbox } from "@/components/ui/checkbox";
+import { ProductSelector } from "./product-selector/ProductSelector";
+import { calculateOrderValue } from "./utils/orderCalculations";
 
 interface Product {
   id: string;
@@ -34,59 +34,9 @@ export const AddOrderDialog = ({
   const [customerEmail, setCustomerEmail] = useState("");
   const [status, setStatus] = useState<OrderStatus>("Processing");
   const [fulfillmentStatus, setFulfillmentStatus] = useState<FulfillmentStatus>("Unfulfilled");
-  const [commandOpen, setCommandOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const commandRef = useRef<HTMLDivElement>(null);
   
   const queryClient = useQueryClient();
   const { toast } = useToast();
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (commandRef.current && !commandRef.current.contains(event.target as Node)) {
-        setCommandOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const { data: products, isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('products')
-        .select('id, name, price, category')
-        .order('category', { ascending: true });
-      
-      if (error) throw error;
-      return data || [];
-    }
-  });
-
-  const filteredProducts = products?.filter(product => 
-    product.name.toLowerCase().includes(search.toLowerCase()) ||
-    product.category.toLowerCase().includes(search.toLowerCase())
-  ) || [];
-
-  const groupedProducts = filteredProducts.reduce((acc, product) => {
-    const category = product.category || 'Other';
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(product);
-    return acc;
-  }, {} as Record<string, Product[]>);
-
-  const calculateOrderValue = () => {
-    return selectedProducts.reduce((total, product) => {
-      const price = parseFloat(product.price.replace(/[^0-9.]/g, ''));
-      return total + price;
-    }, 0).toFixed(2);
-  };
 
   const handleSubmit = async () => {
     try {
@@ -94,7 +44,7 @@ export const AddOrderDialog = ({
         items: selectedProducts.map(p => p.name).join(", "),
         customer_name: customerName,
         customer_email: customerEmail,
-        value: `$${calculateOrderValue()}`,
+        value: `$${calculateOrderValue(selectedProducts)}`,
         status,
         fulfillment_status: fulfillmentStatus,
         products: selectedProducts as unknown as Json[],
@@ -138,74 +88,13 @@ export const AddOrderDialog = ({
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label>Products</Label>
-            <div ref={commandRef} className="relative">
-              <div 
-                onClick={() => setCommandOpen(true)}
-                className="min-h-[40px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
-              >
-                {selectedProducts.map((product) => (
-                  <span 
-                    key={product.id}
-                    className="inline-flex items-center gap-1 bg-secondary px-2 py-1 rounded-md text-sm"
-                  >
-                    {product.name}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedProducts(prev => prev.filter(p => p.id !== product.id));
-                      }}
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </span>
-                ))}
-                {selectedProducts.length === 0 && (
-                  <span className="text-muted-foreground">Select products...</span>
-                )}
-              </div>
-              {commandOpen && (
-                <Command className="absolute w-full mt-1 rounded-md border shadow-md z-50 bg-white">
-                  <CommandInput 
-                    placeholder="Search products..." 
-                    value={search}
-                    onValueChange={setSearch}
-                    className="border-none focus:ring-0"
-                  />
-                  <CommandList className="max-h-[300px] overflow-auto">
-                    <CommandEmpty>No products found.</CommandEmpty>
-                    {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
-                      <CommandGroup key={category} heading={category}>
-                        {categoryProducts.map((product) => (
-                          <CommandItem
-                            key={product.id}
-                            onSelect={() => {
-                              setSelectedProducts(prev => {
-                                const isSelected = prev.some(p => p.id === product.id);
-                                if (isSelected) {
-                                  return prev.filter(p => p.id !== product.id);
-                                }
-                                return [...prev, product];
-                              });
-                            }}
-                            className="flex items-center gap-2"
-                          >
-                            <Checkbox 
-                              checked={selectedProducts.some(p => p.id === product.id)}
-                              className="pointer-events-none"
-                            />
-                            <span>{product.name} - {product.price}</span>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    ))}
-                  </CommandList>
-                </Command>
-              )}
-            </div>
+            <ProductSelector 
+              selectedProducts={selectedProducts}
+              onProductsChange={setSelectedProducts}
+            />
             {selectedProducts.length > 0 && (
               <div className="text-sm text-muted-foreground">
-                Total value: ${calculateOrderValue()}
+                Total value: ${calculateOrderValue(selectedProducts)}
               </div>
             )}
           </div>
