@@ -66,20 +66,11 @@ export const ProductSelector = ({
     return acc;
   }, {} as Record<string, Product[]>);
 
-  const handleProductToggle = (product: Product) => {
-    const isSelected = selectedProducts.some(p => p.id === product.id);
-    if (isSelected) {
-      onProductsChange(selectedProducts.filter(p => p.id !== product.id));
-    } else {
-      onProductsChange([...selectedProducts, product]);
-    }
-  };
-
   return (
     <div ref={commandRef} className="relative">
       <div 
         onClick={() => setCommandOpen(true)}
-        className="min-h-[40px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-pointer"
+        className="min-h-[40px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
       >
         {selectedProducts.map((product) => (
           <span 
@@ -90,7 +81,7 @@ export const ProductSelector = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                handleProductToggle(product);
+                onProductsChange(selectedProducts.filter(p => p.id !== product.id));
               }}
               className="text-muted-foreground hover:text-foreground"
             >
@@ -103,7 +94,7 @@ export const ProductSelector = ({
         )}
       </div>
       {commandOpen && (
-        <Command className="absolute w-full mt-1 rounded-md border shadow-md z-50 bg-background">
+        <Command className="absolute w-full mt-1 rounded-md border shadow-md z-50 bg-white">
           <CommandInput 
             placeholder="Search products..." 
             value={search}
@@ -117,16 +108,19 @@ export const ProductSelector = ({
                 {categoryProducts.map((product) => (
                   <CommandItem
                     key={product.id}
-                    onSelect={(e) => {
-                      e.preventDefault();
-                      handleProductToggle(product);
+                    onSelect={() => {
+                      const isSelected = selectedProducts.some(p => p.id === product.id);
+                      if (isSelected) {
+                        onProductsChange(selectedProducts.filter(p => p.id !== product.id));
+                      } else {
+                        onProductsChange([...selectedProducts, product]);
+                      }
                     }}
-                    className="flex items-center gap-2 cursor-pointer"
+                    className="flex items-center gap-2"
                   >
                     <Checkbox 
                       checked={selectedProducts.some(p => p.id === product.id)}
-                      onCheckedChange={() => handleProductToggle(product)}
-                      className="cursor-pointer"
+                      className="pointer-events-none"
                     />
                     <span>{product.name} - {product.price}</span>
                   </CommandItem>
