@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Json } from "@/integrations/supabase/types";
 import { ProductSelector } from "./product-selector/ProductSelector";
 import { calculateOrderValue } from "./utils/orderCalculations";
+import { generateOrderId } from "./utils/generateOrderId";
 
 interface Product {
   id: string;
@@ -40,7 +41,9 @@ export const AddOrderDialog = ({
 
   const handleSubmit = async () => {
     try {
+      const orderId = generateOrderId();
       const orderData = {
+        id: orderId,
         items: selectedProducts.map(p => p.name).join(", "),
         customer_name: customerName,
         customer_email: customerEmail,
@@ -123,7 +126,7 @@ export const AddOrderDialog = ({
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-background border shadow-lg z-50">
                 <SelectItem value="Paid">Paid</SelectItem>
                 <SelectItem value="Processing">Processing</SelectItem>
                 <SelectItem value="Waiting">Waiting</SelectItem>
@@ -136,7 +139,7 @@ export const AddOrderDialog = ({
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-background border shadow-lg z-50">
                 <SelectItem value="Fulfilled">Fulfilled</SelectItem>
                 <SelectItem value="Unfulfilled">Unfulfilled</SelectItem>
                 <SelectItem value="Unpaid">Unpaid</SelectItem>
