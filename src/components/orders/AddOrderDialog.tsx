@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FulfillmentStatus, OrderStatus } from "@/types/order";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
@@ -36,9 +36,23 @@ export const AddOrderDialog = ({
   const [fulfillmentStatus, setFulfillmentStatus] = useState<FulfillmentStatus>("Unfulfilled");
   const [commandOpen, setCommandOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const commandRef = useRef<HTMLDivElement>(null);
   
   const queryClient = useQueryClient();
   const { toast } = useToast();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (commandRef.current && !commandRef.current.contains(event.target as Node)) {
+        setCommandOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const { data: products, isLoading } = useQuery({
     queryKey: ['products'],
@@ -124,10 +138,10 @@ export const AddOrderDialog = ({
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label>Products</Label>
-            <Command className="rounded-md border">
+            <div ref={commandRef} className="relative">
               <div 
-                className="min-h-[40px] w-full rounded-t-md border-b border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
                 onClick={() => setCommandOpen(true)}
+                className="min-h-[40px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm flex flex-wrap gap-1.5 items-center cursor-text"
               >
                 {selectedProducts.map((product) => (
                   <span 
@@ -150,16 +164,15 @@ export const AddOrderDialog = ({
                   <span className="text-muted-foreground">Select products...</span>
                 )}
               </div>
-              <div className="relative">
-                <CommandInput 
-                  placeholder="Search products..." 
-                  value={search}
-                  onValueChange={setSearch}
-                  onFocus={() => setCommandOpen(true)}
-                  className="border-none focus:ring-0"
-                />
-                {commandOpen && (
-                  <CommandList className="max-h-[300px] overflow-auto absolute w-full bg-white border rounded-b-md shadow-lg">
+              {commandOpen && (
+                <Command className="absolute w-full mt-1 rounded-md border shadow-md z-50 bg-white">
+                  <CommandInput 
+                    placeholder="Search products..." 
+                    value={search}
+                    onValueChange={setSearch}
+                    className="border-none focus:ring-0"
+                  />
+                  <CommandList className="max-h-[300px] overflow-auto">
                     <CommandEmpty>No products found.</CommandEmpty>
                     {!isLoading && Object.entries(groupedProducts).map(([category, categoryProducts]) => (
                       <CommandGroup key={category} heading={category}>
@@ -187,9 +200,9 @@ export const AddOrderDialog = ({
                       </CommandGroup>
                     ))}
                   </CommandList>
-                )}
-              </div>
-            </Command>
+                </Command>
+              )}
+            </div>
             {selectedProducts.length > 0 && (
               <div className="text-sm text-muted-foreground">
                 Total value: ${calculateOrderValue()}
