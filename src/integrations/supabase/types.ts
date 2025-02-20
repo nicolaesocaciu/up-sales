@@ -30,7 +30,7 @@ export type Database = {
           customer_name: string
           date?: string
           fulfillment_status: string
-          id: string
+          id?: string
           item_count?: number | null
           items: string
           products?: Json | null

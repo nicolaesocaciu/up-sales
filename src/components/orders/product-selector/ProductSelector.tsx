@@ -65,7 +65,7 @@ export const ProductSelector = ({
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a product" />
         </SelectTrigger>
-        <SelectContent className="bg-white border shadow-lg z-50">
+        <SelectContent>
           {Object.entries(groupedProducts).map(([category, categoryProducts]) => (
             <SelectGroup key={category}>
               {categoryProducts.map((product) => (

@@ -41,7 +41,7 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
         </DropdownMenuTrigger>
         <DropdownMenuContent 
           align="end" 
-          className="w-[200px] p-2 rounded-xl bg-white border shadow-lg z-50" 
+          className="w-[200px] p-2 rounded-xl bg-white" 
           sideOffset={-10}
         >
           <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
