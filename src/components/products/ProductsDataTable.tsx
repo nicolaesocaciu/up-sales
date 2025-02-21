@@ -1,4 +1,3 @@
-
 import { Table, TableBody } from "@/components/ui/table";
 import { useState, useMemo } from "react";
 import { Product } from "@/types/product";
@@ -28,7 +27,7 @@ export const ProductsDataTable = () => {
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [productsPerPage, setProductsPerPage] = useState(20);
 
-  const { data: products = [] } = useQuery({
+  const { data: products = [], isLoading } = useQuery({
     queryKey: ['products', sortDirection],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -116,16 +115,20 @@ export const ProductsDataTable = () => {
           totalRows={paginatedProducts.length}
         />
         <TableBody>
-          {paginatedProducts.map((product) => (
-            <ProductsTableRow
-              key={product.id}
-              product={product}
-              columnVisibility={columnVisibility}
-              selected={selectedRows.includes(product.id)}
-              onSelect={handleRowSelect}
-              highlightText={highlightText}
-            />
-          ))}
+          {isLoading ? (
+            <TableSkeleton columnCount={Object.keys(columnVisibility).length} rowCount={productsPerPage} />
+          ) : (
+            paginatedProducts.map((product) => (
+              <ProductsTableRow
+                key={product.id}
+                product={product}
+                columnVisibility={columnVisibility}
+                selected={selectedRows.includes(product.id)}
+                onSelect={handleRowSelect}
+                highlightText={highlightText}
+              />
+            ))
+          )}
         </TableBody>
       </Table>
 

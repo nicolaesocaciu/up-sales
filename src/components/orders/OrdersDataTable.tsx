@@ -1,4 +1,3 @@
-
 import { Table, TableBody } from "@/components/ui/table";
 import { useState, useMemo } from "react";
 import { OrdersTableHeader } from "./OrdersTableHeader";
@@ -38,7 +37,7 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [ordersPerPage, setOrdersPerPage] = useState(20);
 
-  const { data: orders = [] } = useQuery({
+  const { data: orders = [], isLoading } = useQuery({
     queryKey: ['orders', sortDirection],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -173,16 +172,20 @@ export const OrdersDataTable = ({ selectedTab }: OrdersDataTableProps) => {
           totalRows={paginatedOrders.length}
         />
         <TableBody>
-          {paginatedOrders.map((order) => (
-            <OrdersTableRow 
-              key={order.id} 
-              order={order} 
-              columnVisibility={columnVisibility}
-              highlightText={highlightText}
-              selected={selectedRows.includes(order.id)}
-              onSelect={handleRowSelect}
-            />
-          ))}
+          {isLoading ? (
+            <TableSkeleton columnCount={Object.keys(columnVisibility).length} rowCount={ordersPerPage} />
+          ) : (
+            paginatedOrders.map((order) => (
+              <OrdersTableRow 
+                key={order.id} 
+                order={order} 
+                columnVisibility={columnVisibility}
+                highlightText={highlightText}
+                selected={selectedRows.includes(order.id)}
+                onSelect={handleRowSelect}
+              />
+            ))
+          )}
         </TableBody>
       </Table>
 
