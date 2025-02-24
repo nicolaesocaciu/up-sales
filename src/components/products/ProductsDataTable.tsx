@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ReactNode } from "react";
+import { TableSkeleton } from "@/components/ui/table-skeleton";
 
 const defaultColumnVisibility: ColumnVisibility = {
   name: true,
