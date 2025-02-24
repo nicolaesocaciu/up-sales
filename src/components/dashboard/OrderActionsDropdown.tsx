@@ -30,7 +30,7 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
             variant="ghost" 
             size="icon"
             className={cn(
-              "transition-colors",
+              "transition-colors bg-white",
               isOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]"
             )}
           >
