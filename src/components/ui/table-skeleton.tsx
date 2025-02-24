@@ -14,9 +14,9 @@ export const TableSkeleton = ({
   return (
     <>
       {Array.from({ length: rowCount }).map((_, i) => (
-        <TableRow key={i} className="hover:bg-transparent">
+        <TableRow key={i} className="hover:bg-transparent h-[42px]">
           {Array.from({ length: columnCount }).map((_, j) => (
-            <TableCell key={j}>
+            <TableCell key={j} className="py-0">
               <Skeleton className="h-6 w-full" />
             </TableCell>
           ))}
