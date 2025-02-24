@@ -31,7 +31,7 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
             size="icon"
             className={cn(
               "transition-colors",
-              isOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]"
+              isOpen ? "bg-blue-soft" : "hover:bg-blue-soft"
             )}
           >
             <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,15 +44,15 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
           className="w-[200px] p-2 rounded-xl bg-white" 
           sideOffset={-10}
         >
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
+          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-blue-soft rounded-lg">
             <FileText className="h-5 w-5" />
             View order
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
+          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-blue-soft rounded-lg">
             <RefreshCw className="h-5 w-5" />
             Change status
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600">
+          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-blue-soft rounded-lg text-red-DEFAULT hover:text-red-DEFAULT">
             <XOctagon className="h-5 w-5" />
             Cancel order
           </DropdownMenuItem>

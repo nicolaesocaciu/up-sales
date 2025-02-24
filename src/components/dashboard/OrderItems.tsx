@@ -1,3 +1,4 @@
+
 import { Product } from "@/types/order";
 import {
   Tooltip,
@@ -55,7 +56,7 @@ export const OrderItems = ({
             </span>
           </button>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent className="bg-white border-gray-light">
           <p>{items}</p>
         </TooltipContent>
       </Tooltip>

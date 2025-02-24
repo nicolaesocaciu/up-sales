@@ -1,3 +1,4 @@
+
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 import { Check, CircleDot, AlertOctagon } from "lucide-react";
@@ -24,9 +25,9 @@ export const OrderStatusBadge = ({ status }: OrderStatusBadgeProps) => {
       variant="secondary"
       className={cn(
         "bg-opacity-10 inline-flex items-center",
-        status === "Paid" && "bg-status-paid text-status-paid",
-        status === "Processing" && "bg-status-processing text-status-processing",
-        status === "Waiting" && "bg-status-waiting text-status-waiting"
+        status === "Paid" && "bg-[#22C55E] text-[#22C55E]",
+        status === "Processing" && "bg-blue-ocean text-blue-ocean",
+        status === "Waiting" && "bg-orange-bright text-orange-bright"
       )}
     >
       {getStatusIcon(status)}
