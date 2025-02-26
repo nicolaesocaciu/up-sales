@@ -1,3 +1,4 @@
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,14 +23,16 @@ export const UserMenu = () => {
           <ChevronDown className="h-4 w-4 text-gray-500" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56 bg-white">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Help</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-red-600">Log out</DropdownMenuItem>
+      <DropdownMenuContent align="end" className="w-56 bg-white z-[9999] shadow-lg">
+        <div className="bg-white">
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem className="bg-white">Profile</DropdownMenuItem>
+          <DropdownMenuItem className="bg-white">Settings</DropdownMenuItem>
+          <DropdownMenuItem className="bg-white">Help</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem className="text-red-600 bg-white">Log out</DropdownMenuItem>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

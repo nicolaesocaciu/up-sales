@@ -40,13 +40,13 @@ export const OrdersTableColumns = ({
           Columns
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="bg-white z-50">
-        <div className="p-2">
+      <DropdownMenuContent align="start" className="bg-white z-[9999] shadow-lg">
+        <div className="p-2 bg-white">
           <div className="space-y-2">
             {Object.entries(columnVisibility).map(([key, value]) => (
               <label
                 key={key}
-                className="flex items-center space-x-2 cursor-pointer"
+                className="flex items-center space-x-2 cursor-pointer bg-white"
               >
                 <Checkbox
                   checked={value}

@@ -32,54 +32,63 @@ export const OrdersTableFilters = ({
           Add filter
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-[200px] bg-white z-50">
-        <DropdownMenuLabel>Status</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem
-          checked={selectedStatus === "Paid"}
-          onCheckedChange={() => onStatusFilterChange(selectedStatus === "Paid" ? null : "Paid")}
-        >
-          Paid
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={selectedStatus === "Processing"}
-          onCheckedChange={() => onStatusFilterChange(selectedStatus === "Processing" ? null : "Processing")}
-        >
-          Processing
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={selectedStatus === "Waiting"}
-          onCheckedChange={() => onStatusFilterChange(selectedStatus === "Waiting" ? null : "Waiting")}
-        >
-          Waiting
-        </DropdownMenuCheckboxItem>
-        
-        <DropdownMenuLabel className="mt-2">Fulfillment Status</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem
-          checked={selectedFulfillmentStatus === "Fulfilled"}
-          onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Fulfilled" ? null : "Fulfilled")}
-        >
-          Fulfilled
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={selectedFulfillmentStatus === "Unfulfilled"}
-          onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Unfulfilled" ? null : "Unfulfilled")}
-        >
-          Unfulfilled
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={selectedFulfillmentStatus === "Open"}
-          onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Open" ? null : "Open")}
-        >
-          Open
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={selectedFulfillmentStatus === "Closed"}
-          onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Closed" ? null : "Closed")}
-        >
-          Closed
-        </DropdownMenuCheckboxItem>
+      <DropdownMenuContent align="start" className="w-[200px] bg-white z-[9999] shadow-lg">
+        <div className="bg-white p-2">
+          <DropdownMenuLabel>Status</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuCheckboxItem
+            checked={selectedStatus === "Paid"}
+            onCheckedChange={() => onStatusFilterChange(selectedStatus === "Paid" ? null : "Paid")}
+            className="bg-white"
+          >
+            Paid
+          </DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem
+            checked={selectedStatus === "Processing"}
+            onCheckedChange={() => onStatusFilterChange(selectedStatus === "Processing" ? null : "Processing")}
+            className="bg-white"
+          >
+            Processing
+          </DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem
+            checked={selectedStatus === "Waiting"}
+            onCheckedChange={() => onStatusFilterChange(selectedStatus === "Waiting" ? null : "Waiting")}
+            className="bg-white"
+          >
+            Waiting
+          </DropdownMenuCheckboxItem>
+          
+          <DropdownMenuLabel className="mt-2">Fulfillment Status</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuCheckboxItem
+            checked={selectedFulfillmentStatus === "Fulfilled"}
+            onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Fulfilled" ? null : "Fulfilled")}
+            className="bg-white"
+          >
+            Fulfilled
+          </DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem
+            checked={selectedFulfillmentStatus === "Unfulfilled"}
+            onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Unfulfilled" ? null : "Unfulfilled")}
+            className="bg-white"
+          >
+            Unfulfilled
+          </DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem
+            checked={selectedFulfillmentStatus === "Open"}
+            onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Open" ? null : "Open")}
+            className="bg-white"
+          >
+            Open
+          </DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem
+            checked={selectedFulfillmentStatus === "Closed"}
+            onCheckedChange={() => onFulfillmentStatusFilterChange(selectedFulfillmentStatus === "Closed" ? null : "Closed")}
+            className="bg-white"
+          >
+            Closed
+          </DropdownMenuCheckboxItem>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
