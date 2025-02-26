@@ -23,7 +23,7 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center relative bg-white">
       <DropdownMenu open={isOpen} onOpenChange={handleOpenChange}>
         <DropdownMenuTrigger asChild>
           <Button 
@@ -41,21 +41,23 @@ export const OrderActionsDropdown = ({ onOpenChange }: OrderActionsDropdownProps
         </DropdownMenuTrigger>
         <DropdownMenuContent 
           align="end" 
-          className="w-[200px] p-2 rounded-xl bg-white z-[9999]" 
+          className="w-[200px] p-2 rounded-xl bg-white z-[9999] shadow-lg" 
           sideOffset={-10}
         >
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
-            <FileText className="h-5 w-5" />
-            View order
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
-            <RefreshCw className="h-5 w-5" />
-            Change status
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600">
-            <XOctagon className="h-5 w-5" />
-            Cancel order
-          </DropdownMenuItem>
+          <div className="bg-white rounded-xl">
+            <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg bg-white">
+              <FileText className="h-5 w-5" />
+              View order
+            </DropdownMenuItem>
+            <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg bg-white">
+              <RefreshCw className="h-5 w-5" />
+              Change status
+            </DropdownMenuItem>
+            <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600 bg-white">
+              <XOctagon className="h-5 w-5" />
+              Cancel order
+            </DropdownMenuItem>
+          </div>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
