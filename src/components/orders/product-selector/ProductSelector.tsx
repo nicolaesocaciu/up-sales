@@ -55,6 +55,10 @@ export const ProductSelector = ({
     }
   };
 
+  const handleRemoveProduct = (productId: string) => {
+    onProductsChange(selectedProducts.filter(p => p.id !== productId));
+  };
+
   const groupedProducts = products?.reduce((acc, product) => {
     const category = product.category || 'Other';
     if (!acc[category]) {
@@ -64,22 +68,21 @@ export const ProductSelector = ({
     return acc;
   }, {} as Record<string, Product[]>) || {};
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="py-3">Loading products...</div>;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <Select onValueChange={handleSelect}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a product" />
         </SelectTrigger>
-        <SelectContent className="max-h-[300px]">
+        <SelectContent className="max-h-[350px]">
           {Object.entries(groupedProducts).map(([category, categoryProducts]) => (
             <SelectGroup key={category}>
               {categoryProducts.map((product) => (
                 <SelectItem
                   key={product.id}
                   value={product.id}
-                  className="hover:bg-gray-100"
                 >
                   {product.name} - {product.price}
                 </SelectItem>
@@ -90,18 +93,19 @@ export const ProductSelector = ({
       </Select>
 
       {selectedProducts.length > 0 && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-3">
           {selectedProducts.map((product) => (
             <div
               key={product.id}
-              className="flex items-center gap-2 bg-secondary px-3 py-1 rounded-md text-sm"
+              className="flex items-center gap-2 bg-[#E7F2F9] px-3 py-2 rounded-md text-sm transition-colors"
             >
               {product.name}
               <button
-                onClick={() => onProductsChange(selectedProducts.filter(p => p.id !== product.id))}
-                className="text-muted-foreground hover:text-foreground"
+                onClick={() => handleRemoveProduct(product.id)}
+                className="text-muted-foreground hover:text-foreground transition-colors ml-1 p-1 rounded-full hover:bg-[#C2E0F5] focus:outline-none focus:ring-2 focus:ring-[#116FAE]"
+                aria-label={`Remove ${product.name}`}
               >
-                ×
+                <span className="text-lg leading-none">×</span>
               </button>
             </div>
           ))}
