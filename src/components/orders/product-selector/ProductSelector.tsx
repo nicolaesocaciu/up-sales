@@ -64,23 +64,22 @@ export const ProductSelector = ({
     return acc;
   }, {} as Record<string, Product[]>) || {};
 
-  if (isLoading) return <div className="py-4 text-center">Loading products...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <Select onValueChange={handleSelect}>
-        <SelectTrigger className="w-full h-14 text-base px-5 border-2">
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a product" />
         </SelectTrigger>
-        <SelectContent className="max-h-[350px] w-[350px]">
+        <SelectContent className="max-h-[300px]">
           {Object.entries(groupedProducts).map(([category, categoryProducts]) => (
-            <SelectGroup key={category} className="pb-2">
-              <div className="px-4 py-2 text-sm font-semibold text-gray-500">{category}</div>
+            <SelectGroup key={category}>
               {categoryProducts.map((product) => (
                 <SelectItem
                   key={product.id}
                   value={product.id}
-                  className="px-4 py-4 my-1 text-base hover:bg-[#E7F2F9] rounded-md cursor-pointer transition-colors"
+                  className="hover:bg-gray-100"
                 >
                   {product.name} - {product.price}
                 </SelectItem>
@@ -91,19 +90,18 @@ export const ProductSelector = ({
       </Select>
 
       {selectedProducts.length > 0 && (
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2">
           {selectedProducts.map((product) => (
             <div
               key={product.id}
-              className="flex items-center gap-2 bg-secondary px-4 py-3 rounded-md text-base"
+              className="flex items-center gap-2 bg-secondary px-3 py-1 rounded-md text-sm"
             >
               {product.name}
               <button
                 onClick={() => onProductsChange(selectedProducts.filter(p => p.id !== product.id))}
-                className="text-muted-foreground hover:text-foreground ml-2 h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-200"
-                aria-label={`Remove ${product.name}`}
+                className="text-muted-foreground hover:text-foreground"
               >
-                <span className="text-xl font-bold">×</span>
+                ×
               </button>
             </div>
           ))}
