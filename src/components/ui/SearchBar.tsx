@@ -6,8 +6,8 @@ export const SearchBar = () => {
         <Search className="h-4 w-4 text-white" />
       </div>
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1 text-white">
-        <kbd className="px-[8px] py-[4px] text-xs bg-[#252626] text-white">⌘</kbd>
-        <kbd className="px-[8px] py-[4px] text-xs bg-[#252626] text-white">K</kbd>
+        <kbd className="px-[8px] py-[4px] text-xs rounded-[4px] bg-[#252626] text-white">⌘</kbd>
+        <kbd className="px-[8px] py-[4px] text-xs rounded-[4px] bg-[#252626] text-white">K</kbd>
       </div>
       <Input style={{
       backgroundColor: "#494A4A"
