@@ -57,7 +57,7 @@ export const Sidebar = ({
     onCollapse?.(isCollapsed);
   }, [isCollapsed, onCollapse]);
   return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300", isCollapsed ? "w-16" : "w-64")}>
-      <div className="flex flex-col h-full py-6 relative bg-[#252626]">
+      <div className="flex flex-col h-full py-3 relative bg-[#252626]">
         <CollapseButton isCollapsed={isCollapsed} onClick={() => setIsCollapsed(!isCollapsed)} />
 
         <nav className="flex flex-col flex-1">
