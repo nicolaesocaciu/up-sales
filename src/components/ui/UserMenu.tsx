@@ -15,12 +15,12 @@ export const UserMenu = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none flex items-center space-x-2">
         <div className="flex items-center space-x-2">
-          <Avatar className="h-8 w-8">
+          <Avatar className="h-[28px] w-[28px]">
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>AL</AvatarFallback>
+            <AvatarFallback>Alexander</AvatarFallback>
           </Avatar>
           <span className="text-sm font-medium text-white">Alexander</span>
-          <ChevronDown className="h-4 w-4 text-gray-400" />
+          <ChevronDown className="h-4 w-4 text-white" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 bg-white z-[9999] shadow-lg">
@@ -30,8 +30,8 @@ export const UserMenu = () => {
           <DropdownMenuItem className="bg-white">Profile</DropdownMenuItem>
           <DropdownMenuItem className="bg-white">Settings</DropdownMenuItem>
           <DropdownMenuItem className="bg-white">Help</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-red-600 bg-white">Log out</DropdownMenuItem>
+          <DropdownMenuSeparator className="bg-[#DADADA]"/>
+          <DropdownMenuItem className="bg-white">Log out</DropdownMenuItem>
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
