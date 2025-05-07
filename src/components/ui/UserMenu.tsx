@@ -15,12 +15,12 @@ export const UserMenu = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none flex items-center space-x-2">
         <div className="flex items-center space-x-2">
-          <Avatar className="h-8 w-8">
+          <Avatar className="h-8 w-8 border-2 border-white">
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>AL</AvatarFallback>
           </Avatar>
-          <span className="text-sm font-medium">John Doe</span>
-          <ChevronDown className="h-4 w-4 text-gray-500" />
+          <span className="text-sm font-medium text-white">Alexander</span>
+          <ChevronDown className="h-4 w-4 text-gray-400" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 bg-white z-[9999] shadow-lg">
