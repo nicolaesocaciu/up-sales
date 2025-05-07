@@ -1,58 +1,64 @@
-import {
-  LayoutDashboard,
-  ShoppingCart,
-  Box,
-  Users,
-  FolderOpen,
-  Megaphone,
-  Tag,
-  Mail,
-  Settings,
-  HelpCircle,
-} from "lucide-react";
+import { LayoutDashboard, ShoppingCart, Box, Users, FolderOpen, Megaphone, Tag, Mail, Settings, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { MenuItems } from "./sidebar/MenuItems";
 import { BetaPrompt } from "./sidebar/BetaPrompt";
 import { CollapseButton } from "./sidebar/CollapseButton";
-
-const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", path: "/" },
-  { icon: ShoppingCart, label: "Orders", path: "/orders" },
-  { icon: Box, label: "Products", path: "/products" },
-  { icon: Users, label: "Customers", path: "/customers" },
-  { icon: FolderOpen, label: "Content", path: "/content" },
-  { icon: Megaphone, label: "Marketing", path: "/marketing" },
-  { icon: Tag, label: "Discounts", path: "/discounts" },
-  { icon: Mail, label: "Emails", path: "/emails" },
-];
-
-const settingsItems = [
-  { icon: Settings, label: "Settings", path: "/settings" },
-  { icon: HelpCircle, label: "Help center", path: "/help" },
-];
-
+const menuItems = [{
+  icon: LayoutDashboard,
+  label: "Dashboard",
+  path: "/"
+}, {
+  icon: ShoppingCart,
+  label: "Orders",
+  path: "/orders"
+}, {
+  icon: Box,
+  label: "Products",
+  path: "/products"
+}, {
+  icon: Users,
+  label: "Customers",
+  path: "/customers"
+}, {
+  icon: FolderOpen,
+  label: "Content",
+  path: "/content"
+}, {
+  icon: Megaphone,
+  label: "Marketing",
+  path: "/marketing"
+}, {
+  icon: Tag,
+  label: "Discounts",
+  path: "/discounts"
+}, {
+  icon: Mail,
+  label: "Emails",
+  path: "/emails"
+}];
+const settingsItems = [{
+  icon: Settings,
+  label: "Settings",
+  path: "/settings"
+}, {
+  icon: HelpCircle,
+  label: "Help center",
+  path: "/help"
+}];
 interface SidebarProps {
   onCollapse?: (collapsed: boolean) => void;
 }
-
-export const Sidebar = ({ onCollapse }: SidebarProps) => {
+export const Sidebar = ({
+  onCollapse
+}: SidebarProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
   useEffect(() => {
     onCollapse?.(isCollapsed);
   }, [isCollapsed, onCollapse]);
-
-  return (
-    <div className={cn(
-      "fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300",
-      isCollapsed ? "w-16" : "w-64"
-    )}>
-      <div className="flex flex-col h-full py-6 relative">
-        <CollapseButton 
-          isCollapsed={isCollapsed} 
-          onClick={() => setIsCollapsed(!isCollapsed)} 
-        />
+  return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300", isCollapsed ? "w-16" : "w-64")}>
+      <div className="flex flex-col h-full py-6 relative bg-[#243724]">
+        <CollapseButton isCollapsed={isCollapsed} onClick={() => setIsCollapsed(!isCollapsed)} />
 
         <nav className="flex flex-col flex-1">
           <div className="px-3">
@@ -70,6 +76,5 @@ export const Sidebar = ({ onCollapse }: SidebarProps) => {
           {!isCollapsed && <BetaPrompt />}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
