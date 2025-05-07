@@ -9,7 +9,7 @@ export const SearchBar = () => {
         <Search className="h-4 w-4 text-gray-400" />
       </div>
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1 text-gray-400">
-        <kbd className="px-1.5 py-0.5 text-xs rounded bg-[#252626] text-white">⌘</kbd>
+        <kbd className="w-[24px] h-[24px] text-xs bg-[#252626] text-white">⌘</kbd>
         <kbd className="px-1.5 py-0.5 text-xs rounded bg-[#252626] text-white">K</kbd>
       </div>
       <Input
