@@ -30,7 +30,7 @@ export const MenuItems = ({
             "flex items-center space-x-3 px-3 h-14 rounded-lg transition-colors mb-1",
             location.pathname === item.path 
               ? "bg-primary text-white" 
-              : "text-gray-700 hover:bg-[rgba(255,255,255,0.5)]",
+              : "bg-[rgba(255,255,255,0.05)] text-gray-700 hover:bg-[rgba(255,255,255,0.5)]",
             isCollapsed && "justify-center"
           )}
         >
@@ -45,7 +45,7 @@ export const MenuItems = ({
           {!isCollapsed && (
             <span className={cn(
               location.pathname === item.path 
-                ? "text-white" 
+                ? "text-white font-bold" 
                 : "text-[#DADADA]"
             )}>
               {item.label}
