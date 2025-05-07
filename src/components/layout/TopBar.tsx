@@ -13,7 +13,7 @@ const ZipoLogo = () => (
 
 // Notification Icon component
 const NotificationIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" fill="none">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" fill="none" className="w-[24px]">
     <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.433 10.566a6.566 6.566 0 1 1 13.133 0l.001 1.319c0 .78.171 1.55.504 2.255l.466.99c.712 1.514-.392 3.255-2.066 3.255H6.528c-1.674 0-2.778-1.74-2.066-3.255l.466-.99a5.297 5.297 0 0 0 .504-2.255l.001-1.319Z" clip-rule="evenodd"/>
     <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.898 18.9a3.1 3.1 0 1 0 6.199 0"/>
     <circle cx="17" cy="6" r="4.5" fill="#CC334C" stroke="#252626" stroke-width="3"/>
