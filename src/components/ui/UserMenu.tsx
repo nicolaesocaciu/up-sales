@@ -15,7 +15,7 @@ export const UserMenu = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none flex items-center space-x-2">
         <div className="flex items-center space-x-2">
-          <Avatar className="h-8 w-8 border-2 border-white">
+          <Avatar className="h-8 w-8">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>AL</AvatarFallback>
           </Avatar>
