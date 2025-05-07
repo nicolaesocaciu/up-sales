@@ -9,8 +9,8 @@ export const SearchBar = () => {
         <Search className="h-4 w-4 text-gray-400" />
       </div>
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-2 text-gray-400">
-        <kbd className="px-1.5 py-0.5 text-xs border border-gray-500 rounded bg-gray-600 text-gray-300">⌘</kbd>
-        <kbd className="px-1.5 py-0.5 text-xs border border-gray-500 rounded bg-gray-600 text-gray-300">K</kbd>
+        <kbd className="px-1.5 py-0.5 text-xs rounded bg-[#252626] text-white">⌘</kbd>
+        <kbd className="px-1.5 py-0.5 text-xs rounded bg-[#252626] text-white">K</kbd>
       </div>
       <Input
         style={{ backgroundColor: "#494A4A" }}
