@@ -30,7 +30,7 @@ export const UserMenu = () => {
           <DropdownMenuItem className="bg-white">Profile</DropdownMenuItem>
           <DropdownMenuItem className="bg-white">Settings</DropdownMenuItem>
           <DropdownMenuItem className="bg-white">Help</DropdownMenuItem>
-          <DropdownMenuSeparator className="bg-[#DADADA] px-[16px]"/>
+          <DropdownMenuSeparator className="bg-[#DADADA] mx-[16px]"/>
           <DropdownMenuItem className="bg-white">Log out</DropdownMenuItem>
         </div>
       </DropdownMenuContent>
