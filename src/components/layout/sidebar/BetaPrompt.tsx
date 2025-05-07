@@ -5,7 +5,7 @@ export const BetaPrompt = () => {
       <div className="bg-blue-50 rounded-lg p-4 space-y-3">
         <div className="flex items-center space-x-2 text-gray-800">
           <Zap className="h-5 w-5" />
-          <span className="font-semibold">New features!</span>
+          <span className="font-bold text-neutral-50">New features!</span>
         </div>
         <p className="text-sm text-gray-600">
           Be a pioneer and enroll in our beta program
