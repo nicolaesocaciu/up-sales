@@ -9,7 +9,7 @@ export const CollapseButton = ({
   isCollapsed,
   onClick
 }: CollapseButtonProps) => {
-  return <Button variant="ghost" size="icon" onClick={onClick} className="top-[516px] bg-white border rounded-full hover:bg-gray-100">
+  return <Button variant="ghost" size="icon" onClick={onClick} className="absolute -right-3 bottom-[516px] bg-white border rounded-full hover:bg-gray-100">
       <ChevronLeft className={cn("h-4 w-4 transition-transform duration-300", isCollapsed && "rotate-180")} />
     </Button>;
 };
