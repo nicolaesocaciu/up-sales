@@ -11,6 +11,6 @@ export const SearchBar = () => {
       </div>
       <Input style={{
       backgroundColor: "#494A4A"
-    }} placeholder="Search..." className="pl-10 pr-20 border-0 bg-[#494A4A] placeholder-[#FFFFFF] focus:ring-primary" />
+    }} placeholder="Search..." className="pl-10 pr-20 border-0 bg-[#494A4A]  focus:ring-primary" />
     </div>;
 };
