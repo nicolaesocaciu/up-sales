@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 export const BetaPrompt = () => {
   return <div className="px-6">
       <div className="rounded-[16px] p-6 bg-[#116fae] space-y-6">
-        <div className="flex items-center text-[#FFFFFF]">
+        <div className="flex items-center text-[#FFFFFF] ">
           <Zap className="h-5 w-5" />
-          <span className="font-bold text-neutral-50">New features!</span>
+          <span className="font-bold text-neutral-50 mx-[8px]">New features!</span>
         </div>
         <p className="text-sm text-[#f2f2f2] space-y-1">
           Be a pioneer and enroll in our beta program
