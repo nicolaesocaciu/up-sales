@@ -2,7 +2,7 @@ import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 export const BetaPrompt = () => {
   return <div className="px-6">
-      <div className="rounded-[16px] p-6 space-y-3 bg-[#116fae]">
+      <div className="rounded-[16px] p-6 bg-[#116fae]">
         <div className="flex items-center text-[#FFFFFF]">
           <Zap className="h-5 w-5" />
           <span className="font-bold text-neutral-50">New features!</span>
