@@ -61,7 +61,7 @@ export const Sidebar = ({
         <CollapseButton isCollapsed={isCollapsed} onClick={() => setIsCollapsed(!isCollapsed)} />
 
         <nav className="flex flex-col flex-1">
-          <div className="px-3">
+          <div className="px-4">
             <MenuItems items={menuItems} isCollapsed={isCollapsed} />
           </div>
 
