@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import { Order } from "@/types/order";
@@ -56,12 +55,27 @@ export function OrderDetailsDrawer({
     // Look for matching product in database results
     const matchedProduct = productData?.find(p => p.name === product.title);
     
+    // Ensure we have proper price values with default fallbacks
+    const price = matchedProduct?.price || "$0.00";
+    const quantity = 1; // Default quantity
+    
+    // Calculate total based on price and quantity
+    // First, clean the price string to extract just the number
+    const numericPrice = parseFloat(price.replace(/[^0-9.-]+/g, "")) || 0;
+    const totalValue = numericPrice * quantity;
+    
+    // Format the total as currency
+    const total = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(totalValue);
+    
     return {
       name: product.title,
       sku: matchedProduct?.id || `SKU-${index}`,
-      price: matchedProduct?.price || "$0",
-      quantity: 1, // Default quantity
-      total: matchedProduct?.price || "$0",
+      price: price,
+      quantity: quantity,
+      total: total,
       image: product.images?.[0] || order.thumbnail || "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
     };
   }) || [];
@@ -104,8 +118,8 @@ export function OrderDetailsDrawer({
     }).format(amount);
   };
 
-  // Remove the # from the order ID if it exists
-  const displayId = order.id.startsWith('#') ? order.id.substring(1) : order.id;
+  // Keep the # in the order ID (don't remove it)
+  const displayId = order.id;
   
   return <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-[760px] max-w-full p-12 overflow-y-auto rounded-tl-[24px] rounded-bl-[24px]">
