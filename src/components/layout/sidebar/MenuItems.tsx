@@ -1,10 +1,9 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
 
 interface MenuItem {
-  icon: LucideIcon;
+  icon: () => React.ReactNode;
   label: string;
   path: string;
 }
@@ -34,14 +33,23 @@ export const MenuItems = ({
             isCollapsed && "justify-center"
           )}
         >
-          <item.icon 
-            className={cn(
-              "h-5 w-5 flex-shrink-0", 
-              location.pathname === item.path 
-                ? "stroke-white" 
-                : "stroke-[#C0C0C0]"
-            )} 
-          />
+          <span className={cn(
+            "flex items-center justify-center", 
+            location.pathname === item.path 
+              ? "[&_svg]:stroke-white [&_svg_path]:fill-none [&_svg_path]:stroke-white" 
+              : "[&_svg]:stroke-[#C0C0C0] [&_svg_path]:fill-none [&_svg_path]:stroke-[#C0C0C0]",
+            location.pathname === item.path && item.path === "/customers"
+              ? "[&_svg_path]:fill-white"
+              : location.pathname === item.path && item.path === "/discounts" 
+                ? "[&_svg_path]:fill-white"
+                : item.path === "/customers"
+                  ? "[&_svg_path]:fill-[#C0C0C0]"
+                  : item.path === "/discounts"
+                    ? "[&_svg_path]:fill-[#C0C0C0]"
+                    : ""
+          )}>
+            {item.icon()}
+          </span>
           {!isCollapsed && (
             <span className={cn(
               location.pathname === item.path 
