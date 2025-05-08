@@ -34,11 +34,14 @@ export const MenuItems = ({
               typeof originalIcon.type === 'string' && 
               originalIcon.type.toLowerCase() === 'svg') {
             
+            // Properly type the SVG element to avoid TypeScript errors
+            const svgProps = originalIcon.props as React.SVGAttributes<SVGSVGElement>;
+            
             // Clone the SVG element with modified props
             return React.cloneElement(
-              originalIcon,
+              originalIcon as React.ReactElement<React.SVGAttributes<SVGSVGElement>>,
               {
-                ...(originalIcon.props as React.SVGAttributes<SVGElement>),
+                ...svgProps,
                 fill: isActive ? "#FFFFFF" : "none",
                 // Apply the fill to all path children if they exist
                 children: React.Children.map(originalIcon.props.children, child => {
@@ -46,12 +49,14 @@ export const MenuItems = ({
                       typeof child.type === 'string' && 
                       child.type.toLowerCase() === 'path') {
                     
+                    const pathProps = child.props as React.SVGAttributes<SVGPathElement>;
+                    
                     return React.cloneElement(
                       child as React.ReactElement<React.SVGAttributes<SVGPathElement>>, 
                       {
-                        ...(child.props as React.SVGAttributes<SVGPathElement>),
-                        stroke: isActive ? "#FFFFFF" : (child.props as React.SVGAttributes<SVGPathElement>).stroke || "#C0C0C0",
-                        fill: isActive ? "#FFFFFF" : (child.props as React.SVGAttributes<SVGPathElement>).fill || "none"
+                        ...pathProps,
+                        stroke: isActive ? "#FFFFFF" : pathProps.stroke || "#C0C0C0",
+                        fill: isActive ? "#FFFFFF" : pathProps.fill || "none"
                       }
                     );
                   }
