@@ -9,7 +9,7 @@ export const CollapseButton = ({
   isCollapsed,
   onClick
 }: CollapseButtonProps) => {
-  return <Button variant="ghost" size="icon" onClick={onClick} className="absolute -right-5 bottom-[32px] bg-[#F2F2F2] rounded-[8px] z-10 w-[32px] h-[32px]">
+  return <Button variant="ghost" size="icon" onClick={onClick} className="absolute -right-5 bottom-[32px] bg-[#F2F2F2] rounded-[8px] z-10">
       <ChevronLeft className={cn("h-4 w-4 transition-transform duration-300", isCollapsed && "rotate-180")} />
     </Button>;
 };
