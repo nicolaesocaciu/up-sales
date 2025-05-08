@@ -96,16 +96,13 @@ export const Sidebar = ({
       <div className="flex flex-col h-full py-4 relative bg-[#252626]">
         <CollapseButton isCollapsed={isCollapsed} onClick={handleToggleCollapse} />
 
-        <nav className="flex flex-col flex-1">
-          <div className="px-4">
-            <MenuItems items={menuItems} isCollapsed={isCollapsed} />
-          </div>
+        <nav className={`flex flex-col flex-1 ${isCollapsed ? "px-[2]" : "px-[4]"}`} >
+
+          <MenuItems items={menuItems} isCollapsed={isCollapsed} />
 
           <div className={`h-px my-8 bg-[#494a4a] ${isCollapsed ? "mx-4" : "mx-8"}`} />
 
-          <div className="px-4">
-            <MenuItems items={settingsItems} isCollapsed={isCollapsed} />
-          </div>
+          <MenuItems items={settingsItems} isCollapsed={isCollapsed} />
         </nav>
 
         <div className="absolute bottom-8 left-0 right-0">
