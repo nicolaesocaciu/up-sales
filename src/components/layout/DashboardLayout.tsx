@@ -7,7 +7,7 @@ export const DashboardLayout = ({ children }: { children: React.ReactNode }) => 
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-content bg-[#252626]">
+    <div className="min-h-screen bg-content !bg-[#252626]">
       <TopBar />
       <div className="flex pt-16">
         <Sidebar onCollapse={(collapsed) => setIsCollapsed(collapsed)} />
