@@ -93,7 +93,7 @@ export const Sidebar = ({
     "fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300", 
     isCollapsed ? "w-16" : "w-[300px]"
     )}>
-      <div className="flex flex-col h-full py-4 relative bg-[#252626]">
+      <div className="flex flex-col h-full py-6 relative bg-[#252626]">
         <CollapseButton isCollapsed={isCollapsed} onClick={handleToggleCollapse} />
 
         <nav className={`flex flex-col flex-1 ${isCollapsed ? "px-2" : "px-4"}`} >
