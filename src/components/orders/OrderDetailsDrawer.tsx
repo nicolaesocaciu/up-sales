@@ -58,23 +58,23 @@ export function OrderDetailsDrawer({
             <div className="flex items-center justify-between mb-2">
               <h1 className="text-2xl font-bold">{order.id}</h1>
               <div className="flex gap-2">
-                <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
+                <Button variant="outline" className="h-8 rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
                   Refund
                 </Button>
-                <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
+                <Button variant="outline" className="h-8 rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
                   Edit
                 </Button>
-                <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
+                <Button variant="outline" className="h-8 rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
                   More actions
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </div>
             </div>
-            <p className="text-gray-600">{formattedDate} from Online Store</p>
+            <p className="text-[#494A4A]">{formattedDate} from Online Store</p>
           </div>
 
           {/* Order Summary */}
-          <div className="bg-gray-100 p-6">
+          <div className="bg-[#F2F2F2] p-6 rounded-4">
             {/* Order Status */}
             <div className="mb-6">
               <div className="flex items-center gap-2">
