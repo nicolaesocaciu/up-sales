@@ -32,6 +32,10 @@ export const OrdersTableRow = ({
     setShowOrderDetails(true);
   };
 
+  const handleCloseOrderDetails = (open: boolean) => {
+    setShowOrderDetails(open);
+  };
+
   const handleDeleteOrder = () => {
     deleteOrder(order.id);
   };
@@ -107,7 +111,7 @@ export const OrdersTableRow = ({
 
       <OrderDetailsDrawer
         open={showOrderDetails}
-        onOpenChange={setShowOrderDetails}
+        onOpenChange={handleCloseOrderDetails}
         order={order}
       />
     </>

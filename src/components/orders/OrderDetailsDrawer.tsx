@@ -8,6 +8,7 @@ import { OrderItemsList } from "./OrderItemsList";
 import { OrderSummary } from "./OrderSummary";
 import { ShippingInfo } from "./ShippingInfo";
 import { formatCurrency, useOrderData } from "./hooks/useOrderData";
+import { useEffect } from "react";
 
 interface OrderDetailsDrawerProps {
   open: boolean;
@@ -24,9 +25,25 @@ export function OrderDetailsDrawer({
   
   const { displayItems, subtotal, shippingCost, total, formattedDate } = useOrderData(order, open);
 
+  // Handle ESC key properly
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) {
+        onOpenChange(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [open, onOpenChange]);
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="w-[760px] max-w-full p-12 overflow-y-auto rounded-tl-[24px] rounded-bl-[24px]">
+      <SheetContent 
+        className="w-[760px] max-w-full p-12 overflow-y-auto rounded-tl-[24px] rounded-bl-[24px]"
+        onInteractOutside={() => onOpenChange(false)} // Close when clicking outside
+        onEscapeKeyDown={() => onOpenChange(false)} // Explicitly handle ESC key
+      >
         <div className="flex flex-col h-full">
           <OrderHeader orderId={order.id} orderDate={formattedDate} />
           <OrderSummary 

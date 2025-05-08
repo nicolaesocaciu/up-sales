@@ -15,9 +15,15 @@ export const OrderActionsDropdown = ({
   onViewOrder
 }: OrderActionsDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
     onOpenChange?.(open);
+  };
+
+  const handleViewOrder = () => {
+    setIsOpen(false); // Close dropdown when clicking view order
+    onViewOrder?.();
   };
 
   return (
@@ -41,7 +47,7 @@ export const OrderActionsDropdown = ({
           <div className="bg-white rounded-xl">
             <DropdownMenuItem 
               className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg bg-white"
-              onClick={onViewOrder}
+              onClick={handleViewOrder}
             >
               <FileText className="h-5 w-5" />
               View order

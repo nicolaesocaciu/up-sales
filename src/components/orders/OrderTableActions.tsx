@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { Order } from "@/types/order";
+import { useState } from "react";
 
 interface OrderTableActionsProps {
   order: Order;
@@ -15,8 +16,20 @@ export const OrderTableActions = ({
   onView, 
   onDelete 
 }: OrderTableActionsProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const handleView = () => {
+    setIsOpen(false); // Close dropdown when viewing
+    onView();
+  };
+
+  const handleDelete = () => {
+    setIsOpen(false); // Close dropdown when deleting
+    onDelete();
+  };
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="transition-colors hover:bg-[rgba(153,203,236,0.50)]">
           <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +40,7 @@ export const OrderTableActions = ({
       <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl bg-white" sideOffset={-10}>
         <DropdownMenuItem 
           className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg"
-          onClick={onView}
+          onClick={handleView}
         >
           <Eye className="h-5 w-5" />
           View order
@@ -38,7 +51,7 @@ export const OrderTableActions = ({
         </DropdownMenuItem>
         <DropdownMenuItem 
           className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600"
-          onClick={onDelete}
+          onClick={handleDelete}
         >
           <Trash2 className="h-5 w-5" />
           Delete order

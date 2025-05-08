@@ -25,14 +25,23 @@ export const OrderRow = ({
   };
 
   const handleOpenOrderDetails = () => {
+    setIsDropdownOpen(false); // Close dropdown when opening drawer
     setShowOrderDetails(true);
+  };
+
+  const handleOrderDrawerChange = (open: boolean) => {
+    setShowOrderDetails(open);
+    if (!open) {
+      // Ensure dropdown is closed when drawer is closed
+      setIsDropdownOpen(false);
+    }
   };
 
   return (
     <TableRow className={cn("h-12 transition-colors max-h-[48px]", isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]")}>
       <TableCell className="">
         <button
-          className="text-primary hover:underline text-left"
+          className="text-[#116fae] hover:underline text-left"
           onClick={handleOpenOrderDetails}
         >
           {order.id}
@@ -68,10 +77,10 @@ export const OrderRow = ({
         />
       }
       
-      {/* New Order Details Drawer */}
+      {/* Order Details Drawer with improved state handling */}
       <OrderDetailsDrawer
         open={showOrderDetails}
-        onOpenChange={setShowOrderDetails}
+        onOpenChange={handleOrderDrawerChange}
         order={order}
       />
     </TableRow>
