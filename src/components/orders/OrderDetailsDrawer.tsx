@@ -74,7 +74,7 @@ export function OrderDetailsDrawer({
           </div>
 
           {/* Order Summary */}
-          <div className="bg-[#F2F2F2] p-6 rounded-4">
+          <div className="bg-[#F2F2F2] p-6">
             {/* Order Status */}
             <div className="mb-6">
               <div className="flex items-center gap-2">
