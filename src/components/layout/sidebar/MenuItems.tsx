@@ -27,7 +27,7 @@ export const MenuItems = ({
           key={item.path} 
           to={item.path} 
           className={cn(
-            "flex items-center space-x-3 px-4 h-14 rounded-lg transition-colors mb-1",
+            "flex items-center space-x-3 px-4 h-14 rounded-[12px] transition-colors mb-1",
             location.pathname === item.path 
               ? "bg-primary text-white" 
               : "text-gray-700 hover:bg-[rgba(255,255,255,0.05)]",
