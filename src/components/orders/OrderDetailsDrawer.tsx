@@ -86,31 +86,31 @@ export function OrderDetailsDrawer({
             </div>
 
             {/* Order Details */}
-            <div className="space-y-3">
+            <div className="space-y-3 rounded-[16px]">
               <div className="flex justify-between">
-                <span className="text-gray-600">Subtotal</span>
+                <span className="text-[#252626]">Subtotal</span>
                 <div className="flex items-center">
-                  <span className="text-gray-800 mr-1">🎧</span>
-                  <span className="text-gray-800 mr-2">2 items</span>
+                  <span className="text-[#252626] mr-1">🎧</span>
+                  <span className="text-[#252626] mr-2">2 items</span>
                   <span className="font-medium">$1,230</span>
                 </div>
               </div>
 
               <div className="flex justify-between">
-                <span className="text-gray-600">Shipping</span>
+                <span className="text-[#252626]">Shipping</span>
                 <div className="flex justify-end">
-                  <span className="text-gray-800 mr-2">Standard</span>
+                  <span className="text-[#252626] mr-2">Standard</span>
                   <span className="font-medium">$16</span>
                 </div>
               </div>
 
-              <div className="flex justify-between pt-2 border-t border-gray-200">
+              <div className="flex justify-between pt-2">
                 <span className="font-bold text-lg">Total</span>
                 <span className="font-bold text-lg">$1,256</span>
               </div>
             </div>
 
-            <p className="text-gray-600 text-sm mt-4">
+            <p className="text-[#494A4A] text-sm mt-4">
               Duties and import taxes may be charged on delivery.
               <a href="#" className="ml-1" style={{
               color: "#116fae"
@@ -119,7 +119,7 @@ export function OrderDetailsDrawer({
           </div>
 
           {/* Items section */}
-          <div className="p-6 border-t border-gray-200">
+          <div className="py-6">
             <div className="flex items-center gap-2 mb-4">
               <h2 className="font-bold text-lg">Items</h2>
               <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-200 font-medium">
