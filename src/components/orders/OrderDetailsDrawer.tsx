@@ -149,7 +149,7 @@ export function OrderDetailsDrawer({
           </div>
 
           {/* Customer section */}
-          <div className="p-6 border-t border-[#DADADA]">
+          <div className="py-6 border-t border-[#DADADA]">
             <h2 className="font-bold text-lg mb-4">Customer</h2>
             <div className="space-y-1">
               <p className="font-medium">Sophia Chen</p>
