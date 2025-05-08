@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MenuItems } from "./sidebar/MenuItems";
 import { BetaPrompt } from "./sidebar/BetaPrompt";
 import { CollapseButton } from "./sidebar/CollapseButton";
+
 const menuItems = [{
   icon: LayoutDashboard,
   label: "Dashboard",
@@ -56,7 +57,7 @@ export const Sidebar = ({
   useEffect(() => {
     onCollapse?.(isCollapsed);
   }, [isCollapsed, onCollapse]);
-  return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300", isCollapsed ? "w-16" : "w-64")}>
+  return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300", isCollapsed ? "w-16" : "w-[300px]")}>
       <div className="flex flex-col h-full py-4 relative bg-[#252626]">
         <CollapseButton isCollapsed={isCollapsed} onClick={() => setIsCollapsed(!isCollapsed)} />
 
