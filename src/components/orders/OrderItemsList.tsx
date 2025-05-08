@@ -17,8 +17,8 @@ export const OrderItemsList = ({
         </Badge>
       </div>
 
-      <div className="pt-2">
-        {items.map((item, index) => <div key={index} className={`${index > 0 ? 'pt-4' : ''}`}>
+      <div>
+        {items.map((item, index) => <div key={index} className={`${index > 0 ? 'pt-2' : ''}`}>
             <OrderItemRow item={item} />
           </div>)}
       </div>
