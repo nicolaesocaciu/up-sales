@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Edit, MoreHorizontal, DollarSign } from "lucide-react";
+import { Edit, ChevronDown } from "lucide-react";
 import { 
   DropdownMenu, 
   DropdownMenuTrigger, 
@@ -26,26 +26,24 @@ export const OrderHeader = ({ orderId, orderDate }: OrderHeaderProps) => {
         <div className="flex items-center gap-2">
           <Button 
             variant="outline" 
-            className="flex items-center gap-2 border border-[#8A8A8A] bg-white rounded-[8px] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
+            className="h-8 flex items-center gap-2 border border-[#8A8A8A] bg-white rounded-[8px] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
           >
-            <DollarSign className="h-4 w-4" />
             Refund
           </Button>
           <Button 
             variant="outline" 
-            className="flex items-center gap-2 border border-[#8A8A8A] bg-white rounded-[8px] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
+            className="h-8 flex items-center gap-2 border border-[#8A8A8A] bg-white rounded-[8px] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
           >
-            <Edit className="h-4 w-4" />
             Edit
           </Button>
           <DropdownMenu open={isMoreOpen} onOpenChange={setIsMoreOpen}>
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="outline" 
-                className="flex items-center gap-2 border border-[#8A8A8A] bg-white rounded-[8px] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
+                className="h-8 flex items-center justify-between gap-2 border border-[#8A8A8A] bg-white rounded-[8px] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] px-4"
               >
-                <MoreHorizontal className="h-4 w-4" />
-                More options
+                More actions
+                <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl bg-white">
