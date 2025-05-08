@@ -24,6 +24,7 @@ export const MenuItems = ({
     <>
       {items.map(item => {
         const isActive = location.pathname === item.path;
+        
         // Clone the icon and modify its props to add the fill color when active
         const IconWithFill = () => {
           const originalIcon = item.icon();
@@ -34,15 +35,15 @@ export const MenuItems = ({
             return React.cloneElement(
               originalIcon,
               {
-                ...originalIcon.props,
+                ...originalIcon.props as React.SVGProps<SVGSVGElement>,
                 fill: isActive ? "#FFFFFF" : "none",
                 // Apply the fill to all path children if they exist
                 children: React.Children.map(originalIcon.props.children, child => {
                   if (React.isValidElement(child) && child.type === 'path') {
-                    return React.cloneElement(child, {
-                      ...child.props,
-                      stroke: isActive ? "#FFFFFF" : child.props.stroke || "#C0C0C0",
-                      fill: isActive ? "#FFFFFF" : child.props.fill || "none"
+                    return React.cloneElement(child as React.ReactElement<React.SVGProps<SVGPathElement>>, {
+                      ...(child.props as React.SVGProps<SVGPathElement>),
+                      stroke: isActive ? "#FFFFFF" : (child.props as React.SVGProps<SVGPathElement>).stroke || "#C0C0C0",
+                      fill: isActive ? "#FFFFFF" : (child.props as React.SVGProps<SVGPathElement>).fill || "none"
                     });
                   }
                   return child;
