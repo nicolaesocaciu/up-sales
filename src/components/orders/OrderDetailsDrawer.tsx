@@ -1,8 +1,12 @@
+
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import { Order } from "@/types/order";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "../ui/badge";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+
 interface OrderItem {
   name: string;
   sku: string;
@@ -11,52 +15,105 @@ interface OrderItem {
   total: string;
   image?: string;
 }
+
 interface OrderDetailsDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   order?: Order;
 }
+
 export function OrderDetailsDrawer({
   open,
   onOpenChange,
   order
 }: OrderDetailsDrawerProps) {
   if (!order) return null;
+  
+  // Get products data from the database for this order
+  const { data: productData } = useQuery({
+    queryKey: ['orderProducts', order.id],
+    queryFn: async () => {
+      if (!order.products || order.products.length === 0) {
+        return [];
+      }
+      
+      // Extract product names/titles
+      const productTitles = order.products.map(p => p.title);
+      
+      // Fetch matching products from database
+      const { data } = await supabase
+        .from('products')
+        .select('*')
+        .in('name', productTitles);
+        
+      return data || [];
+    },
+    enabled: open && !!order.products && order.products.length > 0
+  });
 
-  // Sample items data based on the screenshot
-  const items: OrderItem[] = [{
-    name: "Sony WH-1000XM5 Headphones",
-    sku: "SN-10-white",
-    price: "$1,000",
-    quantity: 1,
-    total: "$1,000",
-    image: order.thumbnail || "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
-  }, {
-    name: "Keychron Q1 Mechanical Keyboard",
-    sku: "SN-10-white",
-    price: "$230",
-    quantity: 1,
-    total: "$230",
+  // Map order products to order items with quantity and price info
+  const items: OrderItem[] = order.products?.map((product, index) => {
+    // Look for matching product in database results
+    const matchedProduct = productData?.find(p => p.name === product.title);
+    
+    return {
+      name: product.title,
+      sku: matchedProduct?.id || `SKU-${index}`,
+      price: matchedProduct?.price || "$0",
+      quantity: 1, // Default quantity
+      total: matchedProduct?.price || "$0",
+      image: product.images?.[0] || order.thumbnail || "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
+    };
+  }) || [];
+
+  // If no items are defined yet (waiting for query), show placeholder items based on order info
+  const displayItems = items.length > 0 ? items : [{
+    name: order.items,
+    sku: "SKU-0",
+    price: order.value,
+    quantity: order.itemCount || 1,
+    total: order.value,
     image: order.thumbnail || "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
   }];
+  
+  // Calculate total from items
+  const subtotal = displayItems.reduce((sum, item) => {
+    const price = parseFloat(item.price.replace(/[^0-9.-]+/g, "")) || 0;
+    return sum + (price * item.quantity);
+  }, 0);
+  
+  const shippingCost = 16;
+  const total = subtotal + shippingCost;
 
   // Format the order date to match the design
-  const formattedDate = new Date().toLocaleDateString('en-US', {
+  const formattedDate = new Date(order.date).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
-  }) + " at " + new Date().toLocaleTimeString('en-US', {
+  }) + " at " + new Date(order.date).toLocaleTimeString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true
   });
+  
+  // Format currency
+  const formatCurrency = (amount: number): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount);
+  };
+
+  // Remove the # from the order ID if it exists
+  const displayId = order.id.startsWith('#') ? order.id.substring(1) : order.id;
+  
   return <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-[760px] max-w-full p-12 overflow-y-auto rounded-tl-[24px] rounded-bl-[24px]">
         <div className="flex flex-col h-full">
           {/* Header section */}
           <div className="pb-4">
             <div className="flex items-center justify-between mb-2">
-              <h1 className="text-2xl font-bold">{order.id}</h1>
+              <h1 className="text-2xl font-bold">{displayId}</h1>
               <div className="flex gap-2">
                 <Button variant="outline" className="h-8 rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
                   Refund
@@ -78,9 +135,18 @@ export function OrderDetailsDrawer({
             {/* Order Status */}
             <div className="mb-6">
               <div className="flex items-center gap-2">
-                <h2 className="font-semibold text-lg">Processing payment</h2>
-                <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-200 font-medium">
-                  Waiting
+                <h2 className="font-semibold text-lg">
+                  {order.status === 'Paid' ? 'Payment completed' : 
+                   order.status === 'Processing' ? 'Processing payment' : 
+                   'Waiting for payment'}
+                </h2>
+                <Badge variant="outline" className={`
+                  ${order.status === 'Paid' ? 'bg-green-100 text-green-800 border-green-200' : 
+                    order.status === 'Processing' ? 'bg-blue-100 text-blue-800 border-blue-200' : 
+                    'bg-amber-100 text-amber-800 border-amber-200'} 
+                  font-medium`}
+                >
+                  {order.status}
                 </Badge>
               </div>
             </div>
@@ -91,8 +157,8 @@ export function OrderDetailsDrawer({
                 <span className="text-[#252626]">Subtotal</span>
                 <div className="flex items-center">
                   <span className="text-[#252626] mr-1">🎧</span>
-                  <span className="text-[#252626] mr-2">2 items</span>
-                  <span className="font-medium">$1,230</span>
+                  <span className="text-[#252626] mr-2">{displayItems.length} {displayItems.length === 1 ? 'item' : 'items'}</span>
+                  <span className="font-medium">{formatCurrency(subtotal)}</span>
                 </div>
               </div>
 
@@ -100,13 +166,13 @@ export function OrderDetailsDrawer({
                 <span className="text-[#252626]">Shipping</span>
                 <div className="flex justify-end">
                   <span className="text-[#252626] mr-2">Standard</span>
-                  <span className="font-medium">$16</span>
+                  <span className="font-medium">{formatCurrency(shippingCost)}</span>
                 </div>
               </div>
 
               <div className="flex justify-between pt-2">
                 <span className="font-bold text-lg">Total</span>
-                <span className="font-bold text-lg">$1,256</span>
+                <span className="font-bold text-lg">{formatCurrency(total)}</span>
               </div>
             </div>
 
@@ -123,12 +189,13 @@ export function OrderDetailsDrawer({
             <div className="flex items-center gap-2 mb-4">
               <h2 className="font-bold text-lg">Items</h2>
               <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-200 font-medium">
-                Unfulfilled
+                {order.fulfillmentStatus}
               </Badge>
             </div>
 
             <div className="space-y-6 divide-y divide-[#DADADA]">
-              {items.map((item, index) => <div key={index} className={`${index > 0 ? 'pt-6' : ''}`}>
+              {displayItems.map((item, index) => (
+                <div key={index} className={`${index > 0 ? 'pt-6' : ''}`}>
                   <div className="flex gap-4">
                     <div className="w-16 h-16 bg-gray-100 rounded">
                       {item.image && <img src={item.image} alt={item.name} className="w-full h-full object-contain" />}
@@ -144,7 +211,8 @@ export function OrderDetailsDrawer({
                       <p className="text-[#494A4A]">{item.price} × {item.quantity}</p>
                     </div>
                   </div>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
 
@@ -152,10 +220,10 @@ export function OrderDetailsDrawer({
           <div className="py-6 border-t border-[#DADADA]">
             <h2 className="font-bold text-lg mb-4">Customer</h2>
             <div className="space-y-1">
-              <p className="font-medium">Sophia Chen</p>
+              <p className="font-medium">{order.customer.name}</p>
               <p style={{
               color: "#116fae"
-            }}>schen.marketing@agency.com</p>
+            }}>{order.customer.email}</p>
             </div>
           </div>
 
