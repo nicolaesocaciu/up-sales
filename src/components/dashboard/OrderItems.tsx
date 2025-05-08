@@ -1,3 +1,4 @@
+
 import { Product } from "@/types/order";
 import {
   Tooltip,
@@ -47,7 +48,7 @@ export const OrderItems = ({
         <TooltipTrigger asChild>
           <button
             className="flex items-center gap-3 text-primary hover:underline text-left w-full"
-            onClick={() => products?.[0] && onProductClick(products[0])}
+            onClick={() => onProductClick(products?.[0] || { title: items })}
           >
             {renderThumbnails(thumbnail, itemCount)}
             <span className="truncate">

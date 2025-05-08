@@ -24,7 +24,7 @@ export const OrdersTable = ({ isEditMode }: OrdersTableProps) => {
         ? dateA.getTime() - dateB.getTime()
         : dateB.getTime() - dateA.getTime();
     })
-    .slice(0, 6); // Changed from 7 to 6 orders
+    .slice(0, 6);
 
   const toggleSort = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
