@@ -24,9 +24,20 @@ export const OrderRow = ({
     setShowOrderDetails(true);
   };
 
+  const handleOpenOrderDetails = () => {
+    setShowOrderDetails(true);
+  };
+
   return (
     <TableRow className={cn("h-12 transition-colors max-h-[48px]", isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]")}>
-      <TableCell className="">{order.id}</TableCell>
+      <TableCell className="">
+        <button
+          className="text-primary hover:underline text-left"
+          onClick={handleOpenOrderDetails}
+        >
+          {order.id}
+        </button>
+      </TableCell>
       <TableCell>{order.date}</TableCell>
       <TableCell>
         <OrderItems 
@@ -42,7 +53,10 @@ export const OrderRow = ({
         <OrderStatusBadge status={order.status} />
       </TableCell>
       <TableCell>
-        <OrderActionsDropdown onOpenChange={setIsDropdownOpen} />
+        <OrderActionsDropdown 
+          onOpenChange={setIsDropdownOpen} 
+          onViewOrder={handleOpenOrderDetails}
+        />
       </TableCell>
 
       {/* Product Modal (will be removed in favor of the drawer) */}

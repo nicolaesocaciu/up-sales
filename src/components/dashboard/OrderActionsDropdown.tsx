@@ -7,10 +7,12 @@ import { cn } from "@/lib/utils";
 
 interface OrderActionsDropdownProps {
   onOpenChange?: (isOpen: boolean) => void;
+  onViewOrder?: () => void;
 }
 
 export const OrderActionsDropdown = ({
-  onOpenChange
+  onOpenChange,
+  onViewOrder
 }: OrderActionsDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenChange = (open: boolean) => {
@@ -37,7 +39,10 @@ export const OrderActionsDropdown = ({
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl bg-white z-[9999] shadow-lg" sideOffset={-10}>
           <div className="bg-white rounded-xl">
-            <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg bg-white">
+            <DropdownMenuItem 
+              className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg bg-white"
+              onClick={onViewOrder}
+            >
               <FileText className="h-5 w-5" />
               View order
             </DropdownMenuItem>
