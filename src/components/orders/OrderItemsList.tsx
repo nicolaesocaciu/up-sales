@@ -18,7 +18,7 @@ export const OrderItemsList = ({
       </div>
 
       <div className="space-y-4">
-        {items.map((item, index) => <div key={index} className={`${index > 0 ? 'pt-6' : ''}`}>
+        {items.map((item, index) => <div key={index} className={`${index > 0 ? 'pt-4' : ''}`}>
             <OrderItemRow item={item} />
           </div>)}
       </div>
