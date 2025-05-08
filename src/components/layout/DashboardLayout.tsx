@@ -12,7 +12,7 @@ export const DashboardLayout = ({ children }: { children: React.ReactNode }) => 
       <div className="flex pt-16">
         <Sidebar onCollapse={(collapsed) => setIsCollapsed(collapsed)} />
         <main className={`flex-1 px-12 pt-8 pb-16 transition-[margin-left] duration-300 ${
-          isCollapsed ? "ml-16" : "ml-16 lg:ml-64"
+          isCollapsed ? "ml-16" : "ml-[300px]"
         } overflow-y-auto h-[calc(100vh-64px)] bg-[#F2F2F2] rounded-tl-[24px]`}>
           {children}
         </main>

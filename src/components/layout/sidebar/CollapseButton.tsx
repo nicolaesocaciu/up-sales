@@ -1,10 +1,13 @@
+
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
 interface CollapseButtonProps {
   isCollapsed: boolean;
   onClick: () => void;
 }
+
 export const CollapseButton = ({
   isCollapsed,
   onClick
