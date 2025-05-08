@@ -34,9 +34,13 @@ export const useOrderData = (order: Order | undefined, isDrawerOpen: boolean) =>
     // Look for matching product in database results
     const matchedProduct = productData?.find(p => p.name === product.title);
     
-    // Use the price from the matched product in the database
-    const price = matchedProduct?.price || "$0.00";
-    const quantity = 1; // Default quantity
+    // Use the price from the matched product in the database or fallback to a default
+    // If product price is available but empty, we'll use a fallback price
+    const price = (matchedProduct?.price && matchedProduct.price !== "$0.00") 
+      ? matchedProduct.price 
+      : product.price || "$19.99"; // Use product price if available or fallback to default
+    
+    const quantity = product.quantity || 1; // Default quantity
     
     // Calculate total based on price and quantity
     // First, clean the price string to extract just the number
@@ -60,9 +64,9 @@ export const useOrderData = (order: Order | undefined, isDrawerOpen: boolean) =>
   const displayItems = items.length > 0 ? items : [{
     name: order.items,
     sku: "SKU-0",
-    price: order.value,
+    price: order.value || "$19.99", // Ensure we have a fallback price
     quantity: order.itemCount || 1,
-    total: order.value,
+    total: order.value || "$19.99", // Ensure we have a fallback total
     image: order.thumbnail || "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
   }];
   
