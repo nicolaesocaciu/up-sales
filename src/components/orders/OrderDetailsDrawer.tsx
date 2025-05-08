@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import { Order } from "@/types/order";
@@ -55,26 +54,17 @@ export function OrderDetailsDrawer({
       <SheetContent className="w-[760px] max-w-full p-12 overflow-y-auto rounded-tl-[24px] rounded-bl-[24px]">
         <div className="flex flex-col h-full">
           {/* Header section */}
-          <div className="p-6 pb-4">
+          <div className="pb-4">
             <div className="flex items-center justify-between mb-2">
               <h1 className="text-2xl font-bold">{order.id}</h1>
               <div className="flex gap-2">
-                <Button 
-                  variant="outline" 
-                  className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
-                >
+                <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
                   Refund
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
-                >
+                <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
                   Edit
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]"
-                >
+                <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)]">
                   More actions
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
@@ -122,7 +112,9 @@ export function OrderDetailsDrawer({
 
             <p className="text-gray-600 text-sm mt-4">
               Duties and import taxes may be charged on delivery.
-              <a href="#" className="ml-1" style={{ color: "#116fae" }}>Learn more</a>
+              <a href="#" className="ml-1" style={{
+              color: "#116fae"
+            }}>Learn more</a>
             </p>
           </div>
 
@@ -142,7 +134,9 @@ export function OrderDetailsDrawer({
                       {item.image && <img src={item.image} alt={item.name} className="w-full h-full object-contain" />}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-medium" style={{ color: "#116fae" }}>{item.name}</h3>
+                      <h3 className="font-medium" style={{
+                    color: "#116fae"
+                  }}>{item.name}</h3>
                       <p className="text-gray-600">SKU: {item.sku}</p>
                     </div>
                     <div className="text-right">
@@ -159,7 +153,9 @@ export function OrderDetailsDrawer({
             <h2 className="font-bold text-lg mb-4">Customer</h2>
             <div className="space-y-1">
               <p className="font-medium">Sophia Chen</p>
-              <p style={{ color: "#116fae" }}>schen.marketing@agency.com</p>
+              <p style={{
+              color: "#116fae"
+            }}>schen.marketing@agency.com</p>
             </div>
           </div>
 
@@ -178,16 +174,11 @@ export function OrderDetailsDrawer({
           <div className="mt-auto border-t border-gray-200 p-4">
             <SheetFooter>
               <SheetClose asChild>
-                <Button 
-                  variant="outline" 
-                  className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] flex-1"
-                >
+                <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] flex-1">
                   Close
                 </Button>
               </SheetClose>
-              <Button 
-                className="rounded-[8px] border-[1px] border-[#2D7048] bg-[#2D7048] shadow-[0px_2px_4px_0px_rgba(78,156,84,0.20)] flex-1"
-              >
+              <Button className="rounded-[8px] border-[1px] border-[#2D7048] bg-[#2D7048] shadow-[0px_2px_4px_0px_rgba(78,156,84,0.20)] flex-1">
                 Fulfill order
               </Button>
             </SheetFooter>
