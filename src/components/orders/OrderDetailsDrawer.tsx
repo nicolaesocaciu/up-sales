@@ -1,10 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import { Order } from "@/types/order";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "../ui/badge";
-
 interface OrderItem {
   name: string;
   sku: string;
@@ -13,35 +11,34 @@ interface OrderItem {
   total: string;
   image?: string;
 }
-
 interface OrderDetailsDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   order?: Order;
 }
-
-export function OrderDetailsDrawer({ open, onOpenChange, order }: OrderDetailsDrawerProps) {
+export function OrderDetailsDrawer({
+  open,
+  onOpenChange,
+  order
+}: OrderDetailsDrawerProps) {
   if (!order) return null;
 
   // Sample items data based on the screenshot
-  const items: OrderItem[] = [
-    {
-      name: "Sony WH-1000XM5 Headphones",
-      sku: "SN-10-white",
-      price: "$1,000",
-      quantity: 1,
-      total: "$1,000",
-      image: "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
-    },
-    {
-      name: "Keychron Q1 Mechanical Keyboard",
-      sku: "SN-10-white",
-      price: "$230",
-      quantity: 1,
-      total: "$230",
-      image: "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
-    }
-  ];
+  const items: OrderItem[] = [{
+    name: "Sony WH-1000XM5 Headphones",
+    sku: "SN-10-white",
+    price: "$1,000",
+    quantity: 1,
+    total: "$1,000",
+    image: "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
+  }, {
+    name: "Keychron Q1 Mechanical Keyboard",
+    sku: "SN-10-white",
+    price: "$230",
+    quantity: 1,
+    total: "$230",
+    image: "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png"
+  }];
 
   // Format the order date to match the design
   const formattedDate = new Date().toLocaleDateString('en-US', {
@@ -53,11 +50,9 @@ export function OrderDetailsDrawer({ open, onOpenChange, order }: OrderDetailsDr
     minute: '2-digit',
     hour12: true
   });
-
-  return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
+  return <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-[600px] max-w-full p-0 pt-0 overflow-y-auto">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full p-12">
           {/* Header section */}
           <div className="p-6 pb-4">
             <h1 className="text-2xl font-bold mb-1">#{order.id}</h1>
@@ -130,8 +125,7 @@ export function OrderDetailsDrawer({ open, onOpenChange, order }: OrderDetailsDr
             </div>
 
             <div className="space-y-6 divide-y divide-gray-100">
-              {items.map((item, index) => (
-                <div key={index} className={`${index > 0 ? 'pt-6' : ''}`}>
+              {items.map((item, index) => <div key={index} className={`${index > 0 ? 'pt-6' : ''}`}>
                   <div className="flex gap-4">
                     <div className="w-16 h-16 bg-gray-100 rounded">
                       {item.image && <img src={item.image} alt={item.name} className="w-full h-full object-contain" />}
@@ -145,8 +139,7 @@ export function OrderDetailsDrawer({ open, onOpenChange, order }: OrderDetailsDr
                       <p className="text-gray-600">{item.price} × {item.quantity}</p>
                     </div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
@@ -185,6 +178,5 @@ export function OrderDetailsDrawer({ open, onOpenChange, order }: OrderDetailsDr
           </div>
         </div>
       </SheetContent>
-    </Sheet>
-  );
+    </Sheet>;
 }
