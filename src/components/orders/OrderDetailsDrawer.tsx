@@ -52,7 +52,7 @@ export function OrderDetailsDrawer({
     hour12: true
   });
   return <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="w-[760px] max-w-full p-0 pt-0 overflow-y-auto rounded-tl-[24px]">
+      <SheetContent className="w-[760px] max-w-full p-0 pt-0 overflow-y-auto rounded-tl-[24px] rounded-bl-[24px]">
         <div className="flex flex-col h-full">
           {/* Header section */}
           <div className="p-6 pb-4">
