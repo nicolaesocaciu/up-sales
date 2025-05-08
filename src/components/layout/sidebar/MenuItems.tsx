@@ -53,16 +53,16 @@ export const MenuItems = ({
             "flex items-center justify-center", 
             location.pathname === item.path 
               ? "" 
-              : "",
-            location.pathname === item.path && item.path === "/customers"
-              ? "[&_svg_path]:fill-white"
-              : location.pathname === item.path && item.path === "/discounts" 
-                ? "[&_svg_path]:fill-white"
-                : item.path === "/customers"
-                  ? "[&_svg_path]:fill-[#C0C0C0]"
-                  : item.path === "/discounts"
-                    ? "[&_svg_path]:fill-[#C0C0C0]"
-                    : ""
+              : ""
+            // location.pathname === item.path && item.path === "/customers"
+            //   ? "[&_svg_path]:fill-white"
+            //   : location.pathname === item.path && item.path === "/discounts" 
+            //     ? "[&_svg_path]:fill-white"
+            //     : item.path === "/customers"
+            //       ? "[&_svg_path]:fill-[#C0C0C0]"
+            //       : item.path === "/discounts"
+            //         ? "[&_svg_path]:fill-[#C0C0C0]"
+            //         : ""
           )}>
             {item.icon()}
           </span>
