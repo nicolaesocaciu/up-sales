@@ -1,9 +1,12 @@
+
 import { LayoutDashboard, ShoppingCart, Box, Users, FolderOpen, Megaphone, Tag, Mail, Settings, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { MenuItems } from "./sidebar/MenuItems";
 import { BetaPrompt } from "./sidebar/BetaPrompt";
 import { CollapseButton } from "./sidebar/CollapseButton";
+
+const SIDEBAR_STATE_KEY = "sidebar-collapsed-state";
 
 const menuItems = [{
   icon: LayoutDashboard,
@@ -47,19 +50,34 @@ const settingsItems = [{
   label: "Help center",
   path: "/help"
 }];
+
 interface SidebarProps {
   onCollapse?: (collapsed: boolean) => void;
 }
+
 export const Sidebar = ({
   onCollapse
 }: SidebarProps) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  // Initialize state from localStorage or default to false
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    const savedState = localStorage.getItem(SIDEBAR_STATE_KEY);
+    return savedState ? JSON.parse(savedState) : false;
+  });
+
+  // Save to localStorage when state changes
   useEffect(() => {
+    localStorage.setItem(SIDEBAR_STATE_KEY, JSON.stringify(isCollapsed));
     onCollapse?.(isCollapsed);
   }, [isCollapsed, onCollapse]);
+
+  // Toggle collapsed state
+  const handleToggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300", isCollapsed ? "w-16" : "w-[300px]")}>
       <div className="flex flex-col h-full py-4 relative bg-[#252626]">
-        <CollapseButton isCollapsed={isCollapsed} onClick={() => setIsCollapsed(!isCollapsed)} />
+        <CollapseButton isCollapsed={isCollapsed} onClick={handleToggleCollapse} />
 
         <nav className="flex flex-col flex-1">
           <div className="px-4">
