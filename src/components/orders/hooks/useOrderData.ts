@@ -34,7 +34,7 @@ export const useOrderData = (order: Order | undefined, isDrawerOpen: boolean) =>
     // Look for matching product in database results
     const matchedProduct = productData?.find(p => p.name === product.title);
     
-    // Ensure we have proper price values with default fallbacks
+    // Use the price from the matched product in the database
     const price = matchedProduct?.price || "$0.00";
     const quantity = 1; // Default quantity
     
@@ -44,10 +44,7 @@ export const useOrderData = (order: Order | undefined, isDrawerOpen: boolean) =>
     const totalValue = numericPrice * quantity;
     
     // Format the total as currency
-    const total = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(totalValue);
+    const total = formatCurrency(totalValue);
     
     return {
       name: product.title,
