@@ -1,4 +1,3 @@
-import { LayoutDashboard, ShoppingCart, Box, Users, FolderOpen, Megaphone, Tag, Mail, Settings, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { MenuItems } from "./sidebar/MenuItems";

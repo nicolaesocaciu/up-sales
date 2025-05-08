@@ -55,8 +55,7 @@ export const MenuItems = ({
                       child as React.ReactElement<React.SVGAttributes<SVGPathElement>>, 
                       {
                         ...pathProps,
-                        stroke: isActive ? "#FFFFFF" : pathProps.stroke || "#C0C0C0",
-                        fill: isActive ? "#FFFFFF" : pathProps.fill || "none"
+                        fill: isActive ? "#FFFFFF" : pathProps.fill || "#C0C0C0"
                       }
                     );
                   }
