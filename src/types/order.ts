@@ -1,3 +1,4 @@
+
 export type OrderStatus = "Paid" | "Processing" | "Waiting";
 export type FulfillmentStatus = "Fulfilled" | "Unfulfilled" | "Unpaid" | "Open" | "Closed";
 
@@ -5,6 +6,8 @@ export interface Product {
   title: string;
   description?: string;
   images?: string[];
+  price?: string;
+  quantity?: number;
 }
 
 export interface Order {
