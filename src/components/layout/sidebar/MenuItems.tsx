@@ -30,21 +30,30 @@ export const MenuItems = ({
           const originalIcon = item.icon();
           
           // Check if it's an SVG element
-          if (React.isValidElement(originalIcon) && originalIcon.type === 'svg') {
+          if (React.isValidElement(originalIcon) && 
+              typeof originalIcon.type === 'string' && 
+              originalIcon.type.toLowerCase() === 'svg') {
+            
             // Clone the SVG element with modified props
             return React.cloneElement(
               originalIcon,
               {
-                ...originalIcon.props as React.SVGProps<SVGSVGElement>,
+                ...(originalIcon.props as React.SVGAttributes<SVGElement>),
                 fill: isActive ? "#FFFFFF" : "none",
                 // Apply the fill to all path children if they exist
                 children: React.Children.map(originalIcon.props.children, child => {
-                  if (React.isValidElement(child) && child.type === 'path') {
-                    return React.cloneElement(child as React.ReactElement<React.SVGProps<SVGPathElement>>, {
-                      ...(child.props as React.SVGProps<SVGPathElement>),
-                      stroke: isActive ? "#FFFFFF" : (child.props as React.SVGProps<SVGPathElement>).stroke || "#C0C0C0",
-                      fill: isActive ? "#FFFFFF" : (child.props as React.SVGProps<SVGPathElement>).fill || "none"
-                    });
+                  if (React.isValidElement(child) && 
+                      typeof child.type === 'string' && 
+                      child.type.toLowerCase() === 'path') {
+                    
+                    return React.cloneElement(
+                      child as React.ReactElement<React.SVGAttributes<SVGPathElement>>, 
+                      {
+                        ...(child.props as React.SVGAttributes<SVGPathElement>),
+                        stroke: isActive ? "#FFFFFF" : (child.props as React.SVGAttributes<SVGPathElement>).stroke || "#C0C0C0",
+                        fill: isActive ? "#FFFFFF" : (child.props as React.SVGAttributes<SVGPathElement>).fill || "none"
+                      }
+                    );
                   }
                   return child;
                 })
