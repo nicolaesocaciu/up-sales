@@ -60,22 +60,39 @@ export const Sidebar = ({
 }: SidebarProps) => {
   // Initialize state from localStorage or default to false
   const [isCollapsed, setIsCollapsed] = useState(() => {
-    const savedState = localStorage.getItem(SIDEBAR_STATE_KEY);
-    return savedState ? JSON.parse(savedState) : false;
+    // Get the initial state from localStorage
+    try {
+      const savedState = localStorage.getItem(SIDEBAR_STATE_KEY);
+      // Return parsed value or default to false if not set
+      return savedState ? JSON.parse(savedState) === true : false;
+    } catch (error) {
+      // If there's any error in parsing, default to false
+      return false;
+    }
   });
 
   // Save to localStorage when state changes
   useEffect(() => {
-    localStorage.setItem(SIDEBAR_STATE_KEY, JSON.stringify(isCollapsed));
+    try {
+      localStorage.setItem(SIDEBAR_STATE_KEY, JSON.stringify(isCollapsed));
+    } catch (error) {
+      // Handle any localStorage errors silently
+      console.error("Error saving sidebar state:", error);
+    }
+    
+    // Notify parent component about the collapse state change
     onCollapse?.(isCollapsed);
   }, [isCollapsed, onCollapse]);
 
   // Toggle collapsed state
   const handleToggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+    setIsCollapsed(prevState => !prevState);
   };
 
-  return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300", isCollapsed ? "w-16" : "w-[300px]")}>
+  return <div className={cn(
+    "fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300", 
+    isCollapsed ? "w-16" : "w-[300px]"
+    )}>
       <div className="flex flex-col h-full py-4 relative bg-[#252626]">
         <CollapseButton isCollapsed={isCollapsed} onClick={handleToggleCollapse} />
 
