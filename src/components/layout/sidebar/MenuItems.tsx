@@ -52,8 +52,8 @@ export const MenuItems = ({
           <span className={cn(
             "flex items-center justify-center", 
             location.pathname === item.path 
-              ? "[&_svg_path]:fill-white" 
-              : "[&_svg_path]:fill-[#C0C0C0]",
+              ? "" 
+              : "",
             location.pathname === item.path && item.path === "/customers"
               ? "[&_svg_path]:fill-white"
               : location.pathname === item.path && item.path === "/discounts" 
