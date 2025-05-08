@@ -56,7 +56,7 @@ export const Sidebar = ({
   useEffect(() => {
     onCollapse?.(isCollapsed);
   }, [isCollapsed, onCollapse]);
-  return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300", isCollapsed ? "w-16" : "w-64")}>
+  return <div className={cn("fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300", isCollapsed ? "w-16" : "w-64")}>
       <div className="flex flex-col h-full py-4 relative bg-[#252626]">
         <CollapseButton isCollapsed={isCollapsed} onClick={() => setIsCollapsed(!isCollapsed)} />
 
