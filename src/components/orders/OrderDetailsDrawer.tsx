@@ -74,7 +74,7 @@ export function OrderDetailsDrawer({
           </div>
 
           {/* Order Summary */}
-          <div className="bg-[#F2F2F2] p-6">
+          <div className="bg-[#F2F2F2] p-6 rounded-[16px]">
             {/* Order Status */}
             <div className="mb-6">
               <div className="flex items-center gap-2">
@@ -86,7 +86,7 @@ export function OrderDetailsDrawer({
             </div>
 
             {/* Order Details */}
-            <div className="space-y-3 rounded-[16px]">
+            <div className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-[#252626]">Subtotal</span>
                 <div className="flex items-center">
@@ -127,7 +127,7 @@ export function OrderDetailsDrawer({
               </Badge>
             </div>
 
-            <div className="space-y-6 divide-y divide-gray-100">
+            <div className="space-y-6 divide-y divide-[#DADADA]">
               {items.map((item, index) => <div key={index} className={`${index > 0 ? 'pt-6' : ''}`}>
                   <div className="flex gap-4">
                     <div className="w-16 h-16 bg-gray-100 rounded">
@@ -149,7 +149,7 @@ export function OrderDetailsDrawer({
           </div>
 
           {/* Customer section */}
-          <div className="p-6 border-t border-gray-200">
+          <div className="p-6 border-t border-[#DADADA]">
             <h2 className="font-bold text-lg mb-4">Customer</h2>
             <div className="space-y-1">
               <p className="font-medium">Sophia Chen</p>
@@ -160,7 +160,7 @@ export function OrderDetailsDrawer({
           </div>
 
           {/* Shipping address section */}
-          <div className="p-6 border-t border-gray-200">
+          <div className="p-6 border-t border-[#DADADA]">
             <h2 className="font-bold text-lg mb-4">Shipping address</h2>
             <div className="space-y-1">
               <p>Karenslyst allé 56</p>
@@ -171,7 +171,7 @@ export function OrderDetailsDrawer({
           </div>
 
           {/* Footer buttons */}
-          <div className="mt-auto border-t border-gray-200 p-4">
+          <div className="mt-auto border-t border-[#DADADA] p-4">
             <SheetFooter>
               <SheetClose asChild>
                 <Button variant="outline" className="rounded-[8px] border-[1px] border-[#8A8A8A] bg-[#FFFFFF] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] flex-1">
