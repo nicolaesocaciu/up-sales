@@ -1,4 +1,3 @@
-
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnVisibility } from "./DiscountsTableColumns";
@@ -9,7 +8,6 @@ import { DiscountStatusBadge } from "./DiscountStatusBadge";
 import { MoreHorizontal } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-
 interface DiscountsTableRowProps {
   discount: Discount;
   columnVisibility: ColumnVisibility;
@@ -17,7 +15,6 @@ interface DiscountsTableRowProps {
   onSelect: (id: string, checked: boolean) => void;
   highlightText: (text: string) => React.ReactNode;
 }
-
 export const DiscountsTableRow = ({
   discount,
   columnVisibility,
@@ -26,65 +23,39 @@ export const DiscountsTableRow = ({
   highlightText
 }: DiscountsTableRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  return (
-    <TableRow className={cn("h-14 transition-colors", isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]")}>
+  return <TableRow className={cn("h-14 transition-colors", isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]")}>
       <TableCell className="w-[40px]">
-        <Checkbox 
-          checked={selected} 
-          onCheckedChange={(checked) => onSelect(discount.id, checked === true)}
-          className="rounded-[4px]" 
-        />
+        <Checkbox checked={selected} onCheckedChange={checked => onSelect(discount.id, checked === true)} className="rounded-[4px]" />
       </TableCell>
 
-      {columnVisibility.title && (
-        <TableCell>
+      {columnVisibility.title && <TableCell>
           <div className="flex flex-col">
             <span className="font-medium text-text-dark">{highlightText(discount.title)}</span>
             <span className="text-xs text-gray-500">{highlightText(discount.description)}</span>
           </div>
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.method && (
-        <TableCell>{discount.method}</TableCell>
-      )}
+      {columnVisibility.method && <TableCell>{discount.method}</TableCell>}
 
-      {columnVisibility.type && (
-        <TableCell>
+      {columnVisibility.type && <TableCell>
           <div className="flex flex-col">
             <span className="font-medium text-text-dark">{discount.type}</span>
             <span className="text-xs text-gray-500">{highlightText(discount.typeDescription)}</span>
           </div>
-        </TableCell>
-      )}
+        </TableCell>}
 
-      {columnVisibility.status && (
-        <TableCell>
+      {columnVisibility.status && <TableCell>
           <DiscountStatusBadge status={discount.status} />
-        </TableCell>
-      )}
+        </TableCell>}
 
-      {columnVisibility.combinations && (
-        <TableCell>{highlightText(discount.combinations)}</TableCell>
-      )}
+      {columnVisibility.combinations && <TableCell>{highlightText(discount.combinations)}</TableCell>}
 
-      {columnVisibility.used && (
-        <TableCell className="text-right">{discount.used}</TableCell>
-      )}
+      {columnVisibility.used && <TableCell className="text-right">{discount.used}</TableCell>}
 
-      {columnVisibility.actions && (
-        <TableCell className="w-[50px]">
+      {columnVisibility.actions && <TableCell className="w-[50px] text-center">
           <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
             <DropdownMenuTrigger asChild>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className={cn(
-                  "h-8 w-8 p-0 transition-colors", 
-                  isDropdownOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]"
-                )}
-              >
+              <Button variant="ghost" size="icon" className={cn("h-8 w-8 p-0 transition-colors", isDropdownOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]")}>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -100,8 +71,6 @@ export const DiscountsTableRow = ({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </TableCell>
-      )}
-    </TableRow>
-  );
+        </TableCell>}
+    </TableRow>;
 };
