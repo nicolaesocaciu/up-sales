@@ -12,11 +12,9 @@ import Content from "./pages/Content";
 import Marketing from "./pages/Marketing";
 import Discounts from "./pages/Discounts";
 import Settings from "./pages/Settings";
-import Help from "./pages/Help";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { migrateCustomersData } from "./utils/migrateCustomersData";
-import Sidebar from "./components/layout/Sidebar";
 
 const queryClient = new QueryClient();
 
@@ -34,23 +32,17 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="flex">
-            <Sidebar />
-            <div className="flex-1 ml-[68px] md:ml-56">
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/customers" element={<Customers />} />
-                <Route path="/content" element={<Content />} />
-                <Route path="/marketing" element={<Marketing />} />
-                <Route path="/discounts" element={<Discounts />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/help" element={<Help />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </div>
-          </div>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/customers" element={<Customers />} />
+            <Route path="/content" element={<Content />} />
+            <Route path="/marketing" element={<Marketing />} />
+            <Route path="/discounts" element={<Discounts />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
