@@ -126,7 +126,7 @@ export const AdsBarChart = ({
             <div className="text-2xl font-semibold">{totals.clicks.toLocaleString()}</div>
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-[134px]">
               <div className="w-3 h-3 rounded-sm bg-[#0EA5E9]"></div>
               <div className="text-sm text-gray-500">Total impressions</div>
             </div>
