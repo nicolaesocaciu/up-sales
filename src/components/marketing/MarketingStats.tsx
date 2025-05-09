@@ -38,14 +38,29 @@ export const MarketingStats = () => {
     engagement: [] as { value: number }[]
   });
   
-  // Generate the chart data on initial render
+  // Generate new chart data every 5 seconds
   useEffect(() => {
+    // Generate initial data
+    generateNewChartData();
+    
+    // Set up interval to regenerate data
+    const intervalId = setInterval(() => {
+      generateNewChartData();
+    }, 5000);
+    
+    // Clean up interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+  
+  // Function to generate new chart data
+  const generateNewChartData = () => {
+    console.log("Generating new chart data");
     setChartData({
       leadGeneration: generateChartData(10, "up", 1000, 2300),
       salesConversion: generateChartData(10, "down", 390, 600),
       engagement: generateChartData(10, "up", 5000, 9100)
     });
-  }, []);
+  };
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
