@@ -76,7 +76,7 @@ export const ContractsTable = () => {
             </TableHead>
             <TableHead className="w-[200px]">Created by</TableHead>
             <TableHead>Contract value</TableHead>
-            <TableHead className="text-right rounded-r-[8px] w-[50px]">Actions</TableHead>
+            <TableHead className="text-center rounded-r-[8px] w-[50px]">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -85,7 +85,7 @@ export const ContractsTable = () => {
               <TableCell>{contract.date}</TableCell>
               <TableCell>{contract.createdBy}</TableCell>
               <TableCell>{contract.value}</TableCell>
-              <TableCell className="text-center">
+              <TableCell className="text-center w-[50px]">
                 <DropdownMenu open={isDropdownOpen === contract.id} onOpenChange={open => setIsDropdownOpen(open ? contract.id : null)}>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className={`transition-colors ${isDropdownOpen === contract.id ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}>

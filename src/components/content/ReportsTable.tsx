@@ -69,7 +69,7 @@ export const ReportsTable = () => {
               </div>
             </TableHead>
             <TableHead>Created by</TableHead>
-            <TableHead className="text-right rounded-r-[8px] w-[50px]">Actions</TableHead>
+            <TableHead className="text-center rounded-r-[8px] w-[50px]">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -77,7 +77,7 @@ export const ReportsTable = () => {
               <TableCell className="text-[#116fae]">{report.name}</TableCell>
               <TableCell>{report.date}</TableCell>
               <TableCell>{report.createdBy}</TableCell>
-              <TableCell className="text-center">
+              <TableCell className="text-center w-[50px]">
                 <DropdownMenu open={isDropdownOpen === report.id} onOpenChange={open => setIsDropdownOpen(open ? report.id : null)}>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className={`transition-colors ${isDropdownOpen === report.id ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}>
