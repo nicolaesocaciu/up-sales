@@ -1,6 +1,7 @@
 
 import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 export const BetaPrompt = () => {
   return <div className="px-8">
       <div className="rounded-[16px] p-6 bg-[#116fae] ">

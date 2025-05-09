@@ -19,12 +19,6 @@ const Products = () => {
           <Button 
             onClick={() => setShowAddDialog(true)} 
             className="gap-2"
-            style={{
-              border: "1px solid #2D7048",
-              backgroundColor: "#2D7048",
-              boxShadow: "0px 2px 4px 0px rgba(78, 156, 84, 0.20)",
-              borderRadius: "8px"
-            }}
           >
             <Plus className="h-4 w-4" />
             Add product

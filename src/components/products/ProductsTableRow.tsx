@@ -1,3 +1,4 @@
+
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -84,7 +85,7 @@ export const ProductsTableRow = ({
           <TableCell>
             <button
               onClick={() => setSelectedProduct(product)}
-              className="flex items-center gap-3 text-primary hover:underline"
+              className="flex items-center gap-3 text-[#116fae] hover:underline"
             >
               <img
                 src={product.thumbnail}

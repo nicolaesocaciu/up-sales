@@ -30,7 +30,7 @@ export const ProductTableRow = ({ product, onViewProduct }: ProductTableRowProps
             ...product,
             thumbnail: getHighResImage(product.thumbnail)
           })}
-          className="flex items-center gap-3 text-primary hover:underline"
+          className="flex items-center gap-3 text-[#116fae] hover:underline"
         >
           <img
             src={product.thumbnail}
