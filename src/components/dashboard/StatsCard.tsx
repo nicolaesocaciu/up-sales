@@ -26,12 +26,8 @@ export const StatsCard = ({
       <div className="flex flex-col gap-8">
         <h3 className="font-regular text-gray-500">{title}</h3>
         <div className="flex flex-col gap-1">
-          <p className="text-2xl font-semibold text-text-dark">{value}</p>
-          {compareText && (
-            <p className="text-sm text-gray-500">{compareText}</p>
-          )}
-          <div className="flex justify-between items-center mt-2">
-            <div></div>
+          <div className="flex items-baseline justify-between">
+            <p className="text-2xl font-semibold text-text-dark">{value}</p>
             <TooltipProvider delayDuration={0}>
               <Tooltip>
                 <TooltipTrigger>
@@ -46,6 +42,9 @@ export const StatsCard = ({
               </Tooltip>
             </TooltipProvider>
           </div>
+          {compareText && (
+            <p className="text-sm text-gray-500">{compareText}</p>
+          )}
         </div>
       </div>
     </Card>;
