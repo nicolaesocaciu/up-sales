@@ -163,7 +163,7 @@ export const AdsBarChart = ({
             }} axisLine={{
               stroke: '#E5E7EB'
             }} />
-              {/* <ChartTooltip content={<ChartTooltipContent />} /> */}
+              <ChartTooltip content={<ChartTooltipContent />} />
               <Bar dataKey="impressions" fill={chartConfig.impressions.color} stackId="stack" radius={[0, 0, 0, 0]} />
               <Bar dataKey="clicks" fill={chartConfig.clicks.color} stackId="stack" radius={[4, 4, 0, 0]} />
               <ChartLegend content={<ChartLegendContent />} verticalAlign="top" align="right" />
