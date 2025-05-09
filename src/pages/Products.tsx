@@ -43,18 +43,6 @@ const Products = () => {
                 All products
               </TabsTrigger>
               <TabsTrigger 
-                value="Featured"
-                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
-              >
-                Featured
-              </TabsTrigger>
-              <TabsTrigger 
-                value="New arrivals"
-                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
-              >
-                New arrivals
-              </TabsTrigger>
-              <TabsTrigger 
                 value="Out of stock"
                 className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
               >
