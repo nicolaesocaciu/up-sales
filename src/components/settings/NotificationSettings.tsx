@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
@@ -7,7 +6,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { toast } from "sonner";
-
 export const NotificationSettings = () => {
   const [newLeads, setNewLeads] = useState(true);
   const [leadUpdates, setLeadUpdates] = useState(true);
@@ -17,17 +15,13 @@ export const NotificationSettings = () => {
   const [salesTargets, setSalesTargets] = useState(false);
   const [customerFeedback, setCustomerFeedback] = useState(true);
   const [dailyDigest, setDailyDigest] = useState(true);
-  
   const [notificationMethod, setNotificationMethod] = useState("email-app");
   const [emailFrequency, setEmailFrequency] = useState("realtime");
-
   const handleSave = () => {
     toast.success("Notification settings saved successfully");
   };
-
-  return (
-    <div className="space-y-6">
-      <Card>
+  return <div className="space-y-6">
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Notification Preferences</CardTitle>
           <CardDescription>
@@ -54,8 +48,7 @@ export const NotificationSettings = () => {
             </div>
           </RadioGroup>
 
-          {notificationMethod.includes("email") && (
-            <div className="space-y-2">
+          {notificationMethod.includes("email") && <div className="space-y-2">
               <Label htmlFor="email-frequency">Email Frequency</Label>
               <Select value={emailFrequency} onValueChange={setEmailFrequency}>
                 <SelectTrigger id="email-frequency">
@@ -68,12 +61,11 @@ export const NotificationSettings = () => {
                   <SelectItem value="weekly">Weekly digest</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
-          )}
+            </div>}
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Sales Activities</CardTitle>
           <CardDescription>
@@ -88,11 +80,7 @@ export const NotificationSettings = () => {
                 Get notified when new leads are added to the system
               </p>
             </div>
-            <Switch 
-              id="new-leads" 
-              checked={newLeads}
-              onCheckedChange={setNewLeads}
-            />
+            <Switch id="new-leads" checked={newLeads} onCheckedChange={setNewLeads} />
           </div>
           
           <div className="flex items-center justify-between">
@@ -102,11 +90,7 @@ export const NotificationSettings = () => {
                 Get notified when lead status changes
               </p>
             </div>
-            <Switch 
-              id="lead-updates" 
-              checked={leadUpdates}
-              onCheckedChange={setLeadUpdates}
-            />
+            <Switch id="lead-updates" checked={leadUpdates} onCheckedChange={setLeadUpdates} />
           </div>
           
           <div className="flex items-center justify-between">
@@ -116,11 +100,7 @@ export const NotificationSettings = () => {
                 Get notified when opportunity status changes
               </p>
             </div>
-            <Switch 
-              id="opportunity-status" 
-              checked={opportunityStatus}
-              onCheckedChange={setOpportunityStatus}
-            />
+            <Switch id="opportunity-status" checked={opportunityStatus} onCheckedChange={setOpportunityStatus} />
           </div>
           
           <div className="flex items-center justify-between">
@@ -130,11 +110,7 @@ export const NotificationSettings = () => {
                 Get notified about sales target achievements
               </p>
             </div>
-            <Switch 
-              id="sales-targets" 
-              checked={salesTargets}
-              onCheckedChange={setSalesTargets}
-            />
+            <Switch id="sales-targets" checked={salesTargets} onCheckedChange={setSalesTargets} />
           </div>
           
           <div className="flex items-center justify-between">
@@ -144,16 +120,12 @@ export const NotificationSettings = () => {
                 Get notified when customers provide feedback
               </p>
             </div>
-            <Switch 
-              id="customer-feedback" 
-              checked={customerFeedback}
-              onCheckedChange={setCustomerFeedback}
-            />
+            <Switch id="customer-feedback" checked={customerFeedback} onCheckedChange={setCustomerFeedback} />
           </div>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Team Collaboration</CardTitle>
           <CardDescription>
@@ -168,11 +140,7 @@ export const NotificationSettings = () => {
                 Get notified when you are assigned a task
               </p>
             </div>
-            <Switch 
-              id="task-assignments" 
-              checked={taskAssignments}
-              onCheckedChange={setTaskAssignments}
-            />
+            <Switch id="task-assignments" checked={taskAssignments} onCheckedChange={setTaskAssignments} />
           </div>
           
           <div className="flex items-center justify-between">
@@ -182,11 +150,7 @@ export const NotificationSettings = () => {
                 Get notified when you are mentioned in comments
               </p>
             </div>
-            <Switch 
-              id="mentions" 
-              checked={mentions}
-              onCheckedChange={setMentions}
-            />
+            <Switch id="mentions" checked={mentions} onCheckedChange={setMentions} />
           </div>
           
           <div className="flex items-center justify-between">
@@ -196,17 +160,12 @@ export const NotificationSettings = () => {
                 Receive a daily summary of all team activities
               </p>
             </div>
-            <Switch 
-              id="daily-digest" 
-              checked={dailyDigest}
-              onCheckedChange={setDailyDigest}
-            />
+            <Switch id="daily-digest" checked={dailyDigest} onCheckedChange={setDailyDigest} />
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
           <Button onClick={handleSave}>Save Changes</Button>
         </CardFooter>
       </Card>
-    </div>
-  );
+    </div>;
 };

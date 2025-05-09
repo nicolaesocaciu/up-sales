@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { toast } from "sonner";
-
 export const GeneralSettings = () => {
   const [companyName, setCompanyName] = useState("Acme Corp");
   const [emailDomain, setEmailDomain] = useState("acmecorp.com");
@@ -16,14 +14,11 @@ export const GeneralSettings = () => {
   const [fiscalYear, setFiscalYear] = useState("January");
   const [currency, setCurrency] = useState("USD");
   const [automateEmails, setAutomateEmails] = useState(true);
-
   const handleSave = () => {
     toast.success("General settings saved successfully");
   };
-
-  return (
-    <div className="space-y-6">
-      <Card>
+  return <div className="space-y-6">
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Company Information</CardTitle>
           <CardDescription>
@@ -34,25 +29,17 @@ export const GeneralSettings = () => {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="company-name">Company Name</Label>
-              <Input 
-                id="company-name" 
-                value={companyName} 
-                onChange={(e) => setCompanyName(e.target.value)}
-              />
+              <Input id="company-name" value={companyName} onChange={e => setCompanyName(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email-domain">Email Domain</Label>
-              <Input 
-                id="email-domain" 
-                value={emailDomain} 
-                onChange={(e) => setEmailDomain(e.target.value)}
-              />
+              <Input id="email-domain" value={emailDomain} onChange={e => setEmailDomain(e.target.value)} />
             </div>
           </div>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Regional Settings</CardTitle>
           <CardDescription>
@@ -137,7 +124,7 @@ export const GeneralSettings = () => {
         </CardFooter>
       </Card>
 
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Automation Settings</CardTitle>
           <CardDescription>
@@ -152,17 +139,12 @@ export const GeneralSettings = () => {
                 Send automatic follow-up emails to customers after specific actions
               </p>
             </div>
-            <Switch 
-              id="automate-emails" 
-              checked={automateEmails}
-              onCheckedChange={setAutomateEmails}
-            />
+            <Switch id="automate-emails" checked={automateEmails} onCheckedChange={setAutomateEmails} />
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
           <Button onClick={handleSave}>Save Changes</Button>
         </CardFooter>
       </Card>
-    </div>
-  );
+    </div>;
 };

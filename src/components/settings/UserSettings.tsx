@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,7 +6,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { toast } from "sonner";
-
 export const UserSettings = () => {
   const [firstName, setFirstName] = useState("John");
   const [lastName, setLastName] = useState("Doe");
@@ -16,19 +14,15 @@ export const UserSettings = () => {
   const [position, setPosition] = useState("Sales Manager");
   const [department, setDepartment] = useState("Sales");
   const [language, setLanguage] = useState("english");
-
   const handleSave = () => {
     toast.success("User profile saved successfully");
   };
-
   const handleUpload = () => {
     toast.success("Profile picture upload initiated");
     // In a real implementation, this would open a file picker
   };
-
-  return (
-    <div className="space-y-6">
-      <Card>
+  return <div className="space-y-6">
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Profile Information</CardTitle>
           <CardDescription>
@@ -47,39 +41,22 @@ export const UserSettings = () => {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="first-name">First Name</Label>
-              <Input 
-                id="first-name" 
-                value={firstName} 
-                onChange={(e) => setFirstName(e.target.value)} 
-              />
+              <Input id="first-name" value={firstName} onChange={e => setFirstName(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="last-name">Last Name</Label>
-              <Input 
-                id="last-name" 
-                value={lastName} 
-                onChange={(e) => setLastName(e.target.value)} 
-              />
+              <Input id="last-name" value={lastName} onChange={e => setLastName(e.target.value)} />
             </div>
           </div>
           
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input 
-                id="email" 
-                type="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-              />
+              <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <Input 
-                id="phone" 
-                value={phone} 
-                onChange={(e) => setPhone(e.target.value)} 
-              />
+              <Input id="phone" value={phone} onChange={e => setPhone(e.target.value)} />
             </div>
           </div>
         </CardContent>
@@ -88,7 +65,7 @@ export const UserSettings = () => {
         </CardFooter>
       </Card>
 
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Work Information</CardTitle>
           <CardDescription>
@@ -99,11 +76,7 @@ export const UserSettings = () => {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="position">Position</Label>
-              <Input 
-                id="position" 
-                value={position} 
-                onChange={(e) => setPosition(e.target.value)} 
-              />
+              <Input id="position" value={position} onChange={e => setPosition(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="department">Department</Label>
@@ -128,7 +101,7 @@ export const UserSettings = () => {
         </CardFooter>
       </Card>
 
-      <Card>
+      <Card className="bg-white">
         <CardHeader>
           <CardTitle>Interface Preferences</CardTitle>
           <CardDescription>
@@ -157,6 +130,5 @@ export const UserSettings = () => {
           <Button onClick={handleSave}>Save Changes</Button>
         </CardFooter>
       </Card>
-    </div>
-  );
+    </div>;
 };
