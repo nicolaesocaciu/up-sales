@@ -34,11 +34,9 @@ export const ProbabilitySlider = ({ stockPrediction }: ProbabilitySliderProps) =
         value={[value]}
         disabled
         className="cursor-default"
-        styles={{
-          range: {
-            backgroundColor: color,
-          }
-        }}
+        style={{
+          "--slider-range-color": color
+        } as React.CSSProperties}
       />
     </div>
   );
