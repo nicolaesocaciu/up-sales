@@ -137,7 +137,7 @@ export const AdsBarChart = ({
             }}></div>
               <div className="text-sm text-gray-500">Total clicks</div>
             </div>
-            <div className="text-2xl font-semibold ml-6">{totals.clicks.toLocaleString()}</div>
+            <div className="text-2xl font-semibold ml-5">{totals.clicks.toLocaleString()}</div>
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -146,7 +146,7 @@ export const AdsBarChart = ({
             }}></div>
               <div className="text-sm text-gray-500 w-[80px]">Total impressions</div>
             </div>
-            <div className="text-2xl font-semibold ml-6">{totals.impressions.toLocaleString()}</div>
+            <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div>
           </div>
         </div>
         <div className="h-[200px]">
