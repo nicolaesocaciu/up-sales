@@ -99,7 +99,7 @@ export const ReportsTable = () => {
                     <Button 
                       variant="ghost" 
                       size="icon"
-                      className={`transition-colors ${(hoveredRow === report.id || isDropdownOpen === report.id) ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
+                      className={`transition-colors ${isDropdownOpen === report.id ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
                     >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
