@@ -1,8 +1,6 @@
 
 import { Table, TableBody } from "@/components/ui/table";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TableSkeleton } from "@/components/ui/table-skeleton";
 import { highlightText } from "@/utils/textHighlighter";
@@ -90,13 +88,6 @@ export const MarketingCampaignsTable = () => {
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <Button 
-          onClick={() => setShowAddDialog(true)} 
-          className="flex items-center gap-2 border border-[#8A8A8A] bg-[#FFFFFF] hover:border-[#1482CC] hover:bg-[#D2EAFA] active:border-[#8A8A8A] active:bg-[#DADADA] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] rounded-[8px]"
-        >
-          <Plus className="h-4 w-4" />
-          New campaign
-        </Button>
       </div>
 
       <div className="bg-white rounded-xl px-6">
@@ -148,3 +139,4 @@ export const MarketingCampaignsTable = () => {
     </div>
   );
 };
+
