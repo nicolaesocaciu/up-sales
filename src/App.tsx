@@ -12,28 +12,43 @@ import Content from "./pages/Content";
 import Marketing from "./pages/Marketing";
 import Discounts from "./pages/Discounts";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import { migrateCustomersData } from "./utils/migrateCustomersData";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/customers" element={<Customers />} />
-          <Route path="/content" element={<Content />} />
-          <Route path="/marketing" element={<Marketing />} />
-          <Route path="/discounts" element={<Discounts />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  useEffect(() => {
+    // Check if we've already migrated the data
+    const hasMigrated = localStorage.getItem('customersMigrated');
+    if (!hasMigrated) {
+      migrateCustomersData().then(() => {
+        // Mark as migrated so we don't do it again
+        localStorage.setItem('customersMigrated', 'true');
+      });
+    }
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/customers" element={<Customers />} />
+            <Route path="/content" element={<Content />} />
+            <Route path="/marketing" element={<Marketing />} />
+            <Route path="/discounts" element={<Discounts />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

@@ -1,17 +1,15 @@
 
 import { Table, TableBody } from "@/components/ui/table";
 import { useState, useMemo } from "react";
-import { Customer } from "@/types/customer";
 import { CustomersTableHeader } from "./CustomersTableHeader";
 import { CustomersTableRow } from "./CustomersTableRow";
 import { CustomersTablePagination } from "./CustomersTablePagination";
 import { CustomersTableColumns, ColumnVisibility } from "./CustomersTableColumns";
-import { useQuery } from "@tanstack/react-query";
-import { mockCustomers } from "@/data/mockCustomers";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ReactNode } from "react";
 import { TableSkeleton } from "@/components/ui/table-skeleton";
+import { useCustomersData } from "@/hooks/useCustomersData";
 
 const defaultColumnVisibility: ColumnVisibility = {
   customerId: true,
@@ -33,37 +31,11 @@ export const CustomersDataTable = () => {
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [customersPerPage, setCustomersPerPage] = useState(20);
 
-  const { data: customers = [], isLoading } = useQuery({
-    queryKey: ['customers', sortDirection],
-    queryFn: async () => {
-      // Simulate API call with mock data
-      return new Promise<Customer[]>((resolve) => {
-        setTimeout(() => {
-          resolve(mockCustomers);
-        }, 500);
-      });
-    },
+  // Use our custom hook to fetch and filter data
+  const { customers: sortedCustomers, isLoading } = useCustomersData({
+    searchQuery,
+    sortDirection
   });
-
-  const filteredCustomers = useMemo(() => {
-    return customers.filter((customer) => {
-      const searchLower = searchQuery.toLowerCase();
-      return searchQuery === "" || 
-        customer.name.toLowerCase().includes(searchLower) ||
-        customer.email.toLowerCase().includes(searchLower) ||
-        customer.company.toLowerCase().includes(searchLower) ||
-        customer.location.toLowerCase().includes(searchLower);
-    });
-  }, [customers, searchQuery]);
-
-  const sortedCustomers = useMemo(() => {
-    return [...filteredCustomers].sort((a, b) => {
-      // Sort by amount spent
-      const amountA = a.amountSpent;
-      const amountB = b.amountSpent;
-      return sortDirection === "asc" ? amountA - amountB : amountB - amountA;
-    });
-  }, [filteredCustomers, sortDirection]);
 
   const paginatedCustomers = useMemo(() => {
     const startIndex = (currentPage - 1) * customersPerPage;
@@ -150,7 +122,7 @@ export const CustomersDataTable = () => {
       </Table>
 
       <CustomersTablePagination
-        totalCustomers={filteredCustomers.length}
+        totalCustomers={sortedCustomers.length}
         currentPageSize={paginatedCustomers.length}
         currentPage={currentPage}
         onPageChange={setCurrentPage}

@@ -1,0 +1,62 @@
+
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Customer } from "@/types/customer";
+
+interface UseCustomersDataProps {
+  searchQuery: string;
+  sortDirection: "asc" | "desc";
+}
+
+export const useCustomersData = ({ searchQuery, sortDirection }: UseCustomersDataProps) => {
+  const { data: customers = [], isLoading, error } = useQuery({
+    queryKey: ['customers', sortDirection],
+    queryFn: async () => {
+      // Fetch customers from Supabase
+      const { data, error } = await supabase
+        .from('customers')
+        .select('*');
+
+      if (error) {
+        console.error("Error fetching customers:", error);
+        throw error;
+      }
+
+      // Transform the data to match our Customer type
+      return data.map((item): Customer => ({
+        id: item.id,
+        customerId: parseInt(item.customer_id.replace('#', '')),
+        name: item.name,
+        company: item.company,
+        email: item.email,
+        avatar: item.avatar || `https://randomuser.me/api/portraits/${Math.random() > 0.5 ? "men" : "women"}/${Math.floor(Math.random() * 100)}.jpg`,
+        location: item.location,
+        orders: item.orders === "N/A" ? "N/A" : parseInt(item.orders || "0"),
+        amountSpent: Number(item.amount_spent),
+        subscriptionStatus: item.subscription_status as any || "pending"
+      }));
+    },
+  });
+
+  const filteredCustomers = customers.filter((customer) => {
+    if (!searchQuery) return true;
+    
+    const searchLower = searchQuery.toLowerCase();
+    return customer.name.toLowerCase().includes(searchLower) ||
+      customer.email.toLowerCase().includes(searchLower) ||
+      customer.company.toLowerCase().includes(searchLower) ||
+      customer.location.toLowerCase().includes(searchLower);
+  });
+
+  const sortedCustomers = [...filteredCustomers].sort((a, b) => {
+    const amountA = a.amountSpent;
+    const amountB = b.amountSpent;
+    return sortDirection === "asc" ? amountA - amountB : amountB - amountA;
+  });
+
+  return {
+    customers: sortedCustomers,
+    isLoading,
+    error
+  };
+};
