@@ -16,13 +16,21 @@ const Products = () => {
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold text-text-dark">Products</h1>
-          <Button 
-            onClick={() => setShowAddDialog(true)} 
-            className="gap-2"
-          >
-            <Plus className="h-4 w-4" />
-            Add product
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline"
+              className="gap-2"
+            >
+              Export
+            </Button>
+            <Button 
+              onClick={() => setShowAddDialog(true)} 
+              className="gap-2"
+            >
+              <Plus className="h-4 w-4" />
+              Add product
+            </Button>
+          </div>
         </div>
 
         <div className="space-y-4">
