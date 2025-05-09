@@ -1,6 +1,6 @@
 
 import { TopBar } from "./TopBar";
-import { Sidebar } from "./Sidebar";
+import Sidebar from "./Sidebar"; // Changed from import { Sidebar } to import Sidebar
 import { useState, useEffect } from "react";
 
 const SIDEBAR_STATE_KEY = "sidebar-collapsed-state";

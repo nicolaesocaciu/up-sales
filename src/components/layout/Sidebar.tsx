@@ -78,21 +78,35 @@ const menuItems = [{
   path: "/help"
 }];
 
-export default function Sidebar() {
+// Define the prop types for the Sidebar component
+interface SidebarProps {
+  onCollapse?: (collapsed: boolean) => void;
+}
+
+const Sidebar = ({ onCollapse }: SidebarProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     // Check localStorage for saved state
     const savedState = localStorage.getItem(SIDEBAR_STATE_KEY);
     if (savedState) {
-      setIsCollapsed(savedState === 'true');
+      const collapsed = savedState === 'true';
+      setIsCollapsed(collapsed);
+      // Notify parent component if onCollapse prop exists
+      if (onCollapse) {
+        onCollapse(collapsed);
+      }
     }
-  }, []);
+  }, [onCollapse]);
 
   const toggleCollapse = () => {
     const newState = !isCollapsed;
     setIsCollapsed(newState);
     localStorage.setItem(SIDEBAR_STATE_KEY, String(newState));
+    // Notify parent component if onCollapse prop exists
+    if (onCollapse) {
+      onCollapse(newState);
+    }
   };
 
   return (
@@ -116,4 +130,6 @@ export default function Sidebar() {
       <BetaPrompt isCollapsed={isCollapsed} />
     </aside>
   );
-}
+};
+
+export default Sidebar; // Changed from export { Sidebar } to export default Sidebar
