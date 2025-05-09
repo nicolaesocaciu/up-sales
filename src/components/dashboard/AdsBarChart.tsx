@@ -147,7 +147,7 @@ export const AdsBarChart = ({
             }} className="w-3 h-3 rounded-sm"></div>
               <div className="text-sm text-[#494A4A]">Total impressions</div>
             </div>
-            <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div>
+            {/* <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div> */}
           </div>
         </div>
         <div className="">
