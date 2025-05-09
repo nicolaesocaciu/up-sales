@@ -68,7 +68,7 @@ export const ReportsTable = () => {
               <TableCell className="text-[#116fae]">{report.name}</TableCell>
               <TableCell>{report.date}</TableCell>
               <TableCell>{report.createdBy}</TableCell>
-              <TableCell className="text-right">
+              <TableCell className="text-center">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="h-8 w-8 p-0">
