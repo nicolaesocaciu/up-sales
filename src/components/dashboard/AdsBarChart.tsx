@@ -147,7 +147,7 @@ export const AdsBarChart = ({
             }} className="w-3 h-3 rounded-sm"></div>
               <div className="text-sm text-[#494A4A]">Total impressions</div>
             </div>
-            {/* <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div> */}
+            <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div>
           </div>
         </div>
         <div className="">
@@ -163,10 +163,10 @@ export const AdsBarChart = ({
             }} axisLine={{
               stroke: '#E5E7EB'
             }} />
-              {/* <ChartTooltip content={<ChartTooltipContent />} /> */}
+              <ChartTooltip content={<ChartTooltipContent />} />
               <Bar dataKey="impressions" fill={chartConfig.impressions.color} stackId="stack" radius={[0, 0, 0, 0]} />
               <Bar dataKey="clicks" fill={chartConfig.clicks.color} stackId="stack" radius={[4, 4, 0, 0]} />
-              <ChartLegend content={<ChartLegendContent />} verticalAlign="top" align="right" />
+              {/* <ChartLegend content={<ChartLegendContent />} verticalAlign="top" align="right" /> */}
             </BarChart>
           </ChartContainer>
         </div>
