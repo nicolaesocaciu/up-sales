@@ -68,7 +68,7 @@ export const SalesPieChart = ({
           </SelectContent>
         </Select>
       </div>
-      <div className="relative mb-6">
+      <div className="relative">
         <ChartContainer config={chartConfig} className="h-full">
           <PieChart>
             <Pie data={data} cx="50%" cy="50%" innerRadius={70} outerRadius={100} paddingAngle={4} dataKey="value" startAngle={-270} endAngle={90} nameKey="name">
