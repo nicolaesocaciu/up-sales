@@ -11,6 +11,7 @@ import Customers from "./pages/Customers";
 import Content from "./pages/Content";
 import Marketing from "./pages/Marketing";
 import Discounts from "./pages/Discounts";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { migrateCustomersData } from "./utils/migrateCustomersData";
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/content" element={<Content />} />
             <Route path="/marketing" element={<Marketing />} />
             <Route path="/discounts" element={<Discounts />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

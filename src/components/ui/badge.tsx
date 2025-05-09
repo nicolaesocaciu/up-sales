@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
@@ -15,34 +15,11 @@ const badgeVariants = cva(
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline:
-          "text-foreground",
-        success: 
-          "border-green-200 bg-green-100 text-green-800 hover:bg-green-200/80",
-        warning: 
-          "border-amber-200 bg-amber-100 text-amber-800 hover:bg-amber-200/80",
-        info: 
-          "border-blue-200 bg-blue-100 text-blue-800 hover:bg-blue-200/80",
-        "stock-out": 
-          "border-red-200 bg-red-100 text-red-800 hover:bg-red-200/80",
-        "stock-low": 
-          "border-orange-200 bg-orange-100 text-orange-800 hover:bg-orange-200/80",
-        "stock-stable": 
-          "border-green-200 bg-green-100 text-green-800 hover:bg-green-200/80",
-        "stock-overstock": 
-          "border-blue-200 bg-blue-100 text-blue-800 hover:bg-blue-200/80",
-        "stock-insufficient": 
-          "border-gray-200 bg-gray-100 text-gray-800 hover:bg-gray-200/80",
-      },
-      size: {
-        default: "px-2.5 py-0.5 text-xs",
-        sm: "px-1.5 py-0.5 text-xs",
-        lg: "px-3 py-0.5 text-sm",
+        outline: "text-foreground",
       },
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
     },
   }
 )
@@ -51,9 +28,9 @@ export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
 
-function Badge({ className, variant, size, ...props }: BadgeProps) {
+function Badge({ className, variant, ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant, size }), className)} {...props} />
+    <div className={cn(badgeVariants({ variant }), className)} {...props} />
   )
 }
 
