@@ -56,7 +56,7 @@ export const DiscountsTableRow = ({
       {columnVisibility.actions && <TableCell className="w-[50px] text-center">
           <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className={cn("h-8 w-8 p-0 transition-colors", isDropdownOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]")}>
+              <Button variant="ghost" className={cn("h-8 w-8 p-0 transition-colors", isDropdownOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]")}>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
