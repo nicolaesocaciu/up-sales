@@ -19,14 +19,10 @@ const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
-    // Check if we've already migrated the data
-    const hasMigrated = localStorage.getItem('customersMigrated');
-    if (!hasMigrated) {
-      migrateCustomersData().then(() => {
-        // Mark as migrated so we don't do it again
-        localStorage.setItem('customersMigrated', 'true');
-      });
-    }
+    // Run migration on app start
+    migrateCustomersData().then(() => {
+      console.log("Customer data migration check completed");
+    });
   }, []);
 
   return (

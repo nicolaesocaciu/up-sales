@@ -15,13 +15,16 @@ export const useCustomersData = ({ searchQuery, sortDirection }: UseCustomersDat
       // Fetch customers from Supabase
       const { data, error } = await supabase
         .from('customers')
-        .select('*');
+        .select('*')
+        .order('amount_spent', { ascending: sortDirection === 'asc' });
 
       if (error) {
         console.error("Error fetching customers:", error);
         throw error;
       }
 
+      console.log(`Fetched ${data.length} customers from database`);
+      
       // Transform the data to match our Customer type
       return data.map((item): Customer => ({
         id: item.id,
@@ -48,14 +51,8 @@ export const useCustomersData = ({ searchQuery, sortDirection }: UseCustomersDat
       customer.location.toLowerCase().includes(searchLower);
   });
 
-  const sortedCustomers = [...filteredCustomers].sort((a, b) => {
-    const amountA = a.amountSpent;
-    const amountB = b.amountSpent;
-    return sortDirection === "asc" ? amountA - amountB : amountB - amountA;
-  });
-
   return {
-    customers: sortedCustomers,
+    customers: filteredCustomers,
     isLoading,
     error
   };

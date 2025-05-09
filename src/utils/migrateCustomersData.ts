@@ -7,6 +7,24 @@ export const migrateCustomersData = async () => {
   console.log("Starting migration of customer data to Supabase...");
   
   try {
+    // Check if we already have data in the database
+    const { count, error: countError } = await supabase
+      .from('customers')
+      .select('*', { count: 'exact', head: true });
+    
+    if (countError) {
+      console.error("Error checking existing customers:", countError);
+      return;
+    }
+    
+    console.log(`Found ${count} existing customer records`);
+    
+    // Only proceed if there are fewer than 90 records (suggesting additional records haven't been added yet)
+    if (count && count >= 90) {
+      console.log("Database already has sufficient customer records. Skipping migration.");
+      return;
+    }
+    
     // Convert mock customers to the database format
     const customersToInsert = mockCustomers.map(customer => ({
       id: customer.id,
@@ -91,10 +109,12 @@ export const migrateCustomersData = async () => {
     
     // Insert data in batches to avoid request size limitations
     const batchSize = 20;
+    let successfulBatches = 0;
+    
     for (let i = 0; i < allCustomers.length; i += batchSize) {
       const batch = allCustomers.slice(i, i + batchSize);
       
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('customers')
         .upsert(batch, { onConflict: 'id' });
       
@@ -102,11 +122,31 @@ export const migrateCustomersData = async () => {
         console.error(`Error inserting batch ${i / batchSize + 1}:`, error);
       } else {
         console.log(`Successfully inserted batch ${i / batchSize + 1}`);
+        successfulBatches++;
+      }
+    }
+    
+    // Get count after migration to verify
+    const { count: newCount, error: newCountError } = await supabase
+      .from('customers')
+      .select('*', { count: 'exact', head: true });
+      
+    if (newCountError) {
+      console.error("Error checking customers after migration:", newCountError);
+    } else {
+      console.log(`Database now has ${newCount} customer records`);
+      
+      if (newCount > count) {
+        toast.success(`Successfully added ${newCount - count} new customer records`);
       }
     }
     
     console.log("Migration completed successfully!");
-    toast.success("Successfully added 80 new customer records");
+    
+    // Mark as migrated only if we reached the expected number of records
+    if (newCount && newCount >= 90) {
+      localStorage.setItem('customersMigrated', 'true');
+    }
   } catch (error) {
     console.error("Migration failed:", error);
     toast.error("Failed to add customer records");
