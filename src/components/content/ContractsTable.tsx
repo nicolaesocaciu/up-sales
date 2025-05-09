@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -43,12 +42,10 @@ const contractsData = [{
   createdBy: "Noah Yamamoto",
   value: "$7,720"
 }];
-
 export const ContractsTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<number | null>(null);
-  
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
   };
@@ -59,15 +56,10 @@ export const ContractsTable = () => {
     const dateB = new Date(b.date.replace(/(\d+) ([A-Za-z]+) (\d+)/, "$2 $1, $3"));
     return sortDirection === "asc" ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
   });
-  
-  return (
-    <div className="w-full">
+  return <div className="w-full">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Contracts</h2>
-        <Button 
-          variant="outline"
-          className="flex items-center gap-2 border border-[#8A8A8A] bg-[#FFFFFF] hover:border-[#1482CC] hover:bg-[#D2EAFA] active:border-[#8A8A8A] active:bg-[#DADADA] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] rounded-[8px]"
-        >
+        <Button variant="outline" className="flex items-center h-[32px] gap-2 border border-[#8A8A8A] bg-[#FFFFFF] hover:border-[#1482CC] hover:bg-[#D2EAFA] active:border-[#8A8A8A] active:bg-[#DADADA] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] rounded-[8px]">
           <Plus className="h-4 w-4" />
           New contract
         </Button>
@@ -88,28 +80,15 @@ export const ContractsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sortedContracts.map(contract => (
-            <TableRow 
-              key={contract.id} 
-              className="h-16 hover:bg-[#E7F2F9]"
-              onMouseEnter={() => setHoveredRow(contract.id)}
-              onMouseLeave={() => setHoveredRow(null)}
-            >
+          {sortedContracts.map(contract => <TableRow key={contract.id} className="h-16 hover:bg-[#E7F2F9]" onMouseEnter={() => setHoveredRow(contract.id)} onMouseLeave={() => setHoveredRow(null)}>
               <TableCell className="text-[#116fae]">{contract.name}</TableCell>
               <TableCell>{contract.date}</TableCell>
               <TableCell>{contract.createdBy}</TableCell>
               <TableCell>{contract.value}</TableCell>
               <TableCell className="text-center">
-                <DropdownMenu 
-                  open={isDropdownOpen === contract.id}
-                  onOpenChange={(open) => setIsDropdownOpen(open ? contract.id : null)}
-                >
+                <DropdownMenu open={isDropdownOpen === contract.id} onOpenChange={open => setIsDropdownOpen(open ? contract.id : null)}>
                   <DropdownMenuTrigger asChild>
-                    <Button 
-                      variant="ghost" 
-                      size="icon"
-                      className={`transition-colors ${isDropdownOpen === contract.id ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
-                    >
+                    <Button variant="ghost" size="icon" className={`transition-colors ${isDropdownOpen === contract.id ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}>
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
@@ -130,10 +109,8 @@ export const ContractsTable = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableCell>
-            </TableRow>
-          ))}
+            </TableRow>)}
         </TableBody>
       </Table>
-    </div>
-  );
+    </div>;
 };
