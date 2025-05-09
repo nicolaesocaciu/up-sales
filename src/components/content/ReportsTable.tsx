@@ -41,6 +41,7 @@ const reportsData = [{
 export const ReportsTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<number | null>(null);
   
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
@@ -57,7 +58,9 @@ export const ReportsTable = () => {
     <div className="w-full">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Reports</h2>
-        <Button variant="outline" className="flex items-center gap-2">
+        <Button 
+          className="flex items-center gap-2 border border-[#0D5788] bg-[#0D5788] text-white hover:bg-[#124D77] hover:border-[#124D77] active:bg-[#1B384C] active:border-[#1B384C] rounded-[8px]"
+        >
           <Plus className="h-4 w-4" />
           New report
         </Button>
@@ -80,7 +83,7 @@ export const ReportsTable = () => {
           {sortedReports.map(report => (
             <TableRow 
               key={report.id} 
-              className="h-16"
+              className="h-16 hover:bg-[#E7F2F9]"
               onMouseEnter={() => setHoveredRow(report.id)}
               onMouseLeave={() => setHoveredRow(null)}
             >
@@ -88,12 +91,15 @@ export const ReportsTable = () => {
               <TableCell>{report.date}</TableCell>
               <TableCell>{report.createdBy}</TableCell>
               <TableCell className="text-center">
-                <DropdownMenu>
+                <DropdownMenu 
+                  open={isDropdownOpen === report.id}
+                  onOpenChange={(open) => setIsDropdownOpen(open ? report.id : null)}
+                >
                   <DropdownMenuTrigger asChild>
                     <Button 
                       variant="ghost" 
                       size="icon"
-                      className={`transition-colors ${hoveredRow === report.id ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
+                      className={`transition-colors ${(hoveredRow === report.id || isDropdownOpen === report.id) ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
                     >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />

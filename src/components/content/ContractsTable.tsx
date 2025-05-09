@@ -47,6 +47,7 @@ const contractsData = [{
 export const ContractsTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<number | null>(null);
   
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
@@ -63,7 +64,9 @@ export const ContractsTable = () => {
     <div className="w-full">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Contracts</h2>
-        <Button variant="outline" className="flex items-center gap-2">
+        <Button 
+          className="flex items-center gap-2 border border-[#0D5788] bg-[#0D5788] text-white hover:bg-[#124D77] hover:border-[#124D77] active:bg-[#1B384C] active:border-[#1B384C] rounded-[8px]"
+        >
           <Plus className="h-4 w-4" />
           New contract
         </Button>
@@ -87,7 +90,7 @@ export const ContractsTable = () => {
           {sortedContracts.map(contract => (
             <TableRow 
               key={contract.id} 
-              className="h-16"
+              className="h-16 hover:bg-[#E7F2F9]"
               onMouseEnter={() => setHoveredRow(contract.id)}
               onMouseLeave={() => setHoveredRow(null)}
             >
@@ -96,12 +99,15 @@ export const ContractsTable = () => {
               <TableCell>{contract.createdBy}</TableCell>
               <TableCell>{contract.value}</TableCell>
               <TableCell className="text-center">
-                <DropdownMenu>
+                <DropdownMenu 
+                  open={isDropdownOpen === contract.id}
+                  onOpenChange={(open) => setIsDropdownOpen(open ? contract.id : null)}
+                >
                   <DropdownMenuTrigger asChild>
                     <Button 
                       variant="ghost" 
                       size="icon"
-                      className={`transition-colors ${hoveredRow === contract.id ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
+                      className={`transition-colors ${(hoveredRow === contract.id || isDropdownOpen === contract.id) ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
                     >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
