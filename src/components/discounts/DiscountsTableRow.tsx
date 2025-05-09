@@ -9,6 +9,7 @@ import { DiscountStatusBadge } from "./DiscountStatusBadge";
 import { MoreHorizontal } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+
 interface DiscountsTableRowProps {
   discount: Discount;
   columnVisibility: ColumnVisibility;
@@ -16,6 +17,7 @@ interface DiscountsTableRowProps {
   onSelect: (id: string, checked: boolean) => void;
   highlightText: (text: string) => React.ReactNode;
 }
+
 export const DiscountsTableRow = ({
   discount,
   columnVisibility,
@@ -24,6 +26,7 @@ export const DiscountsTableRow = ({
   highlightText
 }: DiscountsTableRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return <TableRow className={cn("h-14 transition-colors", isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]")}>
       <TableCell className="w-[40px]">
         <Checkbox checked={selected} onCheckedChange={checked => onSelect(discount.id, checked === true)} className="rounded-[4px]" />
@@ -56,7 +59,7 @@ export const DiscountsTableRow = ({
       {columnVisibility.actions && <TableCell className="w-[50px] text-center">
           <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className={cn("h-8 w-8 p-0 transition-colors", isDropdownOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]")}>
+              <Button variant="ghost" className={cn("h-10 w-10 p-0 transition-colors", isDropdownOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]")}>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
