@@ -1,6 +1,8 @@
+
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
 import { cn } from "@/lib/utils";
 import { Grip } from "lucide-react";
 
@@ -35,21 +37,20 @@ export const SalesPieChart = ({
     "July", "August", "September", "October", "November", "December"
   ];
 
-  // Custom tooltip formatter to include percentage
-  const CustomTooltip = ({
-    active,
-    payload
-  }: any) => {
-    if (active && payload && payload.length) {
-      const percentage = (payload[0].value / total * 100).toFixed(0);
-      return <div className="bg-[#1F2228] px-3 py-2 rounded" style={{
-        zIndex: 9999
-      }}>
-          <p className="text-white">{`${payload[0].name} - ${percentage}%`}</p>
-          <p className="text-white">${payload[0].value.toLocaleString()}</p>
-        </div>;
+  // Configure chart colors for the shadcn chart component
+  const chartConfig = {
+    other: {
+      color: "#EF4444"
+    },
+    tablet: {
+      color: "#F59E0B"
+    },
+    mobile: {
+      color: "#22C55E"
+    },
+    website: {
+      color: "#3B82F6"
     }
-    return null;
   };
 
   return (
@@ -77,16 +78,16 @@ export const SalesPieChart = ({
         </Select>
       </div>
       <div className="h-[260px] relative mb-6">
-        <ResponsiveContainer width="100%" height="100%">
+        <ChartContainer config={chartConfig} className="h-full">
           <PieChart>
             <Pie data={data} cx="50%" cy="50%" innerRadius={70} outerRadius={100} paddingAngle={4} dataKey="value" startAngle={-270} endAngle={90}>
-              {data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)}
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
             </Pie>
-            <Tooltip content={<CustomTooltip />} wrapperStyle={{
-            zIndex: 9999
-          }} />
+            <ChartTooltip content={<CustomTooltipContent />} />
           </PieChart>
-        </ResponsiveContainer>
+        </ChartContainer>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <div className="text-gray-500">Total</div>
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
@@ -109,4 +110,22 @@ export const SalesPieChart = ({
       </div>
     </Card>
   );
+};
+
+// Custom tooltip component
+const CustomTooltipContent = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0]?.payload;
+    const total = 669109; // Total from the data
+    const percentage = (data.value / total * 100).toFixed(0);
+    
+    return (
+      <div className="bg-[#1F2228] px-3 py-2 rounded">
+        <p className="text-white">{`${data.name} - ${percentage}%`}</p>
+        <p className="text-white">${data.value.toLocaleString()}</p>
+      </div>
+    );
+  }
+  
+  return null;
 };

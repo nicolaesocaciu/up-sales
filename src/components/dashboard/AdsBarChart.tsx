@@ -1,8 +1,11 @@
+
 import { useState } from "react";
-import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
 import { cn } from "@/lib/utils";
 import { Grip } from "lucide-react";
+
 const weekData = [{
   name: "Mon",
   clicks: 2100,
@@ -32,6 +35,7 @@ const weekData = [{
   clicks: 2600,
   impressions: 1400
 }];
+
 const todayData = [{
   name: "9AM",
   clicks: 800,
@@ -49,6 +53,7 @@ const todayData = [{
   clicks: 900,
   impressions: 600
 }];
+
 const monthData = [{
   name: "1st Week",
   clicks: 15000,
@@ -66,13 +71,16 @@ const monthData = [{
   clicks: 20000,
   impressions: 15000
 }];
+
 interface AdsBarChartProps {
   isEditMode?: boolean;
 }
+
 export const AdsBarChart = ({
   isEditMode
 }: AdsBarChartProps) => {
   const [selectedPeriod, setSelectedPeriod] = useState("week");
+  
   const getData = () => {
     switch (selectedPeriod) {
       case "today":
@@ -85,6 +93,7 @@ export const AdsBarChart = ({
         return weekData;
     }
   };
+  
   const getTotals = () => {
     const data = getData();
     return {
@@ -92,8 +101,22 @@ export const AdsBarChart = ({
       impressions: data.reduce((sum, item) => sum + item.impressions, 0)
     };
   };
+  
   const currentData = getData();
   const totals = getTotals();
+  
+  // Define chart config for shadcn chart component
+  const chartConfig = {
+    clicks: {
+      label: "Clicks",
+      color: "#33C3F0"
+    },
+    impressions: {
+      label: "Impressions",
+      color: "#0EA5E9"
+    }
+  };
+
   return <div className="bg-white rounded-[24px] p-6 h-full">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
@@ -134,7 +157,7 @@ export const AdsBarChart = ({
           </div>
         </div>
         <div className="h-[200px]">
-          <ResponsiveContainer width="100%" height="100%">
+          <ChartContainer config={chartConfig} className="h-full">
             <BarChart data={currentData} barGap={8}>
               <XAxis dataKey="name" tickLine={false} style={{
               fontSize: '14px'
@@ -142,11 +165,11 @@ export const AdsBarChart = ({
               <YAxis tickLine={false} style={{
               fontSize: '14px'
             }} />
-              <Tooltip />
+              <ChartTooltip content={<ChartTooltipContent />} />
               <Bar dataKey="clicks" fill="#33C3F0" stackId="stack" />
               <Bar dataKey="impressions" fill="#0EA5E9" stackId="stack" />
             </BarChart>
-          </ResponsiveContainer>
+          </ChartContainer>
         </div>
       </div>
     </div>;
