@@ -63,7 +63,7 @@ export const ProductsTableRow = ({
     } else if (prediction === 'Overstock stock') {
       return <Badge variant="stock-overstock" className="">{prediction}</Badge>;
     } else {
-      return <Badge variant="stock-insufficient" className="font-normal">{prediction}</Badge>;
+      return <Badge variant="stock-insufficient" className="">{prediction}</Badge>;
     }
   };
   return <>
