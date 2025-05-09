@@ -143,7 +143,7 @@ export const AdsBarChart = ({
             <div className="flex gap-2">
               <div style={{
               backgroundColor: chartConfig.impressions.color
-            }} className="w-3 h-3 rounded-sm mt-1"></div>
+            }} className="w-3 h-3 rounded-sm pt-1"></div>
               <div className="text-sm text-gray-500 w-[80px]">Total impressions</div>
             </div>
             <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div>
