@@ -1,3 +1,4 @@
+
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ColumnVisibility } from "./MarketingCampaignsTableColumns";
 import { Campaign } from "@/types/campaign";
 import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+
 interface MarketingCampaignsTableRowProps {
   campaign: Campaign;
   columnVisibility: ColumnVisibility;
@@ -21,14 +24,16 @@ export const MarketingCampaignsTableRow = ({
   highlightText
 }: MarketingCampaignsTableRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
   const renderStatusBadge = (status: string) => {
     if (status === 'Sent') {
-      return <span className="">{status}</span>;
+      return <Badge variant="success" className="px-3">Sent</Badge>;
     } else if (status === 'Draft') {
-      return <span className="">{status}</span>;
+      return <Badge variant="warning" className="px-3">Draft</Badge>;
     }
     return status;
   };
+  
   return <TableRow className="h-12 hover:bg-[#E7F2F9]">
       <TableCell>
         <Checkbox checked={selected} onCheckedChange={checked => onSelect(campaign.id, checked === true)} aria-label={`Select ${campaign.name}`} className="rounded-[4px]" />
