@@ -11,12 +11,10 @@ const Content = () => {
         
         <div className="space-y-4">
           <div className="bg-white rounded-xl p-6">
-            <h2 className="text-xl font-semibold mb-4">Reports</h2>
             <ReportsTable />
           </div>
           
           <div className="bg-white rounded-xl p-6">
-            <h2 className="text-xl font-semibold mb-4">Contracts</h2>
             <ContractsTable />
           </div>
         </div>

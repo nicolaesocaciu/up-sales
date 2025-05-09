@@ -1,7 +1,8 @@
+
 import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, ChevronUp, ChevronDown } from "lucide-react";
+import { MoreHorizontal, ChevronUp, ChevronDown, Plus } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 // Sample data for reports
@@ -36,8 +37,11 @@ const reportsData = [{
   date: "01 March 2025",
   createdBy: "Noah Yamamoto"
 }];
+
 export const ReportsTable = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  
   const toggleSortDirection = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
   };
@@ -48,7 +52,16 @@ export const ReportsTable = () => {
     const dateB = new Date(b.date.replace(/(\d+) ([A-Za-z]+) (\d+)/, "$2 $1, $3"));
     return sortDirection === "asc" ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
   });
-  return <div className="w-full">
+  
+  return (
+    <div className="w-full">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold">Reports</h2>
+        <Button variant="outline" className="flex items-center gap-2">
+          <Plus className="h-4 w-4" />
+          New report
+        </Button>
+      </div>
       <Table>
         <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
           <TableRow className="hover:bg-transparent border-none h-12">
@@ -64,28 +77,48 @@ export const ReportsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sortedReports.map(report => <TableRow key={report.id} className="h-16">
+          {sortedReports.map(report => (
+            <TableRow 
+              key={report.id} 
+              className="h-16"
+              onMouseEnter={() => setHoveredRow(report.id)}
+              onMouseLeave={() => setHoveredRow(null)}
+            >
               <TableCell className="text-[#116fae]">{report.name}</TableCell>
               <TableCell>{report.date}</TableCell>
               <TableCell>{report.createdBy}</TableCell>
               <TableCell className="text-center">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
+                    <Button 
+                      variant="ghost" 
+                      size="icon"
+                      className={`transition-colors ${hoveredRow === report.id || isOpen ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
+                    >
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-white">
-                    <DropdownMenuItem>View</DropdownMenuItem>
-                    <DropdownMenuItem>Download</DropdownMenuItem>
-                    <DropdownMenuItem>Share</DropdownMenuItem>
-                    <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+                  <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl bg-white z-[9999] shadow-lg" sideOffset={-10}>
+                    <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
+                      View
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
+                      Download
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
+                      Share
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600">
+                      Delete
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableCell>
-            </TableRow>)}
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
-    </div>;
+    </div>
+  );
 };
