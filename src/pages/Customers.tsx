@@ -12,7 +12,6 @@ const Customers = () => {
           <h1 className="text-2xl font-semibold text-text-dark">Customers</h1>
           <Button 
             className="gap-2"
-            variant="default"
           >
             <Plus className="h-4 w-4" />
             Add customer
