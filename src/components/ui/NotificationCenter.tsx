@@ -222,7 +222,7 @@ export const NotificationCenter: React.FC = () => {
         <Button variant="ghost" className="relative">
           <NotificationIcon />
           {unreadCount > 0 && (
-            <div className="absolute top-0 right-0 w-2 h-2 bg-[#CC334C] rounded-full border-2 border-[#252626]" />
+            <div className="absolute top-0 right-0 w-3 h-3 bg-[#CC334C] rounded-full border-2 border-[#252626]" />
           )}
         </Button>
       </DropdownMenuTrigger>
