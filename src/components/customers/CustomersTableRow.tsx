@@ -53,7 +53,7 @@ export const CustomersTableRow = ({
       {columnVisibility.email && <TableCell>{highlightText(customer.email)}</TableCell>}
       
       {columnVisibility.subscriptionStatus && <TableCell>
-          {customer.subscriptionStatus === "subscribed" && <Badge variant="success" className="rounded-full px-3 bg-green-100 border-green-200 text-green-800 hover:bg-green-200">
+          {customer.subscriptionStatus === "subscribed" && <Badge variant="success" className="rounded-[4px] px-3 bg-green-100 border-green-200 text-green-800 hover:bg-green-200">
               Subscribed
             </Badge>}
           {customer.subscriptionStatus === "not_subscribed" && <Badge variant="warning" className="rounded-full px-3 bg-red-100 border-red-200 text-red-800 hover:bg-red-200">
