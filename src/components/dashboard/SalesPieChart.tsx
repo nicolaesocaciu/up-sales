@@ -1,14 +1,11 @@
-
 import { Cell, Pie, PieChart } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../ui/chart";
 import { Grip } from "lucide-react";
-
 interface SalesPieChartProps {
   isEditMode?: boolean;
 }
-
 const data = [{
   name: "Other",
   value: 46837,
@@ -26,15 +23,11 @@ const data = [{
   value: 354629,
   color: "#3B82F6"
 }];
-
 export const SalesPieChart = ({
   isEditMode
 }: SalesPieChartProps) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
-  const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   // Configure chart colors with the Sapphire color scheme
   const chartConfig = {
@@ -55,16 +48,12 @@ export const SalesPieChart = ({
       color: "#2563eb" // Sapphire darker
     }
   };
-
-  return (
-    <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
+  return <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          {isEditMode && (
-            <div className="cursor-grab active:cursor-grabbing">
+          {isEditMode && <div className="cursor-grab active:cursor-grabbing">
               <Grip className="h-4 w-4 text-gray-400" />
-            </div>
-          )}
+            </div>}
           <h2 className="text-lg font-semibold">Sales by platform</h2>
         </div>
         <Select defaultValue="january">
@@ -72,38 +61,20 @@ export const SalesPieChart = ({
             <SelectValue placeholder="Select month" />
           </SelectTrigger>
           <SelectContent>
-            {months.map((month) => (
-              <SelectItem key={month.toLowerCase()} value={month.toLowerCase()}>
+            {months.map(month => <SelectItem key={month.toLowerCase()} value={month.toLowerCase()}>
                 {month}
-              </SelectItem>
-            ))}
+              </SelectItem>)}
           </SelectContent>
         </Select>
       </div>
       <div className="h-[260px] relative mb-6">
         <ChartContainer config={chartConfig} className="h-full">
           <PieChart>
-            <Pie 
-              data={data} 
-              cx="50%" 
-              cy="50%" 
-              innerRadius={70} 
-              outerRadius={100} 
-              paddingAngle={4} 
-              dataKey="value" 
-              startAngle={-270} 
-              endAngle={90}
-              nameKey="name"
-            >
+            <Pie data={data} cx="50%" cy="50%" innerRadius={70} outerRadius={100} paddingAngle={4} dataKey="value" startAngle={-270} endAngle={90} nameKey="name">
               {data.map((entry, index) => {
-                const key = entry.name.toLowerCase();
-                return (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={chartConfig[key as keyof typeof chartConfig]?.color || entry.color} 
-                  />
-                );
-              })}
+              const key = entry.name.toLowerCase();
+              return <Cell key={`cell-${index}`} fill={chartConfig[key as keyof typeof chartConfig]?.color || entry.color} />;
+            })}
             </Pie>
             <ChartTooltip content={<CustomTooltipContent />} />
           </PieChart>
@@ -115,15 +86,13 @@ export const SalesPieChart = ({
       </div>
       <div className="grid grid-cols-4 gap-x-4">
         {Object.entries(chartConfig).map(([key, config]) => {
-          const item = data.find(d => d.name.toLowerCase() === key);
-          if (!item) return null;
-          
-          return (
-            <div key={key} className="flex items-center space-x-2">
+        const item = data.find(d => d.name.toLowerCase() === key);
+        if (!item) return null;
+        return <div key={key} className="flex items-center space-x-2">
               <div className="flex items-center space-x-2">
                 <div className="w-[6px] h-[38px] rounded-[4px]" style={{
-                  backgroundColor: config.color
-                }} />
+              backgroundColor: config.color
+            }} />
                 <div>
                   <div className="text-sm text-gray-500">{config.label}</div>
                   <div className="text-base font-semibold">
@@ -131,28 +100,25 @@ export const SalesPieChart = ({
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            </div>;
+      })}
       </div>
-    </Card>
-  );
+    </Card>;
 };
 
 // Custom tooltip component
-const CustomTooltipContent = ({ active, payload }: any) => {
+const CustomTooltipContent = ({
+  active,
+  payload
+}: any) => {
   if (active && payload && payload.length) {
     const data = payload[0]?.payload;
     const total = 669109; // Total from the data
     const percentage = (data.value / total * 100).toFixed(0);
-    
-    return (
-      <div className="bg-[#1F2228] px-3 py-2 rounded">
+    return <div className="bg-[#1F2228] px-3 py-2 rounded">
         <p className="text-white">{`${data.name} - ${percentage}%`}</p>
         <p className="text-white">${data.value.toLocaleString()}</p>
-      </div>
-    );
+      </div>;
   }
-  
   return null;
 };
