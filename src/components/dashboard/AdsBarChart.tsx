@@ -104,16 +104,10 @@ export const AdsBarChart = ({
   const currentData = getData();
   const totals = getTotals();
   
-  // Define chart config with Sapphire color scheme
+  // Using default shadcn chart config
   const chartConfig = {
-    clicks: {
-      label: "Clicks",
-      color: "#3b82f6" // Sapphire
-    },
-    impressions: {
-      label: "Impressions",
-      color: "#93c5fd" // Sapphire lighter
-    }
+    clicks: { label: "Clicks" },
+    impressions: { label: "Impressions" }
   };
 
   return (
@@ -145,14 +139,14 @@ export const AdsBarChart = ({
         <div className="space-y-4">
           <div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: chartConfig.clicks.color }}></div>
+              <div className="w-3 h-3 rounded-sm"></div>
               <div className="text-sm text-gray-500">Total clicks</div>
             </div>
             <div className="text-2xl font-semibold">{totals.clicks.toLocaleString()}</div>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: chartConfig.impressions.color }}></div>
+              <div className="w-3 h-3 rounded-sm"></div>
               <div className="text-sm text-gray-500 w-[80px]">Total impressions</div>
             </div>
             <div className="text-2xl font-semibold">{totals.impressions.toLocaleString()}</div>
@@ -173,23 +167,9 @@ export const AdsBarChart = ({
                 axisLine={{ stroke: '#E5E7EB' }}
               />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar 
-                dataKey="impressions" 
-                fill={chartConfig.impressions.color} 
-                stackId="stack"
-                radius={[0, 0, 0, 0]} 
-              />
-              <Bar 
-                dataKey="clicks" 
-                fill={chartConfig.clicks.color} 
-                stackId="stack" 
-                radius={[4, 4, 0, 0]}
-              />
-              <ChartLegend 
-                content={<ChartLegendContent />}
-                verticalAlign="top"
-                align="right"
-              />
+              <Bar dataKey="impressions" stackId="stack" />
+              <Bar dataKey="clicks" stackId="stack" />
+              <ChartLegend content={<ChartLegendContent />} />
             </BarChart>
           </ChartContainer>
         </div>
