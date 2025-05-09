@@ -49,6 +49,7 @@ export const MarketingStats = () => {
         title="Lead generation"
         value="2,245"
         change={{ value: 28, trend: "up" }}
+        compareText="from 987 (last 30 days)"
         chart={
           <LineChart width={300} height={30} data={leadGenerationData}>
             <Line
@@ -66,6 +67,7 @@ export const MarketingStats = () => {
         title="Sales Conversion"
         value="393"
         change={{ value: 12, trend: "down" }}
+        compareText="from 568 (last 30 days)"
         chart={
           <LineChart width={300} height={30} data={salesConversionData}>
             <Line
@@ -83,6 +85,7 @@ export const MarketingStats = () => {
         title="Engagement"
         value="9,026"
         change={{ value: 67, trend: "up" }}
+        compareText="from 2,873 (last 30 days)"
         chart={
           <LineChart width={300} height={30} data={engagementData}>
             <Line
@@ -95,14 +98,6 @@ export const MarketingStats = () => {
           </LineChart>
         }
       />
-      
-      <div className="text-sm text-gray-500 col-span-1 md:col-span-3">
-        <div className="flex items-center gap-2">
-          <span>from 987 (last 30 days)</span>
-          <span className="mx-4">from 568 (last 30 days)</span>
-          <span>from 2,873 (last 30 days)</span>
-        </div>
-      </div>
     </div>
   );
 };
