@@ -129,8 +129,8 @@ export const AdsBarChart = ({
           </TabsList>
         </Tabs>
       </div>
-      <div className="grid grid-cols-[100px_1fr] gap-8">
-        <div className="space-y-4">
+      <div className="grid gap-8">
+        <div className="flex items-center">
           <div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-sm" style={{
@@ -141,16 +141,16 @@ export const AdsBarChart = ({
             <div className="text-2xl font-semibold ml-5">{totals.clicks.toLocaleString()}</div>
           </div>
           <div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <div style={{
               backgroundColor: chartConfig.impressions.color
-            }} className="w-3 h-3 rounded-sm pt-1"></div>
-              <div className="text-sm text-[#494A4A] w-[80px]">Total impressions</div>
+            }} className="w-3 h-3 rounded-sm"></div>
+              <div className="text-sm text-[#494A4A]">Total impressions</div>
             </div>
             <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div>
           </div>
         </div>
-        <div className="h-[200px]">
+        <div className="">
           <ChartContainer config={chartConfig} className="h-full">
             <BarChart data={currentData} barGap={0}>
               <XAxis dataKey="name" tickLine={false} style={{
