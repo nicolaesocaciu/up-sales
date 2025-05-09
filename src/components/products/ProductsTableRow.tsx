@@ -58,15 +58,15 @@ export const ProductsTableRow = ({
 
   const getStockPredictionBadge = (prediction: string) => {
     if (prediction.startsWith('Out of stock in')) {
-      return <Badge variant="warning" className="font-normal">{prediction}</Badge>;
+      return <Badge variant="stock-out" className="font-normal">{prediction}</Badge>;
     } else if (prediction === 'Low stock') {
-      return <Badge variant="info" className="font-normal">{prediction}</Badge>;
+      return <Badge variant="stock-low" className="font-normal">{prediction}</Badge>;
     } else if (prediction === 'Stable stock') {
-      return <Badge variant="success" className="font-normal">{prediction}</Badge>;
+      return <Badge variant="stock-stable" className="font-normal">{prediction}</Badge>;
     } else if (prediction === 'Overstock stock') {
-      return <Badge variant="secondary" className="font-normal">{prediction}</Badge>;
+      return <Badge variant="stock-overstock" className="font-normal">{prediction}</Badge>;
     } else {
-      return <Badge variant="outline" className="font-normal">{prediction}</Badge>;
+      return <Badge variant="stock-insufficient" className="font-normal">{prediction}</Badge>;
     }
   };
 
