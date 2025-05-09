@@ -23,9 +23,9 @@ export const MarketingCampaignsTableRow = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const renderStatusBadge = (status: string) => {
     if (status === 'Sent') {
-      return <span className="px-2 py-1 bg-green-100 text-green-800 rounded-md text-xs">{status}</span>;
+      return <span className="">{status}</span>;
     } else if (status === 'Draft') {
-      return <span className="px-2 py-1 bg-red-100 text-red-800 rounded-md text-xs">{status}</span>;
+      return <span className="">{status}</span>;
     }
     return status;
   };
