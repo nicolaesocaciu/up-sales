@@ -1,0 +1,41 @@
+
+import { cn } from "@/lib/utils";
+import { DiscountStatus } from "@/types/discount";
+
+interface DiscountStatusBadgeProps {
+  status: DiscountStatus;
+  className?: string;
+}
+
+export const DiscountStatusBadge = ({ status, className }: DiscountStatusBadgeProps) => {
+  let badgeClasses = "flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium w-fit";
+  
+  switch (status) {
+    case "Active":
+      badgeClasses = cn(badgeClasses, "bg-green-100 text-green-800", className);
+      return (
+        <div className={badgeClasses}>
+          <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+          <span>Active</span>
+        </div>
+      );
+    case "Expired":
+      badgeClasses = cn(badgeClasses, "bg-red-100 text-red-800", className);
+      return (
+        <div className={badgeClasses}>
+          <span className="h-1.5 w-1.5 rounded-full bg-red-600"></span>
+          <span>Expired</span>
+        </div>
+      );
+    case "Pending":
+      badgeClasses = cn(badgeClasses, "bg-yellow-100 text-yellow-800", className);
+      return (
+        <div className={badgeClasses}>
+          <span className="h-1.5 w-1.5 rounded-full bg-yellow-600"></span>
+          <span>Pending</span>
+        </div>
+      );
+    default:
+      return null;
+  }
+};
