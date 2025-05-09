@@ -78,7 +78,7 @@ export const ContractsTable = () => {
       <Table>
         <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
           <TableRow className="hover:bg-transparent border-none h-12">
-            <TableHead>Name</TableHead>
+            <TableHead className="rounded-l-[8px]">Name</TableHead>
             <TableHead 
               className="cursor-pointer hover:bg-[#DADADA]"
               onClick={toggleSortDirection}
@@ -94,12 +94,12 @@ export const ContractsTable = () => {
             </TableHead>
             <TableHead>Created by</TableHead>
             <TableHead>Contract value</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead className="text-right rounded-r-[8px]">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {sortedContracts.map((contract) => (
-            <TableRow key={contract.id}>
+            <TableRow key={contract.id} className="h-16">
               <TableCell className="text-[#116fae]">{contract.name}</TableCell>
               <TableCell>{contract.date}</TableCell>
               <TableCell>{contract.createdBy}</TableCell>
