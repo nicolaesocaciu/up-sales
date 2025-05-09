@@ -1,5 +1,5 @@
 
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ProductsDataTable } from "@/components/products/ProductsDataTable";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { AddProductDialog } from "@/components/products/AddProductDialog";
 
 const Products = () => {
   const [showAddDialog, setShowAddDialog] = useState(false);
+  const [selectedTab, setSelectedTab] = useState<string | null>("all-products");
 
   return (
     <DashboardLayout>
@@ -30,7 +31,64 @@ const Products = () => {
           </Button>
         </div>
 
-        <ProductsDataTable />
+        <div className="space-y-4">
+          <Tabs value={selectedTab || "all-products"} onValueChange={(value) => setSelectedTab(value)} className="w-full">
+            <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
+              <TabsTrigger 
+                value="all-products"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                All products
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Featured"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                Featured
+              </TabsTrigger>
+              <TabsTrigger 
+                value="New arrivals"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                New arrivals
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Out of stock"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                Out of stock
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Low stock"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                Low stock
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Stable stock"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                Stable stock
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Overstock stock"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                Overstock
+              </TabsTrigger>
+              <TabsTrigger 
+                value="Insufficient data"
+                className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+              >
+                Insufficient data
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value={selectedTab || "all-products"} className="mt-4">
+              <ProductsDataTable stockFilter={selectedTab === "all-products" ? null : selectedTab} />
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
 
       <AddProductDialog
