@@ -1,3 +1,4 @@
+
 import { Cell, Pie, PieChart } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
@@ -52,12 +53,12 @@ export const SalesPieChart = ({
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           {isEditMode && <div className="cursor-grab active:cursor-grabbing">
-              <Grip className="h-4 w-4 text-gray-400" />
+              <Grip className="h-4 w-4 text-[#494A4A]" />
             </div>}
           <h2 className="text-lg font-semibold">Sales by platform</h2>
         </div>
         <Select defaultValue="january">
-          <SelectTrigger className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-text-dark w-[136px]">
+          <SelectTrigger className="my-0 py-0 mx-0 px-[16px] h-[30px] rounded-lg border-[#8A8A8A] bg-white text-[#252626] w-[136px]">
             <SelectValue placeholder="Select month" />
           </SelectTrigger>
           <SelectContent>
@@ -80,7 +81,7 @@ export const SalesPieChart = ({
           </PieChart>
         </ChartContainer>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <div className="text-gray-500">Total</div>
+          <div className="text-[#494A4A]">Total</div>
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
         </div>
       </div>
@@ -94,7 +95,7 @@ export const SalesPieChart = ({
               backgroundColor: config.color
             }} />
                 <div>
-                  <div className="text-sm text-gray-500">{config.label}</div>
+                  <div className="text-sm text-[#494A4A]">{config.label}</div>
                   <div className="text-base font-semibold">
                     ${item.value.toLocaleString()}
                   </div>

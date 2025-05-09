@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
@@ -110,7 +111,7 @@ export const AdsBarChart = ({
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
           {isEditMode && <div className="cursor-grab active:cursor-grabbing">
-              <Grip className="h-4 w-4 text-gray-400" />
+              <Grip className="h-4 w-4 text-[#494A4A]" />
             </div>}
           <h2 className="text-lg font-semibold">Ads target</h2>
         </div>
@@ -135,7 +136,7 @@ export const AdsBarChart = ({
               <div className="w-3 h-3 rounded-sm" style={{
               backgroundColor: chartConfig.clicks.color
             }}></div>
-              <div className="text-sm text-gray-500">Total clicks</div>
+              <div className="text-sm text-[#494A4A]">Total clicks</div>
             </div>
             <div className="text-2xl font-semibold ml-5">{totals.clicks.toLocaleString()}</div>
           </div>
@@ -144,7 +145,7 @@ export const AdsBarChart = ({
               <div style={{
               backgroundColor: chartConfig.impressions.color
             }} className="w-3 h-3 rounded-sm pt-1"></div>
-              <div className="text-sm text-gray-500 w-[80px]">Total impressions</div>
+              <div className="text-sm text-[#494A4A] w-[80px]">Total impressions</div>
             </div>
             <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div>
           </div>

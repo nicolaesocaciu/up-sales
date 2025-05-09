@@ -7,7 +7,7 @@ const Content = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-semibold text-text-dark">Content</h1>
+        <h1 className="text-2xl font-semibold text-[#252626]">Content</h1>
         
         <div className="space-y-4">
           <div className="bg-white rounded-xl p-6">

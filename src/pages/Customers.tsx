@@ -9,7 +9,7 @@ const Customers = () => {
     <DashboardLayout>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-semibold text-text-dark">Customers</h1>
+          <h1 className="text-2xl font-semibold text-[#252626]">Customers</h1>
           <div className="flex gap-2">
             <Button 
               variant="outline"
