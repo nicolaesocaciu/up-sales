@@ -59,7 +59,8 @@ export const ReportsTable = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Reports</h2>
         <Button 
-          className="flex items-center gap-2 border border-[#0D5788] bg-[#0D5788] text-white hover:bg-[#124D77] hover:border-[#124D77] active:bg-[#1B384C] active:border-[#1B384C] rounded-[8px]"
+          variant="outline"
+          className="flex items-center gap-2 border border-[#8A8A8A] bg-[#FFFFFF] hover:border-[#1482CC] hover:bg-[#D2EAFA] active:border-[#8A8A8A] active:bg-[#DADADA] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] rounded-[8px]"
         >
           <Plus className="h-4 w-4" />
           New report
