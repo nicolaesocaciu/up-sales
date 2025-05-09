@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { CollapseButton } from "./sidebar/CollapseButton";
 import { MenuItems } from "./sidebar/MenuItems";
@@ -95,7 +96,7 @@ export const Sidebar = ({ onCollapse }: { onCollapse: (collapsed: boolean) => vo
         </div>
 
         <div className="px-4 pb-6">
-          <CollapseButton isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+          <CollapseButton isCollapsed={isCollapsed} onClick={toggleSidebar} />
         </div>
       </div>
     </div>
