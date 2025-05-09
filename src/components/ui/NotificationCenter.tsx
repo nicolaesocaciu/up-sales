@@ -6,9 +6,9 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type NotificationType = 'order' | 'payment' | 'stock' | 'ready' | 'promo';
 
@@ -101,6 +101,87 @@ const mockNotifications: Notification[] = [
     createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000), // 3 hours ago
     read: false,
   },
+  // Adding 10 more notifications
+  {
+    id: "6",
+    type: "order",
+    title: "New Order Created",
+    orderId: "#285",
+    createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000), // 4 hours ago
+    read: true,
+  },
+  {
+    id: "7",
+    type: "payment",
+    title: "Payment Declined",
+    orderId: "#289",
+    createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 hours ago
+    read: true,
+  },
+  {
+    id: "8",
+    type: "stock",
+    title: "Low Stock Alert",
+    orderId: "Chicken Sal...",
+    createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000), // 6 hours ago
+    read: false,
+  },
+  {
+    id: "9",
+    type: "ready",
+    title: "Order Completed",
+    orderId: "#267",
+    createdAt: new Date(Date.now() - 8 * 60 * 60 * 1000), // 8 hours ago
+    read: true,
+  },
+  {
+    id: "10",
+    type: "promo",
+    title: "Weekly Special Live",
+    orderId: "Weekend Spe...",
+    createdAt: new Date(Date.now() - 10 * 60 * 60 * 1000), // 10 hours ago
+    read: true,
+  },
+  {
+    id: "11",
+    type: "order",
+    title: "Catering Order",
+    orderId: "#291",
+    createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000), // 12 hours ago
+    read: false,
+  },
+  {
+    id: "12",
+    type: "payment",
+    title: "Refund Processed",
+    orderId: "#276",
+    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
+    read: true,
+  },
+  {
+    id: "13",
+    type: "stock",
+    title: "Inventory Updated",
+    orderId: "Summer Men...",
+    createdAt: new Date(Date.now() - 30 * 60 * 60 * 1000), // 30 hours ago
+    read: false,
+  },
+  {
+    id: "14",
+    type: "ready",
+    title: "Pickup Ready",
+    orderId: "#302",
+    createdAt: new Date(Date.now() - 36 * 60 * 60 * 1000), // 36 hours ago
+    read: true,
+  },
+  {
+    id: "15",
+    type: "promo",
+    title: "New Seasonal Items",
+    orderId: "Fall Special...",
+    createdAt: new Date(Date.now() - 48 * 60 * 60 * 1000), // 2 days ago
+    read: false,
+  }
 ];
 
 const formatTimeAgo = (date: Date): string => {
@@ -111,7 +192,12 @@ const formatTimeAgo = (date: Date): string => {
     return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
   } else {
     const diffInHours = Math.floor(diffInMinutes / 60);
-    return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+    if (diffInHours < 24) {
+      return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+    } else {
+      const diffInDays = Math.floor(diffInHours / 24);
+      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+    }
   }
 };
 
@@ -123,17 +209,24 @@ export const NotificationCenter: React.FC = () => {
     setNotifications(notifications.map(n => ({ ...n, read: true })));
   };
 
+  // Custom notification icon
+  const NotificationIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.25C16.04 2.25 19.3168 5.52445 19.3174 9.56543L19.3184 10.8838V10.8848C19.3184 11.4714 19.4303 12.0503 19.6494 12.5908L19.75 12.8203L20.2168 13.8115L20.2979 14.001C21.0697 15.965 19.6263 18.1346 17.4727 18.1348H15.8398C15.7187 20.1511 14.0461 21.75 11.998 21.75C9.95094 21.7499 8.27837 20.1509 8.15723 18.1348H6.52832C4.30528 18.1345 2.83841 15.8225 3.78418 13.8115L4.25 12.8213L4.35059 12.5908C4.56963 12.0496 4.68359 11.4708 4.68359 10.8848V10.8838L4.68457 9.56543C4.68511 5.52462 7.96028 2.25026 12 2.25ZM9.66113 18.1348C9.77876 19.3222 10.7803 20.2499 11.998 20.25C13.2169 20.25 14.2183 19.3221 14.3359 18.1348H9.66113ZM12 3.75C8.78824 3.75026 6.18458 6.35371 6.18457 9.56641V9.56738L6.18359 10.8857C6.18347 11.6649 6.03249 12.4348 5.74121 13.1543L5.60742 13.459L5.1416 14.4502C4.66378 15.4666 5.40507 16.6345 6.52832 16.6348H17.4727C18.526 16.6346 19.2433 15.6077 18.9346 14.6416L18.8594 14.4502L18.3936 13.46L18.2598 13.1543C17.9678 12.4341 17.8185 11.6643 17.8184 10.8857L17.8174 9.56738V9.56641C17.8174 6.35356 15.2121 3.75 12 3.75Z" fill="white"/>
+    </svg>
+  );
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-[24px] w-[24px] text-white" />
+          <NotificationIcon />
           {unreadCount > 0 && (
             <div className="absolute top-0 right-0 w-4 h-4 bg-[#CC334C] rounded-full border-2 border-[#252626]" />
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80 p-0 bg-white rounded-lg shadow-lg" sideOffset={6}>
+      <DropdownMenuContent align="end" className="w-80 p-0 bg-white rounded-lg shadow-lg h-[80vh]" sideOffset={6}>
         <div className="flex items-center justify-between p-4 border-b border-gray-100">
           <h3 className="font-medium text-base">Notifications</h3>
           <Button 
@@ -145,7 +238,7 @@ export const NotificationCenter: React.FC = () => {
             Mark all as read
           </Button>
         </div>
-        <div className="max-h-80 overflow-y-auto">
+        <ScrollArea className="h-[calc(80vh-60px)]">
           {notifications.map((notification) => (
             <div key={notification.id} className={cn(
               "flex items-start gap-3 p-4",
@@ -167,7 +260,7 @@ export const NotificationCenter: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
+        </ScrollArea>
       </DropdownMenuContent>
     </DropdownMenu>
   );
