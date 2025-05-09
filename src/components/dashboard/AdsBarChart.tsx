@@ -129,8 +129,8 @@ export const AdsBarChart = ({
           </TabsList>
         </Tabs>
       </div>
-      <div className="grid gap-4">
-        <div className="flex items-center">
+      <div className="grid">
+        <div className="flex items-center justify-center gap-2">
           <div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-sm" style={{
