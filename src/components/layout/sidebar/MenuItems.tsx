@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Marketing } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
 interface MenuItem {
   icon: () => React.ReactNode;
@@ -23,7 +23,7 @@ export const MenuItems = ({
   
   // Add Marketing to the items list
   const allItems = [...items, {
-    icon: () => <Marketing className="h-5 w-5 text-[#C0C0C0]" />,
+    icon: () => <MessageSquare className="h-5 w-5 text-[#C0C0C0]" />,
     label: "Marketing",
     path: "/marketing"
   }];
@@ -52,7 +52,7 @@ export const MenuItems = ({
                 ...svgProps,
                 fill: isActive ? "#FFFFFF" : "none",
                 // Apply the fill to all path children if they exist
-                children: React.Children.map(originalIcon.props.children, child => {
+                children: React.Children.map(svgProps.children, child => {
                   if (React.isValidElement(child) && 
                       typeof child.type === 'string' && 
                       child.type.toLowerCase() === 'path') {
