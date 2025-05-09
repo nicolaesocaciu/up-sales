@@ -59,7 +59,7 @@ export const ContractsTable = () => {
   return <div className="w-full">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Contracts</h2>
-        <Button variant="outline" className="flex items-center h-[32px] gap-2 border border-[#8A8A8A] bg-[#FFFFFF] hover:border-[#1482CC] hover:bg-[#D2EAFA] active:border-[#8A8A8A] active:bg-[#DADADA] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] rounded-[8px]">
+        <Button variant="outline" className="px-[16px] h-[30px]">
           <Plus className="h-4 w-4" />
           New contract
         </Button>
