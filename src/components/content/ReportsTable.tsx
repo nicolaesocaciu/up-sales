@@ -53,7 +53,7 @@ export const ReportsTable = () => {
         <TableHeader className="bg-[#F2F2F2] rounded-[8px]">
           <TableRow className="hover:bg-transparent border-none h-12">
             <TableHead className="rounded-l-[8px] w-[300px]">Name</TableHead>
-            <TableHead className="cursor-pointer hover:bg-[#DADADA]" onClick={toggleSortDirection}>
+            <TableHead onClick={toggleSortDirection} className="cursor-pointer hover:bg-[#DADADA] w-[140px]">
               <div className="flex items-center gap-2">
                 Date
                 {sortDirection === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
