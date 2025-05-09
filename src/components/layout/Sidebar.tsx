@@ -133,7 +133,7 @@ export const Sidebar = ({
 
           <MenuItems items={menuItems} isCollapsed={isCollapsed} />
 
-          <div className={`h-px my-8 bg-[#494a4a] ${isCollapsed ? "mx-4" : "mx-8"}`} />
+          <div className={`h-px my-8 bg-[#494a4a] ${isCollapsed ? "mx-4" : "mx-6"}`} />
 
           <MenuItems items={settingsItems} isCollapsed={isCollapsed} />
         </nav>
