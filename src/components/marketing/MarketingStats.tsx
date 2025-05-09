@@ -1,7 +1,7 @@
 
 import { StatsCard } from "@/components/dashboard/StatsCard";
 import { LineChart, Line } from "recharts";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 
 // Function to generate random chart data with a trend
 const generateChartData = (points: number, trend: "up" | "down", minValue: number, maxValue: number) => {
@@ -31,15 +31,21 @@ const generateChartData = (points: number, trend: "up" | "down", minValue: numbe
 };
 
 export const MarketingStats = () => {
-  // Generate random chart data based on the trend (up/down)
-  const leadGenerationData = useMemo(() => 
-    generateChartData(10, "up", 1000, 2300), []);
+  // Use state instead of useMemo to ensure new data on each render
+  const [chartData, setChartData] = useState({
+    leadGeneration: [] as { value: number }[],
+    salesConversion: [] as { value: number }[],
+    engagement: [] as { value: number }[]
+  });
   
-  const salesConversionData = useMemo(() => 
-    generateChartData(10, "down", 390, 600), []);
-  
-  const engagementData = useMemo(() => 
-    generateChartData(10, "up", 5000, 9100), []);
+  // Generate the chart data on initial render
+  useEffect(() => {
+    setChartData({
+      leadGeneration: generateChartData(10, "up", 1000, 2300),
+      salesConversion: generateChartData(10, "down", 390, 600),
+      engagement: generateChartData(10, "up", 5000, 9100)
+    });
+  }, []);
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -49,7 +55,7 @@ export const MarketingStats = () => {
         change={{ value: 28, trend: "up" }}
         compareText="from 987 (last 30 days)"
         chart={
-          <LineChart width={300} height={30} data={leadGenerationData}>
+          <LineChart width={300} height={30} data={chartData.leadGeneration}>
             <Line
               type="monotone"
               dataKey="value"
@@ -67,7 +73,7 @@ export const MarketingStats = () => {
         change={{ value: 12, trend: "down" }}
         compareText="from 568 (last 30 days)"
         chart={
-          <LineChart width={300} height={30} data={salesConversionData}>
+          <LineChart width={300} height={30} data={chartData.salesConversion}>
             <Line
               type="monotone"
               dataKey="value"
@@ -85,7 +91,7 @@ export const MarketingStats = () => {
         change={{ value: 67, trend: "up" }}
         compareText="from 2,873 (last 30 days)"
         chart={
-          <LineChart width={300} height={30} data={engagementData}>
+          <LineChart width={300} height={30} data={chartData.engagement}>
             <Line
               type="monotone"
               dataKey="value"
