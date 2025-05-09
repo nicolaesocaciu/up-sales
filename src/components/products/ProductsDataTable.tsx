@@ -16,6 +16,7 @@ const defaultColumnVisibility: ColumnVisibility = {
   name: true,
   price: true,
   stockPrediction: true,
+  probability: true,
   orders: true,
   sales: true,
   actions: true,
