@@ -5,6 +5,8 @@ import { Columns } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export interface ColumnVisibility {
+  customerId: boolean;
+  company: boolean;
   name: boolean;
   email: boolean;
   location: boolean;
@@ -30,6 +32,18 @@ export const CustomersTableColumns = ({
     });
   };
 
+  const displayNames: Record<keyof ColumnVisibility, string> = {
+    customerId: "Customer ID",
+    company: "Company",
+    name: "Contact",
+    email: "Email",
+    location: "Location",
+    orders: "Orders",
+    amountSpent: "Amount Spent",
+    subscriptionStatus: "Email Subscription",
+    actions: "Actions"
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -50,7 +64,7 @@ export const CustomersTableColumns = ({
                   checked={value}
                   onCheckedChange={() => handleColumnToggle(key as keyof ColumnVisibility)}
                 />
-                <span className="text-sm">{key === "subscriptionStatus" ? "Email Subscription" : key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                <span className="text-sm">{displayNames[key as keyof ColumnVisibility]}</span>
               </label>
             ))}
           </div>

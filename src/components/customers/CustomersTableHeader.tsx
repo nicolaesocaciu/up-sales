@@ -46,7 +46,9 @@ export const CustomersTableHeader = ({
             ) : null}
           </Checkbox>
         </TableHead>
-        {columnVisibility.name && <TableHead>Customers</TableHead>}
+        {columnVisibility.customerId && <TableHead>Customer ID</TableHead>}
+        {columnVisibility.company && <TableHead>Company</TableHead>}
+        {columnVisibility.name && <TableHead>Contact</TableHead>}
         {columnVisibility.email && <TableHead>Email</TableHead>}
         {columnVisibility.subscriptionStatus && <TableHead>Email Subscription</TableHead>}
         {columnVisibility.location && <TableHead>Location</TableHead>}

@@ -14,6 +14,8 @@ import { ReactNode } from "react";
 import { TableSkeleton } from "@/components/ui/table-skeleton";
 
 const defaultColumnVisibility: ColumnVisibility = {
+  customerId: true,
+  company: true,
   name: true,
   email: true,
   location: true,
@@ -49,6 +51,7 @@ export const CustomersDataTable = () => {
       return searchQuery === "" || 
         customer.name.toLowerCase().includes(searchLower) ||
         customer.email.toLowerCase().includes(searchLower) ||
+        customer.company.toLowerCase().includes(searchLower) ||
         customer.location.toLowerCase().includes(searchLower);
     });
   }, [customers, searchQuery]);
@@ -130,7 +133,7 @@ export const CustomersDataTable = () => {
         />
         <TableBody>
           {isLoading ? (
-            <TableSkeleton columnCount={Object.keys(columnVisibility).length} rowCount={customersPerPage} />
+            <TableSkeleton columnCount={Object.values(columnVisibility).filter(Boolean).length + 1} rowCount={customersPerPage} />
           ) : (
             paginatedCustomers.map((customer) => (
               <CustomersTableRow

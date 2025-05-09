@@ -1,6 +1,17 @@
 
 import { Customer, SubscriptionStatus } from "@/types/customer";
 
+// List of company name prefixes and suffixes for generating company names
+const companyPrefixes = [
+  "Alpha", "Beta", "Gamma", "Delta", "Omega", "Nova", "Apex", "Prime", "Eco", "Cyber",
+  "Tech", "Global", "Future", "Smart", "Creative", "Dynamic", "Elite", "Superior", "Unified", "Innovative"
+];
+
+const companySuffixes = [
+  "Corp", "Inc", "LLC", "Group", "Systems", "Solutions", "Consulting", "Industries", "Enterprises", "Technologies",
+  "Networks", "Logistics", "Partners", "Labs", "Media", "Dynamics", "Innovations", "Services", "International", "Co"
+];
+
 // Sample data from the image
 const sampleCustomers: Partial<Customer>[] = [
   {
@@ -67,6 +78,18 @@ const sampleCustomers: Partial<Customer>[] = [
     subscriptionStatus: "pending"
   }
 ];
+
+// Generate a random company name
+const generateCompanyName = (): string => {
+  const prefix = companyPrefixes[Math.floor(Math.random() * companyPrefixes.length)];
+  const suffix = companySuffixes[Math.floor(Math.random() * companySuffixes.length)];
+  return `${prefix} ${suffix}`;
+};
+
+// Generate a random customer ID between 10000 and 99999
+const generateCustomerId = (): number => {
+  return Math.floor(Math.random() * 90000) + 10000;
+};
 
 // First names for generating random customer names
 const firstNames = [
@@ -169,10 +192,14 @@ const generateRandomCustomer = (id: string): Customer => {
   const avatar = `https://randomuser.me/api/portraits/${gender}/${avatarId}.jpg`;
   
   const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@example.com`;
+  const company = generateCompanyName();
+  const customerId = generateCustomerId();
   
   return {
     id,
+    customerId,
     name,
+    company,
     email,
     avatar,
     location,
@@ -187,7 +214,9 @@ export const generateMockCustomers = (): Customer[] => {
   // Start with the sample customers
   const customers: Customer[] = sampleCustomers.map((customer, index) => ({
     id: `sample-${index + 1}`,
+    customerId: generateCustomerId(),
     name: customer.name || "Unknown",
+    company: generateCompanyName(),
     email: `${customer.name?.toLowerCase().replace(' ', '.')}@example.com` || "unknown@example.com",
     avatar: `https://randomuser.me/api/portraits/${Math.random() > 0.5 ? "men" : "women"}/${index}.jpg`,
     location: customer.location || "Unknown",
