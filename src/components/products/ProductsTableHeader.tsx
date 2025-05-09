@@ -30,7 +30,7 @@ export const ProductsTableHeader = ({
         {columnVisibility.name && <TableHead>Product</TableHead>}
         <TableHead className="">In stock</TableHead>
         {columnVisibility.stockPrediction && <TableHead>Stock prediction</TableHead>}
-        {columnVisibility.price && <TableHead className="text-right">Price</TableHead>}
+        {columnVisibility.price && <TableHead className="">Price</TableHead>}
         {columnVisibility.orders && <TableHead>Total orders</TableHead>}
         {columnVisibility.sales && <TableHead className="text-right cursor-pointer hover:bg-[#DADADA]" onClick={onSortChange}>
             <div className="flex items-center justify-end gap-2">

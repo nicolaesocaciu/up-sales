@@ -78,7 +78,7 @@ export const ProductsTableRow = ({
           </TableCell>}
         <TableCell className="">{product.inventory}</TableCell>
         {columnVisibility.stockPrediction && <TableCell>{getStockPredictionBadge(product.stock_prediction)}</TableCell>}
-        {columnVisibility.price && <TableCell className="text-right">{product.price}</TableCell>}
+        {columnVisibility.price && <TableCell className="">{product.price}</TableCell>}
         {columnVisibility.orders && <TableCell>{product.orders}</TableCell>}
         {columnVisibility.sales && <TableCell className="text-right">{product.sales}</TableCell>}
         {columnVisibility.actions && <TableCell className="text-center">
