@@ -20,7 +20,7 @@ const Marketing = () => {
             </Button>
             <Button 
               onClick={() => {}} 
-              className="h-[36px] border border-[#116FAE] bg-[#116FAE] shadow-[0px_2px_4px_0px_rgba(13,87,136,0.16)] hover:border-[#0D5788] hover:bg-[#0D5788] active:border-[#14476A] active:bg-[#14476A] rounded-[8px]"
+              className="gap-2 h-[36px]"
             >
               <Plus className="h-4 w-4" />
               Add campaign
