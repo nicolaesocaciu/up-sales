@@ -20,6 +20,39 @@ interface ProductsTableRowProps {
   onSelect: (productId: string, checked: boolean) => void;
 }
 
+// Helper function to get stock prediction status
+const getStockPredictionStatus = (inventory: number): { status: string, className: string } => {
+  // Random days for "Out of stock" prediction between 1-7
+  const randomDays = Math.floor(Math.random() * 7) + 1;
+  
+  if (inventory <= 0) {
+    return { 
+      status: "Insufficient data", 
+      className: "text-gray-500"
+    };
+  } else if (inventory < 5) {
+    return { 
+      status: `Out of stock in ${randomDays} days`, 
+      className: "text-red-600 font-medium"
+    };
+  } else if (inventory < 15) {
+    return { 
+      status: "Low stock", 
+      className: "text-amber-500 font-medium" 
+    };
+  } else if (inventory > 50) {
+    return { 
+      status: "Overstock stock", 
+      className: "text-blue-600 font-medium"
+    };
+  } else {
+    return { 
+      status: "Stable stock", 
+      className: "text-green-600 font-medium"
+    };
+  }
+};
+
 export const ProductsTableRow = ({ 
   product, 
   columnVisibility, 
@@ -31,6 +64,8 @@ export const ProductsTableRow = ({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  
+  const stockPrediction = getStockPredictionStatus(product.inventory);
 
   const handleDelete = async () => {
     try {
@@ -82,6 +117,11 @@ export const ProductsTableRow = ({
           </TableCell>
         )}
         <TableCell className="text-right">{product.inventory}</TableCell>
+        {columnVisibility.stockPrediction && (
+          <TableCell className={stockPrediction.className}>
+            {stockPrediction.status}
+          </TableCell>
+        )}
         {columnVisibility.price && (
           <TableCell className="text-right">{product.price}</TableCell>
         )}
