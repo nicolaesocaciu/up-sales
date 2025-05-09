@@ -27,7 +27,7 @@ export const CustomersTableRow = ({
   onSelect,
   highlightText
 }: CustomersTableRowProps) => {
-  return <TableRow className="h-16 hover:bg-[#E7F2F9]">
+  return <TableRow className="h-12 hover:bg-[#E7F2F9]">
       <TableCell className="px-4">
         <Checkbox checked={selected} onCheckedChange={checked => onSelect(customer.id, checked === true)} className="rounded-[4px]" />
       </TableCell>

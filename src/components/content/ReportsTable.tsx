@@ -73,7 +73,7 @@ export const ReportsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sortedReports.map(report => <TableRow key={report.id} className="h-16 hover:bg-[#E7F2F9]" onMouseEnter={() => setHoveredRow(report.id)} onMouseLeave={() => setHoveredRow(null)}>
+          {sortedReports.map(report => <TableRow key={report.id} className="h-12 hover:bg-[#E7F2F9]" onMouseEnter={() => setHoveredRow(report.id)} onMouseLeave={() => setHoveredRow(null)}>
               <TableCell className="text-[#116fae]">{report.name}</TableCell>
               <TableCell>{report.date}</TableCell>
               <TableCell>{report.createdBy}</TableCell>

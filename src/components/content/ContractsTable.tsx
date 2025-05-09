@@ -80,7 +80,7 @@ export const ContractsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sortedContracts.map(contract => <TableRow key={contract.id} className="h-16 hover:bg-[#E7F2F9]" onMouseEnter={() => setHoveredRow(contract.id)} onMouseLeave={() => setHoveredRow(null)}>
+          {sortedContracts.map(contract => <TableRow key={contract.id} className="h-12 hover:bg-[#E7F2F9]" onMouseEnter={() => setHoveredRow(contract.id)} onMouseLeave={() => setHoveredRow(null)}>
               <TableCell className="text-[#116fae]">{contract.name}</TableCell>
               <TableCell>{contract.date}</TableCell>
               <TableCell>{contract.createdBy}</TableCell>
