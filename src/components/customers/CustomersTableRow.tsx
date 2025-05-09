@@ -44,7 +44,7 @@ export const CustomersTableRow = ({
         </TableCell>}
       
       {columnVisibility.name && <TableCell>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <img src={customer.avatar} alt={customer.name} className="w-6 h-6 rounded-full object-cover" />
             <span>{highlightText(customer.name)}</span>
           </div>
