@@ -60,6 +60,7 @@ export const MarketingStats = () => {
             />
           </LineChart>
         }
+        comparisonText="from 987 (last 30 days)"
       />
       
       <StatsCard
@@ -77,6 +78,7 @@ export const MarketingStats = () => {
             />
           </LineChart>
         }
+        comparisonText="from 568 (last 30 days)"
       />
       
       <StatsCard
@@ -94,15 +96,8 @@ export const MarketingStats = () => {
             />
           </LineChart>
         }
+        comparisonText="from 2,873 (last 30 days)"
       />
-      
-      <div className="text-sm text-gray-500 col-span-1 md:col-span-3">
-        <div className="flex items-center gap-2">
-          <span>from 987 (last 30 days)</span>
-          <span className="mx-4">from 568 (last 30 days)</span>
-          <span>from 2,873 (last 30 days)</span>
-        </div>
-      </div>
     </div>
   );
 };
