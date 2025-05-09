@@ -129,7 +129,7 @@ export const AdsBarChart = ({
           </TabsList>
         </Tabs>
       </div>
-      <div className="grid gap-8">
+      <div className="grid gap-4">
         <div className="flex items-center">
           <div>
             <div className="flex items-center gap-2">
@@ -164,8 +164,8 @@ export const AdsBarChart = ({
               stroke: '#E5E7EB'
             }} />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="impressions" fill={chartConfig.impressions.color} stackId="stack" radius={[0, 0, 0, 0]} />
-              <Bar dataKey="clicks" fill={chartConfig.clicks.color} stackId="stack" radius={[4, 4, 0, 0]} />
+              {/* <Bar dataKey="impressions" fill={chartConfig.impressions.color} stackId="stack" radius={[0, 0, 0, 0]} />
+              <Bar dataKey="clicks" fill={chartConfig.clicks.color} stackId="stack" radius={[4, 4, 0, 0]} /> */}
               <ChartLegend content={<ChartLegendContent />} verticalAlign="top" align="right" />
             </BarChart>
           </ChartContainer>
