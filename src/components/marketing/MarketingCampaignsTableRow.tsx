@@ -1,17 +1,14 @@
-
 import { Campaign } from "@/types/campaign";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Briefcase, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
-
 interface MarketingCampaignsTableRowProps {
   campaign: Campaign;
   isSelected: boolean;
   onSelect: () => void;
 }
-
 export const getCampaignTypeIcon = (type: string) => {
   switch (type) {
     case "Email marketing":
@@ -24,14 +21,12 @@ export const getCampaignTypeIcon = (type: string) => {
       return <Mail className="h-4 w-4 text-blue-500" />;
   }
 };
-
 export const MarketingCampaignsTableRow = ({
   campaign,
   isSelected,
   onSelect
 }: MarketingCampaignsTableRowProps) => {
-  return (
-    <TableRow key={campaign.id} className={cn(isSelected && "bg-muted/50")}>
+  return <TableRow key={campaign.id} className={cn(isSelected && "bg-muted/50")}>
       <TableCell className="w-[50px]">
         <Checkbox checked={isSelected} onCheckedChange={() => onSelect()} />
       </TableCell>
@@ -50,7 +45,7 @@ export const MarketingCampaignsTableRow = ({
         </Badge>
       </TableCell>
       <TableCell>{campaign.lastUpdated}</TableCell>
-      <TableCell className="text-right">
+      <TableCell className="">
         {campaign.openRate.value}% ({campaign.openRate.count})
       </TableCell>
       <TableCell className="text-right">
@@ -59,6 +54,5 @@ export const MarketingCampaignsTableRow = ({
       <TableCell className="text-right">
         {campaign.activeRate.value}% ({campaign.activeRate.count})
       </TableCell>
-    </TableRow>
-  );
+    </TableRow>;
 };
