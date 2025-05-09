@@ -8,4 +8,5 @@ export interface Product {
   thumbnail?: string;
   created_at?: string;
   inventory: number;
+  stock_prediction: string;
 }

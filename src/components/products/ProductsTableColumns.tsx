@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 export interface ColumnVisibility {
   name: boolean;
   price: boolean;
+  stockPrediction: boolean;
   orders: boolean;
   sales: boolean;
   actions: boolean;
@@ -48,7 +49,9 @@ export const ProductsTableColumns = ({
                   checked={value}
                   onCheckedChange={() => handleColumnToggle(key as keyof ColumnVisibility)}
                 />
-                <span className="text-sm">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                <span className="text-sm">
+                  {key === 'stockPrediction' ? 'Stock Prediction' : key.charAt(0).toUpperCase() + key.slice(1)}
+                </span>
               </label>
             ))}
           </div>

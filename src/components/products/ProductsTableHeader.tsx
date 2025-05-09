@@ -48,6 +48,7 @@ export const ProductsTableHeader = ({
         </TableHead>
         {columnVisibility.name && <TableHead>Product</TableHead>}
         <TableHead className="text-right">In stock</TableHead>
+        {columnVisibility.stockPrediction && <TableHead>Stock prediction</TableHead>}
         {columnVisibility.price && <TableHead className="text-right">Price</TableHead>}
         {columnVisibility.orders && <TableHead>Total orders</TableHead>}
         {columnVisibility.sales && (

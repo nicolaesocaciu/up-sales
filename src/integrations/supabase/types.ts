@@ -64,6 +64,7 @@ export type Database = {
           orders: string
           price: string
           sales: string
+          stock_prediction: string
           thumbnail: string | null
         }
         Insert: {
@@ -75,6 +76,7 @@ export type Database = {
           orders: string
           price: string
           sales: string
+          stock_prediction?: string
           thumbnail?: string | null
         }
         Update: {
@@ -86,6 +88,7 @@ export type Database = {
           orders?: string
           price?: string
           sales?: string
+          stock_prediction?: string
           thumbnail?: string | null
         }
         Relationships: []

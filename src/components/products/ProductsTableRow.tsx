@@ -11,6 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useQueryClient } from "@tanstack/react-query";
+import { Badge } from "../ui/badge";
 
 interface ProductsTableRowProps {
   product: Product;
@@ -56,6 +57,20 @@ export const ProductsTableRow = ({
     }
   };
 
+  const getStockPredictionBadge = (prediction: string) => {
+    if (prediction.startsWith('Out of stock in')) {
+      return <Badge variant="warning" className="font-normal">{prediction}</Badge>;
+    } else if (prediction === 'Low stock') {
+      return <Badge variant="info" className="font-normal">{prediction}</Badge>;
+    } else if (prediction === 'Stable stock') {
+      return <Badge variant="success" className="font-normal">{prediction}</Badge>;
+    } else if (prediction === 'Overstock stock') {
+      return <Badge variant="secondary" className="font-normal">{prediction}</Badge>;
+    } else {
+      return <Badge variant="outline" className="font-normal">{prediction}</Badge>;
+    }
+  };
+
   return (
     <>
       <TableRow className="h-16 hover:bg-[#E7F2F9]">
@@ -82,6 +97,9 @@ export const ProductsTableRow = ({
           </TableCell>
         )}
         <TableCell className="text-right">{product.inventory}</TableCell>
+        {columnVisibility.stockPrediction && (
+          <TableCell>{getStockPredictionBadge(product.stock_prediction)}</TableCell>
+        )}
         {columnVisibility.price && (
           <TableCell className="text-right">{product.price}</TableCell>
         )}

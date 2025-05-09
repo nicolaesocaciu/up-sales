@@ -1,3 +1,4 @@
+
 import { Table, TableBody } from "@/components/ui/table";
 import { useState, useMemo } from "react";
 import { Product } from "@/types/product";
@@ -15,6 +16,7 @@ import { TableSkeleton } from "@/components/ui/table-skeleton";
 const defaultColumnVisibility: ColumnVisibility = {
   name: true,
   price: true,
+  stockPrediction: true,
   orders: true,
   sales: true,
   actions: true,
@@ -27,6 +29,7 @@ export const ProductsDataTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [productsPerPage, setProductsPerPage] = useState(20);
+  const [stockFilter, setStockFilter] = useState<string | null>(null);
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products', sortDirection],
@@ -44,10 +47,14 @@ export const ProductsDataTable = () => {
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const searchLower = searchQuery.toLowerCase();
-      return searchQuery === "" || 
+      const matchesSearch = searchQuery === "" || 
         product.name.toLowerCase().includes(searchLower);
+
+      const matchesStockFilter = !stockFilter || product.stock_prediction === stockFilter;
+
+      return matchesSearch && matchesStockFilter;
     });
-  }, [products, searchQuery]);
+  }, [products, searchQuery, stockFilter]);
 
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * productsPerPage;
@@ -88,6 +95,27 @@ export const ProductsDataTable = () => {
     );
   };
 
+  // Calculate counts for each stock prediction category
+  const stockPredictionCounts = useMemo(() => {
+    const counts: Record<string, number> = {
+      'Low stock': 0,
+      'Stable stock': 0,
+      'Overstock stock': 0,
+      'Insufficient data': 0,
+      'Out of stock': 0,
+    };
+    
+    products.forEach(product => {
+      if (product.stock_prediction.startsWith('Out of stock in')) {
+        counts['Out of stock']++;
+      } else if (counts.hasOwnProperty(product.stock_prediction)) {
+        counts[product.stock_prediction]++;
+      }
+    });
+
+    return counts;
+  }, [products]);
+
   return (
     <div className="bg-white rounded-xl px-6">
       <div className="py-6 flex items-center justify-between gap-2">
@@ -104,6 +132,47 @@ export const ProductsDataTable = () => {
           columnVisibility={columnVisibility}
           onColumnVisibilityChange={setColumnVisibility}
         />
+      </div>
+
+      <div className="mb-4 border-b border-gray-200 overflow-x-auto">
+        <div className="flex space-x-6 min-w-max">
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === null ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter(null)}
+          >
+            All
+          </button>
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === 'Out of stock in 1 days' || stockFilter?.startsWith('Out of stock in') ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter('Out of stock in 1 days')}
+          >
+            Out of stock ({stockPredictionCounts['Out of stock']})
+          </button>
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === 'Low stock' ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter('Low stock')}
+          >
+            Low stock ({stockPredictionCounts['Low stock']})
+          </button>
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === 'Stable stock' ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter('Stable stock')}
+          >
+            Stable stock ({stockPredictionCounts['Stable stock']})
+          </button>
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === 'Overstock stock' ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter('Overstock stock')}
+          >
+            Overstock ({stockPredictionCounts['Overstock stock']})
+          </button>
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === 'Insufficient data' ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter('Insufficient data')}
+          >
+            Insufficient data ({stockPredictionCounts['Insufficient data']})
+          </button>
+        </div>
       </div>
 
       <Table>
