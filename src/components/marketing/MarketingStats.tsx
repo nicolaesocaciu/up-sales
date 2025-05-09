@@ -1,48 +1,46 @@
 
 import { StatsCard } from "@/components/dashboard/StatsCard";
 import { LineChart, Line } from "recharts";
+import { useMemo } from "react";
 
-// Sample data for the charts
-const leadGenerationData = [
-  { value: 1200 },
-  { value: 1350 },
-  { value: 1400 },
-  { value: 1300 },
-  { value: 1500 },
-  { value: 1700 },
-  { value: 1600 },
-  { value: 1800 },
-  { value: 2000 },
-  { value: 2245 }
-];
-
-const salesConversionData = [
-  { value: 500 },
-  { value: 480 },
-  { value: 470 },
-  { value: 450 },
-  { value: 430 },
-  { value: 420 },
-  { value: 410 },
-  { value: 400 },
-  { value: 395 },
-  { value: 393 }
-];
-
-const engagementData = [
-  { value: 5000 },
-  { value: 5500 },
-  { value: 6000 },
-  { value: 6500 },
-  { value: 7000 },
-  { value: 7200 },
-  { value: 7800 },
-  { value: 8200 },
-  { value: 8500 },
-  { value: 9026 }
-];
+// Function to generate random chart data with a trend
+const generateChartData = (points: number, trend: "up" | "down", minValue: number, maxValue: number) => {
+  const data = [];
+  const range = maxValue - minValue;
+  const step = range / points;
+  
+  // Generate baseline data
+  let value = trend === "up" ? minValue : maxValue;
+  
+  for (let i = 0; i < points; i++) {
+    // Add some randomness but maintain the general trend
+    const randomVariation = Math.random() * (step * 0.8);
+    
+    if (trend === "up") {
+      value = value + (step * 0.5) + randomVariation;
+    } else {
+      value = value - (step * 0.5) - randomVariation;
+    }
+    
+    // Ensure we stay within our min/max bounds
+    value = Math.max(minValue, Math.min(maxValue, value));
+    data.push({ value: Math.round(value) });
+  }
+  
+  return data;
+};
 
 export const MarketingStats = () => {
+  // Generate random chart data based on the trend (up/down)
+  const leadGenerationData = useMemo(() => 
+    generateChartData(10, "up", 1000, 2300), []);
+  
+  const salesConversionData = useMemo(() => 
+    generateChartData(10, "down", 390, 600), []);
+  
+  const engagementData = useMemo(() => 
+    generateChartData(10, "up", 5000, 9100), []);
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <StatsCard
