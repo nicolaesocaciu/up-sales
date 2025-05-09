@@ -1,3 +1,4 @@
+
 import { Search } from "lucide-react";
 import { Input } from "../ui/input";
 export const SearchBar = () => {
@@ -11,6 +12,6 @@ export const SearchBar = () => {
       </div>
       <Input style={{
       backgroundColor: "#494A4A"
-    }} placeholder="Search..." className="pl-10 pr-20 border-0 bg-[#494A4A] text-white focus:ring-primary placeholder-[#FFFFFF]" />
+    }} placeholder="Search..." className="pl-10 pr-20 border-0 bg-[#494A4A] text-white focus:ring-[#116fae] placeholder-[#FFFFFF]" />
     </div>;
 };
