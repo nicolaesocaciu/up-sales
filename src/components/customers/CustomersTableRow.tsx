@@ -1,3 +1,4 @@
+
 import { TableCell, TableRow } from "@/components/ui/table";
 import { ColumnVisibility } from "./CustomersTableColumns";
 import { Customer } from "@/types/customer";
@@ -53,13 +54,13 @@ export const CustomersTableRow = ({
       {columnVisibility.email && <TableCell>{highlightText(customer.email)}</TableCell>}
       
       {columnVisibility.subscriptionStatus && <TableCell>
-          {customer.subscriptionStatus === "subscribed" && <Badge variant="success" className="rounded-[4px] px-3 bg-green-100 border-green-200 text-green-800 hover:bg-green-200">
+          {customer.subscriptionStatus === "subscribed" && <Badge className="rounded-[4px] px-3 bg-green-100 border-green-200 text-green-800 hover:bg-green-200">
               Subscribed
             </Badge>}
-          {customer.subscriptionStatus === "not_subscribed" && <Badge variant="warning" className="rounded-[4px] px-3 bg-red-100 border-red-200 text-red-800 hover:bg-red-200">
+          {customer.subscriptionStatus === "not_subscribed" && <Badge className="rounded-[4px] px-3 bg-red-100 border-red-200 text-red-800 hover:bg-red-200">
               Not subscribed
             </Badge>}
-          {customer.subscriptionStatus === "pending" && <Badge variant="outline" className="rounded-[4px] px-3 bg-yellow-100 border-yellow-200 text-yellow-800 hover:bg-yellow-200">
+          {customer.subscriptionStatus === "pending" && <Badge className="rounded-[4px] px-3 bg-yellow-100 border-yellow-200 text-yellow-800 hover:bg-yellow-200">
               Pending
             </Badge>}
         </TableCell>}

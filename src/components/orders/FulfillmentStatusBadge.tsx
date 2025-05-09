@@ -1,3 +1,4 @@
+
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 import { FulfillmentStatus } from "@/types/order";
@@ -9,14 +10,13 @@ interface FulfillmentStatusBadgeProps {
 export const FulfillmentStatusBadge = ({ status }: FulfillmentStatusBadgeProps) => {
   return (
     <Badge
-      variant="secondary"
       className={cn(
-        "bg-opacity-10 inline-flex items-center",
-        status === "Fulfilled" && "bg-status-paid text-status-paid",
-        status === "Open" && "bg-status-processing text-status-processing",
-        status === "Unfulfilled" && "bg-[#ea384c] text-[#ea384c]",
-        status === "Unpaid" && "bg-status-waiting text-status-waiting",
-        status === "Closed" && "bg-gray-500 text-gray-500"
+        "rounded-[4px] px-3",
+        status === "Fulfilled" && "bg-green-100 border-green-200 text-green-800 hover:bg-green-200",
+        status === "Open" && "bg-blue-100 border-blue-200 text-blue-800 hover:bg-blue-200",
+        status === "Unfulfilled" && "bg-red-100 border-red-200 text-red-800 hover:bg-red-200",
+        status === "Unpaid" && "bg-yellow-100 border-yellow-200 text-yellow-800 hover:bg-yellow-200",
+        status === "Closed" && "bg-gray-100 border-gray-200 text-gray-800 hover:bg-gray-200"
       )}
     >
       {status}

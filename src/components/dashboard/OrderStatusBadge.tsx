@@ -22,12 +22,11 @@ const getStatusIcon = (status: OrderStatus) => {
 export const OrderStatusBadge = ({ status }: OrderStatusBadgeProps) => {
   return (
     <Badge
-      variant="secondary"
       className={cn(
-        "bg-opacity-10 inline-flex items-center",
-        status === "Paid" && "bg-status-paid text-status-paid",
-        status === "Processing" && "bg-status-processing text-status-processing",
-        status === "Waiting" && "bg-status-waiting text-status-waiting"
+        "rounded-[4px] px-3 inline-flex items-center",
+        status === "Paid" && "bg-green-100 border-green-200 text-green-800 hover:bg-green-200",
+        status === "Processing" && "bg-blue-100 border-blue-200 text-blue-800 hover:bg-blue-200",
+        status === "Waiting" && "bg-yellow-100 border-yellow-200 text-yellow-800 hover:bg-yellow-200"
       )}
     >
       {getStatusIcon(status)}

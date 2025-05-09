@@ -8,11 +8,11 @@ interface DiscountStatusBadgeProps {
 }
 
 export const DiscountStatusBadge = ({ status, className }: DiscountStatusBadgeProps) => {
-  let badgeClasses = "flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium w-fit";
+  let badgeClasses = "flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] text-xs font-medium w-fit";
   
   switch (status) {
     case "Active":
-      badgeClasses = cn(badgeClasses, "bg-green-100 text-green-800", className);
+      badgeClasses = cn(badgeClasses, "bg-green-100 border border-green-200 text-green-800", className);
       return (
         <div className={badgeClasses}>
           <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
@@ -20,7 +20,7 @@ export const DiscountStatusBadge = ({ status, className }: DiscountStatusBadgePr
         </div>
       );
     case "Expired":
-      badgeClasses = cn(badgeClasses, "bg-red-100 text-red-800", className);
+      badgeClasses = cn(badgeClasses, "bg-red-100 border border-red-200 text-red-800", className);
       return (
         <div className={badgeClasses}>
           <span className="h-1.5 w-1.5 rounded-full bg-red-600"></span>
@@ -28,7 +28,7 @@ export const DiscountStatusBadge = ({ status, className }: DiscountStatusBadgePr
         </div>
       );
     case "Pending":
-      badgeClasses = cn(badgeClasses, "bg-yellow-100 text-yellow-800", className);
+      badgeClasses = cn(badgeClasses, "bg-yellow-100 border border-yellow-200 text-yellow-800", className);
       return (
         <div className={badgeClasses}>
           <span className="h-1.5 w-1.5 rounded-full bg-yellow-600"></span>
