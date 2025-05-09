@@ -2,6 +2,8 @@
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { MarketingStats } from "@/components/marketing/MarketingStats";
 import { MarketingCampaignsTable } from "@/components/marketing/MarketingCampaignsTable";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 const Marketing = () => {
   return (
@@ -9,6 +11,13 @@ const Marketing = () => {
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold text-text-dark">Marketing</h1>
+          <Button 
+            onClick={() => {}} 
+            className="gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add campaign
+          </Button>
         </div>
 
         <MarketingStats />
