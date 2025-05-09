@@ -33,8 +33,8 @@ export const ProductsTableColumns = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-9">
-          <Columns className="h-4 w-4 mr-2" />
+        <Button variant="outline" className="px-[16px] h-[30px]">
+          <Columns className="h-4 w-4" />
           Columns
         </Button>
       </DropdownMenuTrigger>
