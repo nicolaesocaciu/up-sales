@@ -6,12 +6,11 @@ import { CustomersTableHeader } from "./CustomersTableHeader";
 import { CustomersTableRow } from "./CustomersTableRow";
 import { CustomersTablePagination } from "./CustomersTablePagination";
 import { CustomersTableColumns, ColumnVisibility } from "./CustomersTableColumns";
-import { useQuery } from "@tanstack/react-query";
-import { mockCustomers } from "@/data/mockCustomers";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ReactNode } from "react";
 import { TableSkeleton } from "@/components/ui/table-skeleton";
+import { useCustomersData } from "@/hooks/useCustomersData";
 
 const defaultColumnVisibility: ColumnVisibility = {
   customerId: true,
@@ -26,24 +25,13 @@ const defaultColumnVisibility: ColumnVisibility = {
 };
 
 export const CustomersDataTable = () => {
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [searchQuery, setSearchQuery] = useState("");
   const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(defaultColumnVisibility);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [customersPerPage, setCustomersPerPage] = useState(20);
 
-  const { data: customers = [], isLoading } = useQuery({
-    queryKey: ['customers', sortDirection],
-    queryFn: async () => {
-      // Simulate API call with mock data
-      return new Promise<Customer[]>((resolve) => {
-        setTimeout(() => {
-          resolve(mockCustomers);
-        }, 500);
-      });
-    },
-  });
+  const { customers = [], isLoading, sortDirection, setSortDirection } = useCustomersData();
 
   const filteredCustomers = useMemo(() => {
     return customers.filter((customer) => {
@@ -56,19 +44,10 @@ export const CustomersDataTable = () => {
     });
   }, [customers, searchQuery]);
 
-  const sortedCustomers = useMemo(() => {
-    return [...filteredCustomers].sort((a, b) => {
-      // Sort by amount spent
-      const amountA = a.amountSpent;
-      const amountB = b.amountSpent;
-      return sortDirection === "asc" ? amountA - amountB : amountB - amountA;
-    });
-  }, [filteredCustomers, sortDirection]);
-
   const paginatedCustomers = useMemo(() => {
     const startIndex = (currentPage - 1) * customersPerPage;
-    return sortedCustomers.slice(startIndex, startIndex + customersPerPage);
-  }, [sortedCustomers, currentPage, customersPerPage]);
+    return filteredCustomers.slice(startIndex, startIndex + customersPerPage);
+  }, [filteredCustomers, currentPage, customersPerPage]);
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
