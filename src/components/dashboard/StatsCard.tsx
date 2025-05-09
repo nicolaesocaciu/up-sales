@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils";
 import { Card } from "../ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
@@ -8,12 +9,14 @@ interface StatsCardProps {
     value: number;
     trend: "up" | "down";
   };
+  compareText?: string;
   chart?: React.ReactNode;
 }
 export const StatsCard = ({
   title,
   value,
   change,
+  compareText,
   chart
 }: StatsCardProps) => {
   return <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none relative">
@@ -22,21 +25,27 @@ export const StatsCard = ({
         </div>}
       <div className="flex flex-col gap-8">
         <h3 className="font-regular text-gray-500">{title}</h3>
-        <div className="flex items-baseline justify-between">
+        <div className="flex flex-col gap-1">
           <p className="text-2xl font-semibold text-text-dark">{value}</p>
-          <TooltipProvider delayDuration={0}>
-            <Tooltip>
-              <TooltipTrigger>
-                <div className={cn("px-2 py-1 rounded-full text-sm font-medium", change.trend === "up" ? "bg-status-light-up text-green-600" : "bg-status-light-down text-red-600")}>
-                  {change.trend === "up" ? "+" : "-"}
-                  {Math.abs(change.value)}%
-                </div>
-              </TooltipTrigger>
-              <TooltipContent className="bg-[#1F2228] text-white border-0">
-                <p>Compared with the previous month</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          {compareText && (
+            <p className="text-sm text-gray-500">{compareText}</p>
+          )}
+          <div className="flex justify-between items-center mt-2">
+            <div></div>
+            <TooltipProvider delayDuration={0}>
+              <Tooltip>
+                <TooltipTrigger>
+                  <div className={cn("px-2 py-1 rounded-full text-sm font-medium", change.trend === "up" ? "bg-status-light-up text-green-600" : "bg-status-light-down text-red-600")}>
+                    {change.trend === "up" ? "+" : "-"}
+                    {Math.abs(change.value)}%
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent className="bg-[#1F2228] text-white border-0">
+                  <p>Compared with the previous month</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
       </div>
     </Card>;

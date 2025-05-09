@@ -4,5 +4,6 @@ export interface StatCardData {
   title: string;
   value: string;
   change: { value: number; trend: "up" | "down" };
+  compareText?: string;
   chart?: React.ReactNode;
 }
