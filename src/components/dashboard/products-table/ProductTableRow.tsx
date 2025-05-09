@@ -23,7 +23,7 @@ export const ProductTableRow = ({ product, onViewProduct }: ProductTableRowProps
   };
 
   return (
-    <TableRow className="h-10 hover:bg-[#E7F2F9]">
+    <TableRow className="h-12 hover:bg-[#E7F2F9]">
       <TableCell>
         <button
           onClick={() => onViewProduct({

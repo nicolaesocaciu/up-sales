@@ -35,7 +35,7 @@ export const MarketingCampaignsTableRow = ({
   };
 
   return (
-    <TableRow className="h-10 hover:bg-[#E7F2F9]">
+    <TableRow className="h-12 hover:bg-[#E7F2F9]">
       <TableCell>
         <Checkbox
           checked={selected}
