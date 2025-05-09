@@ -27,9 +27,9 @@ export const MarketingCampaignsTableRow = ({
   
   const renderStatusBadge = (status: string) => {
     if (status === 'Sent') {
-      return <Badge variant="success" className="px-3">Sent</Badge>;
+      return <Badge variant="success">Sent</Badge>;
     } else if (status === 'Draft') {
-      return <Badge variant="warning" className="px-3">Draft</Badge>;
+      return <Badge variant="warning">Draft</Badge>;
     }
     return status;
   };

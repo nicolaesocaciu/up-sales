@@ -8,7 +8,7 @@ interface DiscountStatusBadgeProps {
 }
 
 export const DiscountStatusBadge = ({ status, className }: DiscountStatusBadgeProps) => {
-  let badgeClasses = "flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] text-xs font-medium w-fit";
+  let badgeClasses = "flex items-center gap-1.5 rounded-[4px] text-xs font-medium w-fit px-[10px] py-[2px]";
   
   switch (status) {
     case "Active":

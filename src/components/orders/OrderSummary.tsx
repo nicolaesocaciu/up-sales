@@ -1,4 +1,3 @@
-
 import { Badge } from "../ui/badge";
 interface OrderSummaryProps {
   status: string;
@@ -23,7 +22,7 @@ export const OrderSummary = ({
           <h2 className="font-semibold text-lg">
             {status === 'Paid' ? 'Payment completed' : status === 'Processing' ? 'Processing payment' : 'Waiting for payment'}
           </h2>
-          <Badge className={`rounded-[4px] px-3
+          <Badge className={`rounded-[4px] 
             ${status === 'Paid' ? 'bg-green-100 text-green-800 border-green-200' : 
               status === 'Processing' ? 'bg-blue-100 text-blue-800 border-blue-200' : 
               'bg-yellow-100 text-yellow-800 border-yellow-200'} 
