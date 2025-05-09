@@ -2,7 +2,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { MessageSquare } from "lucide-react";
 
 interface MenuItem {
   icon: () => React.ReactNode;
@@ -21,16 +20,9 @@ export const MenuItems = ({
 }: MenuItemsProps) => {
   const location = useLocation();
   
-  // Add Marketing to the items list
-  const allItems = [...items, {
-    icon: () => <MessageSquare className="h-5 w-5 text-[#C0C0C0]" />,
-    label: "Marketing",
-    path: "/marketing"
-  }];
-  
   return (
     <>
-      {allItems.map(item => {
+      {items.map(item => {
         const isActive = location.pathname === item.path;
         
         // Clone the icon and modify its props to add the fill color when active
