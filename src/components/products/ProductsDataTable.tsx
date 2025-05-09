@@ -18,7 +18,6 @@ const defaultColumnVisibility: ColumnVisibility = {
   orders: true,
   sales: true,
   actions: true,
-  stockPrediction: true,
 };
 
 export const ProductsDataTable = () => {

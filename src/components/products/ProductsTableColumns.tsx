@@ -10,7 +10,6 @@ export interface ColumnVisibility {
   orders: boolean;
   sales: boolean;
   actions: boolean;
-  stockPrediction: boolean;
 }
 
 interface ProductsTableColumnsProps {
@@ -49,9 +48,7 @@ export const ProductsTableColumns = ({
                   checked={value}
                   onCheckedChange={() => handleColumnToggle(key as keyof ColumnVisibility)}
                 />
-                <span className="text-sm">
-                  {key === "stockPrediction" ? "Stock prediction" : key.charAt(0).toUpperCase() + key.slice(1)}
-                </span>
+                <span className="text-sm">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
               </label>
             ))}
           </div>
