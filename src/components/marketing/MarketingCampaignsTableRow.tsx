@@ -1,4 +1,3 @@
-
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -7,7 +6,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ColumnVisibility } from "./MarketingCampaignsTableColumns";
 import { Campaign } from "@/types/campaign";
 import { useState } from "react";
-
 interface MarketingCampaignsTableRowProps {
   campaign: Campaign;
   columnVisibility: ColumnVisibility;
@@ -15,16 +13,14 @@ interface MarketingCampaignsTableRowProps {
   onSelect: (id: string, checked: boolean) => void;
   highlightText: (text: string) => React.ReactNode;
 }
-
 export const MarketingCampaignsTableRow = ({
   campaign,
   columnVisibility,
   selected,
   onSelect,
-  highlightText,
+  highlightText
 }: MarketingCampaignsTableRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
   const renderStatusBadge = (status: string) => {
     if (status === 'Sent') {
       return <span className="px-2 py-1 bg-green-100 text-green-800 rounded-md text-xs">{status}</span>;
@@ -33,69 +29,43 @@ export const MarketingCampaignsTableRow = ({
     }
     return status;
   };
-
-  return (
-    <TableRow className="h-12 hover:bg-[#E7F2F9]">
+  return <TableRow className="h-12 hover:bg-[#E7F2F9]">
       <TableCell>
-        <Checkbox
-          checked={selected}
-          onCheckedChange={(checked) => onSelect(campaign.id, checked === true)}
-          aria-label={`Select ${campaign.name}`}
-          className="rounded-[4px]"
-        />
+        <Checkbox checked={selected} onCheckedChange={checked => onSelect(campaign.id, checked === true)} aria-label={`Select ${campaign.name}`} className="rounded-[4px]" />
       </TableCell>
       
-      {columnVisibility.name && (
-        <TableCell className="text-[#116fae]">
+      {columnVisibility.name && <TableCell className="text-[#116fae]">
           {highlightText(campaign.name)}
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.type && (
-        <TableCell>
+      {columnVisibility.type && <TableCell>
           {highlightText(campaign.type)}
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.status && (
-        <TableCell>
+      {columnVisibility.status && <TableCell>
           {renderStatusBadge(campaign.status)}
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.lastUpdated && (
-        <TableCell>
+      {columnVisibility.lastUpdated && <TableCell>
           {campaign.lastUpdated}
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.openRate && (
-        <TableCell>
+      {columnVisibility.openRate && <TableCell>
           {campaign.openRate.value}% ({campaign.openRate.count})
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.subscribedRate && (
-        <TableCell>
+      {columnVisibility.subscribedRate && <TableCell>
           {campaign.subscribedRate.value}% ({campaign.subscribedRate.count})
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.activeRate && (
-        <TableCell>
+      {columnVisibility.activeRate && <TableCell>
           {campaign.activeRate.value}% ({campaign.activeRate.count})
-        </TableCell>
-      )}
+        </TableCell>}
       
-      {columnVisibility.actions && (
-        <TableCell className="text-right">
+      {columnVisibility.actions && <TableCell className="text-center w-[50]">
           <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
             <DropdownMenuTrigger asChild>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className={`transition-colors ${isDropdownOpen ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}
-              >
+              <Button variant="ghost" size="icon" className={`transition-colors ${isDropdownOpen ? 'bg-[rgba(153,203,236,0.50)]' : 'hover:bg-[rgba(153,203,236,0.50)]'}`}>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -118,8 +88,6 @@ export const MarketingCampaignsTableRow = ({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </TableCell>
-      )}
-    </TableRow>
-  );
+        </TableCell>}
+    </TableRow>;
 };
