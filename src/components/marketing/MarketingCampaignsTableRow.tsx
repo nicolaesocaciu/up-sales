@@ -47,16 +47,7 @@ export const MarketingCampaignsTableRow = ({
       
       {columnVisibility.name && (
         <TableCell className="text-[#116fae]">
-          <div className="flex items-center gap-2">
-            {campaign.thumbnail && (
-              <img
-                src={campaign.thumbnail}
-                alt={campaign.name}
-                className="w-8 h-8 rounded object-cover"
-              />
-            )}
-            {highlightText(campaign.name)}
-          </div>
+          {highlightText(campaign.name)}
         </TableCell>
       )}
       
