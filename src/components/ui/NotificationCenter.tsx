@@ -219,10 +219,10 @@ export const NotificationCenter: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
+        <Button variant="ghost" className="relative">
           <NotificationIcon />
           {unreadCount > 0 && (
-            <div className="absolute top-0 right-0 w-4 h-4 bg-[#CC334C] rounded-full border-2 border-[#252626]" />
+            <div className="absolute top-0 right-0 w-2 h-2 bg-[#CC334C] rounded-full border-2 border-[#252626]" />
           )}
         </Button>
       </DropdownMenuTrigger>
