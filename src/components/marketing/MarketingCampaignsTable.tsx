@@ -92,7 +92,7 @@ export const MarketingCampaignsTable = () => {
         </Tabs>
         <Button 
           onClick={() => setShowAddDialog(true)} 
-          className="flex items-center gap-2 border border-[#0D5788] bg-[#0D5788] text-white shadow-[0px_2px_4px_0px_rgba(13,87,136,0.16)] hover:border-[#124D77] hover:bg-[#124D77] active:border-[#1B384C] active:bg-[#1B384C] rounded-[8px]"
+          className="flex items-center gap-2 border border-[#8A8A8A] bg-[#FFFFFF] hover:border-[#1482CC] hover:bg-[#D2EAFA] active:border-[#8A8A8A] active:bg-[#DADADA] shadow-[0px_2px_4px_0px_rgba(37,38,38,0.08)] rounded-[8px]"
         >
           <Plus className="h-4 w-4" />
           New campaign
@@ -126,8 +126,10 @@ export const MarketingCampaignsTable = () => {
                 <MarketingCampaignsTableRow
                   key={campaign.id}
                   campaign={campaign}
-                  isSelected={selectedRows.includes(campaign.id)}
-                  onSelect={() => handleRowSelect(campaign.id, !selectedRows.includes(campaign.id))}
+                  columnVisibility={columnVisibility}
+                  selected={selectedRows.includes(campaign.id)}
+                  onSelect={handleRowSelect}
+                  highlightText={(text) => highlightText(text, searchQuery)}
                 />
               ))
             )}
