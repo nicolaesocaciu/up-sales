@@ -1,5 +1,7 @@
+
 import { cn } from "@/lib/utils";
 import { Card } from "../ui/card";
+import { Badge } from "../ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 interface StatsCardProps {
   title: string;
@@ -30,10 +32,15 @@ export const StatsCard = ({
             <TooltipProvider delayDuration={0}>
               <Tooltip>
                 <TooltipTrigger>
-                  <div className={cn("px-2 py-1 rounded-full text-sm font-medium", change.trend === "up" ? "bg-status-light-up text-green-600" : "bg-status-light-down text-red-600")}>
+                  <Badge 
+                    className={cn(
+                      change.trend === "up" ? "bg-green-100 border-green-200 text-green-800 hover:bg-green-200" : 
+                      "bg-red-100 border-red-200 text-red-800 hover:bg-red-200"
+                    )}
+                  >
                     {change.trend === "up" ? "+" : "-"}
                     {Math.abs(change.value)}%
-                  </div>
+                  </Badge>
                 </TooltipTrigger>
                 <TooltipContent className="bg-[#1F2228] text-white border-0">
                   <p>Compared with the previous month</p>
