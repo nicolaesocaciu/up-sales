@@ -265,7 +265,7 @@ const HelpCenter = () => {
                     Can I customize the sales pipeline stages?
                   </h3>
                   <p className="text-sm mt-2 pl-7">
-                    Yes, you can customize your sales pipeline stages by going to Settings > Sales Pipeline. There, you can add, edit, or remove stages to match your sales process.
+                    Yes, you can customize your sales pipeline stages by going to Settings {'>'}  Sales Pipeline. There, you can add, edit, or remove stages to match your sales process.
                   </p>
                   <Separator className="my-4" />
                 </div>
@@ -287,7 +287,7 @@ const HelpCenter = () => {
                     How can I track my sales team's performance?
                   </h3>
                   <p className="text-sm mt-2 pl-7">
-                    The Dashboard displays key performance indicators for your sales team. For more detailed analytics, go to Reports > Sales Performance where you can filter by team member, date range, and product categories.
+                    The Dashboard displays key performance indicators for your sales team. For more detailed analytics, go to Reports {'>'}  Sales Performance where you can filter by team member, date range, and product categories.
                   </p>
                   <Separator className="my-4" />
                 </div>
