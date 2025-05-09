@@ -30,46 +30,7 @@ const Products = () => {
           </Button>
         </div>
 
-        <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <Tabs defaultValue="all-products" className="w-full">
-              <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
-                <TabsTrigger 
-                  value="all-products"
-                  className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
-                  style={{
-                    "--tw-text-opacity": "1",
-                    "color": "rgb(17 111 174 / var(--tw-text-opacity))"
-                  } as React.CSSProperties}
-                >
-                  All products
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="featured"
-                  className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
-                  style={{
-                    "--tw-text-opacity": "1",
-                    "color": "rgb(17 111 174 / var(--tw-text-opacity))"
-                  } as React.CSSProperties}
-                >
-                  Featured
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="new-arrivals"
-                  className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
-                  style={{
-                    "--tw-text-opacity": "1",
-                    "color": "rgb(17 111 174 / var(--tw-text-opacity))"
-                  } as React.CSSProperties}
-                >
-                  New arrivals
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </div>
-
-          <ProductsDataTable />
-        </div>
+        <ProductsDataTable />
       </div>
 
       <AddProductDialog

@@ -140,7 +140,19 @@ export const ProductsDataTable = () => {
             className={`px-0 py-3 text-sm font-medium ${stockFilter === null ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
             onClick={() => setStockFilter(null)}
           >
-            All
+            All products
+          </button>
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === 'Featured' ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter('Featured')}
+          >
+            Featured
+          </button>
+          <button
+            className={`px-0 py-3 text-sm font-medium ${stockFilter === 'New arrivals' ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
+            onClick={() => setStockFilter('New arrivals')}
+          >
+            New arrivals
           </button>
           <button
             className={`px-0 py-3 text-sm font-medium ${stockFilter === 'Out of stock in 1 days' || stockFilter?.startsWith('Out of stock in') ? 'text-[#116fae] border-b-2 border-[#116fae]' : 'text-gray-600 hover:text-gray-900'}`}
