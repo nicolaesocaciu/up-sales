@@ -35,7 +35,8 @@ export const MarketingStats = () => {
   const [chartData, setChartData] = useState({
     leadGeneration: [] as { value: number }[],
     salesConversion: [] as { value: number }[],
-    engagement: [] as { value: number }[]
+    engagement: [] as { value: number }[],
+    generatedIncome: [] as { value: number }[]
   });
   
   // Generate new chart data every 5 seconds
@@ -58,12 +59,13 @@ export const MarketingStats = () => {
     setChartData({
       leadGeneration: generateChartData(10, "up", 1000, 2300),
       salesConversion: generateChartData(10, "down", 390, 600),
-      engagement: generateChartData(10, "up", 5000, 9100)
+      engagement: generateChartData(10, "up", 5000, 9100),
+      generatedIncome: generateChartData(10, "up", 8000, 12000)
     });
   };
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
       <StatsCard
         title="Lead generation"
         value="2,245"
@@ -107,6 +109,24 @@ export const MarketingStats = () => {
         compareText="from 2,873 (last 30 days)"
         chart={
           <LineChart width={300} height={30} data={chartData.engagement}>
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke="#4ade80"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        }
+      />
+
+      <StatsCard
+        title="Generated income"
+        value="$ 9,862"
+        change={{ value: 13, trend: "up" }}
+        compareText="from $8,728 (last 30 days)"
+        chart={
+          <LineChart width={300} height={30} data={chartData.generatedIncome}>
             <Line
               type="monotone"
               dataKey="value"
