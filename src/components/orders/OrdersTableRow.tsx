@@ -42,7 +42,7 @@ export const OrdersTableRow = ({
 
   return (
     <>
-      <TableRow key={order.id} className="hover:bg-gray-50">
+      <TableRow key={order.id} className="h-16 hover:bg-gray-50">
         <TableCell>
           <Checkbox 
             checked={selected} 
