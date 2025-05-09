@@ -20,7 +20,7 @@ const Orders = () => {
           <div className="flex gap-2">
             <Button 
               variant="outline"
-              className="gap-2"
+              className="gap-2 h-[36px]"
             >
               Export
             </Button>
@@ -28,7 +28,7 @@ const Orders = () => {
               onClick={() => setShowAddDialog(true)}
               className="h-10 px-4 py-2"
             >
-              <Plus className="mr-2 h-4 w-4" />
+              <Plus className="mr-2 h-[36px] w-4" />
               Add manual order
             </Button>
           </div>

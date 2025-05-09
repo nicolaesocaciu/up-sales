@@ -19,7 +19,7 @@ const Discounts = () => {
           <div className="flex gap-2">
             <Button 
               variant="outline"
-              className="gap-2"
+              className="gap-2 h-[36px]"
             >
               Export
             </Button>
@@ -27,7 +27,7 @@ const Discounts = () => {
               onClick={() => setShowAddDialog(true)} 
               className="gap-2"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="h-[36px] w-4" />
               Create Discount
             </Button>
           </div>

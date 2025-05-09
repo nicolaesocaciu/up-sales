@@ -13,14 +13,14 @@ const Customers = () => {
           <div className="flex gap-2">
             <Button 
               variant="outline"
-              className="gap-2"
+              className="gap-2 h-[36px]"
             >
               Export
             </Button>
             <Button 
               className="gap-2 border border-[#116FAE] bg-[#116FAE] shadow-[0px_2px_4px_0px_rgba(13,87,136,0.16)] hover:border-[#0D5788] hover:bg-[#0D5788] active:border-[#14476A] active:bg-[#14476A] rounded-[8px]"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="h-[36px] w-4" />
               Add customer
             </Button>
           </div>
