@@ -74,7 +74,7 @@ export const ProductsTableRow = ({
 
   return (
     <>
-      <TableRow className="h-16 hover:bg-[#E7F2F9]">
+      <TableRow className="h-16 hover:bg-[#E7F2F9] group">
         <TableCell>
           <Checkbox 
             checked={selected} 
