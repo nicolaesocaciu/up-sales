@@ -1,9 +1,8 @@
 
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Cell, Pie, PieChart } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
-import { cn } from "@/lib/utils";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../ui/chart";
 import { Grip } from "lucide-react";
 
 interface SalesPieChartProps {
@@ -37,19 +36,23 @@ export const SalesPieChart = ({
     "July", "August", "September", "October", "November", "December"
   ];
 
-  // Configure chart colors for the shadcn chart component
+  // Configure chart colors with the Sapphire color scheme
   const chartConfig = {
     other: {
-      color: "#EF4444"
+      label: "Other",
+      color: "#e11d48" // Ruby
     },
     tablet: {
-      color: "#F59E0B"
+      label: "Tablet",
+      color: "#fb7185" // Ruby lighter
     },
     mobile: {
-      color: "#22C55E"
+      label: "Mobile",
+      color: "#3b82f6" // Sapphire
     },
     website: {
-      color: "#3B82F6"
+      label: "Website",
+      color: "#2563eb" // Sapphire darker
     }
   };
 
@@ -80,10 +83,27 @@ export const SalesPieChart = ({
       <div className="h-[260px] relative mb-6">
         <ChartContainer config={chartConfig} className="h-full">
           <PieChart>
-            <Pie data={data} cx="50%" cy="50%" innerRadius={70} outerRadius={100} paddingAngle={4} dataKey="value" startAngle={-270} endAngle={90}>
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
+            <Pie 
+              data={data} 
+              cx="50%" 
+              cy="50%" 
+              innerRadius={70} 
+              outerRadius={100} 
+              paddingAngle={4} 
+              dataKey="value" 
+              startAngle={-270} 
+              endAngle={90}
+              nameKey="name"
+            >
+              {data.map((entry, index) => {
+                const key = entry.name.toLowerCase();
+                return (
+                  <Cell 
+                    key={`cell-${index}`} 
+                    fill={chartConfig[key as keyof typeof chartConfig]?.color || entry.color} 
+                  />
+                );
+              })}
             </Pie>
             <ChartTooltip content={<CustomTooltipContent />} />
           </PieChart>
@@ -94,19 +114,26 @@ export const SalesPieChart = ({
         </div>
       </div>
       <div className="grid grid-cols-4 gap-x-4">
-        {data.map(item => <div key={item.name} className="flex items-center space-x-2">
-            <div className="flex items-center space-x-2">
-              <div className="w-[6px] h-[38px] rounded-[4px]" style={{
-            backgroundColor: item.color
-          }} />
-              <div>
-                <div className="text-sm text-gray-500">{item.name}</div>
-                <div className="text-base font-semibold">
-                  ${item.value.toLocaleString()}
+        {Object.entries(chartConfig).map(([key, config]) => {
+          const item = data.find(d => d.name.toLowerCase() === key);
+          if (!item) return null;
+          
+          return (
+            <div key={key} className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2">
+                <div className="w-[6px] h-[38px] rounded-[4px]" style={{
+                  backgroundColor: config.color
+                }} />
+                <div>
+                  <div className="text-sm text-gray-500">{config.label}</div>
+                  <div className="text-base font-semibold">
+                    ${item.value.toLocaleString()}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>)}
+          );
+        })}
       </div>
     </Card>
   );

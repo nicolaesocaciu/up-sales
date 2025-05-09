@@ -1,9 +1,8 @@
 
 import { useState } from "react";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
-import { cn } from "@/lib/utils";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../ui/chart";
 import { Grip } from "lucide-react";
 
 const weekData = [{
@@ -105,24 +104,27 @@ export const AdsBarChart = ({
   const currentData = getData();
   const totals = getTotals();
   
-  // Define chart config for shadcn chart component
+  // Define chart config with Sapphire color scheme
   const chartConfig = {
     clicks: {
       label: "Clicks",
-      color: "#33C3F0"
+      color: "#3b82f6" // Sapphire
     },
     impressions: {
       label: "Impressions",
-      color: "#0EA5E9"
+      color: "#93c5fd" // Sapphire lighter
     }
   };
 
-  return <div className="bg-white rounded-[24px] p-6 h-full">
+  return (
+    <div className="bg-white rounded-[24px] p-6 h-full">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
-          {isEditMode && <div className="cursor-grab active:cursor-grabbing">
+          {isEditMode && (
+            <div className="cursor-grab active:cursor-grabbing">
               <Grip className="h-4 w-4 text-gray-400" />
-            </div>}
+            </div>
+          )}
           <h2 className="text-lg font-semibold">Ads target</h2>
         </div>
         <Tabs value={selectedPeriod} onValueChange={setSelectedPeriod} className="w-auto">
@@ -143,14 +145,14 @@ export const AdsBarChart = ({
         <div className="space-y-4">
           <div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm bg-[#33C3F0]"></div>
+              <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: chartConfig.clicks.color }}></div>
               <div className="text-sm text-gray-500">Total clicks</div>
             </div>
             <div className="text-2xl font-semibold">{totals.clicks.toLocaleString()}</div>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm bg-[#0EA5E9]"></div>
+              <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: chartConfig.impressions.color }}></div>
               <div className="text-sm text-gray-500 w-[80px]">Total impressions</div>
             </div>
             <div className="text-2xl font-semibold">{totals.impressions.toLocaleString()}</div>
@@ -158,19 +160,40 @@ export const AdsBarChart = ({
         </div>
         <div className="h-[200px]">
           <ChartContainer config={chartConfig} className="h-full">
-            <BarChart data={currentData} barGap={8}>
-              <XAxis dataKey="name" tickLine={false} style={{
-              fontSize: '14px'
-            }} />
-              <YAxis tickLine={false} style={{
-              fontSize: '14px'
-            }} />
+            <BarChart data={currentData} barGap={0}>
+              <XAxis 
+                dataKey="name" 
+                tickLine={false} 
+                style={{ fontSize: '14px' }}
+                axisLine={{ stroke: '#E5E7EB' }}
+              />
+              <YAxis 
+                tickLine={false} 
+                style={{ fontSize: '14px' }}
+                axisLine={{ stroke: '#E5E7EB' }}
+              />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="clicks" fill="#33C3F0" stackId="stack" />
-              <Bar dataKey="impressions" fill="#0EA5E9" stackId="stack" />
+              <Bar 
+                dataKey="impressions" 
+                fill={chartConfig.impressions.color} 
+                stackId="stack"
+                radius={[0, 0, 0, 0]} 
+              />
+              <Bar 
+                dataKey="clicks" 
+                fill={chartConfig.clicks.color} 
+                stackId="stack" 
+                radius={[4, 4, 0, 0]}
+              />
+              <ChartLegend 
+                content={<ChartLegendContent />}
+                verticalAlign="top"
+                align="right"
+              />
             </BarChart>
           </ChartContainer>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
