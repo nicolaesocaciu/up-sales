@@ -2,11 +2,13 @@
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnVisibility } from "./DiscountsTableColumns";
-import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Discount } from "@/types/discount";
 import { DiscountStatusBadge } from "./DiscountStatusBadge";
+import { MoreHorizontal } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface DiscountsTableRowProps {
   discount: Discount;
@@ -23,8 +25,10 @@ export const DiscountsTableRow = ({
   onSelect,
   highlightText
 }: DiscountsTableRowProps) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return (
-    <TableRow className="h-14 hover:bg-slate-50">
+    <TableRow className={cn("h-14 transition-colors", isDropdownOpen ? "bg-[#E7F2F9]" : "hover:bg-[#E7F2F9]")}>
       <TableCell className="w-[40px]">
         <Checkbox 
           checked={selected} 
@@ -71,16 +75,29 @@ export const DiscountsTableRow = ({
 
       {columnVisibility.actions && (
         <TableCell className="w-[50px]">
-          <DropdownMenu>
+          <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className={cn(
+                  "h-8 w-8 p-0 transition-colors", 
+                  isDropdownOpen ? "bg-[rgba(153,203,236,0.50)]" : "hover:bg-[rgba(153,203,236,0.50)]"
+                )}
+              >
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem>Duplicate</DropdownMenuItem>
-              <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+            <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-xl bg-white" sideOffset={-10}>
+              <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
+                Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg">
+                Duplicate
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center gap-2 px-4 py-3 text-sm cursor-pointer hover:bg-[#E7F2F9] rounded-lg text-red-600 hover:text-red-600">
+                Delete
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </TableCell>
