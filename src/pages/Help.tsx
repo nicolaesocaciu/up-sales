@@ -375,7 +375,7 @@ const HelpCenter = () => {
 
             <Card className="bg-white shadow-none border-0">
               <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
+                <CardTitle className="text-[20px]">Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
