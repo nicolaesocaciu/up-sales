@@ -222,7 +222,7 @@ export const NotificationCenter: React.FC = () => {
         <Button variant="ghost" className="relative">
           <NotificationIcon />
           {unreadCount > 0 && (
-            <div className="absolute top-[6px] right- w-3 h-3 bg-[#CC334C] rounded-full border-2 border-[#252626]" />
+            <div className="absolute top-[6px] right-[10px] w-3 h-3 bg-[#CC334C] rounded-full border-2 border-[#252626]" />
           )}
         </Button>
       </DropdownMenuTrigger>
@@ -242,7 +242,7 @@ export const NotificationCenter: React.FC = () => {
           {notifications.map((notification) => (
             <div key={notification.id} className={cn(
               "flex items-start gap-3 p-4",
-              notification.read ? "" : "bg-[#E7F2F9]"
+              notification.read ? "" : "bg-[rgba(231, 242, 249, 0.50)]"
             )}>
               {typeIcons[notification.type]}
               <div className="flex-1">
