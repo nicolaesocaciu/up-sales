@@ -18,7 +18,7 @@ export const GeneralSettings = () => {
     toast.success("General settings saved successfully");
   };
   return <div className="space-y-6">
-      <Card className="bg-white shadow-none">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
           <CardTitle className="text-[20px]">Company Information</CardTitle>
           <CardDescription className="text-[#494A4A]">
@@ -39,7 +39,7 @@ export const GeneralSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white shadow-none">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
           <CardTitle className="text-[20px]">Regional Settings</CardTitle>
           <CardDescription className="text-[#494A4A]">
@@ -124,7 +124,7 @@ export const GeneralSettings = () => {
         </CardFooter>
       </Card>
 
-      <Card className="bg-white shadow-none">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
           <CardTitle className="text-[20px]">Automation Settings</CardTitle>
           <CardDescription className="text-[#494A4A]">

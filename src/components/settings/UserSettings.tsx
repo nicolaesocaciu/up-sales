@@ -22,10 +22,10 @@ export const UserSettings = () => {
     // In a real implementation, this would open a file picker
   };
   return <div className="space-y-6">
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Profile Information</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Profile Information</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Update your personal information and how it appears on the system
           </CardDescription>
         </CardHeader>
@@ -65,10 +65,10 @@ export const UserSettings = () => {
         </CardFooter>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Work Information</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Work Information</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Update your position, department and other work-related settings
           </CardDescription>
         </CardHeader>
@@ -101,10 +101,10 @@ export const UserSettings = () => {
         </CardFooter>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Interface Preferences</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Interface Preferences</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Customize how the application looks and behaves for you
           </CardDescription>
         </CardHeader>
