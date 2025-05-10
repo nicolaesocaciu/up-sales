@@ -7,6 +7,10 @@ interface SalesPieChartProps {
   isEditMode?: boolean;
 }
 const data = [{
+  name: "Website",
+  value: 354629,
+  color: " #419BD7"
+}, {
   name: "Other",
   value: 46837,
   color: " #E28594"
@@ -18,10 +22,6 @@ const data = [{
   name: "Mobile",
   value: 160586,
   color: " #7FAF7F"
-}, {
-  name: "Website",
-  value: 354629,
-  color: " #419BD7"
 }];
 export const SalesPieChart = ({
   isEditMode
@@ -31,6 +31,10 @@ export const SalesPieChart = ({
 
   // Configure chart colors with the Sapphire color scheme
   const chartConfig = {
+    website: {
+      label: "Website",
+      color: " #419BD7" // Sapphire darker
+    },
     other: {
       label: "Other",
       color: " #E28594" // Ruby
@@ -42,10 +46,6 @@ export const SalesPieChart = ({
     mobile: {
       label: "Mobile",
       color: " #7FAF7F" // Sapphire
-    },
-    website: {
-      label: "Website",
-      color: " #419BD7" // Sapphire darker
     }
   };
   return <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
