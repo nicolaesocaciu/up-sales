@@ -11,8 +11,8 @@ const HelpCenter = () => {
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-semibold">Help Center</h1>
-          <p className="text-muted-foreground mt-2">Find resources and support for your sales CRM</p>
+          <h1 className="text-2xl font-semibold">Help Center</h1>
+          <p className="text-muted-foreground mt-2 text-[#494A4A]">Find resources and support for your sales CRM</p>
         </div>
 
         <Tabs defaultValue="guides">

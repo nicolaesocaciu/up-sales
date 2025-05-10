@@ -16,7 +16,7 @@ export default function Settings() {
           <p className="text-muted-foreground mt-2 text-[#494A4A]">Manage your account settings and preferences.</p>
         </div>
 
-        <Tabs defaultValue="general" className="w-full">
+        <Tabs defaultValue="general" className="w-full mb-6">
           <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
             <TabsTrigger 
               value="general" 
