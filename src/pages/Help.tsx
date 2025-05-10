@@ -25,7 +25,7 @@ const HelpCenter = () => {
 
           <TabsContent value="guides" className="mt-6 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-xl">CRM Basics</CardTitle>
@@ -58,7 +58,7 @@ const HelpCenter = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-xl">Sales Pipeline</CardTitle>
@@ -91,7 +91,7 @@ const HelpCenter = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-xl">Marketing Tools</CardTitle>
@@ -128,7 +128,7 @@ const HelpCenter = () => {
 
           <TabsContent value="videos" className="mt-6 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-xl">Getting Started</CardTitle>
@@ -165,7 +165,7 @@ const HelpCenter = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-xl">Sales Process</CardTitle>
@@ -202,7 +202,7 @@ const HelpCenter = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-xl">Advanced Features</CardTitle>
@@ -242,7 +242,7 @@ const HelpCenter = () => {
           </TabsContent>
 
           <TabsContent value="faq" className="mt-6 space-y-6">
-            <Card>
+            <Card className="bg-white shadow-none border-0">
               <CardHeader>
                 <CardTitle>Frequently Asked Questions</CardTitle>
                 <CardDescription>Common questions about using your sales CRM</CardDescription>
@@ -307,7 +307,7 @@ const HelpCenter = () => {
 
           <TabsContent value="support" className="mt-6 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-lg">Search Knowledge Base</CardTitle>
@@ -322,7 +322,7 @@ const HelpCenter = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-lg">Contact Support</CardTitle>
@@ -337,7 +337,7 @@ const HelpCenter = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white shadow-none border-0">
                 <CardHeader>
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-lg">Documentation</CardTitle>
@@ -353,7 +353,7 @@ const HelpCenter = () => {
               </Card>
             </div>
 
-            <Card>
+            <Card className="bg-white shadow-none border-0">
               <CardHeader>
                 <CardTitle>Contact Information</CardTitle>
               </CardHeader>
