@@ -122,7 +122,7 @@ export const AdsBarChart = ({
             <TabsTrigger value="week" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm">
               This week
             </TabsTrigger>
-            <TabsTrigger value="month" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:font-bold">
+            <TabsTrigger value="month" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm ">
               This month
             </TabsTrigger>
           </TabsList>
