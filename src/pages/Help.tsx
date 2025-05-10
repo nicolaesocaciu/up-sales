@@ -264,8 +264,8 @@ const HelpCenter = () => {
           <TabsContent value="faq" className="mt-6 space-y-6">
             <Card className="bg-white shadow-none border-0">
               <CardHeader>
-                <CardTitle>Frequently Asked Questions</CardTitle>
-                <CardDescription>Common questions about using your sales CRM</CardDescription>
+                <CardTitle className="text-[20px]">Frequently Asked Questions</CardTitle>
+                <CardDescription className="text-[#494A4A]">Common questions about using your sales CRM</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
