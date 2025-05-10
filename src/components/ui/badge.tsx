@@ -26,7 +26,7 @@ const badgeVariants = cva(
         
         // Custom badge variants for customer status
         success: "border-[#CFE7CF] bg-[#EBF7EB] text-[#2D7048]",
-        warning: "border-[#FCDFB1] bg-[#FFF7E4] text-[#CC334C]",
+        warning: "border-[#FCDFB1] bg-[#FFF7E4] text-[#B35300]",
         
         // Additional variants based on the knowledge
         "green": "border-[#CFE7CF] bg-[#EBF7EB] text-[#2D7048]",
