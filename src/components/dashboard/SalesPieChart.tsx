@@ -9,19 +9,19 @@ interface SalesPieChartProps {
 const data = [{
   name: "Other",
   value: 46837,
-  color: "#EF4444"
+  color: " #E28594"
 }, {
   name: "Tablet",
   value: 107057,
-  color: "#F59E0B"
+  color: " #EDB45F"
 }, {
   name: "Mobile",
   value: 160586,
-  color: "#22C55E"
+  color: " #7FAF7F"
 }, {
   name: "Website",
   value: 354629,
-  color: "#3B82F6"
+  color: " #419BD7"
 }];
 export const SalesPieChart = ({
   isEditMode
@@ -33,19 +33,19 @@ export const SalesPieChart = ({
   const chartConfig = {
     other: {
       label: "Other",
-      color: "#e11d48" // Ruby
+      color: " #E28594" // Ruby
     },
     tablet: {
       label: "Tablet",
-      color: "#fb7185" // Ruby lighter
+      color: " #EDB45F" // Ruby lighter
     },
     mobile: {
       label: "Mobile",
-      color: "#3b82f6" // Sapphire
+      color: " #7FAF7F" // Sapphire
     },
     website: {
       label: "Website",
-      color: "#2563eb" // Sapphire darker
+      color: " #419BD7" // Sapphire darker
     }
   };
   return <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
