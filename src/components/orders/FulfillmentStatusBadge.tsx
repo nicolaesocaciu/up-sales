@@ -11,7 +11,7 @@ export const FulfillmentStatusBadge = ({ status }: FulfillmentStatusBadgeProps) 
   return (
     <Badge
       className={cn(
-        "rounded-[4px]",
+        "rounded-[4px] py-[4px] px-[12px] bg-white",
         status === "Fulfilled" && "border-[#9BC29B] bg-[#CFE7CF] text-[#2D7048]",
         status === "Open" && "border-[#99CBEC] bg-[#E7F2F9] text-[#0D5788]",
         status === "Unfulfilled" && "border-[#F1BDC4] bg-[#FAD9DE] text-[#CC334C]",
