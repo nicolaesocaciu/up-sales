@@ -26,7 +26,7 @@ export const OrderSummary = ({
           <Badge className={`rounded-[4px] py-[3px] px-[12px]
             ${status === 'Paid' ? 'border-[2px] border-white bg-[#EBF7EB] text-[#2D7048]' : 
               status === 'Processing' ? 'border-[2px] border-white bg-[#E7F2F9] text-[#0D5788]' : 
-              'border-[2px] border-white bg-[#FCF2DC] text-[#FFF7E4]'} 
+              'border-[2px] border-white bg-[#FCF2DC] text-[#B35300]'} 
             font-medium`}>
             {status}
           </Badge>
