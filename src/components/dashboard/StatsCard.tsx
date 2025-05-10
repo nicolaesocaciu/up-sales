@@ -34,9 +34,9 @@ export const StatsCard = ({
                 <TooltipTrigger>
                   <Badge 
                     className={cn(
-                      "rounded-[4px] py-[4px] px-[12px]",
-                      change.trend === "up" ? "border-[#9BC29B] bg-[#CFE7CF] text-[#2D7048]" : 
-                      "border-[#F1BDC4] bg-[#FAD9DE] text-[#CC334C]"
+                      "rounded-[4px] py-[6px] px-[12px]",
+                      change.trend === "up" ? "border-0 bg-[#EBF7EB] text-[#2D7048]" : 
+                      "border-0 bg-[#FFEDEF] text-[#CC334C]"
                     )}
                   >
                     {change.trend === "up" ? "+" : "-"}
