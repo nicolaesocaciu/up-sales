@@ -18,10 +18,10 @@ export const GeneralSettings = () => {
     toast.success("General settings saved successfully");
   };
   return <div className="space-y-6">
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none">
         <CardHeader>
-          <CardTitle>Company Information</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Company Information</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Configure your company details and branding options
           </CardDescription>
         </CardHeader>
@@ -39,10 +39,10 @@ export const GeneralSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none">
         <CardHeader>
-          <CardTitle>Regional Settings</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Regional Settings</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Configure time zone, date format and other regional preferences
           </CardDescription>
         </CardHeader>
@@ -124,10 +124,10 @@ export const GeneralSettings = () => {
         </CardFooter>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none">
         <CardHeader>
-          <CardTitle>Automation Settings</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Automation Settings</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Configure how the CRM automates various tasks
           </CardDescription>
         </CardHeader>

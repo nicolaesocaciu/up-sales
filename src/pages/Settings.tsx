@@ -12,8 +12,8 @@ export default function Settings() {
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-semibold">Settings</h1>
-          <p className="text-muted-foreground mt-2">Manage your account settings and preferences.</p>
+          <h1 className="text-2xl font-semibold">Settings</h1>
+          <p className="text-muted-foreground mt-2 text-[#494A4A]">Manage your account settings and preferences.</p>
         </div>
 
         <Tabs defaultValue="general" className="w-full">
