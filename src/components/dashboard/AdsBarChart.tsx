@@ -115,7 +115,7 @@ export const AdsBarChart = ({
           <h2 className="text-lg font-semibold">Ads target</h2>
         </div>
         <Tabs value={selectedPeriod} onValueChange={setSelectedPeriod} className="w-auto">
-          <TabsList className="bg-gray-[#F2F2F2] h-[34px]">
+          <TabsList className="bg-[#EDEDED] h-[34px]">
             <TabsTrigger value="today" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm">
               Today
             </TabsTrigger>
