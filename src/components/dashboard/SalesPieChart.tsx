@@ -11,17 +11,17 @@ const data = [{
   value: 354629,
   color: " #419BD7"
 }, {
-  name: "Other",
-  value: 46837,
-  color: " #E28594"
+  name: "Mobile",
+  value: 160586,
+  color: " #7FAF7F"
 }, {
   name: "Tablet",
   value: 107057,
   color: " #EDB45F"
 }, {
-  name: "Mobile",
-  value: 160586,
-  color: " #7FAF7F"
+  name: "Other",
+  value: 46837,
+  color: " #E28594"
 }];
 export const SalesPieChart = ({
   isEditMode
@@ -35,17 +35,17 @@ export const SalesPieChart = ({
       label: "Website",
       color: " #419BD7" // Sapphire darker
     },
-    other: {
-      label: "Other",
-      color: " #E28594" // Ruby
+    mobile: {
+      label: "Mobile",
+      color: " #7FAF7F" // Sapphire
     },
     tablet: {
       label: "Tablet",
       color: " #EDB45F" // Ruby lighter
     },
-    mobile: {
-      label: "Mobile",
-      color: " #7FAF7F" // Sapphire
+    other: {
+      label: "Other",
+      color: " #E28594" // Ruby
     }
   };
   return <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
