@@ -316,7 +316,7 @@ const HelpCenter = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm mb-4">Find answers to your questions in our extensive knowledge base.</p>
-                  <Button className="w-full bg-[#116fae] hover:bg-[#0D5788]" style={{ borderRadius: "8px" }}>
+                  <Button className="w-full text-[#252626]" style={{ borderRadius: "8px" }}>
                     Browse Articles
                   </Button>
                 </CardContent>
@@ -331,7 +331,7 @@ const HelpCenter = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm mb-4">Get in touch with our dedicated support team for personalized help.</p>
-                  <Button className="w-full bg-[#116fae] hover:bg-[#0D5788]" style={{ borderRadius: "8px" }}>
+                  <Button className="w-full text-[#252626]" style={{ borderRadius: "8px" }}>
                     Open Ticket
                   </Button>
                 </CardContent>
@@ -346,7 +346,7 @@ const HelpCenter = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm mb-4">Access detailed documentation about all CRM features and functions.</p>
-                  <Button className="w-full bg-[#116fae] hover:bg-[#0D5788]" style={{ borderRadius: "8px" }}>
+                  <Button className="w-full text-[#252626]" style={{ borderRadius: "8px" }}>
                     View Documentation
                   </Button>
                 </CardContent>
