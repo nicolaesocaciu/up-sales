@@ -48,7 +48,7 @@ export const SalesPieChart = ({
       color: " #E28594" // Ruby
     }
   };
-  return <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none">
+  return <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none h-full ">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           {isEditMode && <div className="cursor-grab active:cursor-grabbing">
