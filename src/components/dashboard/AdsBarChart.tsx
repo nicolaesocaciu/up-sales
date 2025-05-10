@@ -116,13 +116,13 @@ export const AdsBarChart = ({
         </div>
         <Tabs value={selectedPeriod} onValueChange={setSelectedPeriod} className="w-auto">
           <TabsList className="bg-[#EDEDED] h-[34px]">
-            <TabsTrigger value="today" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm">
+            <TabsTrigger value="today" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:font-bold">
               Today
             </TabsTrigger>
-            <TabsTrigger value="week" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm">
+            <TabsTrigger value="week" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:font-bold">
               This week
             </TabsTrigger>
-            <TabsTrigger value="month" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm ">
+            <TabsTrigger value="month" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:font-bold">
               This month
             </TabsTrigger>
           </TabsList>
