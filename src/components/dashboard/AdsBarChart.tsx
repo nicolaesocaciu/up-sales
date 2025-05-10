@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
@@ -130,7 +129,7 @@ export const AdsBarChart = ({
         </Tabs>
       </div>
       <div className="grid">
-        <div className="flex items-center justify-center gap-6">
+        <div className="flex items-center justify-center gap-6 pb-6">
           <div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-sm" style={{
