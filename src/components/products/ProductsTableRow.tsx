@@ -55,15 +55,15 @@ export const ProductsTableRow = ({
   };
   const getStockPredictionBadge = (prediction: string) => {
     if (prediction.startsWith('Out of stock in')) {
-      return <Badge className="border-[ #FAD9DE] bg-[#FFEDEF] text-[#CC334C]">{prediction}</Badge>;
+      return <Badge className="border-[#FAD9DE] bg-[#FFEDEF] text-[#CC334C]">{prediction}</Badge>;
     } else if (prediction === 'Low stock') {
-      return <Badge className="border-[ #FCDFB1] bg-[#FFF7E4] text-[#B35300]">{prediction}</Badge>;
+      return <Badge className="border-[#FCDFB1] bg-[#FFF7E4] text-[#B35300]">{prediction}</Badge>;
     } else if (prediction === 'Stable stock') {
-      return <Badge className="border-[ #CFE7CF] bg-[#EBF7EB] text-[#2D7048]">{prediction}</Badge>;
+      return <Badge className="border-[#CFE7CF] bg-[#EBF7EB] text-[#2D7048]">{prediction}</Badge>;
     } else if (prediction === 'Overstock stock') {
-      return <Badge className="border-[ #D2EAFA] bg-[#E7F2F9] text-[#0D5788]">{prediction}</Badge>;
+      return <Badge className="border-[#D2EAFA] bg-[#E7F2F9] text-[#0D5788]">{prediction}</Badge>;
     } else {
-      return <Badge className="border-[ #DADADA] bg-[#F2F2F2] text-[#494A4A]">{prediction}</Badge>;
+      return <Badge className="border-[#DADADA] bg-[#F2F2F2] text-[#494A4A]">{prediction}</Badge>;
     }
   };
   return <>
