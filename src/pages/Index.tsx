@@ -25,7 +25,7 @@ const Index = () => {
                 <Check className="h-4 w-4" />
                 Save dashboard
               </Button>}
-            <Button variant="outline" onClick={toggleEditMode} className={cn("my-0 py-0 mx-0 px-[16px] h-[36px]", isEditMode && "bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border-red-200 hover:border-red-300")}>
+            <Button variant="outline" onClick={toggleEditMode} className={cn("my-0 py-0 mx-0 px-[16px] h-[36px]")}>
               {isEditMode ? <>
                   <X className="h-4 w-4" />
                   Cancel edit
