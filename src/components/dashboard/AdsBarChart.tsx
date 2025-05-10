@@ -100,11 +100,11 @@ export const AdsBarChart = ({
   const chartConfig = {
     clicks: {
       label: "Clicks",
-      color: " #93c5fd" // Sapphire
+      color: " #D2EAFA" // Sapphire
     },
     impressions: {
       label: "Impressions",
-      color: " #3b82f6" // Sapphire lighter
+      color: " #419BD7" // Sapphire lighter
     }
   };
   return <div className="bg-white rounded-[24px] p-6 h-full flex flex-col">
