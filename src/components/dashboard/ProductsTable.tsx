@@ -64,7 +64,7 @@ export const ProductsTable = ({
   const toggleSort = () => {
     setSortDirection(sortDirection === "asc" ? "desc" : "asc");
   };
-  return <div className="rounded-[24px] bg-white">
+  return <div className="rounded-[24px] bg-white h-full">
       <ProductTableHeader title="Top products" />
       <div className="px-6 pb-6 ">
         <Table>
