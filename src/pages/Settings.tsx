@@ -1,4 +1,3 @@
-
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { GeneralSettings } from "@/components/settings/GeneralSettings";
@@ -6,10 +5,8 @@ import { UserSettings } from "@/components/settings/UserSettings";
 import { IntegrationsSettings } from "@/components/settings/IntegrationsSettings";
 import { NotificationSettings } from "@/components/settings/NotificationSettings";
 import { SecuritySettings } from "@/components/settings/SecuritySettings";
-
 export default function Settings() {
-  return (
-    <DashboardLayout>
+  return <DashboardLayout>
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-semibold">Settings</h1>
@@ -17,35 +14,20 @@ export default function Settings() {
         </div>
 
         <Tabs defaultValue="general" className="w-full">
-          <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6 mb-6">
-            <TabsTrigger 
-              value="general" 
-              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
-            >
+          <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6 mb-4">
+            <TabsTrigger value="general" className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none">
               General
             </TabsTrigger>
-            <TabsTrigger 
-              value="user" 
-              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
-            >
+            <TabsTrigger value="user" className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none">
               User Profile
             </TabsTrigger>
-            <TabsTrigger 
-              value="integrations" 
-              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
-            >
+            <TabsTrigger value="integrations" className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none">
               Integrations
             </TabsTrigger>
-            <TabsTrigger 
-              value="notifications" 
-              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
-            >
+            <TabsTrigger value="notifications" className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none">
               Notifications
             </TabsTrigger>
-            <TabsTrigger 
-              value="security" 
-              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
-            >
+            <TabsTrigger value="security" className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none">
               Security & Privacy
             </TabsTrigger>
           </TabsList>
@@ -66,6 +48,5 @@ export default function Settings() {
           </TabsContent>
         </Tabs>
       </div>
-    </DashboardLayout>
-  );
+    </DashboardLayout>;
 }
