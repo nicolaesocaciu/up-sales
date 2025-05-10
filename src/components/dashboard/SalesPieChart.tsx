@@ -88,7 +88,7 @@ export const SalesPieChart = ({
         {Object.entries(chartConfig).map(([key, config]) => {
         const item = data.find(d => d.name.toLowerCase() === key);
         if (!item) return null;
-        return <div key={key} className="flex items-center ">
+        return <div key={key} className="flex items-center  w-[90px]">
               <div className="flex items-center space-x-2">
                 <div className="w-[6px] h-[38px] rounded-[4px]" style={{
               backgroundColor: config.color
