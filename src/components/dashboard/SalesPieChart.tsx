@@ -1,14 +1,11 @@
-
-import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
+import { Cell, Pie, PieChart } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { ChartContainer, ChartTooltip } from "../ui/chart";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../ui/chart";
 import { Grip } from "lucide-react";
-
 interface SalesPieChartProps {
   isEditMode?: boolean;
 }
-
 const data = [{
   name: "Website",
   value: 354629,
@@ -26,7 +23,6 @@ const data = [{
   value: 46837,
   color: " #E28594"
 }];
-
 export const SalesPieChart = ({
   isEditMode
 }: SalesPieChartProps) => {
@@ -52,9 +48,7 @@ export const SalesPieChart = ({
       color: " #E28594" // Ruby
     }
   };
-  
-  return (
-    <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none flex flex-col">
+  return <Card className="p-6 bg-white rounded-[24px] border-0 h-full shadow-none">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           {isEditMode && <div className="cursor-grab active:cursor-grabbing">
@@ -73,46 +67,32 @@ export const SalesPieChart = ({
           </SelectContent>
         </Select>
       </div>
-      <div className="relative flex-grow">
+      <div className="relative">
         <ChartContainer config={chartConfig} className="h-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie 
-                data={data} 
-                cx="50%" 
-                cy="50%" 
-                innerRadius={({ width }) => Math.min(70, width * 0.15)}
-                outerRadius={({ width }) => Math.min(100, width * 0.25)} 
-                paddingAngle={4} 
-                dataKey="value" 
-                startAngle={-270} 
-                endAngle={90} 
-                nameKey="name"
-              >
-                {data.map((entry, index) => {
-                  const key = entry.name.toLowerCase();
-                  return <Cell key={`cell-${index}`} fill={chartConfig[key as keyof typeof chartConfig]?.color || entry.color} />;
-                })}
-              </Pie>
-              <ChartTooltip content={<CustomTooltipContent />} />
-            </PieChart>
-          </ResponsiveContainer>
+          <PieChart>
+            <Pie data={data} cx="50%" cy="50%" innerRadius={70} outerRadius={100} paddingAngle={4} dataKey="value" startAngle={-270} endAngle={90} nameKey="name">
+              {data.map((entry, index) => {
+              const key = entry.name.toLowerCase();
+              return <Cell key={`cell-${index}`} fill={chartConfig[key as keyof typeof chartConfig]?.color || entry.color} />;
+            })}
+            </Pie>
+            <ChartTooltip content={<CustomTooltipContent />} />
+          </PieChart>
         </ChartContainer>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <div className="text-[#494A4A]">Total</div>
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6">
+      <div className="grid [grid-template-columns:repeat(auto-fill,_minmax(90px,_1fr))] pt-6 gap-3">
         {Object.entries(chartConfig).map(([key, config]) => {
-          const item = data.find(d => d.name.toLowerCase() === key);
-          if (!item) return null;
-          return (
-            <div key={key} className="flex items-center">
+        const item = data.find(d => d.name.toLowerCase() === key);
+        if (!item) return null;
+        return <div key={key} className="flex items-center  w-[90px]">
               <div className="flex items-center space-x-2">
                 <div className="w-[6px] h-[38px] rounded-[4px]" style={{
-                  backgroundColor: config.color
-                }} />
+              backgroundColor: config.color
+            }} />
                 <div>
                   <div className="text-sm text-[#494A4A]">{config.label}</div>
                   <div className="text-base font-semibold">
@@ -120,12 +100,10 @@ export const SalesPieChart = ({
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            </div>;
+      })}
       </div>
-    </Card>
-  );
+    </Card>;
 };
 
 // Custom tooltip component

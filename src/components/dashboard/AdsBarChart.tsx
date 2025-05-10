@@ -1,8 +1,7 @@
-
 import { useState } from "react";
-import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../ui/chart";
 import { Grip } from "lucide-react";
 
 const weekData = [{
@@ -34,7 +33,6 @@ const weekData = [{
   clicks: 2600,
   impressions: 1400
 }];
-
 const todayData = [{
   name: "9AM",
   clicks: 800,
@@ -52,7 +50,6 @@ const todayData = [{
   clicks: 900,
   impressions: 600
 }];
-
 const monthData = [{
   name: "1st Week",
   clicks: 15000,
@@ -70,16 +67,13 @@ const monthData = [{
   clicks: 20000,
   impressions: 15000
 }];
-
 interface AdsBarChartProps {
   isEditMode?: boolean;
 }
-
 export const AdsBarChart = ({
   isEditMode
 }: AdsBarChartProps) => {
   const [selectedPeriod, setSelectedPeriod] = useState("week");
-  
   const getData = () => {
     switch (selectedPeriod) {
       case "today":
@@ -92,7 +86,6 @@ export const AdsBarChart = ({
         return weekData;
     }
   };
-  
   const getTotals = () => {
     const data = getData();
     return {
@@ -100,7 +93,6 @@ export const AdsBarChart = ({
       impressions: data.reduce((sum, item) => sum + item.impressions, 0)
     };
   };
-  
   const currentData = getData();
   const totals = getTotals();
 
@@ -115,9 +107,7 @@ export const AdsBarChart = ({
       color: " #1482CC" // Sapphire lighter
     }
   };
-  
-  return (
-    <div className="bg-white rounded-[24px] p-6 h-full flex flex-col">
+  return <div className="bg-white rounded-[24px] p-6 h-full flex flex-col">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
           {isEditMode && <div className="cursor-grab active:cursor-grabbing">
@@ -139,13 +129,13 @@ export const AdsBarChart = ({
           </TabsList>
         </Tabs>
       </div>
-      <div className="flex flex-col flex-grow">
-        <div className="flex items-center justify-center gap-6 pb-6 flex-wrap">
+      <div className="grid flex-grow">
+        <div className="flex items-center justify-center gap-6 pb-6">
           <div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-sm" style={{
-                backgroundColor: chartConfig.clicks.color
-              }}></div>
+              backgroundColor: chartConfig.clicks.color
+            }}></div>
               <div className="text-sm text-[#494A4A]">Total clicks</div>
             </div>
             <div className="text-2xl font-semibold ml-5">{totals.clicks.toLocaleString()}</div>
@@ -153,14 +143,14 @@ export const AdsBarChart = ({
           <div>
             <div className="flex items-center gap-2">
               <div style={{
-                backgroundColor: chartConfig.impressions.color
-              }} className="w-3 h-3 rounded-sm"></div>
+              backgroundColor: chartConfig.impressions.color
+            }} className="w-3 h-3 rounded-sm"></div>
               <div className="text-sm text-[#494A4A]">Total impressions</div>
             </div>
             <div className="text-2xl font-semibold ml-5">{totals.impressions.toLocaleString()}</div>
           </div>
         </div>
-        <div className="flex-grow">
+        <div className="h-full">
           <style>
             {`
               .recharts-rectangle.recharts-bar-rectangle:hover {
@@ -172,26 +162,23 @@ export const AdsBarChart = ({
             `}
           </style>
           <ChartContainer config={chartConfig} className="h-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={currentData} barGap={0} barSize={18}>
-                <XAxis dataKey="name" tickLine={false} style={{
-                  fontSize: '14px'
-                }} axisLine={{
-                  stroke: '#E5E7EB'
-                }} />
-                <YAxis tickLine={false} style={{
-                  fontSize: '14px'
-                }} axisLine={{
-                  stroke: '#E5E7EB'
-                }} />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="impressions" fill={chartConfig.impressions.color} stackId="stack" radius={[0, 0, 0, 0]} />
-                <Bar dataKey="clicks" fill={chartConfig.clicks.color} stackId="stack" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <BarChart data={currentData} barGap={0} barSize={30}>
+              <XAxis dataKey="name" tickLine={false} style={{
+              fontSize: '14px'
+            }} axisLine={{
+              stroke: '#E5E7EB'
+            }} />
+              <YAxis tickLine={false} style={{
+              fontSize: '14px'
+            }} axisLine={{
+              stroke: '#E5E7EB'
+            }} />
+              <ChartTooltip content={<ChartTooltipContent />} />
+              <Bar dataKey="impressions" fill={chartConfig.impressions.color} stackId="stack" radius={[0, 0, 0, 0]} />
+              <Bar dataKey="clicks" fill={chartConfig.clicks.color} stackId="stack" radius={[4, 4, 0, 0]} />
+            </BarChart>
           </ChartContainer>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
