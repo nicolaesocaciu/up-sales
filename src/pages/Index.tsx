@@ -30,7 +30,7 @@ const Index = () => {
                 onClick={handleSave} 
                 className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white h-[40px]"
               >
-                <Check className="mr-2 h-4 w-4" />
+                <Check className="h-4 w-4" />
                 Save dashboard
               </Button>
             }
@@ -44,12 +44,12 @@ const Index = () => {
             >
               {isEditMode ? (
                 <>
-                  <X className="mr-2 h-4 w-4" />
+                  <X className="h-4 w-4" />
                   Cancel edit
                 </>
               ) : (
                 <>
-                  <SettingsIcon className="mr-2 h-4 w-4" />
+                  <SettingsIcon className="h-4 w-4" />
                   Edit dashboard
                 </>
               )}
