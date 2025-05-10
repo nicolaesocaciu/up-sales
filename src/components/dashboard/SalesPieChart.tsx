@@ -84,7 +84,7 @@ export const SalesPieChart = ({
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
         </div>
       </div>
-      <div className="grid grid-cols-[auto_auto_auto_auto] gap-2 pt-6">
+      <div className="grid grid-cols-[90px_90px_90px_90px] gap-5 pt-6 place-items-center">
         {Object.entries(chartConfig).map(([key, config]) => {
         const item = data.find(d => d.name.toLowerCase() === key);
         if (!item) return null;
