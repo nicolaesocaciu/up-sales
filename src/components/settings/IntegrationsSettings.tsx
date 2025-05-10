@@ -19,10 +19,10 @@ export const IntegrationsSettings = () => {
     toast.success("Integration settings saved successfully");
   };
   return <div className="space-y-6">
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Email Marketing</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Email Marketing</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Connect with email marketing services to automate campaigns
           </CardDescription>
         </CardHeader>
@@ -49,10 +49,10 @@ export const IntegrationsSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Analytics & Tracking</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Analytics & Tracking</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Connect analytics tools to track performance and user behavior
           </CardDescription>
         </CardHeader>
@@ -86,10 +86,10 @@ export const IntegrationsSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Payment Processing</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Payment Processing</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Connect payment processors to handle transactions
           </CardDescription>
         </CardHeader>
@@ -123,10 +123,10 @@ export const IntegrationsSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Team Communication</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Team Communication</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Connect communication tools to streamline team collaboration
           </CardDescription>
         </CardHeader>
@@ -157,10 +157,10 @@ export const IntegrationsSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Other Integrations</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Other Integrations</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Connect other tools and services to extend functionality
           </CardDescription>
         </CardHeader>
