@@ -3,7 +3,6 @@ import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../ui/chart";
 import { Grip } from "lucide-react";
-
 const weekData = [{
   name: "Mon",
   clicks: 2100,
@@ -116,7 +115,7 @@ export const AdsBarChart = ({
           <h2 className="text-lg font-semibold">Ads target</h2>
         </div>
         <Tabs value={selectedPeriod} onValueChange={setSelectedPeriod} className="w-auto">
-          <TabsList className="bg-gray-100 h-[34px]">
+          <TabsList className="bg-gray-[#F2F2F2] h-[34px]">
             <TabsTrigger value="today" className="leading-none data-[state=active]:bg-white data-[state=active]:shadow-sm">
               Today
             </TabsTrigger>
