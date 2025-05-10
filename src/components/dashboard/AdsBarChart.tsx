@@ -104,7 +104,7 @@ export const AdsBarChart = ({
     },
     impressions: {
       label: "Impressions",
-      color: " #419BD7" // Sapphire lighter
+      color: " #1482CC" // Sapphire lighter
     }
   };
   return <div className="bg-white rounded-[24px] p-6 h-full flex flex-col">
