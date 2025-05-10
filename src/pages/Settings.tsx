@@ -17,20 +17,35 @@ export default function Settings() {
         </div>
 
         <Tabs defaultValue="general" className="w-full">
-          <TabsList className="bg-[#F2F2F2] p-1 w-full flex justify-start space-x-2 mb-6">
-            <TabsTrigger value="general" className="rounded-md px-4 py-2 data-[state=active]:bg-white">
+          <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
+            <TabsTrigger 
+              value="general" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
               General
             </TabsTrigger>
-            <TabsTrigger value="user" className="rounded-md px-4 py-2 data-[state=active]:bg-white">
+            <TabsTrigger 
+              value="user" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
               User Profile
             </TabsTrigger>
-            <TabsTrigger value="integrations" className="rounded-md px-4 py-2 data-[state=active]:bg-white">
+            <TabsTrigger 
+              value="integrations" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
               Integrations
             </TabsTrigger>
-            <TabsTrigger value="notifications" className="rounded-md px-4 py-2 data-[state=active]:bg-white">
+            <TabsTrigger 
+              value="notifications" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
               Notifications
             </TabsTrigger>
-            <TabsTrigger value="security" className="rounded-md px-4 py-2 data-[state=active]:bg-white">
+            <TabsTrigger 
+              value="security" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
               Security & Privacy
             </TabsTrigger>
           </TabsList>

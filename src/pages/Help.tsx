@@ -16,11 +16,31 @@ const HelpCenter = () => {
         </div>
 
         <Tabs defaultValue="guides">
-          <TabsList className="bg-white">
-            <TabsTrigger value="guides">Getting Started</TabsTrigger>
-            <TabsTrigger value="videos">Video Tutorials</TabsTrigger>
-            <TabsTrigger value="faq">FAQ</TabsTrigger>
-            <TabsTrigger value="support">Support</TabsTrigger>
+          <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
+            <TabsTrigger 
+              value="guides" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
+              Getting Started
+            </TabsTrigger>
+            <TabsTrigger 
+              value="videos" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
+              Video Tutorials
+            </TabsTrigger>
+            <TabsTrigger 
+              value="faq" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
+              FAQ
+            </TabsTrigger>
+            <TabsTrigger 
+              value="support" 
+              className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            >
+              Support
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="guides" className="mt-6 space-y-6">
