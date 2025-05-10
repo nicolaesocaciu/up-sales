@@ -156,6 +156,9 @@ export const AdsBarChart = ({
               .recharts-rectangle.recharts-bar-rectangle:hover {
                 fill: #e7f2f9 !important;
               }
+              .recharts-rectangle.recharts-tooltip-cursor {
+                fill: #e7f2f9 !important;
+              }
             `}
           </style>
           <ChartContainer config={chartConfig} className="h-full">
