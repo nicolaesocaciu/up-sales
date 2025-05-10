@@ -100,7 +100,7 @@ export const AdsBarChart = ({
   const chartConfig = {
     clicks: {
       label: "Clicks",
-      color: " #D2EAFA" // Sapphire
+      color: " #99CBEC" // Sapphire
     },
     impressions: {
       label: "Impressions",
