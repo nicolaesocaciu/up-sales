@@ -5,8 +5,9 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { StatsSection } from "@/components/dashboard/StatsSection";
 import { OrdersAndSalesSection } from "@/components/dashboard/OrdersAndSalesSection";
 import { ProductsAndAdsSection } from "@/components/dashboard/ProductsAndAdsSection";
-import { Check, X, Edit } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SettingsIcon } from "@/components/ui/icons/SettingsIcon";
 
 const Index = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -48,7 +49,7 @@ const Index = () => {
                 </>
               ) : (
                 <>
-                  <Edit className="mr-2 h-4 w-4" />
+                  <SettingsIcon className="mr-2 h-4 w-4" />
                   Edit dashboard
                 </>
               )}
