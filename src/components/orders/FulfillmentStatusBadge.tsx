@@ -12,11 +12,11 @@ export const FulfillmentStatusBadge = ({ status }: FulfillmentStatusBadgeProps) 
     <Badge
       className={cn(
         "rounded-[4px]",
-        status === "Fulfilled" && "bg-green-100 border-green-200 text-green-800 hover:bg-green-200",
-        status === "Open" && "bg-blue-100 border-blue-200 text-blue-800 hover:bg-blue-200",
-        status === "Unfulfilled" && "bg-red-100 border-red-200 text-red-800 hover:bg-red-200",
-        status === "Unpaid" && "bg-yellow-100 border-yellow-200 text-yellow-800 hover:bg-yellow-200",
-        status === "Closed" && "bg-gray-100 border-gray-200 text-gray-800 hover:bg-gray-200"
+        status === "Fulfilled" && "border-[#9BC29B] bg-[#CFE7CF] text-[#2D7048]",
+        status === "Open" && "border-[#99CBEC] bg-[#E7F2F9] text-[#0D5788]",
+        status === "Unfulfilled" && "border-[#F1BDC4] bg-[#FAD9DE] text-[#CC334C]",
+        status === "Unpaid" && "border-[#F2C480] bg-[#FCF2DC] text-[#B35300]",
+        status === "Closed" && "border-[#C0C0C0] bg-[#DADADA] text-[#494A4A]"
       )}
     >
       {status}

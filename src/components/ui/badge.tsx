@@ -17,16 +17,16 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
         
-        // Custom badge variants for stock status
-        "stock-out": "bg-red-100 border-red-200 text-red-800 hover:bg-red-200",
-        "stock-low": "bg-yellow-100 border-yellow-200 text-yellow-800 hover:bg-yellow-200",
-        "stock-stable": "bg-green-100 border-green-200 text-green-800 hover:bg-green-200",
-        "stock-overstock": "bg-blue-100 border-blue-200 text-blue-800 hover:bg-blue-200",
-        "stock-insufficient": "bg-gray-100 border-gray-200 text-gray-800 hover:bg-gray-200",
+        // Updated badge variants with the custom colors
+        "stock-out": "border-[#F1BDC4] bg-[#FAD9DE] text-[#CC334C] hover:bg-[#FAD9DE]/90",
+        "stock-low": "border-[#F2C480] bg-[#FCF2DC] text-[#B35300] hover:bg-[#FCF2DC]/90",
+        "stock-stable": "border-[#9BC29B] bg-[#CFE7CF] text-[#2D7048] hover:bg-[#CFE7CF]/90",
+        "stock-overstock": "border-[#99CBEC] bg-[#E7F2F9] text-[#0D5788] hover:bg-[#E7F2F9]/90",
+        "stock-insufficient": "border-[#C0C0C0] bg-[#DADADA] text-[#494A4A] hover:bg-[#DADADA]/90",
         
         // Custom badge variants for customer status
-        success: "bg-green-100 border-green-200 text-green-800 hover:bg-green-200",
-        warning: "bg-red-100 border-red-200 text-red-800 hover:bg-red-200",
+        success: "border-[#9BC29B] bg-[#CFE7CF] text-[#2D7048] hover:bg-[#CFE7CF]/90",
+        warning: "border-[#F1BDC4] bg-[#FAD9DE] text-[#CC334C] hover:bg-[#FAD9DE]/90",
       },
     },
     defaultVariants: {
