@@ -30,10 +30,10 @@ export const SecuritySettings = () => {
     toast.success("API key generated successfully");
   };
   return <div className="space-y-6">
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Change Password</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Change Password</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Update your account password
           </CardDescription>
         </CardHeader>
@@ -58,10 +58,10 @@ export const SecuritySettings = () => {
         </CardFooter>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Two-Factor Authentication</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Two-Factor Authentication</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Add an extra layer of security to your account
           </CardDescription>
         </CardHeader>
@@ -97,10 +97,10 @@ export const SecuritySettings = () => {
         </CardFooter>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Session Management</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Session Management</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Manage your active sessions and timeout settings
           </CardDescription>
         </CardHeader>
@@ -127,10 +127,10 @@ export const SecuritySettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Data Privacy</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Data Privacy</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Manage your data retention and privacy settings
           </CardDescription>
         </CardHeader>
@@ -157,10 +157,10 @@ export const SecuritySettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>API Access</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">API Access</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Manage API keys and access for integrations
           </CardDescription>
         </CardHeader>

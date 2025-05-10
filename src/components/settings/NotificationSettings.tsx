@@ -21,10 +21,10 @@ export const NotificationSettings = () => {
     toast.success("Notification settings saved successfully");
   };
   return <div className="space-y-6">
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Notification Preferences</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Notification Preferences</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Choose how and when you receive notifications
           </CardDescription>
         </CardHeader>
@@ -65,10 +65,10 @@ export const NotificationSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Sales Activities</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Sales Activities</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Notifications about sales and customer activities
           </CardDescription>
         </CardHeader>
@@ -125,10 +125,10 @@ export const NotificationSettings = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-white">
+      <Card className="bg-white shadow-none border-0">
         <CardHeader>
-          <CardTitle>Team Collaboration</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[20px]">Team Collaboration</CardTitle>
+          <CardDescription className="text-[#494A4A]">
             Notifications about team activities and mentions
           </CardDescription>
         </CardHeader>
