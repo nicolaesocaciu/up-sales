@@ -25,8 +25,8 @@ const badgeVariants = cva(
         "stock-insufficient": "border-[#DADADA] bg-[#F2F2F2] text-[#494A4A]",
         
         // Custom badge variants for customer status
-        success: "border-[#9BC29B] bg-[#CFE7CF] text-[#2D7048]",
-        warning: "border-[#F1BDC4] bg-[#FAD9DE] text-[#CC334C]",
+        success: "border-[#CFE7CF] bg-[#EBF7EB] text-[#2D7048]",
+        warning: "border-[#FCDFB1] bg-[#FFF7E4] text-[#CC334C]",
         
         // Additional variants based on the knowledge
         "green": "border-[#CFE7CF] bg-[#EBF7EB] text-[#2D7048]",
