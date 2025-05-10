@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
@@ -8,7 +7,6 @@ import { ProductsAndAdsSection } from "@/components/dashboard/ProductsAndAdsSect
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SettingsIcon } from "@/components/ui/icons/SettingsIcon";
-
 const Index = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const toggleEditMode = () => {
@@ -18,41 +16,23 @@ const Index = () => {
     // Here you would save the new layout configuration
     setIsEditMode(false);
   };
-  
-  return (
-    <DashboardLayout>
+  return <DashboardLayout>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold">Dashboard</h1>
           <div className="flex items-center gap-4">
-            {isEditMode && 
-              <Button 
-                onClick={handleSave} 
-                className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white"
-              >
+            {isEditMode && <Button onClick={handleSave} className="">
                 <Check className="h-4 w-4" />
                 Save dashboard
-              </Button>
-            }
-            <Button 
-              variant="outline" 
-              onClick={toggleEditMode} 
-              className={cn(
-                "my-0 py-0 mx-0 px-[16px] h-[36px]",
-                isEditMode && "bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
-              )}
-            >
-              {isEditMode ? (
-                <>
+              </Button>}
+            <Button variant="outline" onClick={toggleEditMode} className={cn("my-0 py-0 mx-0 px-[16px] h-[36px]", isEditMode && "bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border-red-200 hover:border-red-300")}>
+              {isEditMode ? <>
                   <X className="h-4 w-4" />
                   Cancel edit
-                </>
-              ) : (
-                <>
+                </> : <>
                   <SettingsIcon className="h-4 w-4" />
                   Edit dashboard
-                </>
-              )}
+                </>}
             </Button>
           </div>
         </div>
@@ -61,8 +41,6 @@ const Index = () => {
         <OrdersAndSalesSection isEditMode={isEditMode} />
         <ProductsAndAdsSection isEditMode={isEditMode} />
       </div>
-    </DashboardLayout>
-  );
+    </DashboardLayout>;
 };
-
 export default Index;
