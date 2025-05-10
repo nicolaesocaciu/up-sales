@@ -28,7 +28,7 @@ const Index = () => {
             {isEditMode && 
               <Button 
                 onClick={handleSave} 
-                className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white h-[40px]"
+                className="bg-[#22C55E] hover:bg-[#22C55E]/90 text-white"
               >
                 <Check className="h-4 w-4" />
                 Save dashboard
