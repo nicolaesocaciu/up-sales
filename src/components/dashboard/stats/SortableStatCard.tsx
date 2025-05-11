@@ -31,7 +31,7 @@ export const SortableStatCard = ({ id, isEditMode, ...cardProps }: SortableStatC
           {...listeners}
           className="absolute left-6 top-6 cursor-grab active:cursor-grabbing z-10"
         >
-          <Grip className="h-4 w-4 text-gray-400" />
+          <Grip className="h-4 w-4 text-[#494A4A] ml-[-18px] mt-[4px]" />
         </div>
       )}
       <StatsCard {...cardProps} />
