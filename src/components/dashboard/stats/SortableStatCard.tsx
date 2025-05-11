@@ -1,9 +1,9 @@
 
-import { Grip } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { StatsCard } from "../StatsCard";
 import { StatCardData } from "./types";
+import { DragDotsIcon } from "@/components/ui/icons/DragDotsIcon";
 
 interface SortableStatCardProps extends StatCardData {
   isEditMode?: boolean;
@@ -31,7 +31,7 @@ export const SortableStatCard = ({ id, isEditMode, ...cardProps }: SortableStatC
           {...listeners}
           className="absolute left-6 top-6 cursor-grab active:cursor-grabbing z-10"
         >
-          <Grip className="h-4 w-4 text-[#494A4A] ml-[-18px] mt-[4px]" />
+          <DragDotsIcon className="h-4 w-4 text-[#494A4A] ml-[-18px] mt-[4px]" />
         </div>
       )}
       <StatsCard {...cardProps} />
