@@ -62,11 +62,9 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
   return (
     <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none h-full relative group">
       <div className="flex items-center justify-between mb-6 relative">
-        <div className={`flex items-center gap-2 ${isEditMode ? "cursor-grab active:cursor-grabbing" : ""}`}>
+        <div className={`flex items-center ${isEditMode ? "cursor-grab active:cursor-grabbing" : ""}`}>
           {isEditMode && (
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-18px] mt-[-11px] absolute" />
-            </div>
           )}
           <h2 className="text-lg font-semibold">Sales by platform</h2>
         </div>

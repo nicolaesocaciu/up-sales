@@ -107,13 +107,11 @@ export const AdsBarChart = ({
       color: "#1482CC" // Updated to match design guideline
     }
   };
-  return <div className="bg-white rounded-[24px] p-6 h-full flex flex-col relative group">
-      <div className="flex items-center justify-between mb-8 relative">
-        <div className={`flex items-center gap-2 ${isEditMode ? "cursor-grab active:cursor-grabbing" : ""}`}>
+  return <div className="bg-white rounded-[24px] p-6 h-full flex flex-col relative">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center">
           {isEditMode && (
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-18px] mt-[-11px] absolute" />
-            </div>
+            <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-18px] mt-[-11px] absolute" />
           )}
           <h2 className="text-lg font-semibold">Ads target</h2>
         </div>

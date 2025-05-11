@@ -26,9 +26,7 @@ export const SortableStatCard = ({ id, isEditMode, ...cardProps }: SortableStatC
   return (
     <div ref={setNodeRef} style={style} className="relative group">
       {isEditMode && (
-        <div 
-          className="absolute left-6 top-6 cursor-grab active:cursor-grabbing z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-        >
+        <div >
           <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-21px] mt-[1px]" />
         </div>
       )}
