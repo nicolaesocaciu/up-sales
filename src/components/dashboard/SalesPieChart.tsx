@@ -64,7 +64,7 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
         <div className="flex items-center gap-2">
           {isEditMode && (
             <div className="cursor-grab active:cursor-grabbing">
-              <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-11px] mt-[-11px] absolute" />
+              <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-18px] mt-[-11px] absolute" />
             </div>
           )}
           <h2 className="text-lg font-semibold">Sales by platform</h2>
