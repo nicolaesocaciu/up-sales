@@ -111,7 +111,7 @@ export const AdsBarChart = ({
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center">
           {isEditMode && (
-            <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-18px] mt-[-11px] absolute" />
+            <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-20px] mt-[-1px] absolute" />
           )}
           <h2 className="text-lg font-semibold">Ads target</h2>
         </div>
