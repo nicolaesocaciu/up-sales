@@ -59,12 +59,12 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
   };
 
   return (
-    <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none h-full ">
+    <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none h-full relative">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           {isEditMode && (
             <div className="cursor-grab active:cursor-grabbing">
-              <DragDotsIcon className="h-4 w-4 text-[#494A4A]" />
+              <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-21px] mt-[1px] absolute" />
             </div>
           )}
           <h2 className="text-lg font-semibold">Sales by platform</h2>
