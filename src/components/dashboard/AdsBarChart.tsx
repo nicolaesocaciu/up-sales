@@ -113,7 +113,7 @@ export const AdsBarChart = ({
         <div className="flex items-center gap-2">
           {isEditMode && (
             <div className="cursor-grab active:cursor-grabbing">
-              <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-21px] mt-[1px] absolute" />
+              <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-11px] mt-[-11px] absolute" />
             </div>
           )}
           <h2 className="text-lg font-semibold">Ads target</h2>
