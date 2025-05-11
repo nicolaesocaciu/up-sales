@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend } from "../ui/chart";
+import { DragDotsIcon } from "../ui/icons/DragDotsIcon";
 import { Grip } from "lucide-react";
 
 const weekData = [{
@@ -110,9 +111,11 @@ export const AdsBarChart = ({
   return <div className="bg-white rounded-[24px] p-6 h-full flex flex-col">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-2">
-          {isEditMode && <div className="cursor-grab active:cursor-grabbing">
-              <Grip className="h-4 w-4 text-[#494A4A]" />
-            </div>}
+          {isEditMode && (
+            <div className="cursor-grab active:cursor-grabbing">
+              <DragDotsIcon className="h-4 w-4 text-[#494A4A]" />
+            </div>
+          )}
           <h2 className="text-lg font-semibold">Ads target</h2>
         </div>
         <Tabs value={selectedPeriod} onValueChange={setSelectedPeriod} className="w-auto">
