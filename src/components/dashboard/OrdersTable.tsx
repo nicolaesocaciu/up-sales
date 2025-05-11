@@ -31,8 +31,8 @@ export const OrdersTable = ({
   
   return <div className="rounded-[24px] bg-white pb-6 h-full group relative">
       {isEditMode && (
-        <div className="absolute left-6 top-6 cursor-grab active:cursor-grabbing z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-21px] mt-[1px]" />
+        <div className="absolute left-6 top-6 cursor-grab active:cursor-grabbing z-10">
+          <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-21px] mt-[3px]" />
         </div>
       )}
       <div className={isEditMode ? "cursor-grab active:cursor-grabbing" : ""}>
