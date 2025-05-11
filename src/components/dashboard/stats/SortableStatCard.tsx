@@ -31,7 +31,7 @@ export const SortableStatCard = ({ id, isEditMode, ...cardProps }: SortableStatC
           {...listeners}
           className="absolute left-6 top-6 cursor-grab active:cursor-grabbing z-10"
         >
-          <DragDotsIcon className="h-4 w-4 text-[#494A4A] ml-[-18px] mt-[4px]" />
+          <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-20px] mt-[2px]" />
         </div>
       )}
       <StatsCard {...cardProps} />
