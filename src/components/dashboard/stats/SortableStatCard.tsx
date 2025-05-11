@@ -24,18 +24,17 @@ export const SortableStatCard = ({ id, isEditMode, ...cardProps }: SortableStatC
   };
 
   return (
-    <div ref={setNodeRef} style={style} className="relative group">
+    <div ref={setNodeRef} style={style} className="relative">
       {isEditMode && (
-        <div >
+        <div 
+          {...attributes} 
+          {...listeners}
+          className="absolute"
+        >
           <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-21px] mt-[1px]" />
         </div>
       )}
-      <div 
-        {...(isEditMode ? { ...attributes, ...listeners } : {})}
-        className={isEditMode ? "cursor-grab active:cursor-grabbing" : ""}
-      >
-        <StatsCard {...cardProps} />
-      </div>
+      <StatsCard {...cardProps} />
     </div>
   );
 };
