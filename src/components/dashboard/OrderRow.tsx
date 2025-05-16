@@ -3,7 +3,6 @@ import { TableCell, TableRow } from "../ui/table";
 import { cn } from "@/lib/utils";
 import { OrderActionsDropdown } from "./OrderActionsDropdown";
 import { useState } from "react";
-import { ProductModal } from "./ProductModal";
 import { OrderStatusBadge } from "./OrderStatusBadge";
 import { OrderItems } from "./OrderItems";
 import { Order, Product } from "@/types/order";
@@ -17,7 +16,6 @@ export const OrderRow = ({
   order
 }: OrderRowProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
   
   const handleItemsClick = () => {
@@ -31,10 +29,6 @@ export const OrderRow = ({
 
   const handleOrderDrawerChange = (open: boolean) => {
     setShowOrderDetails(open);
-    if (!open) {
-      // Ensure dropdown is closed when drawer is closed
-      setIsDropdownOpen(false);
-    }
   };
 
   return (
@@ -67,17 +61,7 @@ export const OrderRow = ({
           onViewOrder={handleOpenOrderDetails}
         />
       </TableCell>
-
-      {/* Product Modal (will be removed in favor of the drawer) */}
-      {selectedProduct && 
-        <ProductModal 
-          open={!!selectedProduct} 
-          onOpenChange={open => !open && setSelectedProduct(null)} 
-          product={selectedProduct} 
-        />
-      }
       
-      {/* Order Details Drawer with improved state handling */}
       <OrderDetailsDrawer
         open={showOrderDetails}
         onOpenChange={handleOrderDrawerChange}

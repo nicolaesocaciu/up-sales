@@ -1,3 +1,4 @@
+
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -6,6 +7,7 @@ import { Button } from "../ui/button";
 import { Copy, Eye, X } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
+import { useEffect } from "react";
 
 interface ProductModalProps {
   open: boolean;
@@ -22,9 +24,32 @@ interface ProductModalProps {
 }
 
 export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps) => {
+  // Handle ESC key properly
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) {
+        onOpenChange(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [open, onOpenChange]);
+
+  const handleCloseClick = () => {
+    onOpenChange(false);
+  };
+
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="w-[800px] sm:max-w-[800px] h-full overflow-y-auto">
+    <Sheet 
+      open={open} 
+      onOpenChange={onOpenChange}
+    >
+      <SheetContent 
+        className="w-[800px] sm:max-w-[800px] h-full overflow-y-auto"
+        onInteractOutside={() => onOpenChange(false)} // Close when clicking outside
+        onEscapeKeyDown={() => onOpenChange(false)} // Explicitly handle ESC key
+      >
         <SheetHeader className="space-y-6">
           <div className="flex items-center justify-between">
             <SheetTitle className="text-2xl font-bold">{product.title}</SheetTitle>
@@ -34,6 +59,9 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
               </Button>
               <Button variant="outline" size="icon">
                 <Eye className="h-4 w-4" />
+              </Button>
+              <Button variant="outline" size="icon" onClick={handleCloseClick}>
+                <X className="h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -80,7 +108,7 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
               <h3 className="font-semibold text-lg">Product availability</h3>
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-500">Available on 1 of 1 channels and apps</p>
-                <Button variant="link" className="text-blue-500">
+                <Button variant="link" className="text-[#116fae]">
                   Manage
                 </Button>
               </div>
@@ -132,7 +160,7 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label>Tags</Label>
-                  <Button variant="link" className="text-blue-500">
+                  <Button variant="link" className="text-[#116fae]">
                     View all tags
                   </Button>
                 </div>
