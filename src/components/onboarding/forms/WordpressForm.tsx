@@ -4,16 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { Loader2 } from "lucide-react";
+
 export const WordpressForm = () => {
   const [wordpressUrl, setWordpressUrl] = useState("");
   const [wordpressKey, setWordpressKey] = useState("");
   const [isConnecting, setIsConnecting] = useState(false);
   const [importSuccess, setImportSuccess] = useState(false);
+  
   const isFormValid = () => {
     return wordpressUrl.trim() !== "" && wordpressKey.trim() !== "";
   };
+  
   const handleConnect = () => {
-    if (!isFormValid()) return;
+    if (!isFormValid() || isConnecting || importSuccess) return;
     setIsConnecting(true);
 
     // Simulate API connection
@@ -22,6 +26,7 @@ export const WordpressForm = () => {
       setImportSuccess(true);
     }, 2000);
   };
+  
   return <div className="mt-8 bg-[#F2F2F2] rounded-[16px] p-6 ">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-medium">Connect to WordPress</h3>
@@ -40,8 +45,12 @@ export const WordpressForm = () => {
           <Label htmlFor="wordpress-key">API Key</Label>
           <Input id="wordpress-key" type="password" placeholder="Enter your WooCommerce API key" className="mt-1" value={wordpressKey} onChange={e => setWordpressKey(e.target.value)} />
         </div>
-        <Button onClick={handleConnect} disabled={!isFormValid() || isConnecting}>
-          {isConnecting ? "Connecting..." : "Connect & Import"}
+        <Button 
+          onClick={handleConnect} 
+          disabled={!isFormValid() || isConnecting || importSuccess}
+        >
+          {isConnecting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isConnecting ? "Connecting..." : importSuccess ? "Successfully imported" : "Connect & Import"}
         </Button>
       </div>
     </div>;
