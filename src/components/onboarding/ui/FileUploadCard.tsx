@@ -18,16 +18,20 @@ export const FileUploadCard = ({ fileName, progress, timeLeft }: FileUploadCardP
         </button>
       </div>
       
-      <div className="relative h-4 w-full bg-blue-100 rounded-full overflow-hidden">
-        <div 
-          className="absolute h-full bg-blue-500 left-0 top-0 rounded-full"
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
+      <Progress 
+        value={progress} 
+        className="h-4 bg-blue-100 rounded-full overflow-hidden"
+        indicatorClassName="bg-blue-500 rounded-full"
+      />
       
       <div className="flex justify-between mt-2 text-sm">
         <div>{progress}%</div>
-        <div>Estimated time left: {timeLeft} min</div>
+        <div>
+          {timeLeft > 0
+            ? `Estimated time left: ${Math.ceil(timeLeft)} min`
+            : "Upload complete"
+          }
+        </div>
       </div>
     </div>
   );
