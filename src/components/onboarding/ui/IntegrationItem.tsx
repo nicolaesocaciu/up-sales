@@ -11,7 +11,7 @@ export const IntegrationItem = ({
   connected,
   onToggle
 }: IntegrationItemProps) => {
-  return <div className="flex items-center justify-between">
+  return <div className="flex items-center justify-between py-3">
       <div className="flex items-center">
         <div className="bg-blue-100 w-12 h-12 rounded mr-4"></div>
         <div>
