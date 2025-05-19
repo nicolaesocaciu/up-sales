@@ -1,54 +1,37 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
-
 export const ShopifyForm = () => {
   const [shopifyStore, setShopifyStore] = useState("");
   const [shopifyOption, setShopifyOption] = useState("all");
   const [isConnecting, setIsConnecting] = useState(false);
   const [importSuccess, setImportSuccess] = useState(false);
-  
   const isFormValid = () => {
     return shopifyStore.trim() !== "";
   };
-
   const handleConnect = () => {
     if (!isFormValid()) return;
-    
     setIsConnecting(true);
-    
+
     // Simulate API connection
     setTimeout(() => {
       setIsConnecting(false);
       setImportSuccess(true);
     }, 2000);
   };
-
-  return (
-    <div className="mt-8 bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+  return <div className="mt-8 bg-[#F2F2F2] rounded-[16px] p-6 ">
       <h3 className="text-lg font-medium mb-4">Connect to Shopify</h3>
       <div className="space-y-4">
         <div>
           <Label htmlFor="shopify-store">Shopify Store URL</Label>
-          <Input 
-            id="shopify-store" 
-            placeholder="your-store.myshopify.com" 
-            className="mt-1" 
-            value={shopifyStore}
-            onChange={(e) => setShopifyStore(e.target.value)}
-          />
+          <Input id="shopify-store" placeholder="your-store.myshopify.com" className="mt-1" value={shopifyStore} onChange={e => setShopifyStore(e.target.value)} />
         </div>
         <div>
           <Label>What to import</Label>
-          <RadioGroup 
-            value={shopifyOption} 
-            onValueChange={setShopifyOption}
-            className="mt-2"
-          >
+          <RadioGroup value={shopifyOption} onValueChange={setShopifyOption} className="mt-2">
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="all" id="all" />
               <Label htmlFor="all">All products</Label>
@@ -59,21 +42,15 @@ export const ShopifyForm = () => {
             </div>
           </RadioGroup>
         </div>
-        <Button 
-          onClick={handleConnect}
-          disabled={!isFormValid() || isConnecting}
-        >
+        <Button onClick={handleConnect} disabled={!isFormValid() || isConnecting}>
           {isConnecting ? "Connecting..." : "Connect & Import"}
         </Button>
         
-        {importSuccess && (
-          <div className="mt-4">
+        {importSuccess && <div className="mt-4">
             <Badge variant="green" className="text-xs">
               3872 products have been successfully imported
             </Badge>
-          </div>
-        )}
+          </div>}
       </div>
-    </div>
-  );
+    </div>;
 };
