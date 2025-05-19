@@ -12,15 +12,22 @@ export const ServiceCard = ({ title, selected, onClick, iconUrl }: ServiceCardPr
   return (
     <div 
       className={`
-        border rounded-lg p-6 cursor-pointer transition-colors flex flex-col items-center justify-center h-[160px]
+        rounded-lg cursor-pointer transition-all flex flex-col items-center justify-center h-[160px] relative
+        shadow-md hover:shadow-lg
         ${selected 
-          ? 'border-[#116FAE] bg-[#E7F2F9]' 
-          : 'border-gray-200 bg-white hover:border-gray-300'
+          ? 'bg-[#E7F2F9]' 
+          : 'bg-white hover:bg-gray-50'
         }
       `}
       onClick={onClick}
     >
-      <div className="flex-1 flex items-center justify-center mb-4">
+      {/* Inset border effect */}
+      <div className={`
+        absolute inset-0 rounded-lg border-2 
+        ${selected ? 'border-[#116FAE]' : 'border-gray-200'}
+      `}></div>
+      
+      <div className="flex-1 flex items-center justify-center mb-4 z-10">
         {selected ? (
           <div className="bg-[#116FAE] rounded-full w-12 h-12 flex items-center justify-center">
             <Check className="text-white h-5 w-5" />
@@ -33,7 +40,7 @@ export const ServiceCard = ({ title, selected, onClick, iconUrl }: ServiceCardPr
           <div className="bg-gray-100 w-12 h-12 rounded-full"></div>
         )}
       </div>
-      <div className="text-center">
+      <div className="text-center z-10">
         <h3 className="font-medium">{title}</h3>
       </div>
     </div>
