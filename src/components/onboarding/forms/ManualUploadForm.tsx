@@ -18,7 +18,7 @@ export const ManualUploadForm = () => {
     setProgress(0);
   };
   return <div className="mt-8">
-      {fileUploaded ? <FileUploadCard fileName={fileName} progress={progress} timeLeft={timeLeft} onCancel={handleCancelUpload} uploadActive={uploadActive} /> : <div className="bg-[#f2f2f2] p-6 rounded-[16px]">
+      {fileUploaded ? <FileUploadCard fileName={fileName} progress={progress} timeLeft={timeLeft} onCancel={handleCancelUpload} uploadActive={uploadActive} /> : <div className="bg-[#E7F2F9] p-6 rounded-[16px]">
           <div onClick={handleFileUpload} className="text-center p-8 border-2 border-dashed border-blue-300 rounded-[12px] cursor-pointer">
             <div className="mb-4">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto text-[#116FAE]">
