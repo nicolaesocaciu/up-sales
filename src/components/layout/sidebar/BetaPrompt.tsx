@@ -1,12 +1,23 @@
+
 import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { OnboardingLayout } from "@/components/onboarding/OnboardingLayout";
+
 export const BetaPrompt = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
+  
   const handleOpenOnboarding = () => {
-    setShowOnboarding(true);
+    // Reset to false first to ensure the component unmounts and remounts
+    setShowOnboarding(false);
+    
+    // Use setTimeout with 0ms delay to push this to the next event loop tick
+    // This ensures React has time to process the state change above
+    setTimeout(() => {
+      setShowOnboarding(true);
+    }, 0);
   };
+
   return <div className="px-8">
       <div className="rounded-[16px] p-6 bg-[#116fae] ">
         <div className="flex items-center text-[#FFFFFF] mb-[8px]">
