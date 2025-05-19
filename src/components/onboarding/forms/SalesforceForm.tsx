@@ -51,7 +51,7 @@ export const SalesforceForm = () => {
         </Button>
         
         {importSuccess && <div className="mt-4">
-            <Badge variant="green" className="text-xs">
+            <Badge variant="green" className="text-xs py-[6px] px-[16px]">
               3872 products have been successfully imported
             </Badge>
           </div>}
