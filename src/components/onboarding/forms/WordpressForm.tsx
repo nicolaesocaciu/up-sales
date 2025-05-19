@@ -3,13 +3,13 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
+import { Badge } from "@/components/ui/badge";
 
 export const WordpressForm = () => {
-  const { toast } = useToast();
   const [wordpressUrl, setWordpressUrl] = useState("");
   const [wordpressKey, setWordpressKey] = useState("");
   const [isConnecting, setIsConnecting] = useState(false);
+  const [importSuccess, setImportSuccess] = useState(false);
   
   const isFormValid = () => {
     return wordpressUrl.trim() !== "" && wordpressKey.trim() !== "";
@@ -23,10 +23,7 @@ export const WordpressForm = () => {
     // Simulate API connection
     setTimeout(() => {
       setIsConnecting(false);
-      toast({
-        title: "Connection successful",
-        description: "3872 products have been successfully imported.",
-      });
+      setImportSuccess(true);
     }, 2000);
   };
 
@@ -61,6 +58,14 @@ export const WordpressForm = () => {
         >
           {isConnecting ? "Connecting..." : "Connect & Import"}
         </Button>
+        
+        {importSuccess && (
+          <div className="mt-4">
+            <Badge variant="green" className="text-xs">
+              3872 products have been successfully imported
+            </Badge>
+          </div>
+        )}
       </div>
     </div>
   );
