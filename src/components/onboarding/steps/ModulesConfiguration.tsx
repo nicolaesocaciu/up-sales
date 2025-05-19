@@ -46,13 +46,13 @@ export const ModulesConfiguration = ({
   };
   return <div className="flex-1">
       <h1 className="mb-4 font-normal text-4xl">Modules configuration</h1>
-      <p className="text-gray-600 mt-4 text-base">
+      <p className="text-gray-600 mt-4 text-base mb-[64px]">
         Choose the modules you need to be the most eficient. Choosing only the modules 
         you need it will help us to adapt your interface to your needs without distraction. 
         You can update this option at any point in your settings.
       </p>
 
-      <div className="grid grid-cols-3 gap-8 mt-[64px]">
+      <div className="grid grid-cols-3 gap-8">
         {modules.map(module => <ModuleCard key={module.id} title={module.name} selected={module.selected} icon={module.id} onClick={() => toggleModule(module.id)} />)}
       </div>
     </div>;
