@@ -14,9 +14,7 @@ export const BetaPrompt = () => {
           <span className="font-bold text-neutral-50 mx-[8px]">Onboarding</span>
         </div>
         <p className="text-sm text-[#f2f2f2] mb-[24px]">Get started with our onboarding tour</p>
-        <Button variant="outline" className="my-0 py-0 mx-0 px-[16px] h-[32px] w-full border-0" onClick={handleOpenOnboarding}>
-          Learn more
-        </Button>
+        <Button variant="outline" className="my-0 py-0 mx-0 px-[16px] h-[32px] w-full border-0" onClick={handleOpenOnboarding}>Start onboarding</Button>
         {showOnboarding && <OnboardingLayout />}
       </div>
     </div>;
