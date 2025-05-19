@@ -21,11 +21,7 @@ export const ServiceCard = ({ title, selected, onClick, iconUrl }: ServiceCardPr
       onClick={onClick}
     >
     <div className="flex-1 flex items-center justify-center mb-4">
-      {selected ? (
-        <div className="bg-[#116FAE] rounded-full w-16 h-16 flex items-center justify-center">
-          {/* Removed the checkmark SVG icon */}
-        </div>
-      ) : iconUrl ? (
+      { iconUrl ? (
         <div className="w-20 h-20 flex items-center justify-center">
           <img src={iconUrl} alt={`${title} logo`} className="max-w-full max-h-full" />
         </div>
