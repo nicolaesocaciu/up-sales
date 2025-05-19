@@ -1,0 +1,73 @@
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
+import { ModuleCard } from "../ui/ModuleCard";
+
+type ModulesConfigurationProps = {
+  onNext: () => void;
+  onBack: () => void;
+};
+
+type Module = {
+  id: string;
+  name: string;
+  selected: boolean;
+};
+
+export const ModulesConfiguration = ({ onNext, onBack }: ModulesConfigurationProps) => {
+  const [modules, setModules] = useState<Module[]>([
+    { id: "discounts", name: "Discounts", selected: true },
+    { id: "finance", name: "Finance", selected: false },
+    { id: "marketing", name: "Marketing", selected: true },
+    { id: "pipelines", name: "Pipelines", selected: false },
+    { id: "rewards", name: "Rewards", selected: false },
+    { id: "stock", name: "Stock management", selected: false },
+  ]);
+
+  const toggleModule = (id: string) => {
+    setModules(modules.map(module => 
+      module.id === id ? { ...module, selected: !module.selected } : module
+    ));
+  };
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex-1">
+        <h1 className="text-3xl font-bold mb-4">Modules configuration</h1>
+        <p className="text-gray-600 mb-8 max-w-lg">
+          Choose the modules you need to be the most eficient. Choosing only the modules 
+          you need it will help us to adapt your interface to your needs without distraction. 
+          You can update this option at any point in your settings.
+        </p>
+
+        <div className="grid grid-cols-3 gap-4">
+          {modules.map(module => (
+            <ModuleCard 
+              key={module.id}
+              title={module.name}
+              selected={module.selected}
+              onClick={() => toggleModule(module.id)}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex justify-between pt-6">
+        <Button 
+          variant="outline" 
+          onClick={onBack}
+          className="px-8"
+        >
+          ← Back
+        </Button>
+        <Button 
+          onClick={onNext}
+          className="px-8"
+        >
+          Next →
+        </Button>
+      </div>
+    </div>
+  );
+};

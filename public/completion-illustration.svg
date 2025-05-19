@@ -1,0 +1,29 @@
+
+<svg width="180" height="140" viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(45, 20)">
+    <!-- Two hands with star -->
+    <path d="M30,70 C25,60 35,50 40,45 C45,40 50,45 55,50 C60,45 65,40 70,45 C75,50 85,60 80,70" 
+          stroke="#333333" fill="none" stroke-width="2" />
+    
+    <path d="M25,70 C20,55 30,40 35,35 C40,30 45,35 50,40" 
+          stroke="#333333" fill="none" stroke-width="2" />
+          
+    <path d="M85,70 C90,55 80,40 75,35 C70,30 65,35 60,40" 
+          stroke="#333333" fill="none" stroke-width="2" />
+          
+    <!-- Star -->
+    <path d="M55,20 L60,35 L75,35 L63,45 L67,60 L55,50 L43,60 L47,45 L35,35 L50,35 Z" 
+          fill="#116FAE" />
+    
+    <!-- Particles and sparkles -->
+    <circle cx="30" cy="20" r="3" fill="#D2EAFA" />
+    <circle cx="80" cy="25" r="2" fill="#116FAE" />
+    <circle cx="20" cy="40" r="2" fill="#D2EAFA" />
+    <circle cx="90" cy="40" r="3" fill="#D2EAFA" />
+    <path d="M40,10 L45,15 L40,20 L35,15 Z" fill="#116FAE" />
+    <path d="M70,10 L73,13 L70,16 L67,13 Z" fill="#D2EAFA" />
+    
+    <!-- Dotted lines -->
+    <path d="M30,30 Q55,-10, 80,30" stroke="#DADADA" stroke-dasharray="2 2" fill="none" />
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+
+<svg width="180" height="140" viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(40, 0)">
+    <!-- 3D Cube Grid -->
+    <rect x="40" y="30" width="30" height="30" fill="#D2EAFA" rx="4" />
+    <rect x="70" y="30" width="30" height="30" fill="white" stroke="#DADADA" rx="4" />
+    <rect x="40" y="60" width="30" height="30" fill="white" stroke="#DADADA" rx="4" />
+    <rect x="70" y="60" width="30" height="30" fill="white" stroke="#DADADA" rx="4" />
+    
+    <rect x="10" y="60" width="30" height="30" fill="#D2EAFA" rx="4" />
+    <rect x="100" y="60" width="30" height="30" fill="#D2EAFA" rx="4" />
+    <rect x="40" y="90" width="30" height="30" fill="#D2EAFA" rx="4" />
+    <rect x="70" y="90" width="30" height="30" fill="#D2EAFA" rx="4" />
+
+    <!-- Stars and sparkles -->
+    <circle cx="15" cy="20" r="4" fill="#116FAE" />
+    <circle cx="110" cy="20" r="2" fill="#D2EAFA" />
+    <path d="M95 15 L100 20 L95 25 L90 20 Z" fill="#D2EAFA" />
+    <circle cx="70" cy="10" r="3" fill="#D2EAFA" />
+    <circle cx="40" cy="15" r="2" fill="#116FAE" />
+
+    <!-- Dotted lines -->
+    <path d="M30 25 Q 60 5, 90 25" stroke="#DADADA" stroke-dasharray="2 2" fill="none" />
+  </g>
+</svg>

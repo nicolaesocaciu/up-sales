@@ -14,6 +14,7 @@ import Discounts from "./pages/Discounts";
 import Settings from "./pages/Settings";
 import HelpCenter from "./pages/Help";
 import NotFound from "./pages/NotFound";
+import Onboarding from "./pages/Onboarding";
 import { useEffect } from "react";
 import { migrateCustomersData } from "./utils/migrateCustomersData";
 
@@ -35,6 +36,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/products" element={<Products />} />
             <Route path="/customers" element={<Customers />} />
