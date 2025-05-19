@@ -74,8 +74,8 @@ export const OnboardingLayout = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="p-0 max-w-[1000px] w-full rounded-lg overflow-hidden">
-        <div className="flex min-h-[600px]">
+      <DialogContent className="p-0 max-w-none w-[1440px] h-[984px] rounded-[48px] border-0 overflow-hidden">
+        <div className="flex h-full">
           {currentStep > 0 && currentStep <= totalSteps && (
             <OnboardingSidebar 
               steps={stepsList} 
@@ -86,9 +86,11 @@ export const OnboardingLayout = () => {
           <div className="flex-1 relative">
             <button 
               onClick={handleClose}
-              className="absolute right-4 top-4 z-10 opacity-70 rounded-sm transition-opacity hover:opacity-100"
+              className="absolute right-8 top-8 z-10 opacity-70 rounded-sm transition-opacity hover:opacity-100"
             >
-              <X className="h-4 w-4" />
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.332 21.3335L42.6654 42.6668M42.6654 21.3335L21.332 42.6668" stroke="#252626" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+              </svg>
             </button>
             
             <OnboardingContent 
