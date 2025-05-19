@@ -28,7 +28,7 @@ export const OnboardingSidebar = ({
         <div className="relative">
           {steps.map((step, index) => <div key={step.id} className="mb-[48px] relative">
               {/* Vertical connecting line */}
-              {step.id < steps.length && <div aria-hidden="true" className="absolute top-12 left-5 w-[1px] h-[48px] bg-white/30" />}
+              {step.id < steps.length && <div aria-hidden="true" className="absolute top-12 left-5 w-[1px] h-[32px] bg-white/30" />}
               
               <div className="flex items-center mb-2 relative">
                 {/* Step indicator circle */}
