@@ -59,7 +59,7 @@ export const IntegrationsStep = ({
         this option at any point in your settings.
       </p>
 
-      <div className="space-y-4">
+      <div className="space-y-4 mt-[42px]">
         {integrations.map(integration => <IntegrationItem key={integration.id} name={integration.name} description={integration.description} connected={integration.connected} onToggle={() => toggleConnection(integration.id)} />)}
       </div>
     </div>;
