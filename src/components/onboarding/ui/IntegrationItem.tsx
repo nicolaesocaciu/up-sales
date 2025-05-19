@@ -53,7 +53,7 @@ export const IntegrationItem = ({
       </div>
       
       <Button 
-        variant="default" 
+        variant={connected ? "outline" : "default"} 
         size="sm" 
         onClick={handleToggle} 
         className="h-9 min-w-[100px]"
