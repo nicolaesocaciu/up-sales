@@ -36,13 +36,13 @@ export const WelcomeScreen = ({
         </svg>
       </div>
       
-      <h1 className="mb-6 text-[64px] font-normal">
+      <h1 className="mb-4 text-[64px] font-normal mt-[-20px]">
         Welcome to <span className="text-[#116FAE] font-extrabold">Up Sales</span>
       </h1>
       
       <p className="mb-10 text-2xl text-[#494a4a] font-light max-w-[980px]">Your all-in-one solution for managing customers, tracking orders, and growing your business. Let's set up your application to get started.</p>
       
-      <div className="flex flex-col items-center gap-4 mt-auto">
+      <div className="flex flex-col items-center gap-8 mt-auto">
         <Button onClick={onStart} className="w-64 h-[48px]">
           Get started
         </Button>
