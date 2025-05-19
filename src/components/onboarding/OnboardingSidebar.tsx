@@ -1,3 +1,4 @@
+
 import { Check } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { OnboardingStep } from "./OnboardingLayout";
@@ -26,19 +27,25 @@ export const OnboardingSidebar = ({
       
       <div className="flex-1">
         <div className="relative">
-          {steps.map((step, index) => <div key={step.id} className="mb-12 relative">
-              {/* Vertical connecting line - increased spacing from 6px to 48px */}
-              {step.id < steps.length && <div aria-hidden="true" className="absolute top-12 left-5 w-[1px] h-8 bg-white/30" />}
+          {steps.map((step, index) => <div key={step.id} className="mb-[48px] relative">
+              {/* Vertical connecting line */}
+              {step.id < steps.length && <div aria-hidden="true" className="absolute top-12 left-5 w-[1px] h-[48px] bg-white/30" />}
               
               <div className="flex items-center mb-2 relative">
-                {/* Step indicator - increased from w-6/h-6 to w-10/h-10 (40px) */}
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-4 z-10
-                    ${step.completed ? 'bg-white text-[#116FAE]' : step.active ? 'bg-white text-[#116FAE] shadow-sm' : 'bg-[#1482CC]'}`}>
-                  {step.completed ? <Check className="h-4 w-4" /> : <span className={`text-base ${step.active ? 'font-bold' : ''}`}>{step.id}</span>}
+                {/* Step indicator circle */}
+                <div className={`w-[40px] h-[40px] rounded-full flex items-center justify-center mr-4 z-10
+                    ${step.completed ? 'bg-transparent text-white' : step.active ? 'bg-white text-[#116FAE] shadow-sm' : 'bg-[#1482CC]'}`}>
+                  {step.completed ? (
+                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.04451 21.4325C8.28005 21.6469 8.55761 21.8067 8.85841 21.9013C9.15921 21.9958 9.47622 22.0229 9.78807 21.9806C10.0999 21.9384 10.3993 21.8278 10.666 21.6564C10.9327 21.4849 11.1605 21.2566 11.334 20.9869C15.189 12.9683 17.2394 8.67219 23.8529 1.01907C23.9543 0.901621 24.0069 0.74798 23.9993 0.591134C23.9917 0.434288 23.9246 0.286748 23.8124 0.180201C23.6935 0.064484 23.5359 0 23.3721 0C23.2084 0 23.0508 0.064484 22.9319 0.180201C15.6525 7.54651 13.695 9.9197 9.42301 17.0547C9.40761 17.0659 9.3888 17.0709 9.37005 17.069C9.3513 17.067 9.33388 17.0581 9.32102 17.0439L2.80806 12.9282C0.831072 11.6776 -1.31691 15.1087 1.01707 16.5135L8.04451 21.4325Z" fill="white"/>
+                    </svg>
+                  ) : (
+                    <span className={`text-[16px] ${step.active ? 'font-bold' : ''}`}>{step.id}</span>
+                  )}
                 </div>
                 
-                {/* Step title - updated font size and bold when active */}
-                <span className={`text-base ${step.active ? 'font-bold text-lg' : step.completed ? '' : 'text-white/80'}`}>
+                {/* Step title - updated font size */}
+                <span className={`${step.active ? 'font-bold text-[18px]' : step.completed ? 'text-[16px]' : 'text-[16px] text-white/80'}`}>
                   {step.title}
                 </span>
                 
