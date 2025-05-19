@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
 import { ModuleCard } from "../ui/ModuleCard";
 
 type ModulesConfigurationProps = {
@@ -17,9 +16,9 @@ type Module = {
 
 export const ModulesConfiguration = ({ onNext, onBack }: ModulesConfigurationProps) => {
   const [modules, setModules] = useState<Module[]>([
-    { id: "discounts", name: "Discounts", selected: true },
+    { id: "discounts", name: "Discounts", selected: false },
     { id: "finance", name: "Finance", selected: false },
-    { id: "marketing", name: "Marketing", selected: true },
+    { id: "marketing", name: "Marketing", selected: false },
     { id: "pipelines", name: "Pipelines", selected: false },
     { id: "rewards", name: "Rewards", selected: false },
     { id: "stock", name: "Stock management", selected: false },
@@ -41,12 +40,13 @@ export const ModulesConfiguration = ({ onNext, onBack }: ModulesConfigurationPro
           You can update this option at any point in your settings.
         </p>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-8">
           {modules.map(module => (
             <ModuleCard 
               key={module.id}
               title={module.name}
               selected={module.selected}
+              icon={module.id}
               onClick={() => toggleModule(module.id)}
             />
           ))}
