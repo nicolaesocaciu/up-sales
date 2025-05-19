@@ -45,7 +45,7 @@ export const OnboardingSidebar = ({
                 </span>
                 
                 {/* Current step indicator arrow */}
-                {step.active && <div aria-hidden="true" className="absolute -right-[48px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-r-[6px] border-transparent border-r-white" />}
+                {step.active && <div aria-hidden="true" className="absolute -right-[48px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[10px] border-b-[10px] border-r-[10px] border-transparent border-r-white " />}
               </div>
             </div>)}
         </div>
