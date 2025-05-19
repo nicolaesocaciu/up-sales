@@ -1,15 +1,19 @@
+
 import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { FileUploadCard } from "../ui/FileUploadCard";
+
 type ImportUsersOrdersProps = {
   onNext: () => void;
   onBack: () => void;
 };
+
 type Service = {
   id: string;
   name: string;
   selected: boolean;
 };
+
 export const ImportUsersOrders = ({
   onNext,
   onBack
@@ -32,12 +36,14 @@ export const ImportUsersOrders = ({
     selected: true
   }]);
   const [fileUploaded, setFileUploaded] = useState(true);
+
   const toggleService = (id: string) => {
     setServices(services.map(service => service.id === id ? {
       ...service,
       selected: !service.selected
     } : service));
   };
+
   return <div className="flex-1">
       <h1 className="mb-4 text-4xl font-normal">Import users and orders</h1>
       <p className="text-gray-600 mt-4 text-base mb-[64px]">
@@ -50,6 +56,6 @@ export const ImportUsersOrders = ({
         {services.map(service => <ServiceCard key={service.id} title={service.name} selected={service.selected} onClick={() => toggleService(service.id)} />)}
       </div>
 
-      {fileUploaded && <FileUploadCard fileName="File name.csv" progress={11} timeLeft={1} />}
+      {fileUploaded && <FileUploadCard fileName="File name.csv" progress={11} timeLeft={1} uploadActive={true} />}
     </div>;
 };
