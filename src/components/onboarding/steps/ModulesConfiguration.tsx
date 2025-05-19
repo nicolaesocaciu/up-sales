@@ -60,10 +60,10 @@ export const ModulesConfiguration = ({
       </div>
 
       <div className="flex justify-between pt-6">
-        <Button variant="outline" onClick={onBack} className="w-[200px] text-base">
+        <Button variant="outline" onClick={onBack} className="w-[200px] h-[42px] text-base">
           ← Back
         </Button>
-        <Button onClick={onNext} className="px-8">
+        <Button onClick={onNext} className="px-8 w-[200px] h-[42px]">
           Next →
         </Button>
       </div>
