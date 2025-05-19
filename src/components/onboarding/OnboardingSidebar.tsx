@@ -28,33 +28,33 @@ export const OnboardingSidebar = ({
       <div className="flex-1">
         <div className="relative">
           {steps.map((step, index) => (
-            <div key={step.id} className="mb-6 relative">
-              {/* Vertical connecting line */}
+            <div key={step.id} className="mb-12 relative">
+              {/* Vertical connecting line - increased spacing from 6px to 48px */}
               {step.id < steps.length && (
                 <div 
-                  className="absolute top-6 left-3 w-[1px] h-6 bg-white/30" 
+                  className="absolute top-10 left-5 w-[1px] h-12 bg-white/30" 
                   aria-hidden="true"
                 />
               )}
               
               <div className="flex items-center mb-2 relative">
-                {/* Step indicator */}
+                {/* Step indicator - increased from w-6/h-6 to w-10/h-10 (40px) */}
                 <div 
-                  className={`w-6 h-6 rounded-full flex items-center justify-center mr-4 z-10
+                  className={`w-10 h-10 rounded-full flex items-center justify-center mr-4 z-10
                     ${step.completed 
                       ? 'bg-white text-[#116FAE]' 
                       : step.active 
                         ? 'bg-white text-[#116FAE] shadow-sm' 
-                        : 'border border-white/60 bg-transparent text-white/60'}`}
+                        : 'bg-[#1482CC]'}`}
                 >
                   {step.completed 
                     ? <Check className="h-4 w-4" /> 
-                    : <span className={`text-sm ${step.active ? 'font-medium' : ''}`}>{step.id}</span>
+                    : <span className={`text-base ${step.active ? 'font-bold' : ''}`}>{step.id}</span>
                   }
                 </div>
                 
-                {/* Step title */}
-                <span className={`text-sm ${step.active ? 'font-medium' : step.completed ? '' : 'text-white/80'}`}>
+                {/* Step title - updated font size and bold when active */}
+                <span className={`text-base ${step.active ? 'font-bold text-lg' : step.completed ? '' : 'text-white/80'}`}>
                   {step.title}
                 </span>
                 
