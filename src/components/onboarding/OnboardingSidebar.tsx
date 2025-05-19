@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { OnboardingStep } from "./OnboardingLayout";
@@ -58,27 +57,9 @@ export const OnboardingSidebar = ({
           <div className="w-16 h-16 relative">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
               {/* Background track */}
-              <circle 
-                className="text-white/20" 
-                strokeWidth="8"
-                stroke="currentColor"
-                fill="none"
-                r="38" 
-                cx="50" 
-                cy="50" 
-              />
+              <circle className="text-white/20" strokeWidth="8" stroke="currentColor" fill="none" r="38" cx="50" cy="50" />
               {/* Foreground progress */}
-              <circle 
-                className="text-white" 
-                strokeWidth="8" 
-                strokeDasharray={`${progress * 2.4} 999`} 
-                strokeLinecap="round" 
-                stroke="currentColor" 
-                fill="none" 
-                r="38" 
-                cx="50" 
-                cy="50" 
-              />
+              <circle className="text-white" strokeWidth="8" strokeDasharray={`${progress * 2.4} 999`} strokeLinecap="round" stroke="currentColor" fill="none" r="38" cx="50" cy="50" />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-white text-sm font-medium">{progress}%</span>
@@ -86,10 +67,10 @@ export const OnboardingSidebar = ({
           </div>
           
           <div className="ml-4">
-            <div className="text-sm font-bold text-white">
+            <div className="font-bold text-white">
               {progress}% finished
             </div>
-            <div className="text-xs text-white/70">Estimated time: 5 minutes</div>
+            <div className="text-white/80">Estimated time: 5 minutes</div>
           </div>
         </div>
       </div>
