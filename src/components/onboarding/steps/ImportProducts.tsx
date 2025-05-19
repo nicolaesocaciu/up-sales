@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { ServiceCard } from "../ui/ServiceCard";
 import { FileUploadCard } from "../ui/FileUploadCard";
 
@@ -32,50 +31,32 @@ export const ImportProducts = ({ onNext, onBack }: ImportProductsProps) => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1">
-        <h1 className="text-3xl font-bold mb-4">Import products</h1>
-        <p className="text-gray-600 mb-8 max-w-lg">
-          Interrogations will help you power up your CRM by connecting it with multiple 
-          sources and it will become like comand center for your business. You can update 
-          this option at any point in your settings.
-        </p>
+    <div className="flex-1">
+      <h1 className="text-3xl font-bold mb-4">Import products</h1>
+      <p className="text-gray-600 mb-8 max-w-lg">
+        Interrogations will help you power up your CRM by connecting it with multiple 
+        sources and it will become like comand center for your business. You can update 
+        this option at any point in your settings.
+      </p>
 
-        <div className="grid grid-cols-4 gap-4 mb-8">
-          {services.map(service => (
-            <ServiceCard 
-              key={service.id}
-              title={service.name}
-              selected={service.selected}
-              onClick={() => toggleService(service.id)}
-            />
-          ))}
-        </div>
-
-        {fileUploaded && (
-          <FileUploadCard 
-            fileName="File name.csv"
-            progress={11}
-            timeLeft={1}
+      <div className="grid grid-cols-4 gap-4 mb-8">
+        {services.map(service => (
+          <ServiceCard 
+            key={service.id}
+            title={service.name}
+            selected={service.selected}
+            onClick={() => toggleService(service.id)}
           />
-        )}
+        ))}
       </div>
 
-      <div className="flex justify-between pt-6">
-        <Button 
-          variant="outline" 
-          onClick={onBack}
-          className="px-8"
-        >
-          ← Back
-        </Button>
-        <Button 
-          onClick={onNext}
-          className="px-8"
-        >
-          Next →
-        </Button>
-      </div>
+      {fileUploaded && (
+        <FileUploadCard 
+          fileName="File name.csv"
+          progress={11}
+          timeLeft={1}
+        />
+      )}
     </div>
   );
 };
