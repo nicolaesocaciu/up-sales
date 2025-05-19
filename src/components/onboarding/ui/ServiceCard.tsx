@@ -22,7 +22,7 @@ export const ServiceCard = ({ title, selected, onClick, iconUrl }: ServiceCardPr
     >
     <div className="flex-1 flex items-center justify-center mb-4">
       {selected ? (
-        <div className="bg-[#116FAE] rounded-full w-12 h-12 flex items-center justify-center">
+        <div className="bg-[#116FAE] rounded-full w-16 h-16 flex items-center justify-center">
           <Check className="text-white h-5 w-5" />
         </div>
       ) : iconUrl ? (
