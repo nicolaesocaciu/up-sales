@@ -1,8 +1,13 @@
 
 import { OnboardingLayout } from "@/components/onboarding/OnboardingLayout";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 
 const Onboarding = () => {
-  return <OnboardingLayout />;
+  return (
+    <DashboardLayout>
+      <OnboardingLayout />
+    </DashboardLayout>
+  );
 };
 
 export default Onboarding;
