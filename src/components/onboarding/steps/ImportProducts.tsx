@@ -40,7 +40,7 @@ export const ImportProducts = ({
   };
   return <div className="flex-1">
       <h1 className="mb-4 text-4xl font-normal">Import products</h1>
-      <p className="text-gray-600 mt-4 text-base">
+      <p className="text-gray-600 mt-4 text-base mb-[64px]">
         Interrogations will help you power up your CRM by connecting it with multiple 
         sources and it will become like comand center for your business. You can update 
         this option at any point in your settings.
