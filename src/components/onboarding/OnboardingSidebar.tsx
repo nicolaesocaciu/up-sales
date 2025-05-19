@@ -1,3 +1,4 @@
+
 import { Check } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { OnboardingStep } from "./OnboardingLayout";
@@ -25,17 +26,46 @@ export const OnboardingSidebar = ({
       </div>
       
       <div className="flex-1">
-        {steps.map(step => <div key={step.id} className="mb-10 relative">
-            <div className="flex items-center mb-2">
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-4 
-                ${step.completed ? 'bg-white text-[#116FAE]' : step.active ? 'bg-white text-[#116FAE]' : 'border border-white bg-transparent'}`}>
-                {step.completed ? <Check className="h-4 w-4" /> : <span className="text-sm">{step.id}</span>}
+        <div className="relative">
+          {steps.map((step, index) => (
+            <div key={step.id} className="mb-6 relative">
+              {/* Vertical connecting line */}
+              {step.id < steps.length && (
+                <div 
+                  className="absolute top-6 left-3 w-[1px] h-6 bg-white/30" 
+                  aria-hidden="true"
+                />
+              )}
+              
+              <div className="flex items-center mb-2 relative">
+                {/* Step indicator */}
+                <div 
+                  className={`w-6 h-6 rounded-full flex items-center justify-center mr-4 z-10
+                    ${step.completed 
+                      ? 'bg-white text-[#116FAE]' 
+                      : step.active 
+                        ? 'bg-white text-[#116FAE] shadow-sm' 
+                        : 'border border-white/60 bg-transparent text-white/60'}`}
+                >
+                  {step.completed 
+                    ? <Check className="h-4 w-4" /> 
+                    : <span className={`text-sm ${step.active ? 'font-medium' : ''}`}>{step.id}</span>
+                  }
+                </div>
+                
+                {/* Step title */}
+                <span className={`text-sm ${step.active ? 'font-medium' : step.completed ? '' : 'text-white/80'}`}>
+                  {step.title}
+                </span>
+                
+                {/* Current step indicator arrow */}
+                {step.active && (
+                  <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[6px] border-transparent border-l-white" aria-hidden="true" />
+                )}
               </div>
-              <span className={`text-sm ${step.active ? 'font-medium' : ''}`}>{step.title}</span>
             </div>
-            
-            {step.id < steps.length && <div className="w-[1px] h-6 bg-white/30 ml-3"></div>}
-          </div>)}
+          ))}
+        </div>
       </div>
       
       <div className="mt-auto">
@@ -44,11 +74,13 @@ export const OnboardingSidebar = ({
             <div className="w-5 h-5 rounded-full border-3 border-[#116FAE] border-t-transparent animate-spin"></div>
           </div>
           <div className="ml-4">
-            <div className="text-sm font-medium">{progress}% finished</div>
-            <div className="text-xs opacity-80">Estimated time: 5 minutes</div>
+            <div className="text-sm">
+              <span className="font-bold">{progress}%</span> finished
+            </div>
+            <div className="text-xs opacity-70">Estimated time: 5 minutes</div>
           </div>
         </div>
-        <Progress value={progress} className="h-1 bg-white/20" />
+        <Progress value={progress} className="h-1 bg-white/20" indicatorClassName="bg-white" />
       </div>
     </div>;
 };
