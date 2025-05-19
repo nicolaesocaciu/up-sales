@@ -33,6 +33,15 @@ export const UsersOrdersUploadForm = () => {
   
   return (
     <div className="mt-8">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-medium">Upload Users & Orders</h3>
+        {uploadComplete && (
+          <Badge variant="green" className="text-xs px-[12px] py-[3px]">
+            3872 users and orders have been successfully imported
+          </Badge>
+        )}
+      </div>
+      
       {fileUploaded && !uploadComplete && (
         <FileUploadCard 
           fileName="File name.csv" 
@@ -40,14 +49,6 @@ export const UsersOrdersUploadForm = () => {
           timeLeft={timeLeft} 
           uploadActive={true} 
         />
-      )}
-      
-      {uploadComplete && (
-        <div className="mt-4">
-          <Badge variant="green" className="text-xs">
-            3872 users and orders have been successfully imported
-          </Badge>
-        </div>
       )}
     </div>
   );

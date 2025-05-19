@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,7 +24,14 @@ export const ShopifyForm = () => {
     }, 2000);
   };
   return <div className="mt-8 bg-[#F2F2F2] rounded-[16px] p-6 ">
-      <h3 className="text-lg font-medium mb-4">Connect to Shopify</h3>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-medium">Connect to Shopify</h3>
+        {importSuccess && 
+          <Badge variant="green" className="text-xs px-[12px] py-[3px]">
+            3872 products have been successfully imported
+          </Badge>
+        }
+      </div>
       <div className="space-y-4">
         <div>
           <Label htmlFor="shopify-store">Shopify Store URL</Label>
@@ -45,12 +53,6 @@ export const ShopifyForm = () => {
         <Button onClick={handleConnect} disabled={!isFormValid() || isConnecting}>
           {isConnecting ? "Connecting..." : "Connect & Import"}
         </Button>
-        
-        {importSuccess && <div className="mt-4">
-            <Badge variant="green" className="text-xs px-[16px] py-[6px]">
-              3872 products have been successfully imported
-            </Badge>
-          </div>}
       </div>
     </div>;
 };
