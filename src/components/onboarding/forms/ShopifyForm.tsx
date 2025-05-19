@@ -47,7 +47,7 @@ export const ShopifyForm = () => {
         </Button>
         
         {importSuccess && <div className="mt-4">
-            <Badge variant="green" className="text-xs">
+            <Badge variant="green" className="text-xs px-[16px] py-[6px]">
               3872 products have been successfully imported
             </Badge>
           </div>}
