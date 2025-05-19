@@ -38,7 +38,7 @@ export const IntegrationsStep = ({
       id: "monday",
       name: "Monday",
       description: "Link your Monday.com boards for project management and collaboration.",
-      iconUrl: "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png",
+      iconUrl: "/lovable-uploads/04a5effa-803b-4680-bf87-d523c6724c8e.png",
       connected: false
     }, 
     {
@@ -52,7 +52,7 @@ export const IntegrationsStep = ({
       id: "wordpress",
       name: "Wordpress",
       description: "Integrate with WordPress to manage content and blog posts.",
-      iconUrl: "/lovable-uploads/8e525d23-ac81-4976-8e88-0d30c9131c9b.png",
+      iconUrl: "/lovable-uploads/39174503-5fba-4f20-b309-a672aec16aa3.png",
       connected: false
     }, 
     {
