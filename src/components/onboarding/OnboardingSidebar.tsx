@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { OnboardingStep } from "./OnboardingLayout";
@@ -27,30 +26,15 @@ export const OnboardingSidebar = ({
       
       <div className="flex-1">
         <div className="relative">
-          {steps.map((step, index) => (
-            <div key={step.id} className="mb-12 relative">
+          {steps.map((step, index) => <div key={step.id} className="mb-12 relative">
               {/* Vertical connecting line - increased spacing from 6px to 48px */}
-              {step.id < steps.length && (
-                <div 
-                  className="absolute top-10 left-5 w-[1px] h-12 bg-white/30" 
-                  aria-hidden="true"
-                />
-              )}
+              {step.id < steps.length && <div aria-hidden="true" className="absolute top-12 left-5 w-[1px] h-8 bg-white/30" />}
               
               <div className="flex items-center mb-2 relative">
                 {/* Step indicator - increased from w-6/h-6 to w-10/h-10 (40px) */}
-                <div 
-                  className={`w-10 h-10 rounded-full flex items-center justify-center mr-4 z-10
-                    ${step.completed 
-                      ? 'bg-white text-[#116FAE]' 
-                      : step.active 
-                        ? 'bg-white text-[#116FAE] shadow-sm' 
-                        : 'bg-[#1482CC]'}`}
-                >
-                  {step.completed 
-                    ? <Check className="h-4 w-4" /> 
-                    : <span className={`text-base ${step.active ? 'font-bold' : ''}`}>{step.id}</span>
-                  }
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-4 z-10
+                    ${step.completed ? 'bg-white text-[#116FAE]' : step.active ? 'bg-white text-[#116FAE] shadow-sm' : 'bg-[#1482CC]'}`}>
+                  {step.completed ? <Check className="h-4 w-4" /> : <span className={`text-base ${step.active ? 'font-bold' : ''}`}>{step.id}</span>}
                 </div>
                 
                 {/* Step title - updated font size and bold when active */}
@@ -59,12 +43,9 @@ export const OnboardingSidebar = ({
                 </span>
                 
                 {/* Current step indicator arrow */}
-                {step.active && (
-                  <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[6px] border-transparent border-l-white" aria-hidden="true" />
-                )}
+                {step.active && <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[6px] border-transparent border-l-white" aria-hidden="true" />}
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
       
