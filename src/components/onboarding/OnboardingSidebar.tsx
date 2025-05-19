@@ -70,7 +70,7 @@ export const OnboardingSidebar = ({
             <div className="font-bold text-white">
               {progress}% finished
             </div>
-            <div className="text-white/80">Estimated time: 5 minutes</div>
+            <div className="text-white/80 text-sm">Estimated time: 5 minutes</div>
           </div>
         </div>
       </div>
