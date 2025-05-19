@@ -7,7 +7,7 @@ export const WelcomeScreen = ({
   onStart,
   onSkip
 }: WelcomeScreenProps) => {
-  return <div className="flex flex-col items-center h-full text-center pt-16">
+  return <div className="flex flex-col items-center h-full text-center ">
       <div className="mb-8">
         <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="Pictogram-rubik-cube">
