@@ -1,4 +1,3 @@
-
 import { WelcomeScreen } from "./steps/WelcomeScreen";
 import { ModulesConfiguration } from "./steps/ModulesConfiguration";
 import { IntegrationsStep } from "./steps/IntegrationsStep";
@@ -6,21 +5,18 @@ import { ImportProducts } from "./steps/ImportProducts";
 import { ImportUsersOrders } from "./steps/ImportUsersOrders";
 import { ConnectStore } from "./steps/ConnectStore";
 import { CompletionScreen } from "./steps/CompletionScreen";
-
 type OnboardingContentProps = {
   currentStep: number;
   onNext: () => void;
   onBack: () => void;
   onSkip: () => void;
 };
-
-export const OnboardingContent = ({ 
+export const OnboardingContent = ({
   currentStep,
   onNext,
   onBack,
   onSkip
 }: OnboardingContentProps) => {
-  
   // Render the appropriate step content based on currentStep
   const renderStepContent = () => {
     switch (currentStep) {
@@ -42,10 +38,7 @@ export const OnboardingContent = ({
         return <WelcomeScreen onStart={onNext} onSkip={onSkip} />;
     }
   };
-
-  return (
-    <div className="h-full p-12 flex flex-col">
+  return <div className="h-full p-12 flex flex-col px-[128px] py-[96px]">
       {renderStepContent()}
-    </div>
-  );
+    </div>;
 };
