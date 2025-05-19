@@ -36,7 +36,7 @@ export const FileUploadCard = ({
       if (timer) clearInterval(timer);
     };
   }, [uploadActive, currentProgress]);
-  return <div className="bg-blue-50 p-6 rounded-[12px]">
+  return <div className="bg-[#E7F2F9] p-6 rounded-[12px]">
       <div className="flex justify-between items-center mb-2">
         <div className="font-medium">{fileName}</div>
         <button className="text-gray-500 hover:text-gray-700" onClick={onCancel}>
