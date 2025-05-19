@@ -16,7 +16,7 @@ export const ModuleCard = ({
       <div className="flex-1 flex items-center justify-center mb-4">
         {selected ? <div className="bg-[#116FAE] rounded-full w-12 h-12 flex items-center justify-center">
             <Check className="text-white h-5 w-5" />
-          </div> : <div className="bg-[#E7F2F9] w-16 h-16 rounded-[8px]"></div>}
+          </div> : <div className="bg-[#E7F2F9] w-16 h-16 rounded-[16px]"></div>}
       </div>
       <div className="text-center">
         <h3 className="font-medium">{title}</h3>
