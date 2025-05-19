@@ -38,7 +38,7 @@ export const OnboardingContent = ({
         return <WelcomeScreen onStart={onNext} onSkip={onSkip} />;
     }
   };
-  return <div className="h-full p-12 flex flex-col px-[128px] pt-[96px]">
+  return <div className="h-full p-12 flex flex-col px-[128px] py-[96px]">
       {renderStepContent()}
     </div>;
 };
