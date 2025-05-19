@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ModuleCard } from "../ui/ModuleCard";
@@ -60,7 +59,7 @@ export const ModulesConfiguration = ({
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-[300px] right-0 bg-white py-[24px] px-[128px] border-t border-[#C0C0C0] flex justify-between">
+      <div className="fixed bottom-0 right-0 bg-white py-[24px] px-[128px] border-t border-[#C0C0C0] flex justify-between w-[1080px]">
         <Button variant="outline" onClick={onBack} className="w-[200px] h-[42px] text-base">
           ← Back
         </Button>
