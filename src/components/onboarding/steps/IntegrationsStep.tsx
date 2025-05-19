@@ -38,7 +38,7 @@ export const IntegrationsStep = ({
       id: "monday",
       name: "Monday",
       description: "Link your Monday.com boards for project management and collaboration.",
-      iconUrl: "https://cdn.worldvectorlogo.com/logos/monday-com-logo.svg",
+      iconUrl: "/lovable-uploads/6ec4fac8-f096-4716-b534-ea9b39c16b97.png",
       connected: false
     }, 
     {
@@ -52,7 +52,7 @@ export const IntegrationsStep = ({
       id: "wordpress",
       name: "Wordpress",
       description: "Integrate with WordPress to manage content and blog posts.",
-      iconUrl: "https://cdn.worldvectorlogo.com/logos/wordpress-blue.svg",
+      iconUrl: "/lovable-uploads/8e525d23-ac81-4976-8e88-0d30c9131c9b.png",
       connected: false
     }, 
     {
