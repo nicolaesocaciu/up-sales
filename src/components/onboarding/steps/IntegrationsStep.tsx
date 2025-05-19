@@ -38,7 +38,7 @@ export const IntegrationsStep = ({
       id: "monday",
       name: "Monday",
       description: "Link your Monday.com boards for project management and collaboration.",
-      iconUrl: "https://cdn.worldvectorlogo.com/logos/monday-com-logo.svg",
+      iconUrl: "/lovable-uploads/0c2b56c0-306a-4310-ba40-c779605a9ab5.png",
       connected: false
     }, 
     {
@@ -52,7 +52,7 @@ export const IntegrationsStep = ({
       id: "wordpress",
       name: "Wordpress",
       description: "Integrate with WordPress to manage content and blog posts.",
-      iconUrl: "https://cdn.worldvectorlogo.com/logos/wordpress-blue.svg",
+      iconUrl: "/lovable-uploads/4ad7d63e-c2b3-49fb-bbe3-2b2b87c5f639.png",
       connected: false
     }, 
     {
@@ -74,8 +74,8 @@ export const IntegrationsStep = ({
   return <div className="flex-1">
       <h1 className="mb-4 font-normal text-4xl">Integrations</h1>
       <p className="text-gray-600 mt-4 text-base mb-[64px]">
-        Interrogations will help you power up your CRM by connecting it with multiple 
-        sources and it will become like comand center for your business. You can update 
+        Integrations will help you power up your CRM by connecting it with multiple 
+        sources and it will become like command center for your business. You can update 
         this option at any point in your settings.
       </p>
 
