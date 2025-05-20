@@ -17,16 +17,18 @@ export const CompletionScreen = ({
       
       <p className="mb-10 text-2xl text-[#494a4a] font-light max-w-[700px]">Your CRM has all the needed information to help you grow and push your business forward to the next level.</p>
       
-      <p className="text-[#494a4a] mb-4">Your next steps:</p>
       
       <div className="flex flex-row items-center gap-8 mt-auto">
-        <Button onClick={onTour} className="w-[300px] h-[60px]">
-          Start a guided tour
-        </Button>
-        
-        <Button variant="outline" onClick={onExplore} className="w-[300px] h-[60px]">
-          I will explore on my own
-        </Button>
+        <p className="text-[#494a4a] mb-4">Your next steps:</p>
+        <div className="flex flex-row items-center gap-8">
+          <Button onClick={onTour} className="w-[300px] h-[60px]">
+            Start a guided tour
+          </Button>
+          
+          <Button variant="outline" onClick={onExplore} className="w-[300px] h-[60px]">
+            I will explore on my own
+          </Button>
+        </div>
       </div>
     </div>;
 };
