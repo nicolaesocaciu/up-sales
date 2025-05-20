@@ -144,7 +144,7 @@ export const OnboardingSidebar = ({
           
           <div className="ml-4">
             <div className="font-bold text-white">
-              {/* Display percentage with first digit zero if needed */}
+              {/* Display percentage with first digit zero if needed - No animation */}
               {animatedProgress < 10 ? '0' : ''}
               {animatedProgress}% finished
             </div>
@@ -154,4 +154,3 @@ export const OnboardingSidebar = ({
       </div>
     </div>;
 };
-
