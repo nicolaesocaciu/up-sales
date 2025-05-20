@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { ImportServicesProps, importUsersOrdersServices, Service } from "../types/serviceTypes";
@@ -15,7 +14,6 @@ const serviceDescriptions = {
   "salesforce": "Sync data with your Salesforce CRM",
   "manual": "Upload users and orders data manually"
 };
-
 export const ImportUsersOrders = ({
   onNext,
   onBack
@@ -24,16 +22,13 @@ export const ImportUsersOrders = ({
 
   // Selected service
   const selectedService = services.find(service => service.selected);
-  
   const toggleService = (id: string) => {
     setServices(services.map(service => ({
       ...service,
       selected: service.id === id
     })));
   };
-  
-  return (
-    <div className="flex-1">
+  return <div className="flex-1">
       <h1 className="mb-4 text-4xl font-normal">Import users and orders</h1>
       <p className="text-gray-600 mt-4 text-base mb-8">
         Interrogations will help you power up your CRM by connecting it with multiple 
@@ -41,26 +36,17 @@ export const ImportUsersOrders = ({
         this option at any point in your settings.
       </p>
 
-      <ScrollArea className="h-[500px] pr-4 overflow-y-auto" style={{ scrollbarWidth: 'auto' }}>
+      <ScrollArea style={{
+      scrollbarWidth: 'auto'
+    }} className="h-[640px] pr-4 overflow-y-auto">
         <div className="flex flex-col w-full h-full">
-          {services.map(service => (
-            <ServiceCard 
-              key={service.id} 
-              title={service.name} 
-              description={serviceDescriptions[service.id as keyof typeof serviceDescriptions]} 
-              selected={service.selected} 
-              onClick={() => toggleService(service.id)} 
-              iconUrl={service.iconUrl} 
-              isExpandable={true}
-            >
+          {services.map(service => <ServiceCard key={service.id} title={service.name} description={serviceDescriptions[service.id as keyof typeof serviceDescriptions]} selected={service.selected} onClick={() => toggleService(service.id)} iconUrl={service.iconUrl} isExpandable={true}>
               {service.id === "shopify" && <ShopifyOrdersForm />}
               {service.id === "wordpress" && <WordpressOrdersForm />}
               {service.id === "salesforce" && <SalesforceOrdersForm />}
               {service.id === "manual" && <UsersOrdersUploadForm />}
-            </ServiceCard>
-          ))}
+            </ServiceCard>)}
         </div>
       </ScrollArea>
-    </div>
-  );
+    </div>;
 };
