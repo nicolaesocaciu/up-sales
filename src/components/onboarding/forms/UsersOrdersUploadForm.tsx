@@ -98,21 +98,17 @@ export const UsersOrdersUploadForm = () => {
   
   return (
     <div className="pt-4">
-      <Tabs 
-        defaultValue="users" 
-        onValueChange={(val) => setActiveTab(val as "users" | "orders")}
-        className="w-full"
-      >
-        <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
+      <Tabs value={activeTab} onValueChange={(val) => setActiveTab(val as "users" | "orders")}>
+        <TabsList className="w-full grid grid-cols-2 bg-white border border-gray-200 rounded-md h-9 p-0">
           <TabsTrigger 
-            value="users"
-            className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            value="users" 
+            className="data-[state=active]:bg-[#116FAE] data-[state=active]:text-white rounded-md"
           >
             Users
           </TabsTrigger>
           <TabsTrigger 
-            value="orders"
-            className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
+            value="orders" 
+            className="data-[state=active]:bg-[#116FAE] data-[state=active]:text-white rounded-md"
           >
             Orders
           </TabsTrigger>

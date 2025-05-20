@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Check } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const ShopifyOrdersForm = () => {
   const [activeTab, setActiveTab] = useState<"settings" | "import">("settings");
@@ -53,36 +54,24 @@ export const ShopifyOrdersForm = () => {
   return (
     <div className="mt-8">
       <div className="w-full">
-        <div className="bg-transparent border-b border-gray-200 w-full h-auto mb-4">
-          <div className="flex space-x-6">
-            <button
-              onClick={() => setActiveTab("settings")}
-              className={`px-0 py-3 h-auto rounded-none text-sm font-medium ${
-                activeTab === "settings"
-                  ? "text-[#116fae] border-b-2 border-[#116fae]"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
+        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "settings" | "import")}>
+          <TabsList className="w-full grid grid-cols-2 bg-white border border-gray-200 rounded-md h-9 p-0">
+            <TabsTrigger 
+              value="settings" 
+              className="data-[state=active]:bg-[#116FAE] data-[state=active]:text-white rounded-md"
             >
               Connection Settings
-            </button>
-            <button
-              onClick={() => isConnected && setActiveTab("import")}
+            </TabsTrigger>
+            <TabsTrigger 
+              value="import" 
               disabled={!isConnected}
-              className={`px-0 py-3 h-auto rounded-none text-sm font-medium ${
-                !isConnected
-                  ? "text-gray-300 cursor-not-allowed"
-                  : activeTab === "import"
-                  ? "text-[#116fae] border-b-2 border-[#116fae]"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
+              className="data-[state=active]:bg-[#116FAE] data-[state=active]:text-white rounded-md"
             >
               Import Data
-            </button>
-          </div>
-        </div>
-        
-        {activeTab === "settings" && (
-          <div className="bg-[#FFFFFF] rounded-[16px] p-6">
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="settings" className="mt-4 bg-[#FFFFFF] rounded-[16px] p-6">
             <div className="space-y-4">
               <div>
                 <Label htmlFor="shopify-store">Shopify Store URL</Label>
@@ -134,11 +123,9 @@ export const ShopifyOrdersForm = () => {
                 {isConnecting ? "Connecting..." : isConnected ? "Connected" : "Connect to Shopify"}
               </Button>
             </div>
-          </div>
-        )}
-        
-        {activeTab === "import" && (
-          <div className="bg-[#FFFFFF] rounded-[16px] p-6">
+          </TabsContent>
+          
+          <TabsContent value="import" className="mt-4 bg-[#FFFFFF] rounded-[16px] p-6">
             {isConnected && (
               <div className="space-y-4">
                 <div className="flex items-center">
@@ -200,8 +187,8 @@ export const ShopifyOrdersForm = () => {
                 )}
               </div>
             )}
-          </div>
-        )}
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );

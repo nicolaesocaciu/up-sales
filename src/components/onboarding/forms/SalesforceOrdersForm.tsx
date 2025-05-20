@@ -58,12 +58,23 @@ export const SalesforceOrdersForm = () => {
   return (
     <div className="mt-8">
       <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "settings" | "import")}>
-        <TabsList className="mb-4">
-          <TabsTrigger value="settings">Connection Settings</TabsTrigger>
-          <TabsTrigger value="import" disabled={!isConnected}>Import Data</TabsTrigger>
+        <TabsList className="w-full grid grid-cols-2 bg-white border border-gray-200 rounded-md h-9 p-0">
+          <TabsTrigger 
+            value="settings" 
+            className="data-[state=active]:bg-[#116FAE] data-[state=active]:text-white rounded-md"
+          >
+            Connection Settings
+          </TabsTrigger>
+          <TabsTrigger 
+            value="import" 
+            disabled={!isConnected}
+            className="data-[state=active]:bg-[#116FAE] data-[state=active]:text-white rounded-md"
+          >
+            Import Data
+          </TabsTrigger>
         </TabsList>
         
-        <TabsContent value="settings" className="mt-0 bg-[#FFFFFF] rounded-[16px] p-6">
+        <TabsContent value="settings" className="mt-4 bg-[#FFFFFF] rounded-[16px] p-6">
           <div className="space-y-4">
             <div>
               <Label htmlFor="salesforce-domain">Salesforce Domain</Label>
@@ -113,7 +124,7 @@ export const SalesforceOrdersForm = () => {
           </div>
         </TabsContent>
         
-        <TabsContent value="import" className="mt-0 bg-[#FFFFFF] rounded-[16px] p-6">
+        <TabsContent value="import" className="mt-4 bg-[#FFFFFF] rounded-[16px] p-6">
           {isConnected && (
             <div className="space-y-4">
               <div className="flex items-center">
