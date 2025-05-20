@@ -1,12 +1,28 @@
+
 import { Button } from "@/components/ui/button";
+import { useConfetti } from "@/hooks/useConfetti";
+
 type CompletionScreenProps = {
   onTour: () => void;
   onExplore: () => void;
 };
+
 export const CompletionScreen = ({
   onTour,
   onExplore
 }: CompletionScreenProps) => {
+  const { triggerConfetti } = useConfetti();
+
+  const handleTourClick = () => {
+    triggerConfetti();
+    onTour();
+  };
+
+  const handleExploreClick = () => {
+    triggerConfetti();
+    onExplore();
+  };
+
   return <div className="flex flex-col items-center h-full text-center">
       <div className="mb-8">
         <img src="/lovable-uploads/9da62b64-b9dd-42d5-965c-171f28c54fef.png" alt="Completion illustration" className="w-256 h-256" />
@@ -21,11 +37,11 @@ export const CompletionScreen = ({
       <div className="flex flex-col items-center gap-8 mt-auto">
         <p className="text-[#494a4a]">Your next steps:</p>
         <div className="flex flex-row items-center gap-8">
-          <Button onClick={onTour} className="w-[360px] h-[60px] text-[16px] font-light">
+          <Button onClick={handleTourClick} className="w-[360px] h-[60px] text-[16px] font-light">
             Start a guided tour
           </Button>
           
-          <Button variant="outline" onClick={onExplore} className="w-[360px] h-[60px] text-[16px] font-light">
+          <Button variant="outline" onClick={handleExploreClick} className="w-[360px] h-[60px] text-[16px] font-light">
             I will explore on my own
           </Button>
         </div>
