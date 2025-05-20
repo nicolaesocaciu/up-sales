@@ -31,7 +31,7 @@ export const IntegrationsStep = ({
     id: "monday",
     name: "Monday",
     description: "Link your Monday.com boards for project management and collaboration.",
-    iconUrl: "/lovable-uploads/04a5effa-803b-4680-bf87-d523c6724c8e.png",
+    iconUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Prestashop.svg",
     connected: false
   }, {
     id: "shopify",

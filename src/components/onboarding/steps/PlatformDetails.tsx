@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Loader, LinkIcon, Link2Off } from "lucide-react";
+import { ArrowLeft, Loader2, LinkIcon, Link2Off } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
@@ -55,7 +55,7 @@ export const PlatformDetails = ({
       <div className="flex flex-col border-b border-b-[#dadada]">
         <button onClick={onBack} className="self-start text-[#116fae] hover:underline flex items-center mb-6">
           <ArrowLeft className="h-4 w-4 mr-1" />
-          Back to all applications
+          Back to all stores
         </button>
         
         <div className="flex items-center mb-6">
@@ -97,13 +97,13 @@ export const PlatformDetails = ({
                   }} disabled={isConnecting}>
                     {isConnecting ? (
                       <>
-                        <Loader className="h-4 w-4 animate-spin mr-2" />
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
                         Connecting...
                       </>
                     ) : (
                       <>
                         <LinkIcon className="h-4 w-4 mr-2" />
-                        Connect application
+                        Connect store
                       </>
                     )}
                   </Button>
@@ -122,13 +122,13 @@ export const PlatformDetails = ({
                   >
                     {isDisconnecting ? (
                       <>
-                        <Loader className="h-4 w-4 animate-spin mr-2" />
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
                         Disconnecting...
                       </>
                     ) : (
                       <>
                         <Link2Off className="h-4 w-4 mr-2" />
-                        Disconnect application
+                        Disconnect store
                       </>
                     )}
                   </Button>
