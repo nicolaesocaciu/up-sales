@@ -9,6 +9,7 @@ type ServiceCardProps = {
   selected: boolean;
   onClick: () => void;
   iconUrl?: string;
+  icon?: ReactNode;
   children?: ReactNode;
   isExpandable?: boolean;
 };
@@ -19,6 +20,7 @@ export const ServiceCard = ({
   selected, 
   onClick, 
   iconUrl, 
+  icon,
   children, 
   isExpandable = false 
 }: ServiceCardProps) => {
@@ -39,7 +41,11 @@ export const ServiceCard = ({
         onClick={onClick}
       >
         <div className="flex-1 flex items-center justify-center mb-4">
-          {isManualService ? (
+          {icon ? (
+            <div className="w-20 h-20 flex items-center justify-center">
+              {icon}
+            </div>
+          ) : isManualService ? (
             <div className="w-20 h-20 flex items-center justify-center text-[#116FAE]">
               <img src="/lovable-uploads/4e023dfc-f7de-4fb6-9260-0197f2015055.png" alt="Manual upload" className="w-16 h-16" />
             </div>
@@ -89,7 +95,11 @@ export const ServiceCard = ({
       >
         <div className="p-6 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            {isManualService ? (
+            {icon ? (
+              <div className="w-16 h-16 flex items-center justify-center">
+                {icon}
+              </div>
+            ) : isManualService ? (
               <div className="w-16 h-16 flex items-center justify-center text-[#116FAE]">
                 <img src="/lovable-uploads/4e023dfc-f7de-4fb6-9260-0197f2015055.png" alt="Manual upload" className="w-16 h-16" />
               </div>
