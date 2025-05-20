@@ -5,12 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Check } from "lucide-react";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 export const WordpressForm = () => {
-  const [wordpressUrl, setWordpressUrl] = useState("");
-  const [wordpressKey, setWordpressKey] = useState("");
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [importSuccess, setImportSuccess] = useState(false);
+  const [wordpressUrl, setWordpressUrl] = useLocalStorageState("onboarding.forms.wordpress.url", "");
+  const [wordpressKey, setWordpressKey] = useLocalStorageState("onboarding.forms.wordpress.key", "");
+  const [isConnecting, setIsConnecting] = useLocalStorageState("onboarding.forms.wordpress.connecting", false);
+  const [importSuccess, setImportSuccess] = useLocalStorageState("onboarding.forms.wordpress.success", false);
   
   const isFormValid = () => {
     return wordpressUrl.trim() !== "" && wordpressKey.trim() !== "";
@@ -34,11 +35,24 @@ export const WordpressForm = () => {
       <div className="space-y-4">
         <div>
           <Label htmlFor="wordpress-url">WordPress Site URL</Label>
-          <Input id="wordpress-url" placeholder="https://your-site.com" className="mt-1" value={wordpressUrl} onChange={e => setWordpressUrl(e.target.value)} />
+          <Input 
+            id="wordpress-url" 
+            placeholder="https://your-site.com" 
+            className="mt-1" 
+            value={wordpressUrl} 
+            onChange={e => setWordpressUrl(e.target.value)} 
+          />
         </div>
         <div>
           <Label htmlFor="wordpress-key">API Key</Label>
-          <Input id="wordpress-key" type="password" placeholder="Enter your WooCommerce API key" className="mt-1" value={wordpressKey} onChange={e => setWordpressKey(e.target.value)} />
+          <Input 
+            id="wordpress-key" 
+            type="password" 
+            placeholder="Enter your WooCommerce API key" 
+            className="mt-1" 
+            value={wordpressKey} 
+            onChange={e => setWordpressKey(e.target.value)} 
+          />
         </div>
         {importSuccess ? <div className="flex items-center gap-4">
             <Button disabled>
@@ -48,7 +62,10 @@ export const WordpressForm = () => {
               <Check size={16} className="text-[#2D7048]" />
               <span className="text-sm">3872 products have been successfully imported</span>
             </Badge>
-          </div> : <Button onClick={handleConnect} disabled={!isFormValid() || isConnecting}>
+          </div> : <Button 
+              onClick={handleConnect} 
+              disabled={!isFormValid() || isConnecting}
+            >
             {isConnecting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isConnecting ? "Connecting..." : "Connect & Import"}
           </Button>}

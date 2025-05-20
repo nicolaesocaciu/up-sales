@@ -1,33 +1,35 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocalStorageState } from "../../hooks/useLocalStorageState";
 
 export const useWordpressState = () => {
-  const [activeTab, setActiveTab] = useState<"settings" | "import">("settings");
-  const [wordpressUrl, setWordpressUrl] = useState("");
-  const [consumerKey, setConsumerKey] = useState("");
-  const [consumerSecret, setConsumerSecret] = useState("");
-  const [importUsers, setImportUsers] = useState(true);
-  const [importOrders, setImportOrders] = useState(true);
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
-  const [isImporting, setIsImporting] = useState(false);
-  const [importSuccess, setImportSuccess] = useState(false);
-  const [usersCount, setUsersCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0);
+  const [activeTab, setActiveTab] = useLocalStorageState("onboarding.wordpress-orders.activeTab", "settings");
+  const [wordpressUrl, setWordpressUrl] = useLocalStorageState("onboarding.wordpress-orders.url", "");
+  const [consumerKey, setConsumerKey] = useLocalStorageState("onboarding.wordpress-orders.consumerKey", "");
+  const [consumerSecret, setConsumerSecret] = useLocalStorageState("onboarding.wordpress-orders.consumerSecret", "");
+  const [importUsers, setImportUsers] = useLocalStorageState("onboarding.wordpress-orders.importUsers", true);
+  const [importOrders, setImportOrders] = useLocalStorageState("onboarding.wordpress-orders.importOrders", true);
+  const [isConnecting, setIsConnecting] = useLocalStorageState("onboarding.wordpress-orders.isConnecting", false);
+  const [isConnected, setIsConnected] = useLocalStorageState("onboarding.wordpress-orders.isConnected", false);
+  const [isImporting, setIsImporting] = useLocalStorageState("onboarding.wordpress-orders.isImporting", false);
+  const [importSuccess, setImportSuccess] = useLocalStorageState("onboarding.wordpress-orders.importSuccess", false);
+  const [usersCount, setUsersCount] = useLocalStorageState("onboarding.wordpress-orders.usersCount", 0);
+  const [ordersCount, setOrdersCount] = useLocalStorageState("onboarding.wordpress-orders.ordersCount", 0);
 
   const handleConnect = () => {
-    if (isConnecting) return;
-    setIsConnecting(true);
+    if (!isConnected && !isConnecting) {
+      setIsConnecting(true);
 
-    // Simulate API connection
-    setTimeout(() => {
-      setIsConnecting(false);
-      setIsConnected(true);
-      setActiveTab("import");
-      // Random data counts for simulation
-      setUsersCount(Math.floor(Math.random() * 800) + 400);
-      setOrdersCount(Math.floor(Math.random() * 600) + 300);
-    }, 2000);
+      // Simulate API connection
+      setTimeout(() => {
+        setIsConnecting(false);
+        setIsConnected(true);
+        setActiveTab("import");
+        // Random data counts for simulation
+        setUsersCount(Math.floor(Math.random() * 1200) + 800);
+        setOrdersCount(Math.floor(Math.random() * 900) + 600);
+      }, 2000);
+    }
   };
   
   const handleImport = () => {

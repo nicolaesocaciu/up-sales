@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { OnboardingSidebar } from "./OnboardingSidebar";
 import { OnboardingContent } from "./OnboardingContent";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useOnboardingStorage } from "./hooks/useOnboardingStorage";
 
 export type OnboardingStep = {
   id: number;
@@ -26,6 +27,7 @@ export const OnboardingLayout = () => {
   const [stepsList, setStepsList] = useState<OnboardingStep[]>(steps);
   const [isOpen, setIsOpen] = useState(true);
   const totalSteps = steps.length;
+  const { clearOnboardingData } = useOnboardingStorage();
 
   // Calculate the progress percentage based on completed steps
   const calculateProgress = () => {
@@ -65,15 +67,22 @@ export const OnboardingLayout = () => {
   };
 
   const handleSkip = () => {
+    clearOnboardingData(); // Clear localStorage data when skipping
     setIsOpen(false);
   };
 
   const handleClose = () => {
+    clearOnboardingData(); // Clear localStorage data when closing
     setIsOpen(false);
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      if (!open) {
+        clearOnboardingData(); // Clear localStorage data when dialog is closed
+      }
+      setIsOpen(open);
+    }}>
       <DialogContent className="p-0 max-w-none w-[1440px] h-[984px] rounded-[48px] border-0 overflow-hidden">
         <div className="flex h-full">
           {currentStep > 0 && currentStep <= totalSteps && (

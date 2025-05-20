@@ -1,17 +1,23 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { ImportServicesProps, importProductServices, Service } from "../types/serviceTypes";
 import { ManualUploadForm } from "../forms/ManualUploadForm";
 import { ShopifyForm } from "../forms/ShopifyForm";
 import { WordpressForm } from "../forms/WordpressForm";
 import { SalesforceForm } from "../forms/SalesforceForm";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
+import { ONBOARDING_STORAGE_KEYS } from "../hooks/useOnboardingStorage";
 
 export const ImportProducts = ({
   onNext,
   onBack
 }: ImportServicesProps) => {
-  const [services, setServices] = useState<Service[]>(importProductServices);
+  // Use localStorage for maintaining service selection state
+  const [services, setServices] = useLocalStorageState<Service[]>(
+    ONBOARDING_STORAGE_KEYS.PRODUCTS,
+    importProductServices
+  );
   
   // Selected service
   const selectedService = services.find(service => service.selected);

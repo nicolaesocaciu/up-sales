@@ -1,9 +1,11 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { PlatformDetails } from "./PlatformDetails";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
+import { ONBOARDING_STORAGE_KEYS } from "../hooks/useOnboardingStorage";
 
 type ConnectStoreProps = {
   onNext: () => void;
@@ -22,43 +24,56 @@ export const ConnectStore = ({
   onNext,
   onBack
 }: ConnectStoreProps) => {
-  const [platforms, setPlatforms] = useState<Platform[]>([{
-    id: "shopify",
-    name: "Shopify",
-    selected: false,
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
-    connected: false
-  }, {
-    id: "prestashop",
-    name: "Prestashop",
-    selected: false,
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Prestashop.svg",
-    connected: false
-  }, {
-    id: "woocommerce",
-    name: "Woocommerce",
-    selected: false,
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2a/WooCommerce_logo.svg",
-    connected: false
-  }, {
-    id: "magento",
-    name: "Magento",
-    selected: false,
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/55/Magento_Logo.svg",
-    connected: false
-  }, {
-    id: "bigcommerce",
-    name: "Bigcommerce",
-    selected: false,
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Bc-logo-dark.svg",
-    connected: false
-  }, {
-    id: "wix",
-    name: "Wix",
-    selected: false,
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg",
-    connected: false
-  }]);
+  const initialPlatforms = [
+    {
+      id: "shopify",
+      name: "Shopify",
+      selected: false,
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+      connected: false
+    }, 
+    {
+      id: "prestashop",
+      name: "Prestashop",
+      selected: false,
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Prestashop.svg",
+      connected: false
+    }, 
+    {
+      id: "woocommerce",
+      name: "Woocommerce",
+      selected: false,
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2a/WooCommerce_logo.svg",
+      connected: false
+    }, 
+    {
+      id: "magento",
+      name: "Magento",
+      selected: false,
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/55/Magento_Logo.svg",
+      connected: false
+    }, 
+    {
+      id: "bigcommerce",
+      name: "Bigcommerce",
+      selected: false,
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Bc-logo-dark.svg",
+      connected: false
+    }, 
+    {
+      id: "wix",
+      name: "Wix",
+      selected: false,
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg",
+      connected: false
+    }
+  ];
+  
+  const [platforms, setPlatforms] = useLocalStorageState<Platform[]>(
+    ONBOARDING_STORAGE_KEYS.STORE,
+    initialPlatforms
+  );
+  
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
@@ -129,8 +144,6 @@ export const ConnectStore = ({
             badgeColor={platform.connected ? "green" : undefined} 
           />)}
         </div>
-
-        {/* Removed the "Continue to next step" button as it's redundant with the footer's Next button */}
       </div>
 
       {/* Details View Overlay */}

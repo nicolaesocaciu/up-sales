@@ -3,11 +3,16 @@ import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { OnboardingLayout } from "@/components/onboarding/OnboardingLayout";
+import { useOnboardingStorage } from "@/components/onboarding/hooks/useOnboardingStorage";
 
 export const BetaPrompt = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const { clearOnboardingData } = useOnboardingStorage();
   
   const handleOpenOnboarding = () => {
+    // Reset onboarding data to start fresh
+    clearOnboardingData();
+    
     // Reset to false first to ensure the component unmounts and remounts
     setShowOnboarding(false);
     
@@ -25,7 +30,13 @@ export const BetaPrompt = () => {
           <span className="font-bold text-neutral-50 mx-[8px]">Onboarding</span>
         </div>
         <p className="text-sm text-[#f2f2f2] mb-[24px]">Get started with our onboarding tour</p>
-        <Button variant="outline" className="my-0 py-0 mx-0 px-[16px] h-[32px] w-full border-0" onClick={handleOpenOnboarding}>Start onboarding</Button>
+        <Button 
+          variant="outline" 
+          className="my-0 py-0 mx-0 px-[16px] h-[32px] w-full border-0" 
+          onClick={handleOpenOnboarding}
+        >
+          Start onboarding
+        </Button>
         {showOnboarding && <OnboardingLayout />}
       </div>
     </div>;
