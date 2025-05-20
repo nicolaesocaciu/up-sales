@@ -8,7 +8,6 @@ type Platform = {
   name: string;
   selected: boolean;
   icon?: React.ReactNode;
-  logoUrl?: string;
   connected?: boolean;
 };
 type PlatformDetailsProps = {
@@ -21,7 +20,7 @@ export const PlatformDetails = ({
   onBack,
   onConnect
 }: PlatformDetailsProps) => {
-  return <div className="h-full flex flex-col overflow-hidden">
+  return <div className="h-full flex flex-col">
       <div className="flex flex-col border-b border-b-[#dadada]">
         <button onClick={onBack} className="self-start text-[#116fae] hover:underline flex items-center mb-6">
           <ArrowLeft className="h-4 w-4 mr-1" />
@@ -29,8 +28,7 @@ export const PlatformDetails = ({
         </button>
         
         <div className="flex items-center mb-6">
-          {platform.logoUrl && <img src={platform.logoUrl} alt={`${platform.name} logo`} className="h-10 w-10 mr-4 object-contain" />}
-          <h2 className="text-2xl font-semibold">{platform.name} integration</h2>
+          <h2 className="text-2xl font-semibold">{platform.name}</h2>
         </div>
       </div>
       
@@ -55,12 +53,21 @@ export const PlatformDetails = ({
                 <Input id="api-secret" placeholder="Enter your API secret" type="password" />
               </div>
             </div>
+
+            <div className="border-t p-6 mt-auto">
+              <Button onClick={onConnect} className="w-full" style={{
+                borderRadius: "8px",
+                border: "1px solid #116FAE",
+                backgroundColor: "#116FAE",
+                boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
+              }}>
+                Connect application
+              </Button>
+            </div>
           </div>
           
           <div>
-            
-            <Separator className="md:hidden mb-6" />
-            
+                        
             <div className="space-y-6">
               <h3 className="text-lg font-medium">Setup instructions</h3>
               
@@ -78,17 +85,6 @@ export const PlatformDetails = ({
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className="border-t p-6 mt-auto">
-        <Button onClick={onConnect} className="w-full" style={{
-        borderRadius: "8px",
-        border: "1px solid #116FAE",
-        backgroundColor: "#116FAE",
-        boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
-      }}>
-          Connect application
-        </Button>
       </div>
     </div>;
 };
