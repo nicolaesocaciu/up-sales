@@ -25,10 +25,9 @@ export const ServiceCard = ({ title, selected, onClick, iconUrl }: ServiceCardPr
     <div className="flex-1 flex items-center justify-center mb-4">
       {isManualService ? (
         <div className="w-20 h-20 flex items-center justify-center text-[#116FAE]">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 22H20C20.5304 22 21.0391 21.7893 21.4142 21.4142C21.7893 21.0391 22 20.5304 22 20V7.5C22 7.23478 21.8946 6.98043 21.7071 6.79289C21.5196 6.60536 21.2652 6.5 21 6.5H14L12 4H3C2.46957 4 1.96086 4.21071 1.58579 4.58579C1.21071 4.96086 1 5.46957 1 6V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12 11V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M9 14L12 11L15 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="64" height="64" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.3335 10.6666H21.3335L14.0002 3.33331L6.66683 10.6666H10.6668V17.3333H17.3335V10.6666Z" stroke="#116FAE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3.33333 26.6667V22.6667C3.33333 21.9594 3.61428 21.281 4.11438 20.7809C4.61448 20.2808 5.29276 20 6 20H22C22.7072 20 23.3855 20.2808 23.8856 20.7809C24.3857 21.281 24.6667 21.9594 24.6667 22.6667V26.6667" stroke="#116FAE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
       ) : iconUrl ? (
