@@ -22,7 +22,7 @@ export const PlatformDetails = ({
   onConnect
 }: PlatformDetailsProps) => {
   return <div className="h-full flex flex-col overflow-hidden">
-      <div className="flex flex-col">
+      <div className="flex flex-col border-b border-b-[#dadada]">
         <button onClick={onBack} className="self-start text-[#116fae] hover:underline flex items-center mb-6">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to all applications
