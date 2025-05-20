@@ -17,11 +17,11 @@ export const ShopifyTabsContainer = ({
   importContent
 }: ShopifyTabsContainerProps) => {
   return (
-    <div className="mt-4 border border-[#DADADA] rounded-md">
-      <div className="flex">
+    <div className="mt-8">
+      <div className="w-full grid grid-cols-2 bg-white border border-gray-200 rounded-md h-9 p-0">
         <button
           className={`
-            flex-1 text-center py-2 transition-colors 
+            transition-colors rounded-md
             ${activeTab === "settings" 
               ? "bg-[#116FAE] text-white" 
               : "bg-white hover:bg-gray-50"
@@ -33,7 +33,7 @@ export const ShopifyTabsContainer = ({
         </button>
         <button
           className={`
-            flex-1 text-center py-2 transition-colors
+            transition-colors rounded-md
             ${activeTab === "import" 
               ? "bg-[#116FAE] text-white" 
               : "bg-white hover:bg-gray-50"
@@ -47,7 +47,7 @@ export const ShopifyTabsContainer = ({
         </button>
       </div>
 
-      <div className="bg-white rounded-b-[16px] p-6">
+      <div className="mt-4 bg-[#FFFFFF] rounded-[16px] p-6 border border-[#DADADA]">
         {activeTab === "settings" ? settingsContent : importContent}
       </div>
     </div>

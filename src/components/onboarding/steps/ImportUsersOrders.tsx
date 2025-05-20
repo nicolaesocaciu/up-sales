@@ -20,7 +20,13 @@ export const ImportUsersOrders = ({
   onNext,
   onBack
 }: ImportServicesProps) => {
-  const [services, setServices] = useState<Service[]>(importUsersOrdersServices);
+  // Initialize with no service selected
+  const [services, setServices] = useState<Service[]>(
+    importUsersOrdersServices.map(service => ({
+      ...service,
+      selected: false
+    }))
+  );
 
   // Selected service
   const selectedService = services.find(service => service.selected);

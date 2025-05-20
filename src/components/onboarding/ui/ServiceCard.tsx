@@ -1,3 +1,4 @@
+
 import { ChevronDown } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ReactNode, useState } from "react";
@@ -58,7 +59,6 @@ export const ServiceCard = ({
   }
   
   // Expandable card (used for Import Users and Orders screen)
-  // Always keep the selected background style regardless of open/close state
   return (
     <Collapsible
       open={isOpen}
@@ -70,10 +70,10 @@ export const ServiceCard = ({
         }
       }}
       className={`
-        w-full mb-4 rounded-[16px] border overflow-hidden
+        w-full mb-4 rounded-[16px] border transition-colors
         ${selected
           ? 'bg-[#E7F2F9] border-[#1482CC]'
-          : 'border-gray-200 bg-white'
+          : 'border-gray-200 bg-white hover:border-[#1482CC]'
         }
       `}
     >
