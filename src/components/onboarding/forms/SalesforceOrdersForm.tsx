@@ -8,12 +8,15 @@ import { Loader2, Check } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+// Define a type for the data type selection
+type DataType = "both" | "contacts" | "opportunities";
+
 export const SalesforceOrdersForm = () => {
   const [activeTab, setActiveTab] = useState<"settings" | "import">("settings");
   const [salesforceDomain, setSalesforceDomain] = useState("");
   const [clientId, setClientId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [dataType, setDataType] = useState("both");
+  const [dataType, setDataType] = useState<DataType>("both");
   const [timeframe, setTimeframe] = useState("all");
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
@@ -130,7 +133,7 @@ export const SalesforceOrdersForm = () => {
               
               <div>
                 <Label htmlFor="data-type">What to import</Label>
-                <Select value={dataType} onValueChange={setDataType}>
+                <Select value={dataType} onValueChange={(value: DataType) => setDataType(value)}>
                   <SelectTrigger className="mt-1">
                     <SelectValue placeholder="Select data to import" />
                   </SelectTrigger>
@@ -166,7 +169,7 @@ export const SalesforceOrdersForm = () => {
                     <Check size={14} className="text-[#2D7048]" />
                     <span className="text-sm">
                       {dataType === "both" || dataType === "contacts" ? `${contactsCount} users` : ""}
-                      {((dataType === "both") && (dataType === "opportunities" || dataType === "both")) ? " and " : ""}
+                      {dataType === "both" && dataType === "opportunities" ? " and " : ""}
                       {dataType === "both" || dataType === "opportunities" ? `${ordersCount} orders` : ""} successfully imported
                     </span>
                   </Badge>
