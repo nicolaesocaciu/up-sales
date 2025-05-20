@@ -21,11 +21,11 @@ export const CompletionScreen = ({
       <div className="flex flex-col items-center gap-8 mt-auto">
         <p className="text-[#494a4a]">Your next steps:</p>
         <div className="flex flex-row items-center gap-8">
-          <Button onClick={onTour} className="w-[300px] h-[60px]">
+          <Button onClick={onTour} className="w-[360px] h-[60px] text-[16px] font-light">
             Start a guided tour
           </Button>
           
-          <Button variant="outline" onClick={onExplore} className="w-[300px] h-[60px]">
+          <Button variant="outline" onClick={onExplore} className="w-[360px] h-[60px] text-[16px] font-light">
             I will explore on my own
           </Button>
         </div>
