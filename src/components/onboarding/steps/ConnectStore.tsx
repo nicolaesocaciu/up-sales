@@ -95,12 +95,8 @@ export const ConnectStore = ({
   
   return (
     <div className="flex-1 relative overflow-hidden">
-      {/* Main Grid View */}
-      <div 
-        className={`transition-transform duration-300 ease-in-out ${
-          showDetails ? 'transform -translate-x-full' : ''
-        }`}
-      >
+      {/* Main Content */}
+      <div className="relative z-0">
         <h1 className="mb-4 text-4xl font-normal">Connect your store</h1>
         <p className="text-gray-600 mt-4 text-base mb-[64px]">
           Easily link your online store to streamline operations, manage products, and sync data across platforms for a seamless selling experience.
@@ -121,11 +117,10 @@ export const ConnectStore = ({
         </div>
       </div>
 
-      {/* Details View */}
+      {/* Details View Overlay */}
       <div 
-        className={`absolute top-0 left-0 w-full h-full transition-transform duration-300 ease-in-out ${
-          showDetails ? '' : 'transform translate-x-full'
-        }`}
+        className={`absolute top-0 left-0 w-full h-full transition-transform duration-300 ease-in-out bg-white z-10
+          ${showDetails ? '' : 'transform translate-x-full'}`}
       >
         {selectedPlatform && (
           <PlatformDetails
