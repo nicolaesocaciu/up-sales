@@ -26,37 +26,37 @@ export const ConnectStore = ({
       id: "shopify",
       name: "Shopify",
       selected: true,
-      logoUrl: "/lovable-uploads/shopify-logo.png"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg"
     }, 
     {
       id: "prestashop",
       name: "Prestashop",
       selected: false,
-      logoUrl: "/lovable-uploads/prestashop-logo.png"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Prestashop_logo.svg"
     }, 
     {
       id: "woocommerce",
       name: "Woocommerce",
       selected: false,
-      logoUrl: "/lovable-uploads/woocommerce-logo.png"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2a/WooCommerce_logo.svg"
     }, 
     {
       id: "magento",
       name: "Magento",
       selected: false,
-      logoUrl: "/lovable-uploads/magento-logo.png"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/55/Magento_Logo.svg"
     }, 
     {
       id: "bigcommerce",
       name: "Bigcommerce",
       selected: false,
-      logoUrl: "/lovable-uploads/bigcommerce-logo.png"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0a/BigCommerce_logo.svg"
     }, 
     {
       id: "wix",
       name: "Wix",
       selected: false,
-      logoUrl: "/lovable-uploads/wix-logo.png"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg"
     }
   ]);
   
