@@ -45,7 +45,7 @@ export const PlatformDetails = ({
         
         <div className="flex items-center mb-6">
           <h2 className="text-2xl font-semibold">{platform.name}</h2>
-          {isConnected && <Badge variant="green" className="ml-4 py-[6px] px-[12px] text-body">Connected</Badge>}
+          {isConnected && <Badge variant="green" className="ml-4 py-[6px] px-[12px]">Connected</Badge>}
         </div>
       </div>
       
