@@ -1,9 +1,11 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Loader, LinkIcon, Link2Off } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+
 type Platform = {
   id: string;
   name: string;
@@ -11,18 +13,24 @@ type Platform = {
   icon?: React.ReactNode;
   connected?: boolean;
 };
+
 type PlatformDetailsProps = {
   platform: Platform;
   onBack: () => void;
   onConnect: () => void;
+  onDisconnect: () => void;
 };
+
 export const PlatformDetails = ({
   platform,
   onBack,
-  onConnect
+  onConnect,
+  onDisconnect
 }: PlatformDetailsProps) => {
   const [isConnecting, setIsConnecting] = useState(false);
+  const [isDisconnecting, setIsDisconnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(platform.connected || false);
+  
   const handleConnect = () => {
     setIsConnecting(true);
 
@@ -33,9 +41,18 @@ export const PlatformDetails = ({
       onConnect();
     }, 1500);
   };
+  
   const handleDisconnect = () => {
-    setIsConnected(false);
+    setIsDisconnecting(true);
+    
+    // Simulate disconnection process
+    setTimeout(() => {
+      setIsDisconnecting(false);
+      setIsConnected(false);
+      onDisconnect();
+    }, 1500);
   };
+  
   return <div className="h-full flex flex-col">
       <div className="flex flex-col border-b border-b-[#dadada]">
         <button onClick={onBack} className="self-start text-[#116fae] hover:underline flex items-center mb-6">
@@ -45,7 +62,7 @@ export const PlatformDetails = ({
         
         <div className="flex items-center mb-6">
           <h2 className="text-2xl font-semibold">{platform.name}</h2>
-          {isConnected && <Badge variant="green" className="ml-4 py-[6px] px-[12px]">Connected</Badge>}
+          {isConnected && <Badge variant="green" className="ml-4 py-[3px] px-[12px]">Connected</Badge>}
         </div>
       </div>
       
@@ -73,34 +90,56 @@ export const PlatformDetails = ({
 
             <div className="border-t mt-[24px] pt-[24px]">
               <div className="flex items-center gap-3">
-                {!isConnected ? <Button onClick={handleConnect} className="w-full" style={{
-                borderRadius: "8px",
-                border: "1px solid #116FAE",
-                backgroundColor: "#116FAE",
-                boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
-              }} disabled={isConnecting}>
-                    {isConnecting ? <>
+                {!isConnected ? (
+                  <Button onClick={handleConnect} className="w-full" style={{
+                    borderRadius: "8px",
+                    border: "1px solid #116FAE",
+                    backgroundColor: "#116FAE",
+                    boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
+                  }} disabled={isConnecting}>
+                    {isConnecting ? (
+                      <>
                         <Loader className="h-4 w-4 animate-spin mr-2" />
                         Connecting...
-                      </> : <>
+                      </>
+                    ) : (
+                      <>
                         <LinkIcon className="h-4 w-4 mr-2" />
                         Connect application
-                      </>}
-                  </Button> : <Button onClick={handleDisconnect} variant="outline" className="w-full" style={{
-                borderRadius: "8px",
-                border: "1px solid #8A8A8A",
-                backgroundColor: "#FFFFFF",
-                boxShadow: "0px 2px 4px 0px rgba(37, 38, 38, 0.08)"
-              }}>
-                    <Link2Off className="h-4 w-4 mr-2" />
-                    Disconnect application
-                  </Button>}
+                      </>
+                    )}
+                  </Button>
+                ) : (
+                  <Button 
+                    onClick={handleDisconnect} 
+                    variant="outline" 
+                    className="w-full" 
+                    style={{
+                      borderRadius: "8px",
+                      border: "1px solid #8A8A8A",
+                      backgroundColor: "#FFFFFF",
+                      boxShadow: "0px 2px 4px 0px rgba(37, 38, 38, 0.08)"
+                    }}
+                    disabled={isDisconnecting}
+                  >
+                    {isDisconnecting ? (
+                      <>
+                        <Loader className="h-4 w-4 animate-spin mr-2" />
+                        Disconnecting...
+                      </>
+                    ) : (
+                      <>
+                        <Link2Off className="h-4 w-4 mr-2" />
+                        Disconnect application
+                      </>
+                    )}
+                  </Button>
+                )}
               </div>
             </div>
           </div>
           
           <div>
-                        
             <div className="space-y-6">
               <h3 className="text-lg font-medium">Setup instructions</h3>
               

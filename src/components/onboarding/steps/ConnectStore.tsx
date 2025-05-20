@@ -14,9 +14,8 @@ type Platform = {
   id: string;
   name: string;
   selected: boolean;
-  icon?: React.ReactNode;
   logoUrl?: string;
-  connected?: boolean;
+  connected: boolean;
 };
 
 export const ConnectStore = ({
@@ -62,7 +61,6 @@ export const ConnectStore = ({
   }]);
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [hasConnectedPlatform, setHasConnectedPlatform] = useState(false);
 
   const selectPlatform = (platform: Platform) => {
     setSelectedPlatform(platform);
@@ -89,13 +87,28 @@ export const ConnectStore = ({
         connected: true
       });
     }
-
-    // Set that we have at least one connected platform
-    setHasConnectedPlatform(true);
-    
-    // Do not automatically close the details panel
-    // Do not automatically navigate to the next step
   };
+  
+  const handleDisconnect = (platformId: string) => {
+    // Update the connected status of the platform
+    setPlatforms(platforms.map(platform => 
+      platform.id === platformId ? {
+        ...platform,
+        connected: false
+      } : platform
+    ));
+    
+    // Update selectedPlatform to reflect disconnected status
+    if (selectedPlatform && selectedPlatform.id === platformId) {
+      setSelectedPlatform({
+        ...selectedPlatform,
+        connected: false
+      });
+    }
+  };
+  
+  // Check if any platform is connected
+  const hasConnectedPlatform = platforms.some(platform => platform.connected);
 
   return <div className="flex-1 relative overflow-hidden">
       {/* Main Content */}
@@ -140,7 +153,8 @@ export const ConnectStore = ({
         {selectedPlatform && <PlatformDetails 
           platform={selectedPlatform} 
           onBack={handleBackToList} 
-          onConnect={() => handleConnect(selectedPlatform.id)} 
+          onConnect={() => handleConnect(selectedPlatform.id)}
+          onDisconnect={() => handleDisconnect(selectedPlatform.id)}
         />}
       </div>
     </div>;
