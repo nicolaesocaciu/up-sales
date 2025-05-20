@@ -51,6 +51,6 @@ export const importUsersOrdersServices: Service[] = [{
 }, {
   id: "manual",
   name: "Manual",
-  selected: true,
+  selected: false,
   iconUrl: ""
 }];

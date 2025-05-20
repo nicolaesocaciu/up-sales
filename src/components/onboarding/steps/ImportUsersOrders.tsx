@@ -25,10 +25,7 @@ export const ImportUsersOrders = ({
   // Initialize with localStorage state
   const [services, setServices] = useLocalStorageState<Service[]>(
     ONBOARDING_STORAGE_KEYS.USERS_ORDERS,
-    importUsersOrdersServices.map(service => ({
-      ...service,
-      selected: service.id === "manual" // Default to manual selected
-    }))
+    importUsersOrdersServices
   );
 
   // Selected service
@@ -58,10 +55,10 @@ export const ImportUsersOrders = ({
               iconUrl={service.iconUrl} 
               isExpandable={true}
             >
-              {service.id === "shopify" && <ShopifyOrdersForm />}
-              {service.id === "wordpress" && <WordpressOrdersForm />}
-              {service.id === "salesforce" && <SalesforceOrdersForm />}
-              {service.id === "manual" && <UsersOrdersUploadForm />}
+              {service.id === "shopify" && service.selected && <ShopifyOrdersForm />}
+              {service.id === "wordpress" && service.selected && <WordpressOrdersForm />}
+              {service.id === "salesforce" && service.selected && <SalesforceOrdersForm />}
+              {service.id === "manual" && service.selected && <UsersOrdersUploadForm />}
             </ServiceCard>)}
         </div>
       </ScrollArea>
