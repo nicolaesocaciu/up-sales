@@ -32,7 +32,7 @@ export const ConnectStore = ({
       id: "prestashop",
       name: "Prestashop",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Prestashop_logo.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Prestashop.svg"
     }, 
     {
       id: "woocommerce",
@@ -50,7 +50,7 @@ export const ConnectStore = ({
       id: "bigcommerce",
       name: "Bigcommerce",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0a/BigCommerce_logo.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Bc-logo-dark.svg"
     }, 
     {
       id: "wix",
