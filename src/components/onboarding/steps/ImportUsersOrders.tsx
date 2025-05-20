@@ -6,12 +6,16 @@ import { UsersOrdersUploadForm } from "../forms/UsersOrdersUploadForm";
 import { ShopifyForm } from "../forms/ShopifyForm";
 import { WordpressForm } from "../forms/WordpressForm";
 import { SalesforceForm } from "../forms/SalesforceForm";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const ImportUsersOrders = ({
   onNext,
   onBack
 }: ImportServicesProps) => {
-  const [services, setServices] = useState<Service[]>(importUsersOrdersServices);
+  const [services, setServices] = useState<Service[]>(importUsersOrdersServices.map(service => ({
+    ...service,
+    description: getServiceDescription(service.id)
+  })));
   
   // Selected service
   const selectedService = services.find(service => service.selected);
@@ -23,6 +27,22 @@ export const ImportUsersOrders = ({
     })));
   };
 
+  // Helper function to get service descriptions
+  function getServiceDescription(serviceId: string): string {
+    switch(serviceId) {
+      case "shopify":
+        return "Connect your Shopify store to import users and orders";
+      case "wordpress":
+        return "Import users and orders from your WordPress site";
+      case "salesforce":
+        return "Connect to Salesforce to import customer data";
+      case "manual":
+        return "Upload a CSV file with your users and orders data";
+      default:
+        return "";
+    }
+  }
+
   return (
     <div className="flex-1">
       <h1 className="mb-4 text-4xl font-normal">Import users and orders</h1>
@@ -32,22 +52,29 @@ export const ImportUsersOrders = ({
         this option at any point in your settings.
       </p>
 
-      <div className="grid grid-cols-4 gap-4 mb-8">
-        {services.map(service => (
-          <ServiceCard 
-            key={service.id} 
-            title={service.name} 
-            selected={service.selected} 
-            onClick={() => toggleService(service.id)}
-            iconUrl={service.iconUrl} 
-          />
-        ))}
-      </div>
-
-      {selectedService && selectedService.id === "shopify" && <ShopifyForm />}
-      {selectedService && selectedService.id === "wordpress" && <WordpressForm />}
-      {selectedService && selectedService.id === "salesforce" && <SalesforceForm />}
-      {selectedService && selectedService.id === "manual" && <UsersOrdersUploadForm />}
+      <ScrollArea className="h-[400px] pr-4">
+        <div className="flex flex-col gap-4">
+          {services.map(service => (
+            <ServiceCard 
+              key={service.id} 
+              title={service.name} 
+              selected={service.selected} 
+              onClick={() => toggleService(service.id)}
+              iconUrl={service.iconUrl}
+              description={service.description}
+              fullWidth={true}
+              formComponent={
+                service.selected && (
+                  service.id === "shopify" ? <ShopifyForm /> :
+                  service.id === "wordpress" ? <WordpressForm /> :
+                  service.id === "salesforce" ? <SalesforceForm /> :
+                  service.id === "manual" ? <UsersOrdersUploadForm /> : null
+                )
+              }
+            />
+          ))}
+        </div>
+      </ScrollArea>
     </div>
   );
 };

@@ -1,72 +1,69 @@
 
-import { useState } from "react";
+// This is just a placeholder component for demonstration
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Badge } from "@/components/ui/badge";
-import { Loader2, Check } from "lucide-react";
+import { Form, FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 export const SalesforceForm = () => {
-  const [salesforceDomain, setSalesforceDomain] = useState("");
-  const [salesforceOption, setSalesforceOption] = useState("products");
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [importSuccess, setImportSuccess] = useState(false);
+  const form = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const isFormValid = () => {
-    return salesforceDomain.trim() !== "";
+  const onSubmit = (data: any) => {
+    setIsSubmitting(true);
+    console.log("Connecting to Salesforce:", data);
+    setTimeout(() => setIsSubmitting(false), 1500);
   };
   
-  const handleConnect = () => {
-    if (!isFormValid() || isConnecting || importSuccess) return;
-    setIsConnecting(true);
-
-    // Simulate API connection
-    setTimeout(() => {
-      setIsConnecting(false);
-      setImportSuccess(true);
-    }, 2000);
-  };
-  
-  return <div className="mt-8 bg-[#F2F2F2] rounded-[16px] p-6 ">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-medium">Connect to Salesforce</h3>
-      </div>
-      <div className="space-y-4">
-        <div>
-          <Label htmlFor="salesforce-domain">Salesforce Domain</Label>
-          <Input id="salesforce-domain" placeholder="your-domain.my.salesforce.com" className="mt-1" value={salesforceDomain} onChange={e => setSalesforceDomain(e.target.value)} />
-        </div>
-        <div>
-          <Label>Import Options</Label>
-          <RadioGroup value={salesforceOption} onValueChange={setSalesforceOption} className="mt-2">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="products" id="products" />
-              <Label htmlFor="products">Products only</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="products-pricing" id="products-pricing" />
-              <Label htmlFor="products-pricing">Products with pricing</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="full" id="full" />
-              <Label htmlFor="full">Full product data</Label>
-            </div>
-          </RadioGroup>
-        </div>
-        {importSuccess ? <div className="flex items-center gap-4">
-            <Button disabled>
-              Successfully imported
-            </Button>
-            <Badge variant="green" className="flex items-center gap-2 px-[12px] py-[7px]">
-              <Check size={16} className="text-[#2D7048]" />
-              <span className="text-sm">3872 products have been successfully imported</span>
-            </Badge>
-          </div> : <Button onClick={handleConnect} disabled={!isFormValid() || isConnecting}>
-            {isConnecting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {isConnecting ? "Connecting..." : "Connect & Import"}
-          </Button>}
-      </div>
-    </div>;
+  return (
+    <div className="space-y-4">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <FormField
+            control={form.control}
+            name="instanceUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Salesforce Instance URL</FormLabel>
+                <FormControl>
+                  <Input placeholder="https://yourinstance.salesforce.com" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="clientId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Client ID</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="clientSecret"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Client Secret</FormLabel>
+                <FormControl>
+                  <Input type="password" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Connecting..." : "Connect to Salesforce"}
+          </Button>
+        </form>
+      </Form>
+    </div>
+  );
 };
-
