@@ -4,7 +4,7 @@ import { useLocalStorageState } from "../../hooks/useLocalStorageState";
 import { ONBOARDING_STORAGE_KEYS } from "../../hooks/useOnboardingStorage";
 
 export const useShopifyState = () => {
-  const [activeTab, setActiveTab] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.shopify.activeTab`, "settings");
+  const [activeTab, setActiveTab] = useLocalStorageState<"settings" | "import">(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.shopify.activeTab`, "settings");
   const [shopifyStore, setShopifyStore] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.shopify.store`, "");
   const [apiToken, setApiToken] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.shopify.apiToken`, "");
   const [dataOption, setDataOption] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.shopify.dataOption`, "all");
