@@ -1,11 +1,15 @@
+
 import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { PlatformDetails } from "./PlatformDetails";
 import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
 type ConnectStoreProps = {
   onNext: () => void;
   onBack: () => void;
 };
+
 type Platform = {
   id: string;
   name: string;
@@ -14,6 +18,7 @@ type Platform = {
   logoUrl?: string;
   connected?: boolean;
 };
+
 export const ConnectStore = ({
   onNext,
   onBack
@@ -57,25 +62,41 @@ export const ConnectStore = ({
   }]);
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [hasConnectedPlatform, setHasConnectedPlatform] = useState(false);
+
   const selectPlatform = (platform: Platform) => {
     setSelectedPlatform(platform);
     setShowDetails(true);
   };
+
   const handleBackToList = () => {
     setShowDetails(false);
   };
-  const handleConnect = (platformId: string) => {
-    setPlatforms(platforms.map(platform => platform.id === platformId ? {
-      ...platform,
-      connected: true
-    } : platform));
-    setShowDetails(false);
 
-    // After connecting, automatically move to next step
-    setTimeout(() => {
-      onNext();
-    }, 1000);
+  const handleConnect = (platformId: string) => {
+    // Update the connected status of the platform
+    setPlatforms(platforms.map(platform => 
+      platform.id === platformId ? {
+        ...platform,
+        connected: true
+      } : platform
+    ));
+    
+    // Update selectedPlatform to reflect connected status
+    if (selectedPlatform && selectedPlatform.id === platformId) {
+      setSelectedPlatform({
+        ...selectedPlatform,
+        connected: true
+      });
+    }
+
+    // Set that we have at least one connected platform
+    setHasConnectedPlatform(true);
+    
+    // Do not automatically close the details panel
+    // Do not automatically navigate to the next step
   };
+
   return <div className="flex-1 relative overflow-hidden">
       {/* Main Content */}
       <div className="relative z-0">
@@ -85,14 +106,42 @@ export const ConnectStore = ({
         </p>
 
         <div className="grid grid-cols-3 gap-8">
-          {platforms.map(platform => <ServiceCard key={platform.id} title={platform.name} selected={platform.selected || platform.connected} onClick={() => selectPlatform(platform)} logoUrl={platform.logoUrl} badge={platform.connected ? "Connected" : undefined} badgeColor={platform.connected ? "green" : undefined} />)}
+          {platforms.map(platform => <ServiceCard 
+            key={platform.id} 
+            title={platform.name} 
+            selected={platform.selected || platform.connected} 
+            onClick={() => selectPlatform(platform)} 
+            logoUrl={platform.logoUrl} 
+            badge={platform.connected ? "Connected" : undefined} 
+            badgeColor={platform.connected ? "green" : undefined} 
+          />)}
         </div>
+
+        {hasConnectedPlatform && (
+          <div className="mt-8 flex justify-end">
+            <Button 
+              onClick={onNext}
+              style={{
+                borderRadius: "8px",
+                border: "1px solid #116FAE",
+                backgroundColor: "#116FAE",
+                boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
+              }}
+            >
+              Continue to next step
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Details View Overlay */}
       <div className={`absolute top-0 left-0 w-full h-full transition-transform duration-300 ease-in-out bg-white z-10
           ${showDetails ? '' : 'transform translate-x-full'}`}>
-        {selectedPlatform && <PlatformDetails platform={selectedPlatform} onBack={handleBackToList} onConnect={() => handleConnect(selectedPlatform.id)} />}
+        {selectedPlatform && <PlatformDetails 
+          platform={selectedPlatform} 
+          onBack={handleBackToList} 
+          onConnect={() => handleConnect(selectedPlatform.id)} 
+        />}
       </div>
     </div>;
 };
