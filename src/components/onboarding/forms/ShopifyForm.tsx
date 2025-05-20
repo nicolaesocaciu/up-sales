@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,17 +5,14 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Check } from "lucide-react";
-
 export const ShopifyForm = () => {
   const [shopifyStore, setShopifyStore] = useState("");
   const [shopifyOption, setShopifyOption] = useState("all");
   const [isConnecting, setIsConnecting] = useState(false);
   const [importSuccess, setImportSuccess] = useState(false);
-  
   const isFormValid = () => {
     return shopifyStore.trim() !== "";
   };
-  
   const handleConnect = () => {
     if (!isFormValid() || isConnecting || importSuccess) return;
     setIsConnecting(true);
@@ -27,7 +23,6 @@ export const ShopifyForm = () => {
       setImportSuccess(true);
     }, 2000);
   };
-  
   return <div className="mt-8 bg-[#F2F2F2] rounded-[16px] p-6 ">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-medium">Connect to Shopify</h3>
@@ -50,22 +45,18 @@ export const ShopifyForm = () => {
             </div>
           </RadioGroup>
         </div>
-        {importSuccess ? (
-          <div className="flex items-center gap-4">
+        {importSuccess ? <div className="flex items-center gap-4">
             <Button disabled>
               Successfully imported
             </Button>
-            <Badge variant="green" className="flex items-center gap-2 py-[3px] px-[12px]">
+            <Badge variant="green" className="flex items-center gap-2 px-[12px] py-[7px]">
               <Check size={16} className="text-[#2D7048]" />
-              <span>3872 products have been successfully imported</span>
+              <span className="text-sm">3872 products have been successfully imported</span>
             </Badge>
-          </div>
-        ) : (
-          <Button onClick={handleConnect} disabled={!isFormValid() || isConnecting}>
+          </div> : <Button onClick={handleConnect} disabled={!isFormValid() || isConnecting}>
             {isConnecting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isConnecting ? "Connecting..." : "Connect & Import"}
-          </Button>
-        )}
+          </Button>}
       </div>
     </div>;
 };
