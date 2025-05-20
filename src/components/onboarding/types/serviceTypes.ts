@@ -4,7 +4,6 @@ export type Service = {
   name: string;
   selected: boolean;
   iconUrl: string;
-  description?: string;
 };
 
 export type ImportServicesProps = {
