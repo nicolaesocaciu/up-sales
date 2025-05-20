@@ -32,7 +32,7 @@ export const ConnectStore = ({
       id: "prestashop",
       name: "Prestashop",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Prestashop.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Prestashop.svg/1280px-Prestashop.svg.png"
     }, 
     {
       id: "woocommerce",
