@@ -11,7 +11,8 @@ type Platform = {
   name: string;
   selected: boolean;
   icon?: React.ReactNode;
-  connected?: boolean;
+  connected: boolean;
+  logoUrl?: string;
 };
 
 type PlatformDetailsProps = {
@@ -29,7 +30,6 @@ export const PlatformDetails = ({
 }: PlatformDetailsProps) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [isDisconnecting, setIsDisconnecting] = useState(false);
-  const [isConnected, setIsConnected] = useState(platform.connected || false);
   
   const handleConnect = () => {
     setIsConnecting(true);
@@ -37,7 +37,6 @@ export const PlatformDetails = ({
     // Simulate connection process
     setTimeout(() => {
       setIsConnecting(false);
-      setIsConnected(true);
       onConnect();
     }, 1500);
   };
@@ -48,7 +47,6 @@ export const PlatformDetails = ({
     // Simulate disconnection process
     setTimeout(() => {
       setIsDisconnecting(false);
-      setIsConnected(false);
       onDisconnect();
     }, 1500);
   };
@@ -62,7 +60,7 @@ export const PlatformDetails = ({
         
         <div className="flex items-center mb-6">
           <h2 className="text-2xl font-semibold">{platform.name}</h2>
-          {isConnected && <Badge variant="green" className="ml-4 py-[3px] px-[12px]">Connected</Badge>}
+          {platform.connected && <Badge variant="green" className="ml-4 py-[3px] px-[12px]">Connected</Badge>}
         </div>
       </div>
       
@@ -90,7 +88,7 @@ export const PlatformDetails = ({
 
             <div className="border-t mt-[24px] pt-[24px]">
               <div className="flex items-center gap-3">
-                {!isConnected ? (
+                {!platform.connected ? (
                   <Button onClick={handleConnect} className="w-full" style={{
                     borderRadius: "8px",
                     border: "1px solid #116FAE",
