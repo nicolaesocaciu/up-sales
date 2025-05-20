@@ -9,6 +9,7 @@ type ServiceCardProps = {
   selected: boolean;
   onClick: () => void;
   iconUrl?: string;
+  logoUrl?: string;
   icon?: ReactNode;
   children?: ReactNode;
   isExpandable?: boolean;
@@ -20,6 +21,7 @@ export const ServiceCard = ({
   selected, 
   onClick, 
   iconUrl, 
+  logoUrl,
   icon,
   children, 
   isExpandable = false 
@@ -41,7 +43,11 @@ export const ServiceCard = ({
         onClick={onClick}
       >
         <div className="flex-1 flex items-center justify-center mb-4">
-          {icon ? (
+          {logoUrl ? (
+            <div className="w-20 h-20 flex items-center justify-center">
+              <img src={logoUrl} alt={`${title} logo`} className="max-w-full max-h-full object-contain" />
+            </div>
+          ) : icon ? (
             <div className="w-20 h-20 flex items-center justify-center">
               {icon}
             </div>

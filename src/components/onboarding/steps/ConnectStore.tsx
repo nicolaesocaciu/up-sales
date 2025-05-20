@@ -3,7 +3,6 @@ import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Store, Github, FileCode, Package, Blocks, ShoppingBag } from "lucide-react";
 
 type ConnectStoreProps = {
   onNext: () => void;
@@ -14,7 +13,8 @@ type Platform = {
   id: string;
   name: string;
   selected: boolean;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
+  logoUrl?: string;
 };
 
 export const ConnectStore = ({
@@ -26,37 +26,37 @@ export const ConnectStore = ({
       id: "shopify",
       name: "Shopify",
       selected: true,
-      icon: <ShoppingBag className="w-12 h-12 text-[#116FAE]" />
+      logoUrl: "/lovable-uploads/shopify-logo.png"
     }, 
     {
       id: "prestashop",
       name: "Prestashop",
       selected: false,
-      icon: <Store className="w-12 h-12 text-[#116FAE]" />
+      logoUrl: "/lovable-uploads/prestashop-logo.png"
     }, 
     {
       id: "woocommerce",
       name: "Woocommerce",
       selected: false,
-      icon: <Package className="w-12 h-12 text-[#116FAE]" />
+      logoUrl: "/lovable-uploads/woocommerce-logo.png"
     }, 
     {
       id: "magento",
       name: "Magento",
       selected: false,
-      icon: <Blocks className="w-12 h-12 text-[#116FAE]" />
+      logoUrl: "/lovable-uploads/magento-logo.png"
     }, 
     {
       id: "bigcommerce",
       name: "Bigcommerce",
       selected: false,
-      icon: <Store className="w-12 h-12 text-[#116FAE]" />
+      logoUrl: "/lovable-uploads/bigcommerce-logo.png"
     }, 
     {
       id: "wix",
       name: "Wix",
       selected: false,
-      icon: <FileCode className="w-12 h-12 text-[#116FAE]" />
+      logoUrl: "/lovable-uploads/wix-logo.png"
     }
   ]);
   
@@ -95,7 +95,7 @@ export const ConnectStore = ({
             title={platform.name} 
             selected={platform.selected} 
             onClick={() => togglePlatform(platform.id)}
-            icon={platform.icon}
+            logoUrl={platform.logoUrl}
           />
         ))}
       </div>
