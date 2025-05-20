@@ -27,7 +27,7 @@ export const CompletionScreen = ({ onTour, onExplore }: CompletionScreenProps) =
       
       <p className="text-[#494a4a] mb-4">Your next steps:</p>
       
-      <div className="flex flex-col items-center gap-8 mt-auto">
+      <div className="flex flex-row items-center gap-8 mt-auto">
         <Button 
           onClick={onTour}
           className="w-full h-[60px]"
