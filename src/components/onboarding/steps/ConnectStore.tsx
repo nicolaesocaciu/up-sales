@@ -63,11 +63,7 @@ export const ConnectStore = ({
   };
   return <div className="flex-1">
       <h1 className="mb-4 text-4xl font-normal">Connect your store</h1>
-      <p className="text-gray-600 mt-4 text-base mb-[64px]">
-        Interrogations will help you power up your CRM by connecting it with multiple 
-        sources and it will become like comand center for your business. You can update 
-        this option at any point in your settings.
-      </p>
+      <p className="text-gray-600 mt-4 text-base mb-[64px]">Easily link your online store to streamline operations, manage products, and sync data across platforms for a seamless selling experience.</p>
 
       <div className="grid grid-cols-3 gap-4 mb-8">
         {platforms.map(platform => <ServiceCard key={platform.id} title={platform.name} selected={platform.selected} onClick={() => togglePlatform(platform.id)} />)}
