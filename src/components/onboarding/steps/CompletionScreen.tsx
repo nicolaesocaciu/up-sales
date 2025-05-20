@@ -19,7 +19,7 @@ export const CompletionScreen = ({
       
       
       <div className="flex flex-col items-center gap-8 mt-auto">
-        <p className="text-[#494a4a] mb-4">Your next steps:</p>
+        <p className="text-[#494a4a]">Your next steps:</p>
         <div className="flex flex-row items-center gap-8">
           <Button onClick={onTour} className="w-[300px] h-[60px]">
             Start a guided tour
