@@ -47,11 +47,13 @@ export const FileUploadCard = ({
       </div>
 
       <div className="flex justify-between mt-2 text-sm">
-        {importSuccess(
+        {importSuccess ? (
           <Badge variant="green" className="flex items-center gap-2 py-[3px] px-[12px]">
             <Check size={16} className="text-[#2D7048]" />
             <span>3872 products have been successfully imported</span>
           </Badge>
+        ) : (
+    
         )}
       </div>
     </div>;
