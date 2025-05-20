@@ -103,22 +103,22 @@ export const UsersOrdersUploadForm = () => {
         onValueChange={(val) => setActiveTab(val as "users" | "orders")}
         className="w-full"
       >
-        <TabsList className="mb-4 flex w-full bg-[#F2F2F2] p-1 rounded-lg">
+        <TabsList className="bg-transparent border-b border-gray-200 w-full justify-start h-auto p-0 space-x-6">
           <TabsTrigger 
-            value="users" 
-            className="flex-1 py-2 data-[state=active]:bg-white data-[state=active]:text-[#0D5788] data-[state=active]:font-medium rounded-md"
+            value="users"
+            className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
           >
             Users
           </TabsTrigger>
           <TabsTrigger 
-            value="orders" 
-            className="flex-1 py-2 data-[state=active]:bg-white data-[state=active]:text-[#0D5788] data-[state=active]:font-medium rounded-md"
+            value="orders"
+            className="px-0 py-3 h-auto data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-[#116fae] data-[state=active]:border-b-2 data-[state=active]:border-[#116fae] rounded-none"
           >
             Orders
           </TabsTrigger>
         </TabsList>
         
-        <TabsContent value="users" className="mt-0">
+        <TabsContent value="users" className="mt-4">
           <div className="flex items-center justify-between mb-4">
             {usersImportSuccess && (
               <Badge variant="green" className="text-xs px-[12px] py-[3px]">
@@ -173,7 +173,7 @@ export const UsersOrdersUploadForm = () => {
           )}
         </TabsContent>
         
-        <TabsContent value="orders" className="mt-0">
+        <TabsContent value="orders" className="mt-4">
           <div className="flex items-center justify-between mb-4">
             {ordersImportSuccess && (
               <Badge variant="green" className="text-xs px-[12px] py-[3px]">
