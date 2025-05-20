@@ -169,7 +169,7 @@ export const SalesforceOrdersForm = () => {
                     <Check size={14} className="text-[#2D7048]" />
                     <span className="text-sm">
                       {dataType === "both" || dataType === "contacts" ? `${contactsCount} users` : ""}
-                      {dataType === "both" && dataType === "opportunities" ? " and " : ""}
+                      {dataType === "both" ? " and " : ""}
                       {dataType === "both" || dataType === "opportunities" ? `${ordersCount} orders` : ""} successfully imported
                     </span>
                   </Badge>
