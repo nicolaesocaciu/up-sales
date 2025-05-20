@@ -47,9 +47,8 @@ export const UsersOrdersUploadForm = () => {
   };
   
   return (
-    <div className="mt-8">
+    <div className="pt-4">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-medium">Upload Users & Orders</h3>
         {importSuccess && (
           <Badge variant="green" className="text-xs px-[12px] py-[3px]">
             3872 users and orders have been successfully imported
@@ -62,7 +61,7 @@ export const UsersOrdersUploadForm = () => {
           fileName="File name.csv" 
           progress={progress} 
           timeLeft={timeLeft} 
-          uploadActive={true} 
+          uploadActive={true}
         />
       )}
       
