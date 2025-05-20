@@ -18,7 +18,7 @@ export const CompletionScreen = ({
       <p className="mb-10 text-2xl text-[#494a4a] font-light max-w-[700px]">Your CRM has all the needed information to help you grow and push your business forward to the next level.</p>
       
       
-      <div className="flex flex-row items-center gap-8 mt-auto">
+      <div className="flex flex-col items-center gap-8 mt-auto">
         <p className="text-[#494a4a] mb-4">Your next steps:</p>
         <div className="flex flex-row items-center gap-8">
           <Button onClick={onTour} className="w-[300px] h-[60px]">
