@@ -106,9 +106,6 @@ export const ConnectStore = ({
       });
     }
   };
-  
-  // Check if any platform is connected
-  const hasConnectedPlatform = platforms.some(platform => platform.connected);
 
   return <div className="flex-1 relative overflow-hidden">
       {/* Main Content */}
@@ -122,29 +119,14 @@ export const ConnectStore = ({
           {platforms.map(platform => <ServiceCard 
             key={platform.id} 
             title={platform.name} 
-            selected={platform.selected || platform.connected} 
+            selected={platform.selected} 
             onClick={() => selectPlatform(platform)} 
             logoUrl={platform.logoUrl} 
             badge={platform.connected ? "Connected" : undefined} 
-            badgeColor={platform.connected ? "green" : undefined} 
+            badgeColor={platform.connected ? "green" : undefined}
+            removeBackground={platform.connected}
           />)}
         </div>
-
-        {hasConnectedPlatform && (
-          <div className="mt-8 flex justify-end">
-            <Button 
-              onClick={onNext}
-              style={{
-                borderRadius: "8px",
-                border: "1px solid #116FAE",
-                backgroundColor: "#116FAE",
-                boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
-              }}
-            >
-              Continue to next step
-            </Button>
-          </div>
-        )}
       </div>
 
       {/* Details View Overlay */}
