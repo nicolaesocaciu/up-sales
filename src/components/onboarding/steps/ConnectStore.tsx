@@ -130,21 +130,7 @@ export const ConnectStore = ({
           />)}
         </div>
 
-        {hasConnectedPlatform && (
-          <div className="mt-8 flex justify-end">
-            <Button 
-              onClick={onNext}
-              style={{
-                borderRadius: "8px",
-                border: "1px solid #116FAE",
-                backgroundColor: "#116FAE",
-                boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
-              }}
-            >
-              Continue to next step
-            </Button>
-          </div>
-        )}
+        {/* Removed the "Continue to next step" button as it's redundant with the footer's Next button */}
       </div>
 
       {/* Details View Overlay */}
