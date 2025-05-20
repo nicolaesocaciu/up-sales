@@ -54,7 +54,7 @@ export const PlatformDetails = ({
               </div>
             </div>
 
-            <div className="border-t mt-auto">
+            <div className="border-t mt-[24px] pt-[24px]">
               <Button onClick={onConnect} className="w-full" style={{
               borderRadius: "8px",
               border: "1px solid #116FAE",
