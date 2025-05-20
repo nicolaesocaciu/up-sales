@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from "react";
 import { FileUploadCard } from "../ui/FileUploadCard";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 
@@ -18,12 +17,14 @@ export const ManualUploadForm = () => {
     setProgress(0);
     setTimeLeft(1);
     setUploadActive(true);
+    setImportSuccess(false);
   };
   
   const handleCancelUpload = () => {
     setFileUploaded(false);
     setUploadActive(false);
     setProgress(0);
+    setImportSuccess(false);
   };
   
   useEffect(() => {
@@ -50,27 +51,14 @@ export const ManualUploadForm = () => {
   
   return <div className="mt-8">
       {fileUploaded ? (
-        <>
-          {progress < 100 ? (
-            <FileUploadCard 
-              fileName={fileName} 
-              progress={progress} 
-              timeLeft={timeLeft} 
-              onCancel={handleCancelUpload} 
-              uploadActive={uploadActive} 
-            />
-          ) : (
-            <div className="flex items-center gap-4">
-              <Button disabled>
-                Successfully imported
-              </Button>
-              <Badge variant="green" className="flex items-center gap-2 py-[3px] px-[12px]">
-                <Check size={16} className="text-[#2D7048]" />
-                <span>3872 products have been successfully imported</span>
-              </Badge>
-            </div>
-          )}
-        </>
+        <FileUploadCard 
+          fileName={fileName} 
+          progress={progress} 
+          timeLeft={timeLeft} 
+          onCancel={handleCancelUpload} 
+          uploadActive={uploadActive}
+          importSuccess={importSuccess} 
+        />
       ) : (
         <div className="bg-[#F2F2F2] p-6 rounded-[16px]">
           <div onClick={handleFileUpload} className="text-center p-[72px] border-2 border-dashed border-[#6CB2E1] rounded-[8px] cursor-pointer">
