@@ -1,6 +1,5 @@
 
 import { Badge } from "@/components/ui/badge";
-import Image from "../../ui/image";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReactNode } from "react";
 
@@ -15,6 +14,9 @@ type ServiceCardProps = {
   disabled?: boolean;
   logoUrl?: string;
   removeBackground?: boolean;
+  iconUrl?: string; // Added iconUrl prop
+  children?: ReactNode; // Added children prop
+  isExpandable?: boolean; // Added isExpandable prop
 };
 
 export const ServiceCard = ({
@@ -27,7 +29,10 @@ export const ServiceCard = ({
   badgeColor = "blue",
   disabled,
   logoUrl,
-  removeBackground
+  removeBackground,
+  iconUrl,
+  children,
+  isExpandable
 }: ServiceCardProps) => {
   return (
     <Card 
@@ -40,6 +45,13 @@ export const ServiceCard = ({
       <div className="p-8 flex flex-col items-center justify-center text-center">
         {icon && (
           <div className="mb-4 text-[#116FAE]">{icon}</div>
+        )}
+        
+        {/* Added support for iconUrl */}
+        {iconUrl && (
+          <div className="mb-4 h-12 flex items-center justify-center">
+            <img src={iconUrl} alt={title} className="max-h-full max-w-full" />
+          </div>
         )}
         
         {logoUrl && (
@@ -57,6 +69,9 @@ export const ServiceCard = ({
             {badge}
           </Badge>
         )}
+        
+        {/* Render children if they exist */}
+        {children && <div className="mt-4 w-full">{children}</div>}
       </div>
     </Card>
   );
