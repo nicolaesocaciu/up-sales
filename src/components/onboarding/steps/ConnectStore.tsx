@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Shopify, Github, FileCode, Store, Package, Blocks } from "lucide-react";
+import { Store, Github, FileCode, Package, Blocks, ShoppingBag } from "lucide-react";
 
 type ConnectStoreProps = {
   onNext: () => void;
@@ -26,7 +26,7 @@ export const ConnectStore = ({
       id: "shopify",
       name: "Shopify",
       selected: true,
-      icon: <Shopify className="w-12 h-12 text-[#116FAE]" />
+      icon: <ShoppingBag className="w-12 h-12 text-[#116FAE]" />
     }, 
     {
       id: "prestashop",
