@@ -13,27 +13,14 @@ export const ImportUsersOrders = ({
 }: ImportServicesProps) => {
   const [services, setServices] = useState<Service[]>(importUsersOrdersServices);
   
+  // Selected service
+  const selectedService = services.find(service => service.selected);
+
   const toggleService = (id: string) => {
     setServices(services.map(service => ({
       ...service,
       selected: service.id === id ? !service.selected : false
     })));
-  };
-
-  // Function to get the appropriate form component based on service ID
-  const getFormComponent = (serviceId: string) => {
-    switch(serviceId) {
-      case "shopify":
-        return <ShopifyForm />;
-      case "wordpress":
-        return <WordpressForm />;
-      case "salesforce":
-        return <SalesforceForm />;
-      case "manual":
-        return <UsersOrdersUploadForm />;
-      default:
-        return null;
-    }
   };
 
   return (
@@ -45,18 +32,22 @@ export const ImportUsersOrders = ({
         this option at any point in your settings.
       </p>
 
-      <div className="grid grid-cols-1 gap-6 mb-8">
+      <div className="grid grid-cols-4 gap-4 mb-8">
         {services.map(service => (
           <ServiceCard 
             key={service.id} 
             title={service.name} 
             selected={service.selected} 
             onClick={() => toggleService(service.id)}
-            iconUrl={service.iconUrl}
-            formComponent={getFormComponent(service.id)}
+            iconUrl={service.iconUrl} 
           />
         ))}
       </div>
+
+      {selectedService && selectedService.id === "shopify" && <ShopifyForm />}
+      {selectedService && selectedService.id === "wordpress" && <WordpressForm />}
+      {selectedService && selectedService.id === "salesforce" && <SalesforceForm />}
+      {selectedService && selectedService.id === "manual" && <UsersOrdersUploadForm />}
     </div>
   );
 };

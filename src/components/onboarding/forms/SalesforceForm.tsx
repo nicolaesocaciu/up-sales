@@ -28,7 +28,7 @@ export const SalesforceForm = () => {
     }, 2000);
   };
   
-  return <div className="bg-[#F2F2F2] rounded-b-[16px] p-6">
+  return <div className="mt-8 bg-[#F2F2F2] rounded-[16px] p-6 ">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-medium">Connect to Salesforce</h3>
       </div>
@@ -69,3 +69,4 @@ export const SalesforceForm = () => {
       </div>
     </div>;
 };
+
