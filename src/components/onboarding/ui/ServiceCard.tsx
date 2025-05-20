@@ -1,5 +1,5 @@
 
-import { Check, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ReactNode, useState } from "react";
 
@@ -61,7 +61,7 @@ export const ServiceCard = ({
   // Expandable card (used for Import Users and Orders screen)
   return (
     <Collapsible
-      open={isOpen}
+      open={selected && isOpen}
       onOpenChange={setIsOpen}
       className={`
         w-full mb-4 rounded-[16px] border overflow-hidden
@@ -99,17 +99,19 @@ export const ServiceCard = ({
           </div>
           
           <ChevronDown 
-            className={`transition-transform duration-200 size-6 ${isOpen ? 'transform rotate-180' : ''}`} 
+            className={`transition-transform duration-200 size-6 ${isOpen && selected ? 'transform rotate-180' : ''}`} 
             size={24}
           />
         </div>
       </CollapsibleTrigger>
       
-      <CollapsibleContent>
-        <div className="px-6 pb-6 border-t">
-          {children}
-        </div>
-      </CollapsibleContent>
+      {selected && (
+        <CollapsibleContent>
+          <div className="px-6 pb-6 border-t">
+            {children}
+          </div>
+        </CollapsibleContent>
+      )}
     </Collapsible>
   );
 };
