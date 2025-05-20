@@ -15,6 +15,8 @@ export const OnboardingSidebar = ({
 }: OnboardingSidebarProps) => {
   // Animation state for progress counter
   const [animatedProgress, setAnimatedProgress] = useState(0);
+  // Store previous first digit to detect changes
+  const [prevFirstDigit, setPrevFirstDigit] = useState(0);
   
   // Animate progress when it changes
   useEffect(() => {
@@ -44,6 +46,18 @@ export const OnboardingSidebar = ({
   const easeOutQuad = (x: number): number => {
     return 1 - (1 - x) * (1 - x);
   };
+
+  // Extract first and second digits for separate animation handling
+  const firstDigit = Math.floor(animatedProgress / 10);
+  const secondDigit = animatedProgress % 10;
+
+  // Detect changes in the first digit to trigger animation
+  useEffect(() => {
+    setPrevFirstDigit(firstDigit);
+  }, [firstDigit]);
+
+  // Determine if first digit should animate (only when it changes)
+  const shouldAnimateFirstDigit = firstDigit !== prevFirstDigit;
 
   return <div className="bg-[#116FAE] w-[360px] text-white relative flex flex-col px-[48px] py-[48px]">
       {/* <div className="flex items-center mb-10">
@@ -118,7 +132,7 @@ export const OnboardingSidebar = ({
       
       <div className="mt-auto">
         <div className="flex items-center mb-2">
-          {/* Circular progress donut with animated stroke */}
+          {/* Circular progress donut with animated stroke - removed inner percentage */}
           <div className="w-16 h-16 relative">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
               {/* Background track - increased stroke width from 8 to 10 */}
@@ -136,14 +150,17 @@ export const OnboardingSidebar = ({
                 cy="50"
               />
             </svg>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white text-sm font-medium transition-all duration-300">{animatedProgress}%</span>
-            </div>
+            {/* Removed percentage text inside the donut */}
           </div>
           
           <div className="ml-4">
             <div className="font-bold text-white transition-all duration-300">
-              {animatedProgress}% finished
+              {/* First digit with flipping animation when it changes */}
+              <span className={`inline-block ${shouldAnimateFirstDigit ? 'animate-number-to-check' : ''}`}>
+                {firstDigit}
+              </span>
+              {/* Second digit without animation */}
+              <span>{secondDigit}</span>% finished
             </div>
             <div className="text-white/80 text-sm">Estimated time: 5 minutes</div>
           </div>
@@ -151,3 +168,4 @@ export const OnboardingSidebar = ({
       </div>
     </div>;
 };
+
