@@ -1,14 +1,50 @@
+
 import { Check } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { OnboardingStep } from "./OnboardingLayout";
+import { useEffect, useState } from "react";
+
 type OnboardingSidebarProps = {
   steps: OnboardingStep[];
   progress: number;
 };
+
 export const OnboardingSidebar = ({
   steps,
   progress
 }: OnboardingSidebarProps) => {
+  // Animation state for progress counter
+  const [animatedProgress, setAnimatedProgress] = useState(0);
+  
+  // Animate progress when it changes
+  useEffect(() => {
+    // Start from current value
+    const startValue = animatedProgress;
+    const endValue = progress;
+    const duration = 1000; // 1 second
+    const startTime = performance.now();
+    
+    const animateProgress = (currentTime: number) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      
+      // Easing function for smooth animation
+      const value = startValue + (endValue - startValue) * easeOutQuad(progress);
+      setAnimatedProgress(Math.floor(value));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateProgress);
+      }
+    };
+    
+    requestAnimationFrame(animateProgress);
+  }, [progress]);
+  
+  // Easing function for smoother animation
+  const easeOutQuad = (x: number): number => {
+    return 1 - (1 - x) * (1 - x);
+  };
+
   return <div className="bg-[#116FAE] w-[360px] text-white relative flex flex-col px-[48px] py-[48px]">
       {/* <div className="flex items-center mb-10">
         <svg width="134" height="40" viewBox="0 0 134 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,24 +64,53 @@ export const OnboardingSidebar = ({
         <div className="relative">
           {steps.map((step, index) => <div key={step.id} className="mb-[48px] relative">
               {/* Vertical connecting line */}
-              {step.id < steps.length && <div aria-hidden="true" className="absolute top-12 left-5 w-[1px] h-[32px] bg-white/30" />}
+              {step.id < steps.length && (
+                <div 
+                  aria-hidden="true" 
+                  className="absolute top-12 left-5 w-[1px] h-[32px] bg-white/30"
+                />
+              )}
               
               <div className="flex items-center mb-2 relative">
-                {/* Step indicator circle */}
-                <div className={`w-[40px] h-[40px] rounded-full flex items-center justify-center mr-4 z-10
-                    ${step.completed ? 'bg-transparent text-white' : step.active ? 'bg-white text-[#116FAE] shadow-sm' : 'bg-[#1482CC]'}`}>
-                  {step.completed ? <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Step indicator circle with animated transitions */}
+                <div 
+                  className={`w-[40px] h-[40px] rounded-full flex items-center justify-center mr-4 z-10
+                    ${step.completed ? 'bg-transparent text-white' : step.active ? 'bg-white text-[#116FAE] shadow-sm' : 'bg-[#1482CC]'}
+                    transition-all duration-500 ease-in-out`}
+                >
+                  {step.completed ? (
+                    <svg 
+                      width="24" 
+                      height="22" 
+                      viewBox="0 0 24 22" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="animate-scale-in"
+                    >
                       <path d="M8.04451 21.4325C8.28005 21.6469 8.55761 21.8067 8.85841 21.9013C9.15921 21.9958 9.47622 22.0229 9.78807 21.9806C10.0999 21.9384 10.3993 21.8278 10.666 21.6564C10.9327 21.4849 11.1605 21.2566 11.334 20.9869C15.189 12.9683 17.2394 8.67219 23.8529 1.01907C23.9543 0.901621 24.0069 0.74798 23.9993 0.591134C23.9917 0.434288 23.9246 0.286748 23.8124 0.180201C23.6935 0.064484 23.5359 0 23.3721 0C23.2084 0 23.0508 0.064484 22.9319 0.180201C15.6525 7.54651 13.695 9.9197 9.42301 17.0547C9.40761 17.0659 9.3888 17.0709 9.37005 17.069C9.3513 17.067 9.33388 17.0581 9.32102 17.0439L2.80806 12.9282C0.831072 11.6776 -1.31691 15.1087 1.01707 16.5135L8.04451 21.4325Z" fill="white" />
-                    </svg> : <span className={`text-[16px] ${step.active ? 'font-bold' : ''}`}>{step.id}</span>}
+                    </svg>
+                  ) : (
+                    <span className={`text-[16px] ${step.active ? 'font-bold' : ''} transition-all duration-300`}>
+                      {step.id}
+                    </span>
+                  )}
                 </div>
                 
                 {/* Step title - updated font size */}
-                <span className={`${step.active ? 'font-bold text-[18px]' : step.completed ? 'text-[16px]' : 'text-[16px] text-white/80'}`}>
+                <span className={`${step.active ? 'font-bold text-[18px]' : step.completed ? 'text-[16px]' : 'text-[16px] text-white/80'} transition-all duration-300`}>
                   {step.title}
                 </span>
                 
-                {/* Current step indicator arrow */}
-                {step.active && <div aria-hidden="true" className="absolute -right-[48px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[10px] border-b-[10px] border-r-[10px] border-transparent border-r-white " />}
+                {/* Current step indicator arrow with animation */}
+                {step.active && (
+                  <div 
+                    aria-hidden="true" 
+                    className="absolute -right-[48px] top-1/2 -translate-y-1/2 w-0 h-0 
+                      border-t-[10px] border-b-[10px] border-r-[10px] 
+                      border-transparent border-r-white
+                      animate-fadeIn"
+                  />
+                )}
               </div>
             </div>)}
         </div>
@@ -53,22 +118,32 @@ export const OnboardingSidebar = ({
       
       <div className="mt-auto">
         <div className="flex items-center mb-2">
-          {/* Circular progress donut - updated with thicker strokes */}
+          {/* Circular progress donut with animated stroke */}
           <div className="w-16 h-16 relative">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
               {/* Background track - increased stroke width from 8 to 10 */}
               <circle className="text-white/20" strokeWidth="10" stroke="currentColor" fill="none" r="38" cx="50" cy="50" />
-              {/* Foreground progress - increased stroke width from 8 to 10 */}
-              <circle className="text-white" strokeWidth="10" strokeDasharray={`${progress * 2.4} 999`} strokeLinecap="round" stroke="currentColor" fill="none" r="38" cx="50" cy="50" />
+              {/* Foreground progress - increased stroke width from 8 to 10 with animation */}
+              <circle 
+                className="text-white transition-all duration-1000 ease-in-out" 
+                strokeWidth="10" 
+                strokeDasharray={`${animatedProgress * 2.4} 999`} 
+                strokeLinecap="round" 
+                stroke="currentColor" 
+                fill="none" 
+                r="38" 
+                cx="50" 
+                cy="50"
+              />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white text-sm font-medium">{progress}%</span>
+              <span className="text-white text-sm font-medium transition-all duration-300">{animatedProgress}%</span>
             </div>
           </div>
           
           <div className="ml-4">
-            <div className="font-bold text-white">
-              {progress}% finished
+            <div className="font-bold text-white transition-all duration-300">
+              {animatedProgress}% finished
             </div>
             <div className="text-white/80 text-sm">Estimated time: 5 minutes</div>
           </div>

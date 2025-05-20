@@ -76,12 +76,23 @@ export default {
           from: { transform: "translateX(-10px)", opacity: "0" },
           to: { transform: "translateX(0)", opacity: "1" },
         },
+        "scale-in": {
+          from: { transform: "scale(0)", opacity: "0" },
+          to: { transform: "scale(1)", opacity: "1" },
+        },
+        "number-to-check": {
+          "0%": { transform: "scale(1) rotate(0deg)" },
+          "50%": { transform: "scale(0.5) rotate(180deg)" },
+          "100%": { transform: "scale(1) rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         fadeIn: "fadeIn 0.3s ease-out",
         slideIn: "slideIn 0.3s ease-out",
+        "scale-in": "scale-in 0.4s ease-out",
+        "number-to-check": "number-to-check 0.5s ease-out",
       },
     },
   },
