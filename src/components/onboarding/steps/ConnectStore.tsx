@@ -1,8 +1,9 @@
 
 import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { PlatformDetails } from "./PlatformDetails";
+import { ArrowLeft } from "lucide-react";
 
 type ConnectStoreProps = {
   onNext: () => void;
@@ -15,6 +16,7 @@ type Platform = {
   selected: boolean;
   icon?: React.ReactNode;
   logoUrl?: string;
+  connected?: boolean;
 };
 
 export const ConnectStore = ({
@@ -25,103 +27,105 @@ export const ConnectStore = ({
     {
       id: "shopify",
       name: "Shopify",
-      selected: true,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg"
+      selected: false,
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg",
+      connected: false
     }, 
     {
       id: "prestashop",
       name: "Prestashop",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Prestashop.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Prestashop.svg/1280px-Prestashop.svg.png",
+      connected: false
     }, 
     {
       id: "woocommerce",
       name: "Woocommerce",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2a/WooCommerce_logo.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2a/WooCommerce_logo.svg",
+      connected: false
     }, 
     {
       id: "magento",
       name: "Magento",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/55/Magento_Logo.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/55/Magento_Logo.svg",
+      connected: false
     }, 
     {
       id: "bigcommerce",
       name: "Bigcommerce",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Bc-logo-dark.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Bc-logo-dark.svg",
+      connected: false
     }, 
     {
       id: "wix",
       name: "Wix",
       selected: false,
-      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg"
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg",
+      connected: false
     }
   ]);
   
-  const [storeUrl, setStoreUrl] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   
-  const togglePlatform = (id: string) => {
-    setPlatforms(platforms.map(platform => {
-      // Make selection exclusive - only one at a time
-      if (id === platform.id) {
-        return {
-          ...platform,
-          selected: true
-        };
-      } else {
-        return {
-          ...platform,
-          selected: false
-        };
-      }
-    }));
+  const selectPlatform = (platform: Platform) => {
+    setSelectedPlatform(platform);
+    setDetailsOpen(true);
   };
   
-  const handleConnect = () => {
-    // Handle connection logic
-    onNext(); // Proceed to next step
+  const handleBackToList = () => {
+    setDetailsOpen(false);
   };
   
-  return <div className="flex-1">
+  const handleConnect = (platformId: string) => {
+    setPlatforms(platforms.map(platform => 
+      platform.id === platformId 
+        ? { ...platform, connected: true }
+        : platform
+    ));
+    setDetailsOpen(false);
+    
+    // After connecting, automatically move to next step
+    setTimeout(() => {
+      onNext();
+    }, 1000);
+  };
+  
+  return (
+    <div className="flex-1">
       <h1 className="mb-4 text-4xl font-normal">Connect your store</h1>
-      <p className="text-gray-600 mt-4 text-base mb-[64px]">Easily link your online store to streamline operations, manage products, and sync data across platforms for a seamless selling experience.</p>
+      <p className="text-gray-600 mt-4 text-base mb-[64px]">
+        Easily link your online store to streamline operations, manage products, and sync data across platforms for a seamless selling experience.
+      </p>
 
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        {platforms.map(platform => (
-          <ServiceCard 
-            key={platform.id} 
-            title={platform.name} 
-            selected={platform.selected} 
-            onClick={() => togglePlatform(platform.id)}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+        {platforms.map((platform) => (
+          <ServiceCard
+            key={platform.id}
+            title={platform.name}
+            selected={platform.selected || platform.connected}
+            onClick={() => selectPlatform(platform)}
             logoUrl={platform.logoUrl}
+            badge={platform.connected ? "Connected" : undefined}
+            badgeColor={platform.connected ? "green" : undefined}
           />
         ))}
       </div>
 
-      <div className="flex items-center bg-blue-50 p-4 rounded-lg max-w-lg">
-        <div className="bg-gray-200 text-gray-700 px-3 py-2 rounded-l border border-gray-300">
-          https://
-        </div>
-        <Input 
-          value={storeUrl} 
-          onChange={e => setStoreUrl(e.target.value)} 
-          placeholder="websitename" 
-          className="rounded-l-none border-l-0" 
-        />
-        <Button 
-          onClick={handleConnect} 
-          className="ml-4"
-          style={{
-            borderRadius: "8px",
-            border: "1px solid #116FAE",
-            backgroundColor: "#116FAE",
-            boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
-          }}
-        >
-          Connect
-        </Button>
-      </div>
-    </div>;
+      <Sheet open={detailsOpen} onOpenChange={setDetailsOpen}>
+        <SheetContent className="w-full max-w-3xl sm:max-w-xl p-0 border-l">
+          {selectedPlatform && (
+            <PlatformDetails
+              platform={selectedPlatform}
+              onBack={handleBackToList}
+              onConnect={() => handleConnect(selectedPlatform.id)}
+            />
+          )}
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
 };

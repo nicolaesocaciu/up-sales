@@ -2,6 +2,7 @@
 import { ChevronDown } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ReactNode, useState } from "react";
+import { Badge } from "@/components/ui/badge"; 
 
 type ServiceCardProps = {
   title: string;
@@ -13,6 +14,8 @@ type ServiceCardProps = {
   icon?: ReactNode;
   children?: ReactNode;
   isExpandable?: boolean;
+  badge?: string;
+  badgeColor?: string;
 };
 
 export const ServiceCard = ({ 
@@ -24,7 +27,9 @@ export const ServiceCard = ({
   logoUrl,
   icon,
   children, 
-  isExpandable = false 
+  isExpandable = false,
+  badge,
+  badgeColor = "blue"
 }: ServiceCardProps) => {
   const [isOpen, setIsOpen] = useState(selected);
   const isManualService = title === "Manual";
@@ -65,6 +70,11 @@ export const ServiceCard = ({
         </div>
         <div className="text-center">
           <h3 className={`${selected ? 'font-bold' : 'font-normal'}`}>{title}</h3>
+          {badge && (
+            <div className="mt-2">
+              <Badge variant={badgeColor as any}>{badge}</Badge>
+            </div>
+          )}
         </div>
       </div>
     );
