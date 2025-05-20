@@ -54,13 +54,13 @@ export const PlatformDetails = ({
               </div>
             </div>
 
-            <div className="border-t p-6 mt-auto">
+            <div className="border-t mt-auto">
               <Button onClick={onConnect} className="w-full" style={{
-                borderRadius: "8px",
-                border: "1px solid #116FAE",
-                backgroundColor: "#116FAE",
-                boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
-              }}>
+              borderRadius: "8px",
+              border: "1px solid #116FAE",
+              backgroundColor: "#116FAE",
+              boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
+            }}>
                 Connect application
               </Button>
             </div>
