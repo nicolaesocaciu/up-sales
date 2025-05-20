@@ -14,6 +14,12 @@ export const ONBOARDING_STORAGE_KEYS = {
 };
 
 export const useOnboardingStorage = () => {
+  // State for tracking whether data has been loaded
+  const [dataLoaded, setDataLoaded] = useLocalStorageState(
+    `${ONBOARDING_PREFIX}dataLoaded`, 
+    false
+  );
+
   // Function to clear all onboarding data from localStorage
   const clearOnboardingData = useCallback(() => {
     // Get all localStorage keys
@@ -26,7 +32,19 @@ export const useOnboardingStorage = () => {
     onboardingKeys.forEach(key => {
       localStorage.removeItem(key);
     });
-  }, []);
+    
+    // Reset data loaded state
+    setDataLoaded(false);
+  }, [setDataLoaded]);
 
-  return { clearOnboardingData };
+  // Function to mark data as loaded
+  const markDataAsLoaded = useCallback(() => {
+    setDataLoaded(true);
+  }, [setDataLoaded]);
+
+  return { 
+    clearOnboardingData,
+    dataLoaded,
+    markDataAsLoaded
+  };
 };

@@ -27,7 +27,7 @@ export const ImportUsersOrders = ({
     ONBOARDING_STORAGE_KEYS.USERS_ORDERS,
     importUsersOrdersServices.map(service => ({
       ...service,
-      selected: false
+      selected: service.id === "manual" // Default to manual selected
     }))
   );
 

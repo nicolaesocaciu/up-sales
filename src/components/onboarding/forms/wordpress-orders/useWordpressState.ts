@@ -1,20 +1,21 @@
 
 import { useState, useEffect } from "react";
 import { useLocalStorageState } from "../../hooks/useLocalStorageState";
+import { ONBOARDING_STORAGE_KEYS } from "../../hooks/useOnboardingStorage";
 
 export const useWordpressState = () => {
-  const [activeTab, setActiveTab] = useLocalStorageState("onboarding.wordpress-orders.activeTab", "settings");
-  const [wordpressUrl, setWordpressUrl] = useLocalStorageState("onboarding.wordpress-orders.url", "");
-  const [consumerKey, setConsumerKey] = useLocalStorageState("onboarding.wordpress-orders.consumerKey", "");
-  const [consumerSecret, setConsumerSecret] = useLocalStorageState("onboarding.wordpress-orders.consumerSecret", "");
-  const [importUsers, setImportUsers] = useLocalStorageState("onboarding.wordpress-orders.importUsers", true);
-  const [importOrders, setImportOrders] = useLocalStorageState("onboarding.wordpress-orders.importOrders", true);
-  const [isConnecting, setIsConnecting] = useLocalStorageState("onboarding.wordpress-orders.isConnecting", false);
-  const [isConnected, setIsConnected] = useLocalStorageState("onboarding.wordpress-orders.isConnected", false);
-  const [isImporting, setIsImporting] = useLocalStorageState("onboarding.wordpress-orders.isImporting", false);
-  const [importSuccess, setImportSuccess] = useLocalStorageState("onboarding.wordpress-orders.importSuccess", false);
-  const [usersCount, setUsersCount] = useLocalStorageState("onboarding.wordpress-orders.usersCount", 0);
-  const [ordersCount, setOrdersCount] = useLocalStorageState("onboarding.wordpress-orders.ordersCount", 0);
+  const [activeTab, setActiveTab] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.activeTab`, "settings");
+  const [wordpressUrl, setWordpressUrl] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.url`, "");
+  const [consumerKey, setConsumerKey] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.consumerKey`, "");
+  const [consumerSecret, setConsumerSecret] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.consumerSecret`, "");
+  const [importUsers, setImportUsers] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.importUsers`, true);
+  const [importOrders, setImportOrders] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.importOrders`, true);
+  const [isConnecting, setIsConnecting] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.isConnecting`, false);
+  const [isConnected, setIsConnected] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.isConnected`, false);
+  const [isImporting, setIsImporting] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.isImporting`, false);
+  const [importSuccess, setImportSuccess] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.importSuccess`, false);
+  const [usersCount, setUsersCount] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.usersCount`, 0);
+  const [ordersCount, setOrdersCount] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.wordpress.ordersCount`, 0);
 
   const handleConnect = () => {
     if (!isConnected && !isConnecting) {

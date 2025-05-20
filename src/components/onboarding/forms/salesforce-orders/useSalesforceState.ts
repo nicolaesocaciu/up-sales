@@ -1,20 +1,21 @@
 
 import { useState } from "react";
 import { useLocalStorageState } from "../../hooks/useLocalStorageState";
+import { ONBOARDING_STORAGE_KEYS } from "../../hooks/useOnboardingStorage";
 
 export const useSalesforceState = () => {
-  const [activeTab, setActiveTab] = useLocalStorageState("onboarding.salesforce-orders.activeTab", "settings");
-  const [salesforceDomain, setSalesforceDomain] = useLocalStorageState("onboarding.salesforce-orders.domain", "");
-  const [clientId, setClientId] = useLocalStorageState("onboarding.salesforce-orders.clientId", "");
-  const [clientSecret, setClientSecret] = useLocalStorageState("onboarding.salesforce-orders.clientSecret", "");
-  const [dataType, setDataType] = useLocalStorageState<"both" | "contacts" | "opportunities">("onboarding.salesforce-orders.dataType", "both");
-  const [timeframe, setTimeframe] = useLocalStorageState("onboarding.salesforce-orders.timeframe", "all");
-  const [isConnecting, setIsConnecting] = useLocalStorageState("onboarding.salesforce-orders.isConnecting", false);
-  const [isConnected, setIsConnected] = useLocalStorageState("onboarding.salesforce-orders.isConnected", false);
-  const [isImporting, setIsImporting] = useLocalStorageState("onboarding.salesforce-orders.isImporting", false);
-  const [importSuccess, setImportSuccess] = useLocalStorageState("onboarding.salesforce-orders.importSuccess", false);
-  const [contactsCount, setContactsCount] = useLocalStorageState("onboarding.salesforce-orders.contactsCount", 0);
-  const [ordersCount, setOrdersCount] = useLocalStorageState("onboarding.salesforce-orders.ordersCount", 0);
+  const [activeTab, setActiveTab] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.activeTab`, "settings");
+  const [salesforceDomain, setSalesforceDomain] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.domain`, "");
+  const [clientId, setClientId] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.clientId`, "");
+  const [clientSecret, setClientSecret] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.clientSecret`, "");
+  const [dataType, setDataType] = useLocalStorageState<"both" | "contacts" | "opportunities">(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.dataType`, "both");
+  const [timeframe, setTimeframe] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.timeframe`, "all");
+  const [isConnecting, setIsConnecting] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.isConnecting`, false);
+  const [isConnected, setIsConnected] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.isConnected`, false);
+  const [isImporting, setIsImporting] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.isImporting`, false);
+  const [importSuccess, setImportSuccess] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.importSuccess`, false);
+  const [contactsCount, setContactsCount] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.contactsCount`, 0);
+  const [ordersCount, setOrdersCount] = useLocalStorageState(`${ONBOARDING_STORAGE_KEYS.USERS_ORDERS}.salesforce.ordersCount`, 0);
 
   const handleConnect = () => {
     if (!isConnected && !isConnecting) {

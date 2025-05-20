@@ -6,6 +6,7 @@ import { OnboardingSidebar } from "./OnboardingSidebar";
 import { OnboardingContent } from "./OnboardingContent";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useOnboardingStorage } from "./hooks/useOnboardingStorage";
+import { useLocalStorageState } from "./hooks/useLocalStorageState";
 
 export type OnboardingStep = {
   id: number;
@@ -23,7 +24,8 @@ export const steps: OnboardingStep[] = [
 ];
 
 export const OnboardingLayout = () => {
-  const [currentStep, setCurrentStep] = useState(0); // 0 = welcome screen
+  // Use localStorage for the current step
+  const [currentStep, setCurrentStep] = useLocalStorageState("onboarding.currentStep", 0); // 0 = welcome screen
   const [stepsList, setStepsList] = useState<OnboardingStep[]>(steps);
   const [isOpen, setIsOpen] = useState(true);
   const totalSteps = steps.length;
