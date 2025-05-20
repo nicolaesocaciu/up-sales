@@ -98,10 +98,24 @@ export const UsersOrdersUploadForm = () => {
   
   return (
     <div className="pt-4">
-      <Tabs defaultValue="users" onValueChange={(val) => setActiveTab(val as "users" | "orders")}>
-        <TabsList className="mb-4">
-          <TabsTrigger value="users">Users</TabsTrigger>
-          <TabsTrigger value="orders">Orders</TabsTrigger>
+      <Tabs 
+        defaultValue="users" 
+        onValueChange={(val) => setActiveTab(val as "users" | "orders")}
+        className="w-full"
+      >
+        <TabsList className="mb-4 flex w-full bg-[#F2F2F2] p-1 rounded-lg">
+          <TabsTrigger 
+            value="users" 
+            className="flex-1 py-2 data-[state=active]:bg-white data-[state=active]:text-[#0D5788] data-[state=active]:font-medium rounded-md"
+          >
+            Users
+          </TabsTrigger>
+          <TabsTrigger 
+            value="orders" 
+            className="flex-1 py-2 data-[state=active]:bg-white data-[state=active]:text-[#0D5788] data-[state=active]:font-medium rounded-md"
+          >
+            Orders
+          </TabsTrigger>
         </TabsList>
         
         <TabsContent value="users" className="mt-0">
