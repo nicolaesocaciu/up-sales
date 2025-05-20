@@ -13,41 +13,13 @@ export const OnboardingSidebar = ({
   steps,
   progress
 }: OnboardingSidebarProps) => {
-  // Animation state for progress counter
-  const [animatedProgress, setAnimatedProgress] = useState(0);
+  // State for progress display - now immediately showing actual progress without animation
+  const [displayProgress, setDisplayProgress] = useState(progress);
   
-  // Animate progress when it changes
+  // Update display progress immediately when progress changes
   useEffect(() => {
-    // Start from current value
-    const startValue = animatedProgress;
-    const endValue = progress;
-    const duration = 500; // Decreased from 1000ms to 500ms to double the speed
-    const startTime = performance.now();
-    
-    const animateProgress = (currentTime: number) => {
-      const elapsedTime = currentTime - startTime;
-      const progress = Math.min(elapsedTime / duration, 1);
-      
-      // Easing function for smooth animation
-      const value = startValue + (endValue - startValue) * easeOutQuad(progress);
-      setAnimatedProgress(Math.floor(value));
-      
-      if (progress < 1) {
-        requestAnimationFrame(animateProgress);
-      }
-    };
-    
-    requestAnimationFrame(animateProgress);
+    setDisplayProgress(progress);
   }, [progress]);
-  
-  // Easing function for smoother animation
-  const easeOutQuad = (x: number): number => {
-    return 1 - (1 - x) * (1 - x);
-  };
-
-  // Extract first and second digits for display
-  const firstDigit = Math.floor(animatedProgress / 10);
-  const secondDigit = animatedProgress % 10;
 
   return <div className="bg-[#116FAE] w-[360px] text-white relative flex flex-col px-[48px] py-[48px]">
       {/* <div className="flex items-center mb-10">
@@ -122,16 +94,16 @@ export const OnboardingSidebar = ({
       
       <div className="mt-auto">
         <div className="flex items-center mb-2">
-          {/* Circular progress donut with animated stroke - increased stroke width to 14px */}
+          {/* Circular progress donut with no delay in animation and increased stroke width to 14px */}
           <div className="w-16 h-16 relative">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
               {/* Background track - increased stroke width to 14px */}
               <circle className="text-white/20" strokeWidth="14" stroke="currentColor" fill="none" r="38" cx="50" cy="50" />
-              {/* Foreground progress - increased stroke width to 14px with faster animation */}
+              {/* Foreground progress - increased stroke width to 14px with faster animation and no delay */}
               <circle 
-                className="text-white transition-all duration-500 ease-in-out" 
+                className="text-white transition-all duration-250 ease-in-out" 
                 strokeWidth="14" 
-                strokeDasharray={`${animatedProgress * 2.4} 999`} 
+                strokeDasharray={`${progress * 2.4} 999`} 
                 strokeLinecap="round" 
                 stroke="currentColor" 
                 fill="none" 
@@ -144,9 +116,9 @@ export const OnboardingSidebar = ({
           
           <div className="ml-4">
             <div className="font-bold text-white">
-              {/* Display percentage with first digit zero if needed - No animation */}
-              {animatedProgress < 10 ? '0' : ''}
-              {animatedProgress}% finished
+              {/* Static percentage display with no animation */}
+              {progress < 10 ? '0' : ''}
+              {progress}% finished
             </div>
             <div className="text-white/80 text-sm">Estimated time: 5 minutes</div>
           </div>
