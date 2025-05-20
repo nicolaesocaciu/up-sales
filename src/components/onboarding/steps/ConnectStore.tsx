@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { PlatformDetails } from "./PlatformDetails";
 import { ArrowLeft } from "lucide-react";
 
@@ -69,15 +68,15 @@ export const ConnectStore = ({
   ]);
   
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
-  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   
   const selectPlatform = (platform: Platform) => {
     setSelectedPlatform(platform);
-    setDetailsOpen(true);
+    setShowDetails(true);
   };
   
   const handleBackToList = () => {
-    setDetailsOpen(false);
+    setShowDetails(false);
   };
   
   const handleConnect = (platformId: string) => {
@@ -86,7 +85,7 @@ export const ConnectStore = ({
         ? { ...platform, connected: true }
         : platform
     ));
-    setDetailsOpen(false);
+    setShowDetails(false);
     
     // After connecting, automatically move to next step
     setTimeout(() => {
@@ -95,37 +94,47 @@ export const ConnectStore = ({
   };
   
   return (
-    <div className="flex-1">
-      <h1 className="mb-4 text-4xl font-normal">Connect your store</h1>
-      <p className="text-gray-600 mt-4 text-base mb-[64px]">
-        Easily link your online store to streamline operations, manage products, and sync data across platforms for a seamless selling experience.
-      </p>
+    <div className="flex-1 relative overflow-hidden">
+      {/* Main Grid View */}
+      <div 
+        className={`transition-transform duration-300 ease-in-out ${
+          showDetails ? 'transform -translate-x-full' : ''
+        }`}
+      >
+        <h1 className="mb-4 text-4xl font-normal">Connect your store</h1>
+        <p className="text-gray-600 mt-4 text-base mb-[64px]">
+          Easily link your online store to streamline operations, manage products, and sync data across platforms for a seamless selling experience.
+        </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
-        {platforms.map((platform) => (
-          <ServiceCard
-            key={platform.id}
-            title={platform.name}
-            selected={platform.selected || platform.connected}
-            onClick={() => selectPlatform(platform)}
-            logoUrl={platform.logoUrl}
-            badge={platform.connected ? "Connected" : undefined}
-            badgeColor={platform.connected ? "green" : undefined}
-          />
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+          {platforms.map((platform) => (
+            <ServiceCard
+              key={platform.id}
+              title={platform.name}
+              selected={platform.selected || platform.connected}
+              onClick={() => selectPlatform(platform)}
+              logoUrl={platform.logoUrl}
+              badge={platform.connected ? "Connected" : undefined}
+              badgeColor={platform.connected ? "green" : undefined}
+            />
+          ))}
+        </div>
       </div>
 
-      <Sheet open={detailsOpen} onOpenChange={setDetailsOpen}>
-        <SheetContent className="w-full max-w-3xl sm:max-w-xl p-0 border-l">
-          {selectedPlatform && (
-            <PlatformDetails
-              platform={selectedPlatform}
-              onBack={handleBackToList}
-              onConnect={() => handleConnect(selectedPlatform.id)}
-            />
-          )}
-        </SheetContent>
-      </Sheet>
+      {/* Details View */}
+      <div 
+        className={`absolute top-0 left-0 w-full h-full transition-transform duration-300 ease-in-out ${
+          showDetails ? '' : 'transform translate-x-full'
+        }`}
+      >
+        {selectedPlatform && (
+          <PlatformDetails
+            platform={selectedPlatform}
+            onBack={handleBackToList}
+            onConnect={() => handleConnect(selectedPlatform.id)}
+          />
+        )}
+      </div>
     </div>
   );
 };
