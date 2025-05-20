@@ -28,7 +28,7 @@ export const ImportUsersOrders = ({
   const toggleService = (id: string) => {
     setServices(services.map(service => ({
       ...service,
-      selected: service.id === id ? true : false
+      selected: service.id === id
     })));
   };
   
@@ -53,10 +53,10 @@ export const ImportUsersOrders = ({
               iconUrl={service.iconUrl} 
               isExpandable={true}
             >
-              {service.id === "shopify" && service.selected && <ShopifyForm />}
-              {service.id === "wordpress" && service.selected && <WordpressForm />}
-              {service.id === "salesforce" && service.selected && <SalesforceForm />}
-              {service.id === "manual" && service.selected && <UsersOrdersUploadForm />}
+              {service.id === "shopify" && <ShopifyForm />}
+              {service.id === "wordpress" && <WordpressForm />}
+              {service.id === "salesforce" && <SalesforceForm />}
+              {service.id === "manual" && <UsersOrdersUploadForm />}
             </ServiceCard>
           ))}
         </div>

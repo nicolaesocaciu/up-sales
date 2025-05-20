@@ -22,7 +22,7 @@ export const ServiceCard = ({
   children, 
   isExpandable = false 
 }: ServiceCardProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(selected);
   const isManualService = title === "Manual";
   
   // Regular card (used for Import Products screen)
@@ -61,8 +61,14 @@ export const ServiceCard = ({
   // Expandable card (used for Import Users and Orders screen)
   return (
     <Collapsible
-      open={selected && isOpen}
-      onOpenChange={setIsOpen}
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (selected) {
+          setIsOpen(open);
+        } else if (!open) {
+          setIsOpen(false);
+        }
+      }}
       className={`
         w-full mb-4 rounded-[16px] border overflow-hidden
         ${selected
@@ -76,6 +82,10 @@ export const ServiceCard = ({
         onClick={(e) => {
           e.preventDefault();
           onClick();
+          // Only toggle open state if already selected
+          if (!selected) {
+            setIsOpen(true);
+          }
         }}
       >
         <div className="p-6 flex items-center justify-between">
@@ -99,19 +109,17 @@ export const ServiceCard = ({
           </div>
           
           <ChevronDown 
-            className={`transition-transform duration-200 size-6 ${isOpen && selected ? 'transform rotate-180' : ''}`} 
+            className={`transition-transform duration-200 size-6 ${isOpen ? 'transform rotate-180' : ''}`} 
             size={24}
           />
         </div>
       </CollapsibleTrigger>
       
-      {selected && (
-        <CollapsibleContent>
-          <div className="px-6 pb-6 border-t">
-            {children}
-          </div>
-        </CollapsibleContent>
-      )}
+      <CollapsibleContent>
+        <div className="px-6 pb-6 border-t">
+          {children}
+        </div>
+      </CollapsibleContent>
     </Collapsible>
   );
 };
