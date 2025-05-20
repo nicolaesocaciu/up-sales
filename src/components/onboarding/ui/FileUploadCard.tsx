@@ -46,11 +46,11 @@ export const FileUploadCard = ({
           </div>
       </div>
 
-      <div className="flex justify-between mt-2 text-sm">
+      <div>
         {importSuccess && (
-          <Badge variant="green" className="flex items-center gap-2 py-[3px] px-[12px]">
+          <Badge variant="green" className="flex items-center gap-2 px-[12px] py-[7px] w-full mt-4">
             <Check size={16} className="text-[#2D7048]" />
-            <span>3872 products have been successfully imported</span>
+            <span className="text-sm">3872 products have been successfully imported</span>
           </Badge>
         )}
       </div>
