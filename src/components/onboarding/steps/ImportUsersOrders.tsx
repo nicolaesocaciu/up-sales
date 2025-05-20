@@ -3,9 +3,9 @@ import { useState } from "react";
 import { ServiceCard } from "../ui/ServiceCard";
 import { ImportServicesProps, importUsersOrdersServices, Service } from "../types/serviceTypes";
 import { UsersOrdersUploadForm } from "../forms/UsersOrdersUploadForm";
-import { ShopifyForm } from "../forms/ShopifyForm";
-import { WordpressForm } from "../forms/WordpressForm";
-import { SalesforceForm } from "../forms/SalesforceForm";
+import { ShopifyOrdersForm } from "../forms/ShopifyOrdersForm";
+import { WordpressOrdersForm } from "../forms/WordpressOrdersForm";
+import { SalesforceOrdersForm } from "../forms/SalesforceOrdersForm";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Add descriptions for each service
@@ -41,7 +41,7 @@ export const ImportUsersOrders = ({
         this option at any point in your settings.
       </p>
 
-      <ScrollArea className="h-[500px] pr-4">
+      <ScrollArea className="h-[500px] pr-4 overflow-y-auto" style={{ scrollbarWidth: 'auto' }}>
         <div className="flex flex-col w-full h-full">
           {services.map(service => (
             <ServiceCard 
@@ -53,9 +53,9 @@ export const ImportUsersOrders = ({
               iconUrl={service.iconUrl} 
               isExpandable={true}
             >
-              {service.id === "shopify" && <ShopifyForm />}
-              {service.id === "wordpress" && <WordpressForm />}
-              {service.id === "salesforce" && <SalesforceForm />}
+              {service.id === "shopify" && <ShopifyOrdersForm />}
+              {service.id === "wordpress" && <WordpressOrdersForm />}
+              {service.id === "salesforce" && <SalesforceOrdersForm />}
               {service.id === "manual" && <UsersOrdersUploadForm />}
             </ServiceCard>
           ))}

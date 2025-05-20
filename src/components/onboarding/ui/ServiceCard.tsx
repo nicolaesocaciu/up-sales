@@ -82,10 +82,9 @@ export const ServiceCard = ({
         onClick={(e) => {
           e.preventDefault();
           onClick();
-          // Only toggle open state if already selected
-          if (!selected) {
-            setIsOpen(true);
-          }
+          
+          // Toggle open state whether selected or not
+          setIsOpen(!isOpen);
         }}
       >
         <div className="p-6 flex items-center justify-between">
