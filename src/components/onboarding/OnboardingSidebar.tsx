@@ -116,8 +116,7 @@ export const OnboardingSidebar = ({
           
           <div className="ml-4">
             <div className="font-bold text-white">
-              {/* Static percentage display with no animation */}
-              {progress < 10 ? '0' : ''}
+              {/* Static percentage display with no animation and removed unnecessary 0 */}
               {progress}% finished
             </div>
             <div className="text-white/80 text-sm">Estimated time: 5 minutes</div>
@@ -126,3 +125,4 @@ export const OnboardingSidebar = ({
       </div>
     </div>;
 };
+
