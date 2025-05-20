@@ -35,7 +35,7 @@ export const PlatformDetails = ({
       </div>
       
       <div className="flex-1 overflow-y-auto">
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-8 pt-[48px]">
           <div className="space-y-6">
             <h3 className="text-lg font-medium">Connection details</h3>
             
