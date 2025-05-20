@@ -115,7 +115,7 @@ export const UsersOrdersUploadForm = () => {
           </div>
           
           {!usersFileUploaded ? (
-            <div className="bg-[#F2F2F2] p-6 rounded-[8px]">
+            <div className="bg-[#FFFFFF] p-6 rounded-[8px]">
               <div onClick={() => simulateFileUpload("users")} className="text-center p-8 border-2 border-dashed border-[#6CB2E1] rounded-[8px] cursor-pointer">
                 <div className="mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 64 64" fill="none" className="mx-auto">
@@ -170,7 +170,7 @@ export const UsersOrdersUploadForm = () => {
           </div>
           
           {!ordersFileUploaded ? (
-            <div className="bg-[#F2F2F2] p-6 rounded-[8px]">
+            <div className="bg-[#FFFFFF] p-6 rounded-[8px]">
               <div onClick={() => simulateFileUpload("orders")} className="text-center p-8 border-2 border-dashed border-[#6CB2E1] rounded-[8px] cursor-pointer">
                 <div className="mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 64 64" fill="none" className="mx-auto">

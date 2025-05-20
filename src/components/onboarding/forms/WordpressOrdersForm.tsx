@@ -60,7 +60,7 @@ export const WordpressOrdersForm = () => {
           <TabsTrigger value="import" disabled={!isConnected}>Import Data</TabsTrigger>
         </TabsList>
         
-        <TabsContent value="settings" className="mt-0 bg-[#F2F2F2] rounded-[16px] p-6">
+        <TabsContent value="settings" className="mt-0 bg-[#FFFFFF] rounded-[16px] p-6">
           <div className="space-y-4">
             <div>
               <Label htmlFor="wordpress-url">WordPress Site URL</Label>
@@ -111,7 +111,7 @@ export const WordpressOrdersForm = () => {
           </div>
         </TabsContent>
         
-        <TabsContent value="import" className="mt-0 bg-[#F2F2F2] rounded-[16px] p-6">
+        <TabsContent value="import" className="mt-0 bg-[#FFFFFF] rounded-[16px] p-6">
           {isConnected && (
             <div className="space-y-4">
               <div className="flex items-center">
