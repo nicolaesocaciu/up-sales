@@ -44,8 +44,7 @@ export const FileUploadCard = ({
         </button>
       </div>
       
-      <Progress value={currentProgress} className="h-4 bg-blue-100 rounded-full overflow-hidden" indicatorClassName="bg-[#116FAE] rounded-full" />
-      
+      <Progress value={currentProgress} className="h-4 bg-[#D2EAFA] rounded-full overflow-hidden" indicatorClassName="bg-[#1482CC] rounded-full shadow-[0px_2px_4px_0px_rgba(17, 111, 174, 0.20)]" />
       <div className="flex justify-between mt-2 text-sm">
         <div>{currentProgress}%</div>
         <div>
