@@ -101,14 +101,14 @@ export const OnboardingSidebar = ({
                   {step.title}
                 </span>
                 
-                {/* Current step indicator arrow with animation */}
+                {/* Current step indicator arrow with enhanced animation */}
                 {step.active && (
                   <div 
                     aria-hidden="true" 
                     className="absolute -right-[48px] top-1/2 -translate-y-1/2 w-0 h-0 
                       border-t-[10px] border-b-[10px] border-r-[10px] 
                       border-transparent border-r-white
-                      animate-fadeIn"
+                      animate-slideInRight"
                   />
                 )}
               </div>

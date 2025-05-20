@@ -85,6 +85,11 @@ export default {
           "50%": { transform: "scale(0.5) rotate(180deg)" },
           "100%": { transform: "scale(1) rotate(360deg)" },
         },
+        // Added new keyframes for the step indicator arrow
+        "slideInRight": {
+          "0%": { transform: "translate(20px, -50%)", opacity: "0" },
+          "100%": { transform: "translate(0, -50%)", opacity: "1" }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -93,6 +98,8 @@ export default {
         slideIn: "slideIn 0.3s ease-out",
         "scale-in": "scale-in 0.4s ease-out",
         "number-to-check": "number-to-check 0.5s ease-out",
+        // Added new animation for the step indicator arrow
+        "slideInRight": "slideInRight 0.4s ease-out forwards",
       },
     },
   },
