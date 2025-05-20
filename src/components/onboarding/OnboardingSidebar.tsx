@@ -132,20 +132,20 @@ export const OnboardingSidebar = ({
       
       <div className="mt-auto">
         <div className="flex items-center mb-2">
-          {/* Circular progress donut with animated stroke - removed inner percentage */}
+          {/* Circular progress donut with animated stroke - thicker stroke (14px) */}
           <div className="w-16 h-16 relative">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-              {/* Background track - increased stroke width from 8 to 10 */}
-              <circle className="text-white/20" strokeWidth="10" stroke="currentColor" fill="none" r="38" cx="50" cy="50" />
-              {/* Foreground progress - increased stroke width from 8 to 10 with animation */}
+              {/* Background track - increased stroke width from 10 to 14 */}
+              <circle className="text-white/20" strokeWidth="14" stroke="currentColor" fill="none" r="36" cx="50" cy="50" />
+              {/* Foreground progress - increased stroke width from 10 to 14 with animation */}
               <circle 
                 className="text-white transition-all duration-1000 ease-in-out" 
-                strokeWidth="10" 
+                strokeWidth="14" 
                 strokeDasharray={`${animatedProgress * 2.4} 999`} 
                 strokeLinecap="round" 
                 stroke="currentColor" 
                 fill="none" 
-                r="38" 
+                r="36" 
                 cx="50" 
                 cy="50"
               />
@@ -155,12 +155,12 @@ export const OnboardingSidebar = ({
           
           <div className="ml-4">
             <div className="font-bold text-white transition-all duration-300">
-              {/* First digit with flipping animation when it changes */}
-              <span className={`inline-block ${shouldAnimateFirstDigit ? 'animate-number-to-check' : ''}`}>
+              {/* First digit with counter flip animation when it changes */}
+              <span className={`inline-block w-5 text-center ${shouldAnimateFirstDigit ? 'animate-number-flip' : ''}`}>
                 {firstDigit}
               </span>
               {/* Second digit without animation */}
-              <span>{secondDigit}</span>% finished
+              <span className="inline-block w-5 text-center">{secondDigit}</span>% finished
             </div>
             <div className="text-white/80 text-sm">Estimated time: 5 minutes</div>
           </div>

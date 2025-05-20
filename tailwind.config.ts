@@ -90,6 +90,13 @@ export default {
           "0%": { transform: "translate(20px, -50%)", opacity: "0" },
           "100%": { transform: "translate(0, -50%)", opacity: "1" }
         },
+        // Added new counter flip animation keyframes
+        "number-flip": {
+          "0%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-100%)", opacity: "0" },
+          "51%": { transform: "translateY(100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -100,6 +107,8 @@ export default {
         "number-to-check": "number-to-check 0.5s ease-out",
         // Added new animation for the step indicator arrow
         "slideInRight": "slideInRight 0.4s ease-out forwards",
+        // Added new animation for the counter flip
+        "number-flip": "number-flip 0.5s ease-out",
       },
     },
   },
