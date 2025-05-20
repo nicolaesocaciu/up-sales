@@ -11,7 +11,7 @@ export const CompletionScreen = ({ onTour, onExplore }: CompletionScreenProps) =
     <div className="flex flex-col items-center justify-center h-full text-center">
       <div className="mb-8">
         <img 
-          src="/completion-illustration.svg" 
+          src="/lovable-uploads/9da62b64-b9dd-42d5-965c-171f28c54fef.png" 
           alt="Completion illustration" 
           className="w-32 h-32"
         />
