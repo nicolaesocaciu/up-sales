@@ -3,50 +3,58 @@ import confetti from 'canvas-confetti';
 
 export const useConfetti = () => {
   const triggerConfetti = () => {
-    const count = 200;
+    const count = 300; // Increased count for more particles
     const defaults = {
-      origin: { y: 0.7 },
-      zIndex: 9999
+      origin: { y: 0.5, x: 0.5 }, // Start from the center of the screen
+      zIndex: 9999,
+      disableForReducedMotion: true
     };
 
     function fire(particleRatio: number, opts: confetti.Options) {
       confetti({
         ...defaults,
         ...opts,
-        particleCount: Math.floor(count * particleRatio)
+        particleCount: Math.floor(count * particleRatio),
+        scalar: 2.5 // Make the particles bigger than default
       });
     }
 
+    // First burst - from center, big spread
     fire(0.25, {
-      spread: 26,
-      startVelocity: 55,
-      origin: { y: 0.7 }
-    });
-
-    fire(0.2, {
-      spread: 60,
-      origin: { y: 0.7 }
-    });
-
-    fire(0.35, {
       spread: 100,
-      decay: 0.91,
-      scalar: 0.8,
-      origin: { y: 0.7 }
-    });
-
-    fire(0.1, {
-      spread: 120,
-      startVelocity: 25,
+      startVelocity: 70,
       decay: 0.92,
-      scalar: 1.2,
-      origin: { y: 0.7 }
+      scalar: 2.5
     });
 
+    // Second burst - from center
+    fire(0.2, {
+      spread: 150,
+      startVelocity: 60,
+      decay: 0.91,
+      scalar: 3.0
+    });
+
+    // Third burst - from center, wide spread, large particles
+    fire(0.35, {
+      spread: 180,
+      decay: 0.88,
+      scalar: 3.5
+    });
+
+    // Fourth burst - slower velocity, extra large
     fire(0.1, {
-      spread: 120,
-      startVelocity: 45,
-      origin: { y: 0.7 }
+      spread: 140,
+      startVelocity: 30,
+      decay: 0.92,
+      scalar: 4.0
+    });
+
+    // Fifth burst - high velocity, large particles
+    fire(0.1, {
+      spread: 160,
+      startVelocity: 65,
+      scalar: 3.0
     });
   };
 
