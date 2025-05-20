@@ -1,10 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-
 type Platform = {
   id: string;
   name: string;
@@ -13,33 +11,25 @@ type Platform = {
   logoUrl?: string;
   connected?: boolean;
 };
-
 type PlatformDetailsProps = {
   platform: Platform;
   onBack: () => void;
   onConnect: () => void;
 };
-
-export const PlatformDetails = ({ platform, onBack, onConnect }: PlatformDetailsProps) => {
-  return (
-    <div className="h-full flex flex-col overflow-hidden">
+export const PlatformDetails = ({
+  platform,
+  onBack,
+  onConnect
+}: PlatformDetailsProps) => {
+  return <div className="h-full flex flex-col overflow-hidden">
       <div className="p-6 flex flex-col">
-        <button 
-          onClick={onBack}
-          className="self-start text-[#116fae] hover:underline flex items-center mb-6"
-        >
+        <button onClick={onBack} className="self-start text-[#116fae] hover:underline flex items-center mb-6">
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to all applications
         </button>
         
         <div className="flex items-center mb-6">
-          {platform.logoUrl && (
-            <img 
-              src={platform.logoUrl} 
-              alt={`${platform.name} logo`} 
-              className="h-10 w-10 mr-4 object-contain" 
-            />
-          )}
+          {platform.logoUrl && <img src={platform.logoUrl} alt={`${platform.name} logo`} className="h-10 w-10 mr-4 object-contain" />}
           <h2 className="text-2xl font-semibold">{platform.name} integration</h2>
         </div>
       </div>
@@ -68,7 +58,7 @@ export const PlatformDetails = ({ platform, onBack, onConnect }: PlatformDetails
           </div>
           
           <div>
-            <Separator orientation="vertical" className="hidden md:block absolute left-0 h-full mx-4" />
+            
             <Separator className="md:hidden mb-6" />
             
             <div className="space-y-6">
@@ -91,19 +81,14 @@ export const PlatformDetails = ({ platform, onBack, onConnect }: PlatformDetails
       </div>
       
       <div className="border-t p-6 mt-auto">
-        <Button 
-          onClick={onConnect} 
-          className="w-full"
-          style={{
-            borderRadius: "8px",
-            border: "1px solid #116FAE",
-            backgroundColor: "#116FAE",
-            boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
-          }}
-        >
+        <Button onClick={onConnect} className="w-full" style={{
+        borderRadius: "8px",
+        border: "1px solid #116FAE",
+        backgroundColor: "#116FAE",
+        boxShadow: "0px 2px 4px 0px rgba(13, 87, 136, 0.16)"
+      }}>
           Connect application
         </Button>
       </div>
-    </div>
-  );
+    </div>;
 };
