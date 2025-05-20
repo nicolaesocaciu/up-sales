@@ -8,29 +8,29 @@ type CompletionScreenProps = {
 
 export const CompletionScreen = ({ onTour, onExplore }: CompletionScreenProps) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center">
+    <div className="flex flex-col items-center h-full text-center">
       <div className="mb-8">
         <img 
           src="/lovable-uploads/9da62b64-b9dd-42d5-965c-171f28c54fef.png" 
           alt="Completion illustration" 
-          className="w-32 h-32"
+          className="w-256 h-256"
         />
       </div>
       
       <h2 className="text-[#116FAE] font-medium mb-2">Congratulation,</h2>
-      <h1 className="text-4xl font-bold mb-4">You are all set up!</h1>
+      <h1 className="mb-4 text-[64px] font-normal">You are all set up!</h1>
       
-      <p className="text-gray-600 max-w-lg mb-10">
+      <p className="mb-10 text-2xl text-[#494a4a] font-light max-w-[980px]">
         Your CRM has all the needed information to help you grow and push 
         your business forward to the net level
       </p>
       
-      <p className="text-gray-600 mb-4">Your next steps:</p>
+      <p className="text-[#494a4a] mb-4">Your next steps:</p>
       
-      <div className="flex flex-col items-center gap-4 w-full max-w-xs">
+      <div className="flex flex-col items-center gap-8 mt-auto">
         <Button 
           onClick={onTour}
-          className="w-full h-[48px]"
+          className="w-full h-[60px]"
         >
           Start a guided tour
         </Button>
@@ -38,7 +38,7 @@ export const CompletionScreen = ({ onTour, onExplore }: CompletionScreenProps) =
         <Button 
           variant="outline"
           onClick={onExplore}
-          className="w-full h-[48px]"
+          className="w-full h-[60px]"
         >
           I will explore on my own
         </Button>
