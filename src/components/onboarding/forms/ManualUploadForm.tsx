@@ -60,11 +60,11 @@ export const ManualUploadForm = () => {
               uploadActive={uploadActive} 
             />
           ) : (
-            <div className="flex items-center gap-4 mt-4">
+            <div className="flex items-center gap-4">
               <Button disabled>
                 Successfully imported
               </Button>
-              <Badge variant="green" className="flex items-center gap-2">
+              <Badge variant="green" className="flex items-center gap-2 py-[3px] px-[12px]">
                 <Check size={16} className="text-[#2D7048]" />
                 <span>3872 products have been successfully imported</span>
               </Badge>
