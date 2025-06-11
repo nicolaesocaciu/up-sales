@@ -229,9 +229,7 @@ export const ProductModal = ({
               <Button variant="outline" onClick={handleCancel} className="flex-1">
                 Cancel
               </Button>
-              <Button onClick={handleUpdate} className="flex-1">
-                Update
-              </Button>
+              <Button onClick={handleUpdate} className="flex-1">Update product</Button>
             </div>
           </SheetFooter>
         </div>
