@@ -1,3 +1,4 @@
+
 import { Sheet, SheetContent } from "../ui/sheet";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -115,10 +116,14 @@ export const ProductModal = ({
     }
 
     try {
+      console.log('Updating product with ID:', product.id);
+      console.log('Form data:', formData);
+
       const { error } = await supabase
         .from('products')
         .update({
           name: formData.title,
+          category: formData.productType || 'Other',
         })
         .eq('id', product.id);
 
@@ -126,7 +131,7 @@ export const ProductModal = ({
         console.error('Error updating product:', error);
         toast({
           title: "Error",
-          description: "Failed to update product",
+          description: `Failed to update product: ${error.message}`,
           variant: "destructive"
         });
         return;
@@ -140,6 +145,9 @@ export const ProductModal = ({
       setOriginalData(formData);
       setHasUnsavedChanges(false);
       onOpenChange(false);
+      
+      // Refresh the page to show updated data
+      window.location.reload();
     } catch (error) {
       console.error('Error updating product:', error);
       toast({
