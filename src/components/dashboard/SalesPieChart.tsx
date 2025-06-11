@@ -82,7 +82,7 @@ export const SalesPieChart = ({
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
         </div>
       </div>
-      <div className="grid gap-5 pt-6 justify-self-center [grid-template-columns:repeat(auto-fit,_minmax(90px,_1fr))]">
+      <div className="grid gap-5 pt-6 justify-self-center [grid-template-columns:repeat(auto-fit,_minmax(90px,_1fr))] w-[100%]">
         {Object.entries(chartConfig).map(([key, config]) => {
         const item = data.find(d => d.name.toLowerCase() === key);
         if (!item) return null;
