@@ -104,7 +104,7 @@ export const ProductModal = ({
 
               <Separator />
 
-              <div className="space-y-4">
+              <div className="space-y-4 mb-3">
                 <h3 className="font-semibold text-lg">Organization</h3>
                 
                 <div className="space-y-2">
