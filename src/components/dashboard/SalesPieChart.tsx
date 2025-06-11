@@ -1,43 +1,33 @@
-
 import { Cell, Pie, PieChart } from "recharts";
 import { Card } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "../ui/chart";
 import { DragDotsIcon } from "../ui/icons/DragDotsIcon";
-
 interface SalesPieChartProps {
   isEditMode?: boolean;
 }
-
-const data = [
-  {
-    name: "Website",
-    value: 354629,
-    color: " #419BD7"
-  },
-  {
-    name: "Mobile",
-    value: 160586,
-    color: " #7FAF7F"
-  },
-  {
-    name: "Tablet",
-    value: 107057,
-    color: " #EDB45F"
-  },
-  {
-    name: "Other",
-    value: 46837,
-    color: " #E28594"
-  }
-];
-
-export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
+const data = [{
+  name: "Website",
+  value: 354629,
+  color: " #419BD7"
+}, {
+  name: "Mobile",
+  value: 160586,
+  color: " #7FAF7F"
+}, {
+  name: "Tablet",
+  value: 107057,
+  color: " #EDB45F"
+}, {
+  name: "Other",
+  value: 46837,
+  color: " #E28594"
+}];
+export const SalesPieChart = ({
+  isEditMode
+}: SalesPieChartProps) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
-  const months = [
-    "January", "February", "March", "April", "May", "June", 
-    "July", "August", "September", "October", "November", "December"
-  ];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   // Configure chart colors with the Sapphire color scheme
   const chartConfig = {
@@ -58,14 +48,10 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
       color: " #E28594" // Ruby
     }
   };
-
-  return (
-    <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none h-full relative group">
+  return <Card className="p-6 bg-white rounded-[24px] border-0 shadow-none h-full relative group">
       <div className="flex items-center justify-between mb-6 relative">
         <div className={`flex items-center ${isEditMode ? "cursor-grab active:cursor-grabbing" : ""}`}>
-          {isEditMode && (
-              <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-20px] mt-[-1px] absolute" />
-          )}
+          {isEditMode && <DragDotsIcon className="h-5 w-5 text-[#494A4A] ml-[-20px] mt-[-1px] absolute" />}
           <h2 className="text-lg font-semibold">Sales by platform</h2>
         </div>
         <Select defaultValue="january">
@@ -73,11 +59,9 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
             <SelectValue placeholder="Select month" />
           </SelectTrigger>
           <SelectContent>
-            {months.map(month => (
-              <SelectItem key={month.toLowerCase()} value={month.toLowerCase()}>
+            {months.map(month => <SelectItem key={month.toLowerCase()} value={month.toLowerCase()}>
                 {month}
-              </SelectItem>
-            ))}
+              </SelectItem>)}
           </SelectContent>
         </Select>
       </div>
@@ -98,7 +82,7 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
           <div className="text-2xl font-semibold">${total.toLocaleString()}</div>
         </div>
       </div>
-      <div className="grid grid-cols-[90px_90px_90px_90px] gap-5 pt-6 justify-self-center">
+      <div className="grid grid-cols-[90px_auto] gap-5 pt-6 justify-self-center">
         {Object.entries(chartConfig).map(([key, config]) => {
         const item = data.find(d => d.name.toLowerCase() === key);
         if (!item) return null;
@@ -117,8 +101,7 @@ export const SalesPieChart = ({ isEditMode }: SalesPieChartProps) => {
             </div>;
       })}
       </div>
-    </Card>
-  );
+    </Card>;
 };
 
 // Custom tooltip component
