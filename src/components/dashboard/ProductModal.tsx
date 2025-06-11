@@ -1,4 +1,3 @@
-
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -8,7 +7,6 @@ import { Copy, Eye, X } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import { useEffect } from "react";
-
 interface ProductModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -22,8 +20,11 @@ interface ProductModalProps {
     tags?: string[];
   };
 }
-
-export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps) => {
+export const ProductModal = ({
+  open,
+  onOpenChange,
+  product
+}: ProductModalProps) => {
   // Handle ESC key properly
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -31,25 +32,16 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
         onOpenChange(false);
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [open, onOpenChange]);
-
   const handleCloseClick = () => {
     onOpenChange(false);
   };
-
-  return (
-    <Sheet 
-      open={open} 
-      onOpenChange={onOpenChange}
+  return <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent className="w-[800px] sm:max-w-[800px] h-full overflow-y-auto rounded-tl-[24px] rounded-bl-[24px] bg-white p-12" onInteractOutside={() => onOpenChange(false)} // Close when clicking outside
+    onEscapeKeyDown={() => onOpenChange(false)} // Explicitly handle ESC key
     >
-      <SheetContent 
-        className="w-[800px] sm:max-w-[800px] h-full overflow-y-auto rounded-tl-[24px] rounded-bl-[24px] bg-white p-12"
-        onInteractOutside={() => onOpenChange(false)} // Close when clicking outside
-        onEscapeKeyDown={() => onOpenChange(false)} // Explicitly handle ESC key
-      >
         <div className="flex flex-col h-full">
           <SheetHeader className="space-y-6">
             <div className="flex items-center justify-between">
@@ -67,7 +59,7 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
               </div>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-6 mb-3 ">
               <div>
                 <Label htmlFor="title">Title</Label>
                 <Input id="title" value={product.title} readOnly />
@@ -75,25 +67,13 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
               
               <div>
                 <Label htmlFor="description">Description</Label>
-                <Textarea 
-                  id="description" 
-                  value={product.description || 'No description available'} 
-                  readOnly 
-                  className="h-32 min-h-[80px]"
-                />
+                <Textarea id="description" value={product.description || 'No description available'} readOnly className="h-32 min-h-[80px]" />
               </div>
 
               <div>
                 <Label>Images</Label>
                 <div className="mt-2 grid grid-cols-2 gap-4">
-                  {product.images?.map((image, index) => (
-                    <img 
-                      key={index}
-                      src={image} 
-                      alt={`Product ${index + 1}`}
-                      className="w-full h-48 object-cover rounded-lg border"
-                    />
-                  ))}
+                  {product.images?.map((image, index) => <img key={index} src={image} alt={`Product ${index + 1}`} className="w-full h-48 object-cover rounded-lg border" />)}
                   <div className="border-2 border-dashed rounded-lg flex items-center justify-center h-48">
                     <div className="text-center">
                       <p className="text-sm text-gray-500">Add images</p>
@@ -129,32 +109,21 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
                 
                 <div className="space-y-2">
                   <Label htmlFor="productType">Product type</Label>
-                  <Input 
-                    id="productType" 
-                    value={product.productType || ''} 
-                    placeholder="e.g. Shirts"
-                    readOnly 
-                  />
+                  <Input id="productType" value={product.productType || ''} placeholder="e.g. Shirts" readOnly />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="vendor">Vendor</Label>
-                  <Input 
-                    id="vendor" 
-                    value={product.vendor || ''} 
-                    readOnly 
-                  />
+                  <Input id="vendor" value={product.vendor || ''} readOnly />
                 </div>
 
                 <div className="space-y-2">
                   <Label>Collections</Label>
                   <div className="flex flex-wrap gap-2">
-                    {product.collections?.map((collection, index) => (
-                      <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                    {product.collections?.map((collection, index) => <Badge key={index} variant="secondary" className="flex items-center gap-1">
                         {collection}
                         <X className="h-3 w-3" />
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
                 </div>
 
@@ -165,17 +134,12 @@ export const ProductModal = ({ open, onOpenChange, product }: ProductModalProps)
                       View all tags
                     </Button>
                   </div>
-                  <Input 
-                    value={product.tags?.join(', ') || ''} 
-                    placeholder="Vintage, cotton, summer"
-                    readOnly 
-                  />
+                  <Input value={product.tags?.join(', ') || ''} placeholder="Vintage, cotton, summer" readOnly />
                 </div>
               </div>
             </div>
           </SheetHeader>
         </div>
       </SheetContent>
-    </Sheet>
-  );
+    </Sheet>;
 };
