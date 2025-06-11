@@ -1,4 +1,3 @@
-
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "../ui/sheet";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -9,7 +8,6 @@ import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { useEffect, useState } from "react";
-
 interface ProductModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -23,7 +21,6 @@ interface ProductModalProps {
     tags?: string[];
   };
 }
-
 export const ProductModal = ({
   open,
   onOpenChange,
@@ -36,7 +33,7 @@ export const ProductModal = ({
     productType: product.productType || '',
     collections: product.collections || [],
     tags: product.tags?.join(', ') || '',
-    salesChannel: '',
+    salesChannel: ''
   });
 
   // Update form data when product changes
@@ -48,7 +45,7 @@ export const ProductModal = ({
       productType: product.productType || '',
       collections: product.collections || [],
       tags: product.tags?.join(', ') || '',
-      salesChannel: '',
+      salesChannel: ''
     });
   }, [product]);
 
@@ -62,18 +59,15 @@ export const ProductModal = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [open, onOpenChange]);
-
   const handleDuplicateProduct = () => {
     console.log('Duplicating product:', product.title);
     // Add duplication logic here
   };
-
   const handleUpdate = () => {
     console.log('Updating product with:', formData);
     // Add update logic here
     onOpenChange(false);
   };
-
   const handleCancel = () => {
     // Reset form data to original values
     setFormData({
@@ -83,40 +77,30 @@ export const ProductModal = ({
       productType: product.productType || '',
       collections: product.collections || [],
       tags: product.tags?.join(', ') || '',
-      salesChannel: '',
+      salesChannel: ''
     });
     onOpenChange(false);
   };
-
   const handleRemoveCollection = (collectionToRemove: string) => {
     setFormData(prev => ({
       ...prev,
       collections: prev.collections.filter(c => c !== collectionToRemove)
     }));
   };
-
   const handleAddImage = () => {
     console.log('Add image clicked');
     // Add image upload logic here
   };
-
   const handleManageAvailability = () => {
     console.log('Manage availability clicked');
     // Add manage availability logic here
   };
-
   const handleViewAllTags = () => {
     console.log('View all tags clicked');
     // Add view all tags logic here
   };
-
-  return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent 
-        className="w-[800px] sm:max-w-[800px] h-full overflow-y-auto rounded-tl-[24px] rounded-bl-[24px] bg-white p-12" 
-        onInteractOutside={() => onOpenChange(false)}
-        onEscapeKeyDown={() => onOpenChange(false)}
-      >
+  return <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent className="w-[800px] sm:max-w-[800px] h-full overflow-y-auto rounded-tl-[24px] rounded-bl-[24px] bg-white p-12" onInteractOutside={() => onOpenChange(false)} onEscapeKeyDown={() => onOpenChange(false)}>
         <div className="flex flex-col h-full">
           <SheetHeader className="space-y-6">
             <div className="flex items-center justify-between">
@@ -134,39 +118,25 @@ export const ProductModal = ({
             <div className="space-y-6 mb-3">
               <div>
                 <Label htmlFor="title">Title</Label>
-                <Input 
-                  id="title" 
-                  value={formData.title} 
-                  onChange={(e) => setFormData(prev => ({...prev, title: e.target.value}))}
-                />
+                <Input id="title" value={formData.title} onChange={e => setFormData(prev => ({
+                ...prev,
+                title: e.target.value
+              }))} />
               </div>
               
               <div>
                 <Label htmlFor="description">Description</Label>
-                <Textarea 
-                  id="description" 
-                  value={formData.description} 
-                  onChange={(e) => setFormData(prev => ({...prev, description: e.target.value}))}
-                  placeholder="Enter product description"
-                  className="h-32 min-h-[80px]" 
-                />
+                <Textarea id="description" value={formData.description} onChange={e => setFormData(prev => ({
+                ...prev,
+                description: e.target.value
+              }))} placeholder="Enter product description" className="h-32 min-h-[80px]" />
               </div>
 
               <div>
                 <Label>Images</Label>
                 <div className="mt-2 grid grid-cols-2 gap-4">
-                  {product.images?.map((image, index) => (
-                    <img 
-                      key={index} 
-                      src={image} 
-                      alt={`Product ${index + 1}`} 
-                      className="w-full h-48 object-cover rounded-lg border" 
-                    />
-                  ))}
-                  <button
-                    onClick={handleAddImage}
-                    className="border-2 border-dashed rounded-lg flex items-center justify-center h-48 hover:border-gray-400 transition-colors"
-                  >
+                  {product.images?.map((image, index) => <img key={index} src={image} alt={`Product ${index + 1}`} className="w-full h-48 object-cover rounded-lg border" />)}
+                  <button onClick={handleAddImage} className="border-2 border-dashed rounded-lg flex items-center justify-center h-48 hover:border-gray-400 transition-colors">
                     <div className="text-center">
                       <Plus className="h-6 w-6 mx-auto mb-2 text-gray-400" />
                       <p className="text-sm text-gray-500">Add images</p>
@@ -189,7 +159,10 @@ export const ProductModal = ({
                 
                 <div className="space-y-2">
                   <p className="font-medium">Online Store</p>
-                  <Select value={formData.salesChannel} onValueChange={(value) => setFormData(prev => ({...prev, salesChannel: value}))}>
+                  <Select value={formData.salesChannel} onValueChange={value => setFormData(prev => ({
+                  ...prev,
+                  salesChannel: value
+                }))}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select sales channel" />
                     </SelectTrigger>
@@ -204,40 +177,34 @@ export const ProductModal = ({
 
               <Separator />
 
-              <div className="space-y-4 pb-12">
+              <div className="space-y-4 pb-8">
                 <h3 className="font-semibold text-lg">Organization</h3>
                 
                 <div className="space-y-2">
                   <Label htmlFor="productType">Product type</Label>
-                  <Input 
-                    id="productType" 
-                    value={formData.productType} 
-                    onChange={(e) => setFormData(prev => ({...prev, productType: e.target.value}))}
-                    placeholder="e.g. Shirts" 
-                  />
+                  <Input id="productType" value={formData.productType} onChange={e => setFormData(prev => ({
+                  ...prev,
+                  productType: e.target.value
+                }))} placeholder="e.g. Shirts" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="vendor">Vendor</Label>
-                  <Input 
-                    id="vendor" 
-                    value={formData.vendor} 
-                    onChange={(e) => setFormData(prev => ({...prev, vendor: e.target.value}))}
-                    placeholder="Enter vendor name"
-                  />
+                  <Input id="vendor" value={formData.vendor} onChange={e => setFormData(prev => ({
+                  ...prev,
+                  vendor: e.target.value
+                }))} placeholder="Enter vendor name" />
                 </div>
 
                 <div className="space-y-2">
                   <Label>Collections</Label>
                   <div className="flex flex-wrap gap-2">
-                    {formData.collections.map((collection, index) => (
-                      <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                    {formData.collections.map((collection, index) => <Badge key={index} variant="secondary" className="flex items-center gap-1">
                         {collection}
                         <button onClick={() => handleRemoveCollection(collection)}>
                           <X className="h-3 w-3" />
                         </button>
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
                 </div>
 
@@ -248,17 +215,16 @@ export const ProductModal = ({
                       View all tags
                     </Button>
                   </div>
-                  <Input 
-                    value={formData.tags} 
-                    onChange={(e) => setFormData(prev => ({...prev, tags: e.target.value}))}
-                    placeholder="Vintage, cotton, summer" 
-                  />
+                  <Input value={formData.tags} onChange={e => setFormData(prev => ({
+                  ...prev,
+                  tags: e.target.value
+                }))} placeholder="Vintage, cotton, summer" />
                 </div>
               </div>
             </div>
           </SheetHeader>
 
-          <SheetFooter className="mt-auto pt-6 border-t">
+          <SheetFooter className="mt-auto pt-6 border-t pb-12">
             <div className="flex gap-3 w-full">
               <Button variant="outline" onClick={handleCancel} className="flex-1">
                 Cancel
@@ -270,6 +236,5 @@ export const ProductModal = ({
           </SheetFooter>
         </div>
       </SheetContent>
-    </Sheet>
-  );
+    </Sheet>;
 };
